@@ -1,0 +1,1 @@
+ALTER TABLE profiles ADD COLUMN IF NOT EXISTS approval_status text NOT NULL DEFAULT 'pending'; 
