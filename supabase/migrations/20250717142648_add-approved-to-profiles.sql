@@ -1,1 +1,0 @@
-ALTER TABLE profiles ADD COLUMN approved boolean NOT NULL DEFAULT false;
