@@ -123,7 +123,15 @@ export default {
 				'pulse-glow': {
 					'0%, 100%': { boxShadow: '0 0 20px rgba(220, 38, 38, 0.4)' },
 					'50%': { boxShadow: '0 0 40px rgba(220, 38, 38, 0.8)' }
-				}
+				},
+				'gradient-x': {
+					'0%, 100%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' }
+				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: '0.6' },
+					'50%': { opacity: '1' }
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -133,6 +141,8 @@ export default {
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
 				'scale-in': 'scale-in 0.4s ease-out',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'gradient-x': 'gradient-x 3s ease-in-out infinite',
+				'pulse-slow': 'pulse-slow 1.5s infinite',
 			},
 			gradientColorStops: theme => ({
 				...theme('colors'),

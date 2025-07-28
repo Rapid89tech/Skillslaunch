@@ -73,18 +73,18 @@ const CourseSidebar = ({
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="font-bold text-white text-base leading-tight line-clamp-2">{course.title}</h2>
+              <h2 className="font-bold text-transparent text-base leading-tight line-clamp-2 bg-gradient-to-r from-red-500 via-pink-500 to-red-400 bg-clip-text animate-gradient-x">{course.title}</h2>
               {/* Removed 'Navigation' subtitle */}
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
+          <button
             onClick={() => setSidebarOpen(false)}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+            className="relative w-10 h-10 flex items-center justify-center rounded-full transition-all duration-200 focus:outline-none group"
+            style={{ boxShadow: '0 0 0 0 rgba(239,68,68,0.2)' }}
           >
-            <X className="w-4 h-4" />
-          </Button>
+            <span className="absolute inline-flex h-full w-full rounded-full bg-gradient-to-br from-red-500 via-pink-500 to-red-400 opacity-60 group-hover:opacity-80 animate-pulse-slow" />
+            <X className="w-6 h-6 z-10 text-white group-hover:scale-110 group-active:scale-90 transition-transform duration-150" />
+          </button>
         </div>
 
         {/* Progress Section */}
