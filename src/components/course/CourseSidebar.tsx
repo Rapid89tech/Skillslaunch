@@ -135,7 +135,6 @@ const CourseSidebar = ({
               </div>
             </div>
             <h3 className="text-sm font-semibold text-white mb-1">Course Progress</h3>
-            <p className="text-xs text-white/80">{completedCount} of {totalLessons} lessons completed</p>
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
