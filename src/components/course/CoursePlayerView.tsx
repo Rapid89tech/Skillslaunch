@@ -66,7 +66,7 @@ const CoursePlayerView = ({ // ... keep existing code (parameter destructuring)
 
       {/* Main Content */}
       <div className="flex-1 overflow-y-auto bg-white dark:bg-gray-900">
-        <div className="container mx-auto px-6 py-8 pb-24 max-w-4xl">
+        <div className="container mx-auto px-6 py-2 pb-24 max-w-4xl">
           {/* Lesson Content */}
           {currentLessonData && (
             <div className="animate-fade-in">
