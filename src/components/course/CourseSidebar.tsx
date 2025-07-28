@@ -73,8 +73,8 @@ const CourseSidebar = ({
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="font-bold text-gray-900 dark:text-white text-sm">Course Content</h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Navigation</p>
+              <h2 className="font-bold text-white text-sm">Course Content</h2>
+              <p className="text-xs text-white/80">Navigation</p>
             </div>
           </div>
           <Button
@@ -131,19 +131,19 @@ const CourseSidebar = ({
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-2xl font-extrabold text-gray-900 dark:text-white drop-shadow-md">{Math.round(progress)}%</span>
+                <span className="text-2xl font-extrabold text-white drop-shadow-md">{Math.round(progress)}%</span>
               </div>
             </div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Course Progress</h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400">{completedCount} of {totalLessons} lessons completed</p>
+            <h3 className="text-sm font-semibold text-white mb-1">Course Progress</h3>
+            <p className="text-xs text-white/80">{completedCount} of {totalLessons} lessons completed</p>
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
-              <span className="text-gray-600 dark:text-gray-300">Overall Progress</span>
-              <span className="font-semibold text-red-600 dark:text-red-400">{Math.round(progress)}%</span>
+              <span className="text-white/90">Overall Progress</span>
+              <span className="font-semibold text-white">{Math.round(progress)}%</span>
             </div>
-            <Progress value={progress} className="h-2 bg-red-100" style={{ background: 'linear-gradient(90deg, #fca5a5 0%, #f43f5e 100%)', opacity: 0.5 }} />
-            <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400">
+            <Progress value={progress} className="h-2" style={{ background: 'linear-gradient(90deg, #000 0%, #ef4444 100%)', opacity: 0.8 }} />
+            <div className="flex items-center justify-between text-xs text-white/80">
               <span>{completedCount} lessons completed</span>
               <span>{totalLessons} total lessons</span>
             </div>
@@ -152,7 +152,7 @@ const CourseSidebar = ({
 
         {/* Course Title */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="font-bold text-gray-900 dark:text-white text-sm leading-tight line-clamp-2">
+          <h2 className="font-bold text-white text-sm leading-tight line-clamp-2">
             {course.title}
           </h2>
         </div>
@@ -224,7 +224,7 @@ const ModuleCard = ({
       {/* Module Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        className="w-full p-4 flex items-center justify-between hover:bg-white/10 transition-colors"
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-red-500/80 to-pink-500/80 rounded-lg flex items-center justify-center shadow-md">
@@ -232,22 +232,22 @@ const ModuleCard = ({
           </div>
           <div className="text-left">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
+              <h3 className="font-semibold text-white text-sm">
                 Module {moduleIndex + 1}
               </h3>
               <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md">
                 {completedInModule}/{totalModuleLessons}
               </Badge>
             </div>
-            <p className="text-xs text-gray-600 dark:text-gray-300 line-clamp-1">
+            <p className="text-xs text-white/80 line-clamp-1">
               {module.title}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-16 h-1.5 bg-red-100/80 rounded-full overflow-hidden">
+          <div className="w-16 h-1.5 bg-black/40 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-red-500/80 to-pink-500/80 transition-all duration-300"
+              className="h-full bg-gradient-to-r from-black to-red-500 transition-all duration-300"
               style={{ width: `${moduleProgress}%` }}
             />
           </div>
@@ -261,7 +261,7 @@ const ModuleCard = ({
 
       {/* Module Lessons */}
       {isExpanded && (
-        <div className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+        <div className="border-t border-gray-200 dark:border-gray-700 bg-white/10">
           {module.lessons.map((lesson: any, lessonIndex: number) => {
             const lessonGlobalIndex = moduleStartIndex + lessonIndex;
             const isCompleted = completedLessons.includes(lessonGlobalIndex);
@@ -271,44 +271,44 @@ const ModuleCard = ({
               <button
                 key={lesson.id}
                 onClick={() => setCurrentLesson(lessonGlobalIndex)}
-                className={`w-full p-3 flex items-center gap-3 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
-                  isCurrent ? 'bg-blue-50 dark:bg-blue-900/20 border-r-2 border-blue-500' : ''
+                className={`w-full p-3 flex items-center gap-3 text-left hover:bg-white/10 transition-colors ${
+                  isCurrent ? 'bg-white/20 border-r-2 border-white' : ''
                 }`}
               >
                 <div className="flex-shrink-0">
                   {isCompleted ? (
-                    <CheckCircle className="w-4 h-4 text-green-500" />
+                    <CheckCircle className="w-4 h-4 text-green-300" />
                   ) : (
                     <div className={`w-4 h-4 rounded-full border-2 ${
                       isCurrent 
-                        ? 'border-blue-500 bg-blue-500' 
-                        : 'border-gray-300 dark:border-gray-600'
+                        ? 'border-white bg-white' 
+                        : 'border-white/60'
                     }`} />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className={`text-sm font-medium line-clamp-1 ${
                     isCurrent 
-                      ? 'text-blue-600 dark:text-blue-400' 
+                      ? 'text-white' 
                       : isCompleted 
-                        ? 'text-gray-900 dark:text-white' 
-                        : 'text-gray-700 dark:text-gray-300'
+                        ? 'text-white/90' 
+                        : 'text-white/80'
                   }`}>
                     {lesson.title}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
-                    <Clock className="w-3 h-3 text-gray-400" />
-                    <span className="text-xs text-gray-500 dark:text-gray-400">
+                    <Clock className="w-3 h-3 text-white/60" />
+                    <span className="text-xs text-white/80">
                       {lesson.duration || '5 min'}
                     </span>
-                    <span className="text-xs text-gray-400">•</span>
-                    <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">
+                    <span className="text-xs text-white/60">•</span>
+                    <span className="text-xs text-white/80 capitalize">
                       {lesson.type || 'lesson'}
                     </span>
                   </div>
                 </div>
                 {isCurrent && (
-                  <Play className="w-4 h-4 text-blue-500" />
+                  <Play className="w-4 h-4 text-white" />
                 )}
               </button>
             );
