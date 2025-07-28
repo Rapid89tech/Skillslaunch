@@ -73,8 +73,8 @@ const CourseSidebar = ({
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="font-bold text-gray-900 dark:text-white text-sm">Course Content</h2>
-              <p className="text-xs text-gray-500 dark:text-gray-400">Navigation</p>
+              <h2 className="font-bold text-white text-base leading-tight line-clamp-2">{course.title}</h2>
+              {/* Removed 'Navigation' subtitle */}
             </div>
           </div>
           <Button
@@ -126,8 +126,9 @@ const CourseSidebar = ({
                 <span className="text-3xl font-extrabold text-white drop-shadow-md">{Math.round(progress)}%</span>
         </div>
       </div>
-            <h3 className="text-lg font-bold text-white mb-1">Course Progress</h3>
-            {/* Removed lessons completed text here */}
+            {/* Removed 'Course Progress' text here */}
+            {/* <h3 className="text-lg font-bold text-white mb-1">Course Progress</h3> */}
+            <p className="text-xs text-white/80">{completedCount} of {totalLessons} lessons completed</p>
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
@@ -150,13 +151,6 @@ const CourseSidebar = ({
             </div>
           </div>
         </div>
-
-        {/* Course Title */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="font-bold text-white text-base leading-tight line-clamp-2">
-            {course.title}
-          </h2>
-      </div>
 
         {/* Modules List */}
       <div className="flex-1 overflow-y-auto">
