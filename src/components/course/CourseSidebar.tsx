@@ -159,46 +159,45 @@ const CourseSidebar = ({
         </div>
 
         {/* Modules List */}
-      <div className="flex-1 overflow-y-auto">
+        <div className="flex-1 overflow-y-auto">
           <div className="p-4 space-y-4">
-          {course.modules.map((module, moduleIndex) => {
-            const moduleStartIndex = course.modules
-              .slice(0, moduleIndex)
-              .reduce((acc, m) => acc + m.lessons.length, 0);
-            const completedInModule = module.lessons.filter((_, lessonIndex) => 
-              completedLessons.includes(moduleStartIndex + lessonIndex)
-            ).length;
-            const totalModuleLessons = module.lessons.length;
-            const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
-            return (
-              <ModuleCard
-                key={module.id}
-                module={module}
-                moduleIndex={moduleIndex}
-                moduleStartIndex={moduleStartIndex}
-                completedInModule={completedInModule}
-                totalModuleLessons={totalModuleLessons}
-                moduleProgress={moduleProgress}
-                completedLessons={completedLessons}
-                currentLesson={currentLesson}
-                setCurrentLesson={setCurrentLesson}
-              />
-            );
-          })}
+            {course.modules.map((module, moduleIndex) => {
+              const moduleStartIndex = course.modules
+                .slice(0, moduleIndex)
+                .reduce((acc, m) => acc + m.lessons.length, 0);
+              const completedInModule = module.lessons.filter((_, lessonIndex) => 
+                completedLessons.includes(moduleStartIndex + lessonIndex)
+              ).length;
+              const totalModuleLessons = module.lessons.length;
+              const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
+              return (
+                <ModuleCard
+                  key={module.id}
+                  module={module}
+                  moduleIndex={moduleIndex}
+                  moduleStartIndex={moduleStartIndex}
+                  completedInModule={completedInModule}
+                  totalModuleLessons={totalModuleLessons}
+                  moduleProgress={moduleProgress}
+                  completedLessons={completedLessons}
+                  currentLesson={currentLesson}
+                  setCurrentLesson={setCurrentLesson}
+                />
+              );
+            })}
           </div>
         </div>
+        {/* Floating Toggle Button */}
+        {!sidebarOpen && (
+          <button
+            onClick={() => setSidebarOpen(true)}
+            className="fixed top-20 left-4 z-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
+            aria-label="Open Course Navigation"
+          >
+            <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+          </button>
+        )}
       </div>
-
-      {/* Floating Toggle Button */}
-      {!sidebarOpen && (
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="fixed top-20 left-4 z-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
-          aria-label="Open Course Navigation"
-        >
-          <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-        </button>
-      )}
     </>
   );
 };
