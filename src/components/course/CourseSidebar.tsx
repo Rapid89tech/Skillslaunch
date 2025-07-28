@@ -162,30 +162,27 @@ const CourseSidebar = ({
       <div className="flex-1 overflow-y-auto">
           <div className="p-4 space-y-4">
           {course.modules.map((module, moduleIndex) => {
-              const moduleStartIndex = course.modules
-                .slice(0, moduleIndex)
+            const moduleStartIndex = course.modules
+              .slice(0, moduleIndex)
               .reduce((acc, m) => acc + m.lessons.length, 0);
-              
-              const completedInModule = module.lessons.filter((_, lessonIndex) => 
-                completedLessons.includes(moduleStartIndex + lessonIndex)
-              ).length;
-              
-              const totalModuleLessons = module.lessons.length;
-              const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
-
+            const completedInModule = module.lessons.filter((_, lessonIndex) => 
+              completedLessons.includes(moduleStartIndex + lessonIndex)
+            ).length;
+            const totalModuleLessons = module.lessons.length;
+            const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
             return (
-                <ModuleCard
-                  key={module.id}
-                  module={module}
-                  moduleIndex={moduleIndex}
-                  moduleStartIndex={moduleStartIndex}
-                  completedInModule={completedInModule}
-                  totalModuleLessons={totalModuleLessons}
-                  moduleProgress={moduleProgress}
-                  completedLessons={completedLessons}
-                  currentLesson={currentLesson}
-                  setCurrentLesson={setCurrentLesson}
-                />
+              <ModuleCard
+                key={module.id}
+                module={module}
+                moduleIndex={moduleIndex}
+                moduleStartIndex={moduleStartIndex}
+                completedInModule={completedInModule}
+                totalModuleLessons={totalModuleLessons}
+                moduleProgress={moduleProgress}
+                completedLessons={completedLessons}
+                currentLesson={currentLesson}
+                setCurrentLesson={setCurrentLesson}
+              />
             );
           })}
           </div>
