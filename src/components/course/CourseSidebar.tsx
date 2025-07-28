@@ -73,8 +73,8 @@ const CourseSidebar = ({
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="font-bold text-white text-sm">Course Content</h2>
-              <p className="text-xs text-white/80">Navigation</p>
+              <h2 className="font-bold text-gray-900 dark:text-white text-sm">Course Content</h2>
+              <p className="text-xs text-gray-500 dark:text-gray-400">Navigation</p>
             </div>
           </div>
           <Button
@@ -101,47 +101,40 @@ const CourseSidebar = ({
                     <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#fca5a5"/>
                   </filter>
                 </defs>
-                {/* Background ring */}
+                {/* Solid white background ring */}
                 <circle
                   cx="50" cy="50" r="40"
                   fill="none"
-                  stroke="#fca5a5"
-                  strokeWidth="12"
-                  opacity="0.25"
+                  stroke="#fff"
+                  strokeWidth="14"
+                  opacity="1"
                 />
-                {/* Foreground progress ring */}
+                {/* Foreground progress ring, thick and 3D-style */}
                 <circle
                   cx="50" cy="50" r="40"
                   fill="none"
                   stroke="url(#progressRedGradient)"
-                  strokeWidth="12"
+                  strokeWidth="14"
                   strokeDasharray={2 * Math.PI * 40}
                   strokeDashoffset={2 * Math.PI * 40 * (1 - progress / 100)}
                   strokeLinecap="round"
                   filter="url(#shadow)"
                   style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,2,.3,1)' }}
                 />
-                {/* 3D effect inner shadow */}
-                <circle
-                  cx="50" cy="50" r="34"
-                  fill="none"
-                  stroke="#fff"
-                  strokeWidth="2"
-                  opacity="0.5"
-                />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-2xl font-extrabold text-white drop-shadow-md">{Math.round(progress)}%</span>
+                <span className="text-3xl font-extrabold text-white drop-shadow-md">{Math.round(progress)}%</span>
               </div>
             </div>
-            <h3 className="text-sm font-semibold text-white mb-1">Course Progress</h3>
+            <h3 className="text-lg font-bold text-white mb-1">Course Progress</h3>
+            <p className="text-xs text-white/80">{completedCount} of {totalLessons} lessons completed</p>
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
               <span className="text-white/90">Overall Progress</span>
               <span className="font-semibold text-white">{Math.round(progress)}%</span>
             </div>
-            <Progress value={progress} className="h-2" style={{ background: 'linear-gradient(90deg, #000 0%, #ef4444 100%)', opacity: 0.8 }} />
+            <Progress value={progress} className="h-2 bg-white/30" style={{ background: 'linear-gradient(90deg, #fff 0%, #f43f5e 100%)', opacity: 0.5 }} />
             <div className="flex items-center justify-between text-xs text-white/80">
               <span>{completedCount} lessons completed</span>
               <span>{totalLessons} total lessons</span>
@@ -151,18 +144,18 @@ const CourseSidebar = ({
 
         {/* Course Title */}
         <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <h2 className="font-bold text-white text-sm leading-tight line-clamp-2">
+          <h2 className="font-bold text-white text-base leading-tight line-clamp-2">
             {course.title}
           </h2>
         </div>
 
         {/* Modules List */}
-        <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto">
           <div className="p-4 space-y-4">
-            {course.modules.map((module, moduleIndex) => {
+          {course.modules.map((module, moduleIndex) => {
               const moduleStartIndex = course.modules
                 .slice(0, moduleIndex)
-                .reduce((acc, m) => acc + m.lessons.length, 0);
+              .reduce((acc, m) => acc + m.lessons.length, 0);
               
               const completedInModule = module.lessons.filter((_, lessonIndex) => 
                 completedLessons.includes(moduleStartIndex + lessonIndex)
@@ -171,7 +164,7 @@ const CourseSidebar = ({
               const totalModuleLessons = module.lessons.length;
               const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
 
-              return (
+            return (
                 <ModuleCard
                   key={module.id}
                   module={module}
@@ -184,8 +177,8 @@ const CourseSidebar = ({
                   currentLesson={currentLesson}
                   setCurrentLesson={setCurrentLesson}
                 />
-              );
-            })}
+            );
+          })}
           </div>
         </div>
       </div>
@@ -219,11 +212,11 @@ const ModuleCard = ({
   const [isExpanded, setIsExpanded] = React.useState(moduleIndex === 0);
 
   return (
-    <div className="bg-gray-50/80 dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-fade-in-up" style={{ animationDelay: `${moduleIndex * 80}ms` }}>
+    <div className="bg-white/20 dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-fade-in-up" style={{ animationDelay: `${moduleIndex * 80}ms` }}>
       {/* Module Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-4 flex items-center justify-between hover:bg-white/10 transition-colors"
+        className="w-full p-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-red-500/80 to-pink-500/80 rounded-lg flex items-center justify-center shadow-md">
@@ -231,22 +224,22 @@ const ModuleCard = ({
           </div>
           <div className="text-left">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-black text-sm">
+              <h3 className="font-semibold text-white text-sm">
                 Module {moduleIndex + 1}
               </h3>
               <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md">
                 {completedInModule}/{totalModuleLessons}
               </Badge>
             </div>
-            <p className="text-xs text-black/80 line-clamp-1">
+            <p className="text-xs text-white/80 line-clamp-1">
               {module.title}
             </p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-16 h-1.5 bg-black/40 rounded-full overflow-hidden">
+          <div className="w-16 h-1.5 bg-white/40 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-black to-red-500 transition-all duration-300"
+              className="h-full bg-gradient-to-r from-red-500/80 to-pink-500/80 transition-all duration-300"
               style={{ width: `${moduleProgress}%` }}
             />
           </div>
@@ -260,7 +253,7 @@ const ModuleCard = ({
 
       {/* Module Lessons */}
       {isExpanded && (
-        <div className="border-t border-gray-200 dark:border-gray-700 bg-white/10">
+        <div className="border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
           {module.lessons.map((lesson: any, lessonIndex: number) => {
             const lessonGlobalIndex = moduleStartIndex + lessonIndex;
             const isCompleted = completedLessons.includes(lessonGlobalIndex);
@@ -270,44 +263,44 @@ const ModuleCard = ({
               <button
                 key={lesson.id}
                 onClick={() => setCurrentLesson(lessonGlobalIndex)}
-                className={`w-full p-3 flex items-center gap-3 text-left hover:bg-white/10 transition-colors ${
-                  isCurrent ? 'bg-white/20 border-r-2 border-white' : ''
+                className={`w-full p-3 flex items-center gap-3 text-left hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
+                  isCurrent ? 'bg-blue-50 dark:bg-blue-900/20 border-r-2 border-blue-500' : ''
                 }`}
               >
                 <div className="flex-shrink-0">
                   {isCompleted ? (
-                    <CheckCircle className="w-4 h-4 text-green-300" />
+                    <CheckCircle className="w-4 h-4 text-green-500" />
                   ) : (
                     <div className={`w-4 h-4 rounded-full border-2 ${
                       isCurrent 
-                        ? 'border-white bg-white' 
-                        : 'border-white/60'
+                        ? 'border-blue-500 bg-blue-500' 
+                        : 'border-gray-300 dark:border-gray-600'
                     }`} />
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className={`text-sm font-medium line-clamp-1 ${
                     isCurrent 
-                      ? 'text-black' 
+                      ? 'text-blue-600 dark:text-blue-400' 
                       : isCompleted 
-                        ? 'text-black/90' 
-                        : 'text-black/80'
+                        ? 'text-gray-900 dark:text-white' 
+                        : 'text-gray-700 dark:text-gray-300'
                   }`}>
                     {lesson.title}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
-                    <Clock className="w-3 h-3 text-black/60" />
-                    <span className="text-xs text-black/80">
+                    <Clock className="w-3 h-3 text-gray-400" />
+                    <span className="text-xs text-gray-500 dark:text-gray-400">
                       {lesson.duration || '5 min'}
                     </span>
-                    <span className="text-xs text-black/60">•</span>
-                    <span className="text-xs text-black/80 capitalize">
+                    <span className="text-xs text-gray-400">•</span>
+                    <span className="text-xs text-gray-500 dark:text-gray-400 capitalize">
                       {lesson.type || 'lesson'}
                     </span>
                   </div>
                 </div>
                 {isCurrent && (
-                  <Play className="w-4 h-4 text-white" />
+                  <Play className="w-4 h-4 text-blue-500" />
                 )}
               </button>
             );
