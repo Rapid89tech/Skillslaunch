@@ -134,7 +134,16 @@ const CourseSidebar = ({
               <span className="text-white/90">Overall Progress</span>
               <span className="font-semibold text-white">{Math.round(progress)}%</span>
             </div>
-            <Progress value={progress} className="h-2 bg-white/30" style={{ background: 'linear-gradient(90deg, #fff 0%, #f43f5e 100%)', opacity: 0.5 }} />
+            <div className="relative w-full h-3 rounded-full overflow-hidden bg-gradient-to-r from-black via-black/80 to-red-700/80 mt-1 mb-1">
+              <div
+                className="absolute left-0 top-0 h-full rounded-full transition-all duration-700 ease-in-out"
+                style={{
+                  width: `${progress}%`,
+                  background: 'linear-gradient(90deg, #fff 0%, #fff 100%)',
+                  boxShadow: '0 2px 8px 0 rgba(255,255,255,0.15)',
+                }}
+              />
+            </div>
             <div className="flex items-center justify-between text-xs text-white/80">
               <span>{completedCount} lessons completed</span>
               <span>{totalLessons} total lessons</span>
