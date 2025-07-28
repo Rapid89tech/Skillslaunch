@@ -127,7 +127,7 @@ const CourseSidebar = ({
               </div>
             </div>
             <h3 className="text-lg font-bold text-white mb-1">Course Progress</h3>
-            <p className="text-xs text-white/80">{completedCount} of {totalLessons} lessons completed</p>
+            {/* Removed lessons completed line here */}
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
@@ -221,11 +221,11 @@ const ModuleCard = ({
   const [isExpanded, setIsExpanded] = React.useState(moduleIndex === 0);
 
   return (
-    <div className="bg-white/20 dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-fade-in-up" style={{ animationDelay: `${moduleIndex * 80}ms` }}>
+    <div className="bg-white/20 dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-fade-in-up group" style={{ animationDelay: `${moduleIndex * 80}ms` }}>
       {/* Module Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+        className="w-full p-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group/module"
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-red-500/80 to-pink-500/80 rounded-lg flex items-center justify-center shadow-md">
@@ -233,17 +233,30 @@ const ModuleCard = ({
           </div>
           <div className="text-left">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-white text-sm">
-                Module {moduleIndex + 1}
-              </h3>
-              <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md">
-                {completedInModule}/{totalModuleLessons}
-              </Badge>
-            </div>
-            <p className="text-xs text-white/80 line-clamp-1">
-              {module.title}
-            </p>
+             <h3
+               className="font-semibold text-white text-sm group-hover/module:bg-gradient-to-r group-hover/module:from-red-700 group-hover/module:to-black group-hover/module:bg-clip-text group-hover/module:text-transparent"
+               style={{
+                 background: 'linear-gradient(90deg, #b91c1c 0%, #000 100%)',
+                 WebkitBackgroundClip: 'text',
+                 WebkitTextFillColor: 'transparent',
+               }}
+             >
+               Module {moduleIndex + 1}
+             </h3>
+            <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md">
+              {completedInModule}/{totalModuleLessons}
+            </Badge>
           </div>
+         <p
+           className="text-xs text-white/80 line-clamp-1 group-hover/module:bg-gradient-to-r group-hover/module:from-red-700 group-hover/module:to-black group-hover/module:bg-clip-text group-hover/module:text-transparent"
+           style={{
+             background: 'linear-gradient(90deg, #b91c1c 0%, #000 100%)',
+             WebkitBackgroundClip: 'text',
+             WebkitTextFillColor: 'transparent',
+           }}
+         >
+           {module.title}
+         </p>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-16 h-1.5 bg-white/40 rounded-full overflow-hidden">
