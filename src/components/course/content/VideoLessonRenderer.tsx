@@ -58,7 +58,7 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
 
   // Create enhanced content that includes video URLs - use YouTubeVideoRenderer component format
   const enhancedContent = lesson.content?.videoUrl 
-    ? `<YouTubeVideoRenderer videoId="${lesson.content.videoUrl}" title="${lesson.title}" />\n\n${lessonContent}`
+    ? `\n<YouTubeVideoRenderer videoId="${lesson.content.videoUrl}" title="${lesson.title}" />\n\n${lessonContent}`
     : lessonContent;
 
   return (

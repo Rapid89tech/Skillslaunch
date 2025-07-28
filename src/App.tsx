@@ -1,10 +1,8 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
-import { AuthProvider } from "@/hooks/useAuth";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import Layout from "@/components/Layout";
 import LoadingSpinner from "@/components/LoadingSpinner";
@@ -21,19 +19,7 @@ const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const Course = lazy(() => import("./pages/Course"));
 const Courses = lazy(() => import("./pages/Courses"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const ApprovalPending = lazy(() => import("./pages/ApprovalPending"));
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: 1000 * 60 * 5,
-      gcTime: 1000 * 60 * 10,
-      refetchOnWindowFocus: false,
-      retry: 1,
-      networkMode: 'offlineFirst',
-    },
-  },
-});
+const InstructorDashboardPage = lazy(() => import("./pages/InstructorDashboard"));
 
 const ScrollToTopWrapper = ({ children }: { children: React.ReactNode }) => {
   useScrollToTop();
@@ -62,11 +48,6 @@ const App = () => (
               <ResetPassword />
             </Layout>
           } />
-          <Route path="/approval-pending" element={
-            <Layout showHeader={false}>
-              <ApprovalPending />
-            </Layout>
-          } />
           <Route path="/courses" element={
             <Layout>
               <Courses />
@@ -87,7 +68,7 @@ const App = () => (
             element={
               <ProtectedRoute allowedRoles={['instructor']}>
                 <Layout>
-                  <Dashboard />
+                  <InstructorDashboardPage />
                 </Layout>
               </ProtectedRoute>
             } 

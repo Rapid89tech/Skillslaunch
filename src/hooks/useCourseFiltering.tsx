@@ -23,7 +23,19 @@ export const useCourseFiltering = (courses: Course[]) => {
         course.title.toLowerCase().includes(searchFilters.search.toLowerCase()) ||
         course.description?.toLowerCase().includes(searchFilters.search.toLowerCase());
       
-      const matchesCategory = !searchFilters.category || course.category === searchFilters.category;
+      let matchesCategory = true;
+      if (searchFilters.category === 'Information Communication and Technology') {
+        const ictTitles = [
+          'AI and Human Relations',
+          'Sound Engineering',
+          'Mastering Podcast Management',
+          'Computer & Laptop Repairs',
+          'Cellphone Repairs and Maintenance',
+        ];
+        matchesCategory = ictTitles.includes(course.title);
+      } else if (searchFilters.category) {
+        matchesCategory = course.category === searchFilters.category;
+      }
       const matchesLevel = !searchFilters.level || course.level === searchFilters.level;
       
       let matchesPrice = true;

@@ -79,6 +79,23 @@ const ModuleSection = ({
                 />
               );
             })}
+            {/* Add quiz as a lesson item if present */}
+            {module.quiz && (
+              <LessonItem
+                key="quiz"
+                lesson={{
+                  id: 'quiz',
+                  title: module.quiz.title || 'Quiz',
+                  type: 'quiz',
+                  duration: '',
+                }}
+                lessonIndex={moduleStartIndex + module.lessons.length}
+                isCompleted={completedLessons.includes(moduleStartIndex + module.lessons.length)}
+                isCurrent={currentLesson === moduleStartIndex + module.lessons.length}
+                onClick={() => setCurrentLesson(moduleStartIndex + module.lessons.length)}
+                isQuiz={true}
+              />
+            )}
           </div>
         )}
       </div>

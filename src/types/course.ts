@@ -63,6 +63,7 @@ export interface Module {
   title: string;
   description: string;
   lessons: Lesson[];
+  quiz?: any; // Add this line to allow quizzes on modules
 }
 
 export interface Instructor {

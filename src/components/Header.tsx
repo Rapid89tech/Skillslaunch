@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './ui/button';
-import { Menu, X, BookOpen, User, LogOut } from 'lucide-react';
-import { useAuth } from '@/hooks/useAuth';
+import { Menu, X, User } from 'lucide-react';
+import { useAuth } from '@/hooks/AuthContext';
 import LogoutButton from './LogoutButton';
 
 const Header = () => {

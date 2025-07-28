@@ -1,4 +1,4 @@
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/AuthContext';
 import type { Course } from '@/types/course';
 import { generateCertificateHTML } from '@/utils/certificateTemplate';
 

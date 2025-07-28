@@ -5,7 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, BookOpen, ArrowLeft, Mail, Lock, User, ChevronDown } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/AuthContext';
+import { supabase } from '@/integrations/supabase/client';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -25,17 +26,71 @@ const Auth = () => {
     lastName: '',
     resetEmail: ''
   });
+  const [localError, setLocalError] = useState('');
 
-  const { signIn, signUp, resetPassword, loading, profile, user } = useAuth();
+  const { signIn, signUp, loading, user, error, profile } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user && profile && !loading) {
-      setTimeout(() => {
-        navigate('/dashboard');
-      }, 100);
+  const testSupabaseConnection = async () => {
+    try {
+      console.log('Testing Supabase connection...');
+      
+      // Test 1: Check if we can connect to Supabase
+      const { data: { user } } = await supabase.auth.getUser();
+      console.log('Current user:', user);
+      
+      // Test 2: Check if we can query the profiles table
+      const { data: profiles, error: profilesError } = await supabase
+        .from('profiles')
+        .select('*')
+        .limit(5);
+      
+      if (profilesError) {
+        console.error('Profiles table error:', profilesError);
+      } else {
+        console.log('Profiles table data:', profiles);
+      }
+      
+      // Test 3: Check database connection
+      const { data, error } = await supabase
+        .from('profiles')
+        .select('count(*)', { count: 'exact' });
+      
+      if (error) {
+        console.error('Database connection error:', error);
+      } else {
+        console.log('Database connection successful, profile count:', data);
+      }
+      
+    } catch (error) {
+      console.error('Supabase test error:', error);
     }
-  }, [user, profile, loading, navigate]);
+  };
+
+  useEffect(() => {
+    console.log('Auth useEffect - user:', user, 'loading:', loading, 'profile:', profile);
+    if (user && !loading) {
+      if (profile) {
+        let path = '/dashboard';
+        if (profile.role === 'admin') path = '/admin-dashboard';
+        else if (profile.role === 'instructor') path = '/instructor-dashboard';
+        console.log('Redirecting to:', path);
+        setTimeout(() => {
+          navigate(path);
+        }, 100);
+      } else {
+        console.log('User exists but profile is null, waiting for profile...');
+        // If user exists but profile is null, wait a bit for profile to load
+        // or redirect to dashboard with default student role after 3 seconds
+        setTimeout(() => {
+          if (user && !profile) {
+            console.log('Still no profile after wait, redirecting to dashboard anyway');
+            navigate('/dashboard');
+          }
+        }, 3000);
+      }
+    }
+  }, [user, loading, profile, navigate]);
 
   const roles = [
     { value: 'student', label: 'Student', description: 'Learn new skills' },
@@ -45,27 +100,35 @@ const Auth = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLocalError('');
     try {
       if (isLogin) {
-        await signIn(formData.email, formData.password);
+        console.log('Attempting login for', formData.email);
+        const result = await signIn(formData.email, formData.password);
+        console.log('Login success, result:', result);
       } else {
-        await signUp(
+        console.log('Attempting signup for', formData.email, 'with role:', selectedRole);
+        const result = await signUp(
           formData.email,
           formData.password,
           formData.firstName,
           formData.lastName,
           selectedRole
         );
+        console.log('Signup success, result:', result);
       }
-    } catch (error) {
-      // Error handling is already in useAuthOperations
+    } catch (error: any) {
+      console.error('Auth error:', error);
+      setLocalError(error?.message || 'Authentication failed. Please try again.');
     }
   };
 
   const handleResetPassword = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await resetPassword(formData.resetEmail);
+      // This function is no longer used as resetPassword is removed from useAuth
+      // Keeping it for now, but it will be removed if not used elsewhere.
+      // await resetPassword(formData.resetEmail); 
       setShowResetForm(false);
       setFormData({ ...formData, resetEmail: '' });
     } catch (error) {
@@ -73,7 +136,7 @@ const Auth = () => {
     }
   };
 
-  if (user && profile && !loading) {
+  if (user && !loading && profile) {
     return null;
   }
 
@@ -106,6 +169,9 @@ const Auth = () => {
             </p>
           </CardHeader>
           <CardContent className="space-y-6">
+            {(error || localError) && (
+              <div className="text-red-600 text-center font-medium">{error || localError}</div>
+            )}
             {showResetForm ? (
               <form onSubmit={handleResetPassword} className="space-y-4">
                 <div className="space-y-2">
@@ -223,6 +289,7 @@ const Auth = () => {
                 <Button type="submit" className="w-full h-12" disabled={loading}>
                   {isLogin ? 'Log In' : 'Sign Up'}
                 </Button>
+
                 <Button type="button" variant="link" className="w-full" onClick={() => setShowResetForm(true)}>
                   Forgot password?
                 </Button>

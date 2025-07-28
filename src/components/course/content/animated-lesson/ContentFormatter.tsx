@@ -17,7 +17,35 @@ interface ContentFormatterProps {
 
 const ContentFormatter = ({ content }: ContentFormatterProps) => {
   const formatContent = (text: string) => {
-    // Check if content contains HTML tags - if so, we need to process it differently
+    // 1. Check for YouTubeVideoRenderer tags on their own line
+    const lines = text.split('\n');
+    let foundVideo = false;
+    const elements = [];
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      const youtubeRendererComponent = parseYouTubeRenderer(line);
+      if (youtubeRendererComponent) {
+        elements.push(<div key={`youtube-renderer-${i}`}>{youtubeRendererComponent}</div>);
+        foundVideo = true;
+        continue;
+      }
+      // If not a video tag, just collect the line for later
+      elements.push(line);
+    }
+
+    // 2. If we found a video, join the rest and process as HTML
+    if (foundVideo) {
+      // Remove the video tag lines from the HTML string
+      const htmlLines = elements.filter(e => typeof e === 'string').join('\n');
+      // Render the video(s) and the HTML content
+      return [
+        ...elements.filter(e => typeof e !== 'string'),
+        processHtmlContent(htmlLines)
+      ];
+    }
+
+    // 3. Fallback: original logic
     if (text.includes('<div') || text.includes('<h2>') || text.includes('<ul>') || 
         text.includes('<li>') || text.includes('<p>') || text.includes('class=')) {
       return processHtmlContent(text);

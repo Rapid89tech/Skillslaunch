@@ -52,8 +52,8 @@ export const useProfileData = () => {
               avatar_url: userMetadata?.avatar_url || null,
               created_at: new Date().toISOString(),
               updated_at: new Date().toISOString(),
-              approved: userMetadata?.role === 'admin',
-              approval_status: userMetadata?.role === 'admin' ? 'approved' : 'pending'
+              approved: true,
+              approval_status: 'approved'
             };
             setProfile(tempProfile);
           } else {
@@ -98,8 +98,8 @@ export const useProfileData = () => {
             avatar_url: userMetadata?.avatar_url || null,
             created_at: new Date().toISOString(),
             updated_at: new Date().toISOString(),
-            approved: userMetadata?.role === 'admin',
-            approval_status: userMetadata?.role === 'admin' ? 'approved' : 'pending'
+            approved: true,
+            approval_status: 'approved'
           };
           setProfile(fallbackProfile);
         }

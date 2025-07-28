@@ -1,10 +1,10 @@
-import { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Clock, Star, Users, Play, Award } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/AuthContext';
 import { useEnrollments } from '@/hooks/useEnrollments';
 import { useToast } from '@/hooks/use-toast';
 import { Course } from '@/hooks/useCourses';
@@ -35,33 +35,38 @@ import plumbingNew from '../../../images/generation-704ccdce-48ca-411f-b5de-3adb
 import tilingNew from '../../../images/generation-25c77381-c00b-4f6f-a660-5de57dbf0cc5.png';
 import roofingNew from '../../../images/generation-8dea647f-b6de-42c7-8708-d6e68a0fe5d1.png';
 import { triggerConfetti } from '@/utils/confetti';
+import { Progress } from '@/components/ui/progress';
+import EnrollNowPopup from '../course/EnrollNowPopup';
 
 interface CoursesGridProps {
   courses: Course[];
 }
 
 const courseImages: Record<string, string> = {
-  'Entrepreneurship Fundamentals': entrepreneurshipNew,
+  'Entrepreneurship': entrepreneurshipNew,
   'AI and Human Relations': aiHumanNew,
-  'Sound Engineering Professional Certification': soundEngineeringNew,
-  'Mastering Podcast Management': podcastNew,
-  'Diesel Mechanic Professional Certification': dieselMechanicNew,
-  'Motor Mechanic (Petrol) Professional Certification': motorMechanicNew,
+  'Sound Engineering': soundEngineeringNew,
+  'Podcast Management': podcastNew,
+  'Diesel Mechanic': dieselMechanicNew,
+  'Motor Mechanic (Petrol)': motorMechanicNew,
   'Computer & Laptop Repairs': computerRepairsNew,
   'Cellphone Repairs and Maintenance': cellphoneRepairsNew,
-  'Professional Hair Dressing Certification': hairDressingNew,
-  'Professional Nail Technician Certification': nailTechnicianNew,
-  'Professional Plumbing Training Program': plumbingNew,
-  'Professional Tiling Certification': tilingNew,
-  'Professional Roofing Certification': roofingNew,
+  'Hair Dressing': hairDressingNew,
+  'Nail Technician': nailTechnicianNew,
+  'Plumbing': plumbingNew,
+  'Professional Tiling': tilingNew,
+  'Professional Roofing': roofingNew,
 };
 
 const CoursesGrid = ({ courses }: CoursesGridProps) => {
   const { user } = useAuth();
   const navigate = useNavigate();
-  const { enrollments, enrollInCourse, isEnrolled } = useEnrollments();
+  const { enrollments, enrollInCourse, isEnrolled, hasPendingEnrollment, refetch } = useEnrollments();
   const { toast } = useToast();
   const [enrollingCourses, setEnrollingCourses] = useState<Set<string>>(new Set());
+  const [showEnrollPopup, setShowEnrollPopup] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
+  const [pendingEnrollments, setPendingEnrollments] = useState<Set<string>>(new Set());
   const gridRef = useRef<HTMLDivElement>(null);
 
   // Dynamic page transition
@@ -96,7 +101,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
     
     try {
       console.log("Calling enrollInCourse function...");
-      const success = await enrollInCourse(courseId);
+      const success = await enrollInCourse(courseId, courseName);
       console.log("Enrollment result:", success);
       
       if (success) {
@@ -145,29 +150,50 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
     return enrollingCourses.has(courseId);
   };
 
-  const handleButtonClick = () => {
-    if (enrolled) {
-      handleContinueLearning(course.id, course.title);
-    }
-  };
+  // Refresh enrollment data periodically to catch updates
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetch();
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [refetch]);
+
+  // Check for pending enrollments
+  useEffect(() => {
+    const checkPendingEnrollments = async () => {
+      if (!user) return;
+      
+      const pendingSet = new Set<string>();
+      for (const course of courses) {
+        const isPending = await hasPendingEnrollment(course.id);
+        if (isPending) {
+          pendingSet.add(course.id);
+        }
+      }
+      setPendingEnrollments(pendingSet);
+    };
+    
+    checkPendingEnrollments();
+  }, [user, courses, hasPendingEnrollment]);
 
   return (
-    <div ref={gridRef} className="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12 animated-bg-courses">
+    <div ref={gridRef} className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-8 mt-12">
       {courses.map((course, index) => {
         const enrolled = isEnrolled(course.id);
         const enrolling = isEnrolling(course.id);
-        const courseImage = courseImages[course.title] || '/placeholder.svg';
-        // Dynamic badges
-        const lessonCount = course.lessonsCount || 10;
-        const category = course.category || 'Development';
+        const courseImage = courseImages[course.title] || '/public/placeholder.svg';
+        // Find enrollment for progress (if enrolled)
+        const enrollment = enrollments?.find(e => e.course_id === course.id);
+        const progress = enrolled && enrollment ? Math.round((enrollment.progress || 0) * 100) : 0;
         return (
           <div
             key={course.id}
-            className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden flex flex-col animate-fade-in-card group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.03]"
+            className="bg-[#18181b] rounded-3xl shadow-xl border-0 overflow-hidden flex flex-col h-full group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.03]"
             style={{ animationDelay: `${index * 80 + 200}ms` }}
           >
             {/* Illustration/Image */}
-            <div className="relative aspect-[16/9] bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
+            <div className="relative aspect-[16/9] min-h-[180px] w-full flex items-center justify-center bg-neutral-800">
               <img
                 src={courseImage}
                 alt={course.title}
@@ -175,81 +201,84 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 loading="lazy"
                 onError={e => { e.currentTarget.src = '/placeholder.svg'; }}
               />
-              {/* Dynamic Highlight Badges */}
-              <div className="absolute top-3 left-3 flex gap-2">
-                <span className="highlight-badge badge-lesson animate-badge-shimmer">
-                  {lessonCount}x Lesson
-                </span>
-                <span className="highlight-badge badge-category animate-badge-shimmer delay-100">
-                  {category}
-                </span>
-              </div>
             </div>
             {/* Card Content */}
-            <div className="flex-1 flex flex-col px-5 pt-4 pb-6">
-              <h3 className="text-base font-bold text-gray-900 mb-1 line-clamp-2 group-hover:bg-gradient-to-r group-hover:from-red-500 group-hover:via-pink-500 group-hover:to-red-700 group-hover:bg-clip-text group-hover:text-transparent transition-colors duration-300">{course.title}</h3>
-              <p className="text-xs text-gray-500 line-clamp-3 mb-3">{course.description}</p>
-              <div className="flex items-center gap-6 text-xs text-gray-400 mb-4 justify-center">
-                {/* Animated Star Rating */}
-                <div className="flex items-center gap-1 text-yellow-500 animate-icon-bounce group-hover:animate-icon-glow transition-all duration-300">
-                  <Star className="h-4 w-4 fill-current drop-shadow-md transition-transform duration-300 group-hover:scale-125" />
-                  <span className="font-semibold text-sm text-yellow-600 animate-fade-in">4.8</span>
+            <div className="flex-1 flex flex-col px-7 pt-7 pb-8">
+              <h3 className="text-sm font-bold text-white mb-2 line-clamp-2 rounded-lg px-2 py-1 bg-gradient-to-r from-red-600 to-red-800 inline-block w-fit shadow-md animate-title-gradient">
+                {course.title}
+              </h3>
+              <p className="text-xs text-gray-200 line-clamp-3 mb-4">{course.description}</p>
+              {/* Dynamic Info Row */}
+              <div className="flex items-center gap-6 text-xs text-gray-300 mb-6">
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4 text-red-400" />
+                  <span>{course.students || 0}</span>
                 </div>
-                {/* Animated Duration */}
-                <div className="flex items-center gap-1 text-blue-500 animate-icon-bounce group-hover:animate-icon-glow transition-all duration-300">
-                  <Clock className="h-4 w-4 drop-shadow-md transition-transform duration-300 group-hover:scale-125" />
-                  <span className="font-semibold text-sm text-blue-600 animate-fade-in">{course.duration || '6 weeks'}</span>
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-yellow-400" />
+                  <span>Certificate</span>
                 </div>
-                {/* Animated Certificate */}
-                <div className="flex items-center gap-1 text-green-500 animate-icon-bounce group-hover:animate-icon-glow transition-all duration-300">
-                  <Award className="h-4 w-4 drop-shadow-md transition-transform duration-300 group-hover:scale-125" />
-                  <span className="font-semibold text-sm text-green-600 animate-fade-in">Certificate</span>
-                </div>
+                {enrolled && (
+                  <div className="flex-1 flex flex-col gap-1">
+                    <Progress value={progress} className="h-2 bg-neutral-700" />
+                    <span className="text-[10px] text-gray-400 mt-1">Progress: {progress}%</span>
+                  </div>
+                )}
               </div>
-              <div className="flex flex-col gap-2">
+              <div className="mt-auto flex flex-col gap-3">
                 <Link to={`/course/${course.id}/overview`} className="block">
-                  <button className="w-full py-2 rounded-full bg-gradient-to-r from-black to-gray-800 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-gray-900 hover:to-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-800/60 animate-ripple">
-                    Course Overview
+                  <button className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
+                    View Course
                   </button>
                 </Link>
                 {user && enrolled && (
-                  <button
-                    className="w-full py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/60 animate-ripple"
+                  <Button
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 animate-ripple"
                     onClick={() => handleContinueLearning(course.id, course.title)}
                   >
-                    Continue Learning
-                  </button>
+                    Continue
+                  </Button>
                 )}
-                {!enrolled && (
-                  <>
-                    {/* Enroll Now button for logged in users only */}
-                    {user && (
-                      <button
-                        className="w-full py-2 px-4 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 text-white text-sm font-medium shadow-lg hover:scale-105 hover:from-blue-600 hover:to-purple-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/60 animate-ripple"
-                        disabled={enrolling}
-                        onClick={async () => {
-                          await handleEnroll(course.id, course.title, () => triggerConfetti());
-                        }}
-                      >
-                        {enrolling ? 'Enrolling...' : 'Enroll Now'}
-                      </button>
-                    )}
-                    {/* Register To Enroll button for logged out users */}
-                    {!user && (
-                      <button
-                        className="w-full mt-2 py-2 rounded-full bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-red-600 hover:to-pink-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
-                        onClick={() => navigate('/auth')}
-                      >
-                        Register To Enroll
-                      </button>
-                    )}
-                  </>
+                {!enrolled && user && pendingEnrollments.has(course.id) && (
+                  <Button
+                    disabled
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold text-sm shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400/60 cursor-not-allowed"
+                  >
+                    Pending
+                  </Button>
+                )}
+                {!enrolled && user && !pendingEnrollments.has(course.id) && (
+                  <Button
+                    onClick={() => {
+                      setSelectedCourse(course);
+                      setShowEnrollPopup(true);
+                    }}
+                  >
+                    Enroll Now
+                  </Button>
+                )}
+                {!user && (
+                  <button
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-red-600 hover:to-pink-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
+                    onClick={() => navigate('/auth')}
+                  >
+                    Register To Enroll
+                  </button>
                 )}
               </div>
             </div>
           </div>
         );
       })}
+      {showEnrollPopup && selectedCourse && (
+        <EnrollNowPopup
+          open={showEnrollPopup}
+          onClose={() => setShowEnrollPopup(false)}
+          course={selectedCourse}
+          userId={user?.id}
+          userEmail={user?.email}
+        />
+      )}
       <style>{`
         .animate-fade-in-card {
           opacity: 0;
@@ -262,80 +291,20 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
             transform: translateY(0) scale(1);
           }
         }
-        .animated-bg-courses::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          z-index: 0;
-          background: linear-gradient(120deg, #e0e7ff 0%, #f3e8ff 100%);
-          opacity: 0.5;
-          pointer-events: none;
-          animation: bgFade 8s ease-in-out infinite alternate;
+        .animate-title-gradient {
+          background-size: 200% 200%;
+          animation: titleGradient 3s ease-in-out infinite alternate;
         }
-        @keyframes bgFade {
-          0% { filter: blur(0px); opacity: 0.5; }
-          100% { filter: blur(4px); opacity: 0.7; }
+        @keyframes titleGradient {
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
         }
-        .highlight-badge {
-          display: inline-block;
-          padding: 0.25rem 0.9rem;
-          border-radius: 9999px;
-          font-size: 0.75rem;
-          font-weight: 700;
-          box-shadow: 0 2px 8px 0 rgba(80,80,200,0.07);
-          background: linear-gradient(90deg, #3b82f6 0%, #a78bfa 100%);
-          color: #fff;
-          position: relative;
-          overflow: hidden;
+        .group {
+          transition: box-shadow 0.4s, transform 0.4s;
         }
-        .badge-lesson {
-          background: linear-gradient(90deg, #3b82f6 0%, #a78bfa 100%);
-        }
-        .badge-category {
-          background: linear-gradient(90deg, #a78bfa 0%, #f472b6 100%);
-        }
-        .animate-badge-shimmer {
-          animation: badgeShimmer 2.5s linear infinite;
-        }
-        @keyframes badgeShimmer {
-          0% { filter: brightness(1); }
-          50% { filter: brightness(1.15); }
-          100% { filter: brightness(1); }
-        }
-        .page-exit {
-          animation: pageExit 0.7s cubic-bezier(.4,2,.3,1) forwards;
-        }
-        @keyframes pageExit {
-          to {
-            opacity: 0;
-            transform: translateY(40px) scale(0.98);
-          }
-        }
-        .animate-badge-pop {
-          animation: badgePop 0.7s cubic-bezier(.4,2,.3,1);
-        }
-        @keyframes badgePop {
-          0% { opacity: 0; transform: scale(0.7); }
-          80% { opacity: 1; transform: scale(1.1); }
-          100% { opacity: 1; transform: scale(1); }
-        }
-        .animate-ripple:active {
-          animation: ripple 0.4s linear;
-        }
-        @keyframes ripple {
-          0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.3); }
-          100% { box-shadow: 0 0 0 16px rgba(59,130,246,0); }
-        }
-        .animate-icon-bounce {
-          animation: iconBounce 1.2s cubic-bezier(.4,2,.3,1) infinite alternate;
-        }
-        @keyframes iconBounce {
-          0% { transform: translateY(0); }
-          50% { transform: translateY(-4px) scale(1.08); }
-          100% { transform: translateY(0); }
-        }
-        .animate-icon-glow {
-          filter: drop-shadow(0 0 8px #facc15) drop-shadow(0 0 2px #fff);
+        .group:hover {
+          box-shadow: 0 8px 32px 0 rgba(239,68,68,0.15), 0 0 0 4px rgba(239,68,68,0.10);
+          transform: translateY(-8px) scale(1.04);
         }
       `}</style>
     </div>

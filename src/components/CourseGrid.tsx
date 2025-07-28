@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from './ui/button';
 import { Link } from 'react-router-dom';
-import { Wrench } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from './ui/carousel';
 import { useCourses } from '@/hooks/useCourses';
+import { useCourseFiltering } from '@/hooks/useCourseFiltering';
+import CourseFilters from './courses/CourseFilters';
 import aiHumanNew from '../../images/generation-7f218044-3139-41b5-8dc7-afedae829ae7.png';
 import soundEngineeringNew from '../../images/generation-9c9ad650-aa25-4df1-9236-b137241521c0.png';
 import podcastNew from '../../images/generation-8d3c5693-9f7f-4360-8c0b-533dc0da09bd.png';
@@ -20,6 +22,11 @@ import bg1 from '../../images/generation-cffafbac-d91b-446a-9e9b-ca3bf3981651.pn
 import bg2 from '../../images/generation-00555fea-3c4a-4d7f-b3e6-3b5f5c7489e2.png';
 import bg3 from '../../images/generation-969f65e7-199f-413b-9dd0-f1cc327594ae.png';
 import bg4 from '../../images/generation-1c94cbdf-290c-4cce-88ce-73966ec946ba.png';
+import video1 from '../../Videos/dreamina-2025-07-23-4631-Open with a wide shot of a high-tech fac....mp4';
+import video2 from '../../Videos/dreamina-2025-07-23-6991-Open with a wide shot of a dimly lit off....mp4';
+import video3 from '../../Videos/dreamina-2025-07-23-7258-zooming in toward a focused nail technic....mp4';
+import video4 from '../../Videos/dreamina-2025-07-23-9513-Open with a wide shot of a dimly lit off....mp4';
+import bgImage from '../../Videos/generation-5670abf4-0e74-47f0-bff8-9fd29b1af112.png';
 
 const getColorScheme = (index: number) => {
   const schemes = [
@@ -79,19 +86,50 @@ const PROFESSIONAL_BG_SLIDES = [
   bg2,
 ];
 
+const COURSE_BG_VIDEOS = [video1, video2, video3, video4];
+
+const CATEGORY_ORDER = [
+  'Information Communication and technology',
+  'Beauty and Health',
+  'Mechanical Repairs',
+  'Construction',
+  'Business',
+];
+
 const CourseGrid = () => {
   const { courses, loading } = useCourses();
-  
-  // Display only the first 3 courses for home page preview
-  const displayedCourses = courses.slice(0, 3);
+  const {
+    searchFilters,
+    setSearchFilters,
+    filteredCourses,
+    handleClearFilters
+  } = useCourseFiltering(courses);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [bgVideoIndex, setBgVideoIndex] = useState(0);
 
-  const [bgIndex, setBgIndex] = useState(0);
+  // Carousel auto-slide logic
+  const carouselApiRef = useRef(null);
   useEffect(() => {
+    if (!carouselApiRef.current) return;
+    const api = carouselApiRef.current;
     const interval = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % PROFESSIONAL_BG_SLIDES.length);
+      if (api && api.scrollNext) api.scrollNext();
     }, 5000);
     return () => clearInterval(interval);
+  }, [carouselApiRef.current, filteredCourses.length]);
+
+  // Auto-slide background video
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBgVideoIndex((prev) => (prev + 1) % COURSE_BG_VIDEOS.length);
+    }, 7000);
+    return () => clearInterval(interval);
   }, []);
+
+  // Add smooth scroll to the page
+  if (typeof window !== 'undefined') {
+    document.documentElement.style.scrollBehavior = 'smooth';
+  }
 
   if (loading) {
     return (
@@ -103,28 +141,21 @@ const CourseGrid = () => {
     );
   }
 
+  // Remove groupedCourses and category headers
+  // Use a single carousel for all filteredCourses
   return (
     <section className="py-20 relative overflow-hidden" style={{ background: 'linear-gradient(120deg, #0f172a 0%, #312e81 100%)' }}>
-      {/* Animated HD background slider with dark overlay */}
-      <div className="absolute inset-0 z-0">
-        {PROFESSIONAL_BG_SLIDES.map((img, idx) => (
-          <img
-            key={img}
-            src={img}
-            alt="Professionals"
-            className={`w-full h-full object-cover object-center absolute inset-0 transition-opacity duration-1000 animate-bg-pan ${bgIndex === idx ? 'opacity-95' : 'opacity-0'}`}
-            style={{filter:'brightness(0.5)'}}
-          />
-        ))}
-        {/* Subtle animated gradient overlays */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-purple-900/50 to-pink-900/40 mix-blend-multiply animate-gradient-x" />
-        <div className="absolute top-10 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full filter blur-3xl animate-pulse-glow" />
-        <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full filter blur-3xl animate-pulse-glow delay-700" />
-        <div className="absolute top-1/2 left-1/2 w-[600px] h-[300px] bg-gradient-to-r from-blue-400/10 via-pink-400/10 to-purple-400/10 rounded-full blur-2xl -translate-x-1/2 -translate-y-1/2 animate-gradient-x" />
-      </div>
+      {/* Static background image with 90% black gradient overlay */}
+      <img
+        src={bgImage}
+        alt="Our Courses Background"
+        className="absolute inset-0 w-full h-full object-cover object-center z-0"
+        style={{ opacity: 0.9 }}
+      />
+      <div className="absolute inset-0 z-0" style={{ background: 'linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 100%)' }} />
       <div className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="relative text-center mb-16 animate-fade-in">
+        <div className="relative text-center mb-10 animate-fade-in">
           {/* Animated background element for depth */}
           <div className="absolute left-1/2 top-0 -translate-x-1/2 -z-10 w-96 h-32 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 rounded-full blur-2xl animate-pulse-glow" />
           <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 shadow-xl border border-blue-400/30 mb-4 animate-slide-in-right">
@@ -140,85 +171,68 @@ const CourseGrid = () => {
             Get your certificate with Beta Skill Training Solutions, an accredited training institution
           </p>
         </div>
-
-        {/* Course Grid or Empty State */}
-        {displayedCourses.length === 0 ? (
-          <div className="flex flex-col items-center justify-center min-h-[340px] animate-fade-in mt-12">
-            {/* Modern card placeholder with color themes */}
-            <div className="flex flex-wrap gap-8 justify-center">
-              {[
-                {
-                  color: 'bg-red-600',
-                  border: 'border-red-200',
-                  btn: 'bg-red-600 text-white',
-                  btnOutline: 'border-red-600 text-red-600',
-                },
-                {
-                  color: 'bg-green-600',
-                  border: 'border-green-200',
-                  btn: 'bg-green-600 text-white',
-                  btnOutline: 'border-green-600 text-green-600',
-                },
-                {
-                  color: 'bg-purple-600',
-                  border: 'border-purple-200',
-                  btn: 'bg-purple-600 text-white',
-                  btnOutline: 'border-purple-600 text-purple-600',
-                },
-              ].map((theme, idx) => (
-                <div key={idx} className={`w-72 bg-white rounded-2xl shadow-xl border ${theme.border} flex flex-col items-center animate-scale-in`} style={{ animationDelay: `${idx * 120}ms` }}>
-                  <div className={`w-full h-24 rounded-t-2xl ${theme.color} flex items-center justify-center relative`}>
-                    <img src="/lovable-uploads/c890d50b-9e2b-4f34-8958-e006a579ccea.png" alt="Avatar" className="w-20 h-20 rounded-full border-4 border-white absolute left-1/2 top-12 -translate-x-1/2 -translate-y-1/2 shadow-lg bg-white object-cover" />
-                  </div>
-                  <div className="pt-14 pb-6 px-6 w-full flex flex-col items-center">
-                    <div className="font-semibold text-lg text-gray-800">Tyrell Wellick</div>
-                    <div className="text-xs text-gray-500 mb-4">Senior Web Developer</div>
-                    <div className="flex justify-between w-full mb-4">
-                      <div className="text-center">
-                        <div className="font-bold text-gray-800 text-base">1.5M</div>
-                        <div className="text-xs text-gray-500">Followers</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="font-bold text-gray-800 text-base">92</div>
-                        <div className="text-xs text-gray-500">Following</div>
-                      </div>
-                    </div>
-                    <div className="flex gap-3 w-full">
-                      <button className={`flex-1 rounded-full py-2 font-semibold text-sm shadow-sm transition-all duration-200 ${theme.btn}`}>Follow</button>
-                      <button className={`flex-1 rounded-full py-2 font-semibold text-sm border shadow-sm transition-all duration-200 ${theme.btnOutline}`}>Message</button>
-                    </div>
-                  </div>
-                  {/* Color selector dots */}
-                  <div className="flex justify-center gap-3 py-3 bg-white rounded-b-2xl w-full border-t">
-                    <span className="w-5 h-5 rounded-full bg-red-500 border-2 border-white shadow-sm inline-block"></span>
-                    <span className="w-5 h-5 rounded-full bg-blue-500 border-2 border-white shadow-sm inline-block"></span>
-                    <span className="w-5 h-5 rounded-full bg-green-500 border-2 border-white shadow-sm inline-block"></span>
-                    <span className="w-5 h-5 rounded-full bg-purple-500 border-2 border-white shadow-sm inline-block"></span>
-                    <span className="w-5 h-5 rounded-full bg-yellow-400 border-2 border-white shadow-sm inline-block"></span>
-                  </div>
-                </div>
-              ))}
+        {/* Floating filter button (all screens) */}
+        <button
+          className="fixed left-4 top-1/2 -translate-y-1/2 z-40 flex items-center gap-2 px-4 py-3 rounded-full bg-gradient-to-r from-red-600 to-pink-500 text-white font-bold shadow-2xl focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-fade-in hover:scale-105 transition-all duration-300"
+          onClick={() => setFiltersOpen(true)}
+          type="button"
+          style={{ minWidth: 48 }}
+        >
+          <svg className="w-6 h-6 mr-1" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0013 13.414V19a1 1 0 01-1.447.894l-4-2A1 1 0 017 17v-3.586a1 1 0 00-.293-.707L3.293 6.707A1 1 0 013 6V4z" /></svg>
+          Course Filter
+        </button>
+        {filtersOpen && (
+          <div className="fixed inset-0 z-40 flex items-start bg-black/40 backdrop-blur-sm animate-fade-in">
+            <div className="relative w-full max-w-xs h-full animate-slide-in-left" style={{ left: 0, top: 0 }}>
+              <CourseFilters onFiltersChange={setSearchFilters} />
+              <button
+                className="absolute top-4 right-4 text-white bg-red-500 rounded-full w-10 h-10 flex items-center justify-center shadow-lg hover:bg-red-700 transition-all"
+                onClick={() => setFiltersOpen(false)}
+                aria-label="Close Filters"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+              </button>
             </div>
           </div>
+        )}
+        {/* Single Carousel for All Filtered Courses */}
+        {filteredCourses.length === 0 ? (
+          <div className="flex flex-col items-center justify-center min-h-[340px] animate-fade-in mt-12">
+            <div className="text-white text-lg">No courses found. Try adjusting your filters.</div>
+            <Button className="mt-4 bg-gradient-to-r from-red-600 to-red-800 text-white" onClick={handleClearFilters}>Clear Filters</Button>
+          </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 px-2 md:px-0">
-          {displayedCourses.map((course, index) => {
+          <div className="relative">
+            <Carousel
+              setApi={api => (carouselApiRef.current = api)}
+              opts={{
+                loop: true,
+                align: 'start',
+                slidesToScroll: 1,
+                breakpoints: {
+                  '(min-width: 1024px)': { slidesToScroll: 1 },
+                  '(min-width: 768px)': { slidesToScroll: 1 },
+                },
+              }}
+            >
+              <CarouselContent>
+                {filteredCourses.map((course, index) => {
             const colorScheme = getColorScheme(index);
             return (
+                    <CarouselItem key={course.id} className="px-2 lg:basis-1/3 md:basis-1/2 basis-full transition-all duration-500">
                 <div
-                  key={course.id}
                   className={`relative group rounded-3xl p-0 shadow-xl transition-all duration-500 bg-white/10 border-2 border-transparent flex flex-col items-stretch justify-between min-h-[340px] max-w-md mx-auto animate-fade-in-glass overflow-hidden backdrop-blur-xl
-                  hover:scale-[1.045] hover:border-blue-400/70 hover:shadow-2xl hover:-translate-y-1.5 hover:z-20
-                  hover:shadow-[0_8px_32px_0_rgba(0,0,0,0.25),0_0_0_4px_rgba(59,130,246,0.10)]
+                        hover:scale-[1.045] hover:border-red-400/70 hover:shadow-2xl hover:-translate-y-1.5 hover:z-20
+                        hover:shadow-[0_8px_32px_0_rgba(239,68,68,0.25),0_0_0_4px_rgba(239,68,68,0.10)]
                   `}
                   style={{ animationDelay: `${index * 180}ms` }}
                 >
                   {/* Animated border glow */}
-                  <div className="absolute inset-0 z-0 pointer-events-none rounded-3xl border-2 border-transparent group-hover:border-blue-400/60 group-hover:shadow-[0_0_40px_10px_rgba(59,130,246,0.15)] transition-all duration-500" />
+                        <div className="absolute inset-0 z-0 pointer-events-none rounded-3xl border-2 border-transparent group-hover:border-red-400/60 group-hover:shadow-[0_0_40px_10px_rgba(239,68,68,0.15)] transition-all duration-500" />
                   {/* Featured Badge */}
                   {index === 0 && (
                     <div className="absolute top-4 left-4 z-10">
-                      <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-1.5 rounded-full text-xs font-black animate-pulse shadow-lg border border-blue-400/50">
+                            <div className="bg-gradient-to-r from-red-600 to-red-800 text-white px-4 py-1.5 rounded-full text-xs font-black animate-pulse shadow-lg border border-red-400/50">
                         ⭐ FEATURED
                       </div>
                     </div>
@@ -231,7 +245,7 @@ const CourseGrid = () => {
                       className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-110 bg-gray-200"
                       onError={e => { e.currentTarget.src = '/public/placeholder.svg'; }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 transition-all duration-500 group-hover:from-blue-900/60 group-hover:via-blue-700/30" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 transition-all duration-500 group-hover:from-red-900/60 group-hover:via-red-700/30" />
                   </div>
                   {/* Card Content */}
                   <div className="flex-1 flex flex-col px-6 pt-6 pb-7 z-10">
@@ -241,26 +255,30 @@ const CourseGrid = () => {
                     <p className="text-xs text-gray-200 leading-relaxed group-hover:text-white/90 transition-colors line-clamp-3 mb-4 drop-shadow">
                       {course.description}
                     </p>
-                    <div className="mt-auto flex items-center gap-3 text-xs text-blue-100">
+                          <div className="mt-auto flex items-center gap-3 text-xs text-red-100">
                       <span className="capitalize">{course.level}</span>
                       <span>•</span>
                       <span>{course.duration}</span>
                       {course.is_free && <span className="text-green-400 font-bold ml-2">FREE</span>}
                     </div>
                     <Link to="/courses" className="mt-5">
-                      <button className="w-full py-2 px-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-800 text-white text-sm font-medium shadow-lg hover:scale-105 hover:from-blue-700 hover:to-blue-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/60 animate-ripple hover:shadow-[0_0_16px_2px_rgba(59,130,246,0.25)]">
+                            <button className="w-full py-2 px-4 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white text-sm font-medium shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple hover:shadow-[0_0_16px_2px_rgba(239,68,68,0.25)]">
                         View Course
                       </button>
                     </Link>
                   </div>
                 </div>
+                    </CarouselItem>
             );
           })}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
         </div>
         )}
-
         {/* View All Courses Button */}
-        <div className="text-center animate-fade-in delay-1000">
+        <div className="text-center animate-fade-in delay-1000 mt-10">
           <Link to="/courses">
             <Button size="lg" className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white px-16 py-6 text-2xl font-black rounded-full shadow-2xl hover:scale-110 transition-all duration-300 border-2 border-blue-400/50">
               🎓 VIEW ALL COURSES

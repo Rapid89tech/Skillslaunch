@@ -4,7 +4,7 @@ import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
 import { BookOpen, Clock, Star, Users, Eye } from 'lucide-react';
 import { Course } from '@/hooks/useCourses';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/AuthContext';
 import { useEnrollments } from '@/hooks/useEnrollments';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -56,7 +56,7 @@ const CourseCard = ({
   showAdminControls = false 
 }: CourseCardProps) => {
   const { profile, user } = useAuth();
-  const { enrollInCourse } = useEnrollments();
+  const { enrollInCourse, hasPendingEnrollment } = useEnrollments();
   const navigate = useNavigate();
   const courseImage = courseImages[course.id] || '/placeholder.svg';
 
@@ -160,12 +160,22 @@ const CourseCard = ({
 
         <div className="flex flex-col gap-2">
           {/* Enroll Now button for logged in users only */}
-          {user && profile?.role === 'student' && !enrollment && (
+          {user && profile?.role === 'student' && !enrollment && !hasPendingEnrollment(course.id) && (
             <Button 
               onClick={handleEnroll}
               className="flex-1 bg-gradient-primary hover:opacity-90 text-white"
             >
               Enroll Now
+            </Button>
+          )}
+          
+          {/* Pending button for users with pending enrollment */}
+          {user && profile?.role === 'student' && !enrollment && hasPendingEnrollment(course.id) && (
+            <Button 
+              disabled
+              className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white cursor-not-allowed"
+            >
+              Pending
             </Button>
           )}
           

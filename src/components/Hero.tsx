@@ -6,12 +6,19 @@ import heroImg1 from '../../images/generation-cffafbac-d91b-446a-9e9b-ca3bf39816
 import heroImg2 from '../../images/generation-00555fea-3c4a-4d7f-b3e6-3b5f5c7489e2.png';
 import heroImg3 from '../../images/generation-969f65e7-199f-413b-9dd0-f1cc327594ae.png';
 import heroImg4 from '../../images/generation-1c94cbdf-290c-4cce-88ce-73966ec946ba.png';
+import video1 from '../../Videos/dreamina-2025-07-23-4631-Open with a wide shot of a high-tech fac....mp4';
+import video2 from '../../Videos/dreamina-2025-07-23-6991-Open with a wide shot of a dimly lit off....mp4';
+import video3 from '../../Videos/dreamina-2025-07-23-7258-zooming in toward a focused nail technic....mp4';
+import video4 from '../../Videos/dreamina-2025-07-23-9513-Open with a wide shot of a dimly lit off....mp4';
 
 // Randomize the order of hero images
 const heroImages = [heroImg2, heroImg4, heroImg1, heroImg3];
 
+const heroVideos = [video1, video2, video3, video4];
+
 const Hero = () => {
   const [bgIndex, setBgIndex] = useState(0);
+  const [videoIndex, setVideoIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -20,17 +27,29 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVideoIndex((prev) => (prev + 1) % heroVideos.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <>
       {/* Main Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-        {/* Sliding Background Images */}
-        {heroImages.map((img, idx) => (
-          <div
-            key={idx}
-            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${bgIndex === idx ? 'opacity-40' : 'opacity-0'}`}
-            style={{ backgroundImage: `url(${img})` }}
-            aria-hidden={bgIndex !== idx}
+        {/* Video Background Slider */}
+        {heroVideos.map((src, idx) => (
+          <video
+            key={src}
+            className={`absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-1000 ${videoIndex === idx ? 'opacity-100' : 'opacity-0'}`}
+            src={src}
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/lovable-uploads/c890d50b-9e2b-4f34-8958-e006a579ccea.png"
+            style={{ pointerEvents: 'none' }}
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-gray-900/85 to-black/90"></div>
@@ -58,14 +77,14 @@ const Hero = () => {
             </h2>
             {/* Warning Messages with Flashing Animation */}
             <div className="space-y-3 mb-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-              <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full shadow-2xl inline-block transform hover:scale-105 transition-transform duration-300">
-                <div className="text-lg lg:text-xl font-black animate-flash">
-                  JOBS ARE AT RISK!
-                </div>
-              </div>
               <div className="block">
                 <div className="bg-gradient-to-r from-red-700 to-red-800 text-white px-6 py-2 rounded-full shadow-xl inline-block transform hover:scale-105 transition-transform duration-300">
                   <div className="text-base lg:text-lg font-bold">FEES MUST FALL!</div>
+                </div>
+              </div>
+              <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full shadow-2xl inline-block transform hover:scale-105 transition-transform duration-300">
+                <div className="text-lg lg:text-xl font-black animate-flash-strong">
+                  JOBS ARE AT RISK!
                 </div>
               </div>
             </div>
@@ -98,23 +117,6 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          {/* Video Section - Positioned in highlighted area */}
-          <div className="absolute bottom-8 right-8 hidden lg:block animate-fade-in" style={{ animationDelay: '1.2s' }}>
-            <div className="relative w-80">
-              <div className="relative bg-gradient-to-br from-purple-600/20 to-purple-800/30 rounded-2xl p-3 backdrop-blur-sm border border-purple-500/30 shadow-2xl">
-                <div className="aspect-video rounded-xl overflow-hidden shadow-xl">
-                  <iframe
-                    src="https://www.youtube.com/embed/XTKhFTiciDM?autoplay=0&mute=0&controls=1&rel=0&modestbranding=1"
-                    title="Beta Skill Training Video"
-                    className="w-full h-full"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
       {/* Animated keyframes for hero text and flash */}
@@ -133,6 +135,13 @@ const Hero = () => {
         }
         .animate-flash {
           animation: flash 1.5s infinite alternate;
+        }
+        @keyframes flash-strong {
+          0%, 100% { opacity: 1; filter: drop-shadow(0 0 16px #ff0000cc); }
+          50% { opacity: 0.3; filter: drop-shadow(0 0 32px #ff0000ff); }
+        }
+        .animate-flash-strong {
+          animation: flash-strong 1s infinite alternate;
         }
         .hero-title {
           position: relative;

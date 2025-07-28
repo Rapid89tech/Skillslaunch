@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { CheckCircle } from 'lucide-react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 interface EnrollmentSidebarProps {
@@ -24,8 +24,7 @@ const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSideba
             {!user && (
               <div className="text-2xl font-extrabold gradient-text mb-1 animate-fade-in-card">Register To Enroll</div>
             )}
-            <p className="text-gray-700 font-medium animate-fade-in-card text-sm">Lifetime access • No payment required</p>
-            <div className="mt-3 mb-2 text-xs font-semibold text-orange-700 bg-orange-50 border border-orange-200 rounded-full px-3 py-1 shadow-sm animate-fade-in-card">Once Off Admin of R500</div>
+            {/* Removed Lifetime access and Admin fee section */}
           </div>
 
           {/* Only show Registration button if user is not logged in */}
@@ -48,28 +47,7 @@ const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSideba
             </Button>
           )}
 
-          <div className="space-y-2 text-sm text-gray-700 w-full animate-fade-in-card">
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500" />
-              <span>Lifetime access to course content</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500" />
-              <span>Interactive quizzes and assignments</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500" />
-              <span>Certificate of completion</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500" />
-              <span>Mobile and desktop access</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <CheckCircle className="h-4 w-4 text-green-500" />
-              <span>Progress tracking</span>
-            </div>
-          </div>
+          {/* Removed feature list section */}
         </CardContent>
         <style>{`
           .glassmorphism-card {

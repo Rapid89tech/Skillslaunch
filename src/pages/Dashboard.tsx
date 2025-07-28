@@ -1,77 +1,88 @@
-import React from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/AuthContext';
 import { useEnrollments } from '@/hooks/useEnrollments';
 import { useCourses } from '@/hooks/useCourses';
 import { useToast } from '@/hooks/use-toast';
 import DashboardSkeleton from '@/components/skeletons/DashboardSkeleton';
 import StudentDashboard from '@/components/dashboard/StudentDashboard';
 import AdminInstructorDashboard from '@/components/dashboard/AdminInstructorDashboard';
+import TutorDashboard from '@/components/dashboard/TutorDashboard';
+import AdminDashboard from '@/components/dashboard/AdminDashboard';
 
 const Dashboard = () => {
-  const { user, profile, loading: authLoading, profileReady } = useAuth();
+  const { user, loading: authLoading, profile } = useAuth();
   const { enrollments, loading: enrollmentsLoading } = useEnrollments();
   const { courses, loading: coursesLoading } = useCourses();
   const { toast } = useToast();
+  const navigate = useNavigate();
 
-  console.log('Dashboard - authLoading:', authLoading, 'enrollmentsLoading:', enrollmentsLoading, 'coursesLoading:', coursesLoading);
-  console.log('Dashboard - user:', !!user, 'profile role:', profile?.role);
-
-  // Show loading only while auth or profile is loading
-  if (authLoading || !profileReady) {
-    console.log('Dashboard - showing skeleton for auth/profile loading');
+  // Show loading while auth is loading
+  if (authLoading) {
     return <DashboardSkeleton />;
   }
 
-  // If no user after auth loading is complete, this shouldn't happen due to ProtectedRoute
+  // If no user, return null (ProtectedRoute should handle this)
   if (!user) {
-    console.log('Dashboard - no user found');
     return null;
   }
 
-  // If we have user but no profile yet, show loading with timeout
-  if (!profile) {
-    console.log('Dashboard - waiting for profile data');
-    // Add a timeout to prevent infinite loading
-    setTimeout(() => {
-      if (!profile) {
-        console.warn('Profile loading timeout, this might indicate an RLS issue');
-      }
-    }, 5000);
+  // Create a default profile if none exists
+  const defaultProfile = profile || {
+    id: user.id,
+    email: user.email,
+    first_name: 'Student',
+    last_name: 'User',
+    role: 'student',
+    approved: true,
+    approval_status: 'approved'
+  };
+
+  // Wait for enrollments/courses to load before showing content
+  if (enrollmentsLoading || coursesLoading) {
     return <DashboardSkeleton />;
   }
 
-  console.log('Dashboard - rendering main content for role:', profile.role);
-
-  // Render based on user role
-  if (profile.role === 'student') {
-    // For students, wait for enrollments to load before showing content
-    if (enrollmentsLoading) {
-      console.log('Dashboard - waiting for enrollments data');
-      return <DashboardSkeleton />;
-    }
-    
+  // Role-based dashboard rendering
+  if (defaultProfile.role === 'student') {
     return (
-      <StudentDashboard 
-        profile={profile}
-        enrollments={enrollments}
-        courses={courses}
+      <StudentDashboard
+        profile={defaultProfile}
+        enrollments={enrollments || []}
+        courses={courses || []}
+        userId={user.id}
+      />
+    );
+  }
+  
+  if (defaultProfile.role === 'instructor') {
+    return (
+      <TutorDashboard
+        profile={defaultProfile}
+        enrollments={enrollments || []}
+        courses={courses || []}
+        userId={user.id}
+      />
+    );
+  }
+  
+  if (defaultProfile.role === 'admin') {
+    return (
+      <AdminDashboard
+        profile={defaultProfile}
+        enrollments={enrollments || []}
+        courses={courses || []}
         userId={user.id}
       />
     );
   }
 
-  // For instructors/admins, wait for courses to load before showing content
-  if (coursesLoading) {
-    console.log('Dashboard - waiting for courses data');
-    return <DashboardSkeleton />;
-  }
-
-  // Admin/Instructor dashboard
+  // Default to student dashboard for any other case
   return (
-    <AdminInstructorDashboard 
-      profile={profile}
-      enrollments={enrollments}
-      courses={courses}
+    <StudentDashboard
+      profile={defaultProfile}
+      enrollments={enrollments || []}
+      courses={courses || []}
       userId={user.id}
     />
   );

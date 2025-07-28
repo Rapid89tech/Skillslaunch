@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/AuthContext';
 import type { Course } from '@/types/course';
 
 export const useQuizState = (course: Course | null, isEnrolled: boolean) => {

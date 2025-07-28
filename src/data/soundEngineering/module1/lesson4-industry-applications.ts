@@ -1,4 +1,3 @@
-
 import { VideoLesson } from '@/types/course';
 
 export const lesson4IndustryApplications: VideoLesson = {
@@ -8,161 +7,118 @@ export const lesson4IndustryApplications: VideoLesson = {
   type: 'video',
   content: {
     videoUrl: 'https://example.com/industry-applications',
-    textContent: `# 🎧 Lecture Notes: Industry Applications of Sound and Audio
+    textContent: `
+<h1>🎵 Lecture Notes: Industry Applications of Sound and Audio</h1>
 
-## 1. Introduction
-Sound is not only central to entertainment and communication, but also vital across science, technology, medicine, industry, and business.
+<h2>1. Introduction</h2>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/CsG8tZB7I70" title="Introduction" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Multidisciplinary Applications</strong>
+<p>Sound is integral to entertainment, communication, medicine, science, and industry, offering diverse career opportunities for audio professionals.</p>
+<p>Sound’s versatility spans from creating immersive film audio to medical diagnostics. Understanding these applications helps learners identify career paths. The course’s online resources, including case studies and video lectures, explore these fields, with forums for discussing innovative uses. This accessibility ensures students can explore sound’s impact across disciplines, preparing them for specialized roles in a global industry.</p>
 
-Understanding sound's practical applications helps in career planning and innovation across disciplines.
+<h2>2. Entertainment & Media</h2>
 
-## 2. Entertainment & Media
+<h3>🎵 Music Industry</h3>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/mRNlIiZX4Hs" title="Music Industry" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Recording, Live Sound, Distribution</strong>
+<p>Involves studio recording, mixing, mastering, live sound reinforcement, and digital distribution on platforms like Spotify.</p>
+<p>Music production requires technical and creative skills to capture and enhance performances. Live sound engineers ensure clarity at concerts, while mastering prepares tracks for streaming. The course provides DAW-based projects to simulate these processes, with online feedback to refine skills. This hands-on approach ensures learners can produce professional music, leveraging online tools to stay competitive in the industry.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/YyUcAoj-BVM" title="Entertainment & Media" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3>🎬 Film & Television</h3>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/_iUdNak3a7c" title="Film & Television" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Sound Design, Foley, ADR</strong>
+<p>Includes creating soundscapes, Foley effects, and re-recording dialogue (ADR) for visual media.</p>
+<p>Film sound enhances storytelling through immersive audio. Foley artists recreate everyday sounds, while ADR ensures clear dialogue. The course offers projects to design film audio, with online peer reviews to refine techniques. This practical training prepares learners to create compelling soundscapes for films and TV, with flexible access to resources ensuring they can master these skills from anywhere.</p>
 
-### 🎵 Music Industry
-- **Recording & Production:** Studio recording, mixing, mastering.
-- **Live Sound:** Sound reinforcement at concerts and events.
-- **Distribution:** Digital platforms (Spotify, Apple Music, etc.).
+<h3>🎮 Video Games</h3>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/vsuLEM0I7x0" title="Video Games" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Interactive and Spatial Audio</strong>
+<p>Involves dynamic sound effects, ambisonics, and integration with audio engines like Wwise for immersive gaming experiences.</p>
+<p>Game audio requires sounds that respond to player actions, enhancing immersion. Spatial audio creates 3D environments. The course includes virtual labs to design game audio, with online forums for sharing projects. This ensures learners can create dynamic soundscapes, preparing them for the growing demand in game audio development.</p>
 
-### 🎬 Film & Television
-- **Sound Design:** Creating immersive auditory environments.
-- **Foley Art:** Reproducing everyday sound effects in post-production.
-- **ADR (Automated Dialogue Replacement):** Re-recording dialogue to match visuals.
+<h3>🎤 Podcasting & Broadcasting</h3>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/S_8bdZUNZIM" title="Podcasting & Broadcasting" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Voice Recording, Audio Branding</strong>
+<p>Focuses on high-quality vocal capture, editing, and creating signature sounds for shows and networks.</p>
+<p>Podcasting requires clean vocal recordings and effective editing to engage listeners. Audio branding establishes a show’s identity. The course provides podcasting projects, with online tools for editing and feedback. This hands-on approach ensures learners can produce professional podcasts, leveraging the flexibility of online learning to meet industry standards.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_iUdNak3a7c" title="Film & Television" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>3. Health & Medicine</h2>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/KwsvDQhOpeU" title="Health & Medicine" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Ultrasound, Audiology, Therapy</strong>
+<p>Includes ultrasound imaging, hearing diagnostics, and sound therapy for stress relief and neurological benefits.</p>
+<p>Sound’s medical applications, like ultrasound, are non-invasive and critical for diagnostics. Audiology and therapy leverage sound for health benefits. The course explores these through video case studies, with online discussions to connect concepts to audio engineering. This broadens learners’ perspectives, preparing them for specialized roles in medical acoustics.</p>
 
-### 🎮 Video Games
-- **Interactive Audio:** Sound responds dynamically to player actions.
-- **Ambisonics/Spatial Audio:** Used for realism in 3D environments.
-- **Game Audio Engines:** Integration with software like Wwise or FMOD.
+<h2>4. Science & Research</h2>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/D7mU7YohbK0" title="Science & Research" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Infrasound, Marine Acoustics, Sonification</strong>
+<p>Involves monitoring earthquakes, studying marine life, and turning data into sound for scientific analysis.</p>
+<p>Sound aids scientific discovery, from detecting infrasound in natural phenomena to sonifying astronomical data. The course provides virtual experiments to explore these applications, with online forums for discussing research implications. This ensures learners can apply audio skills to scientific fields, expanding their career versatility.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/S84Dp880C8Q" title="Video Games" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>5. Communication Technology</h2>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ShPUG5mztSY" title="Communication Technology" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Voice Compression, Noise Cancellation</strong>
+<p>Involves efficient voice transmission (VoIP) and noise cancellation for clear communication.</p>
+<p>Sound engineering enhances telecommunications by optimizing voice clarity and reducing noise. The course includes exercises to simulate these technologies, with online feedback to refine skills. This prepares learners for roles in audio tech development, leveraging online resources to stay updated on communication advancements.</p>
 
-### 🎤 Podcasting & Broadcasting
-- **Voice Recording:** High-quality vocal capture and editing.
-- **Audio Branding:** Signature sounds for shows or networks.
-- **Remote Production:** Cloud-based audio workflows.
+<h2>6. Safety & Industry</h2>
+<strong>Key Features: Acoustic Monitoring, Alarms</strong>
+<p>Uses sound for structural health monitoring and safety alerts like sirens and gunshot detection.</p>
+<p>Sound ensures safety by detecting structural flaws or triggering alerts. The course provides case studies and simulations to explore these applications, with online forums for discussing practical uses. This equips learners to apply audio skills in industrial contexts, enhancing safety and efficiency.</p>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Wgeg_TnndnY" title="Podcasting & Broadcasting" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>7. Automotive & Transportation</h2>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/26kYW2SAu9s" title="Automotive & Transportation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Cabin Sound, Synthetic Sounds</strong>
+<p>Involves designing vehicle cabin audio and synthetic sounds for electric vehicles (AVAS).</p>
+<p>Sound design in vehicles enhances user experience and safety. The course offers projects to create synthetic sounds, with online feedback to refine techniques. This prepares learners for innovative roles in automotive audio, leveraging the flexibility of online learning to explore this growing field.</p>
 
-## 3. Health & Medicine
+<h2>8. Architecture & Urban Design</h2>
+<strong>Key Features: Acoustic Engineering, Performance Spaces</strong>
+<p>Focuses on designing buildings and concert halls for optimal sound quality and urban noise control.</p>
+<p>Acoustic engineering shapes how sound behaves in spaces, from theaters to offices. The course includes virtual design exercises, with online forums for sharing acoustic solutions. This ensures learners can apply sound principles to create optimal environments, preparing them for roles in architectural acoustics.</p>
 
-### 🏥 Medical Imaging
-- **Ultrasound:** Non-invasive imaging using high-frequency sound waves.
+<h2>9. Marketing & Branding</h2>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/fT4BCpvVKoA" title="Marketing & Branding" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: Sonic Branding, Retail Soundscapes</strong>
+<p>Uses sound logos and background music to influence consumer behavior and brand identity.</p>
+<p>Sonic branding creates memorable audio identities, like Intel’s chime. The course provides projects to design brand sounds, with online peer reviews to refine creations. This prepares learners to craft audio that enhances marketing, leveraging online tools to stay competitive in this creative field.</p>
 
-### 🦻 Audiology
-- **Hearing Tests:** Diagnosing hearing loss using pure tones.
-- **Hearing Aids & Cochlear Implants:** Devices that process and deliver sound.
+<h2>10. Education & Training</h2>
+<strong>Key Features: E-Learning, Language Learning</strong>
+<p>Involves voiceovers, podcast-based learning, and sound for pronunciation training in education.</p>
+<p>Sound enhances educational content through clear narration and interactive feedback. The course offers projects to create educational audio, with online feedback to improve quality. This prepares learners for roles in instructional design, leveraging the flexibility of online learning to develop versatile audio skills.</p>
 
-### 🧠 Therapeutic Uses
-- **Sound Therapy:** For stress relief, insomnia, PTSD.
-- **Neuroscience:** Studying brain response to sound and music.
+<h2>11. Emerging & Future Applications</h2>
+<div style="margin-bottom:1rem;">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/V-FFkXKd42o" title="Emerging & Future Applications" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<strong>Key Features: AR/VR, AI Audio, Metaverse</strong>
+<p>Includes 3D spatial audio, AI-driven sound synthesis, and audio design for virtual worlds.</p>
+<p>Emerging technologies like VR and AI are transforming audio production. The course provides virtual labs to explore spatial audio and AI tools, with online forums for discussing future trends. This ensures learners are prepared for cutting-edge roles in immersive audio and virtual environments.</p>
 
-## 4. Science & Research
-
-### 🌋 Geophysics & Seismology
-- **Infrasound Detection:** Monitoring earthquakes or volcanoes.
-
-### 🐋 Marine Biology
-- **Underwater Acoustics:** Echolocation and communication in marine animals.
-- **Hydrophones:** Detect sound under water for environmental studies.
-
-### 🚀 Astronomy
-- **Sonification:** Turning data into sound to interpret cosmic phenomena.
-
-## 5. Communication Technology
-
-### 📱 Telecommunications
-- **Voice Compression:** For efficient data transmission (e.g., VoIP, mobile).
-- **Noise Cancellation:** For clear audio during calls.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Go1tF9E3XEg" title="Telecommunications" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### 🎧 Consumer Audio
-- **Headphones & Speakers:** Designed using principles of acoustics.
-- **Voice Assistants:** Use speech recognition and synthesis.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/MWvsgal_SGY" title="Consumer Audio" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## 6. Safety & Industry
-
-### 🚧 Acoustic Monitoring
-- **Structural Health Monitoring:** Using sound to detect cracks in bridges, aircraft, etc.
-- **Industrial Ultrasonics:** Used in flaw detection and thickness gauging.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/C1b2TpwwUKA" title="Acoustic Monitoring" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### 🔔 Alarm Systems
-- **Sonic Alerts:** Sirens and warning systems in public safety.
-- **Acoustic Sensors:** Detect gunshots, glass breaking, etc.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/-rTtiAr1ct0" title="Alarm Systems" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## 7. Automotive & Transportation
-
-### 🚗 Vehicle Acoustics
-- **Cabin Sound Design:** Enhancing or dampening engine noise.
-- **Electric Vehicles:** Adding synthetic sounds for safety (AVAS – Acoustic Vehicle Alert Systems).
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/yFh6Fh7FVow" title="Vehicle Acoustics" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### ✈️ Aerospace
-- **Noise Control:** Reducing cockpit and cabin noise.
-- **Acoustic Testing:** Ensuring integrity of materials under sonic stress.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/qT3UHI7eT9w" title="Aerospace" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## 8. Architecture & Urban Design
-
-### 🏙️ Acoustic Engineering
-- Designing buildings with optimal sound reflection and absorption.
-- Creating quiet zones in noisy urban areas.
-
-**YOUTUBE LINK:** The Sound of Spaces: Understanding Acoustics in Architecture
-
-### 🎭 Performance Spaces
-- Concert halls, theaters, and studios designed for optimal sound quality.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/9Ur1GAkmoF0" title="Performance Spaces" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## 9. Marketing & Branding
-
-### 📣 Sonic Branding
-- Using sound logos (e.g., Intel chime, Netflix intro).
-- Jingles, voiceovers, and branded audio elements for advertising.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QnXed5fI8Gk" title="Sonic Branding" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### 🛒 Retail Environments
-- Background music and soundscapes to influence customer behavior.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IpMBIlpBgAM" title="Retail Environments" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-## 10. Education & Training
-
-### 🎓 E-learning & Instructional Design
-- Voiceover narration, podcast-based learning.
-- Sound-based feedback in educational software.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/zZJ8-n0Om4I" title="E-learning & Instructional Design" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-### 🧠 Language Learning
-- Using sound to teach pronunciation, tone, and listening comprehension.
-
-## 11. Emerging & Future Applications
-
-| Area | Description |
-|------|-------------|
-| AR/VR Audio | 3D spatial sound for immersive environments. |
-| AI Audio | Speech synthesis, voice cloning, and generative music. |
-| Voice Interfaces | Human-AI interaction via spoken language. |
-| Metaverse Sound Design | Crafting audio layers for virtual worlds. |
-
-## 12. Summary
-Sound is a multidisciplinary tool that powers innovation in countless industries.
-
-From health and safety to gaming and entertainment, its applications are expanding with technology.
-
-Professionals with audio skills are in high demand across both creative and technical fields.`
+<h2>12. Summary</h2>
+<strong>Key Features: Multidisciplinary Impact</strong>
+<p>Sound drives innovation across entertainment, medicine, science, and technology, with growing demand for skilled audio professionals.</p>
+<p>This summary highlights sound’s broad applications, from gaming to medical imaging. The course’s online platform offers resources to explore these fields, with community forums to connect learners globally. This comprehensive approach ensures students can leverage sound’s versatility to pursue diverse, impactful careers.</p>
+`
   }
 };

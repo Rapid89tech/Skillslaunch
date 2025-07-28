@@ -1,4 +1,5 @@
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import videoBg from '../../../Videos/dreamina-2025-07-23-7475-Open with a wide shot of a group of conf....mp4';
 
 const slides = [
   {
@@ -18,12 +19,18 @@ const slides = [
 const CoursesPageHeader = () => {
   return (
     <div className="relative mb-12 overflow-hidden rounded-3xl shadow-xl animate-fade-in">
-      {/* Animated gradient background */}
-      <div className="absolute inset-0 z-0 animate-gradient-x bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 opacity-80" />
-      {/* Image overlay */}
-      <img src="../../images/generation-cffafbac-d91b-446a-9e9b-ca3bf3981651.png" alt="Hero Background" className="absolute inset-0 w-full h-full object-cover opacity-90 z-0" />
-      {/* Black overlay for clarity */}
-      <div className="absolute inset-0 bg-black/60 z-10" />
+      {/* Video background */}
+      <video
+        src={videoBg}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        style={{ pointerEvents: 'none' }}
+      />
+      {/* 80% black overlay for clarity */}
+      <div className="absolute inset-0 bg-black/80 z-10" />
       <div className="relative z-20 py-16 px-4 sm:px-8 flex flex-col items-center justify-center min-h-[260px]">
         <Carousel className="w-full max-w-3xl mx-auto">
           <CarouselContent>

@@ -38,5 +38,18 @@ export const featuredCourses = [
     level: 'Professional',
     description: 'Complete audio engineering and music production course',
     courseId: 'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d4'
+  },
+  {
+    id: 4,
+    title: 'Business: Building Your Business',
+    instructor: 'Business Faculty',
+    rating: 5.0,
+    students: 0,
+    duration: '10 weeks',
+    price: 'R2200',
+    image: '/placeholder.svg',
+    level: 'Beginner',
+    description: 'A comprehensive course for aspiring entrepreneurs and business owners, covering market research, business planning, legal considerations, and more.',
+    courseId: 'business-001'
   }
 ];

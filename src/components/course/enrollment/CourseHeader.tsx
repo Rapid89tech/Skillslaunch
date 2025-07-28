@@ -31,7 +31,6 @@ const CourseHeader = ({ course, totalDuration, totalLessons }: CourseHeaderProps
   const slides = [
     {
       title: course.title,
-      desc: course.description,
       stats: (
         <div className="flex flex-wrap justify-center gap-4 mt-4 animate-fade-in-card">
           <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
@@ -80,9 +79,6 @@ const CourseHeader = ({ course, totalDuration, totalLessons }: CourseHeaderProps
             {slides.map((slide, idx) => (
               <CarouselItem key={idx} className="flex flex-col items-center justify-center text-center min-h-[200px]">
                 <h1 className="text-2xl md:text-3xl font-extrabold mb-2 drop-shadow-lg animate-fade-in delay-100" style={{color: '#fff'}}>{slide.title}</h1>
-                <p className="text-base md:text-lg text-white max-w-2xl mx-auto leading-relaxed animate-fade-in delay-200 mb-3">
-                  {slide.desc}
-                </p>
                 {slide.stats}
               </CarouselItem>
             ))}

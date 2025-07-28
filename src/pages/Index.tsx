@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import Hero from '@/components/Hero';
 import CourseGrid from '@/components/CourseGrid';
 import Footer from '@/components/Footer';
-import { useAuth } from '@/hooks/useAuth';
+import { useAuth } from '@/hooks/AuthContext';
 import { Calendar, CheckCircle, Users, TrendingUp } from 'lucide-react';
 
 const Index = () => {

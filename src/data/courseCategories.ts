@@ -1,4 +1,3 @@
-
 import { HardHat, Smartphone, Wrench, Palette, Car, Hammer, Scissors, Zap } from 'lucide-react';
 
 export const categories = [

@@ -17,12 +17,9 @@ BEGIN
   -- Get role from user metadata
   user_role := COALESCE(new.raw_user_meta_data ->> 'role', 'student');
   
-  -- Determine approval status based on role
-  is_approved := user_role = 'admin';
-  approval_status := CASE 
-    WHEN user_role = 'admin' THEN 'approved'
-    ELSE 'pending'
-  END;
+  -- Determine approval status for all users (auto-approve)
+  is_approved := true;
+  approval_status := 'approved';
   
   -- Insert profile with proper role and approval status
   INSERT INTO public.profiles (

@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { BookOpen, Target, Globe, CheckCircle, Users, Star, Layers, ListChecks } from 'lucide-react';
+import LearningObjectives from './LearningObjectives';
+import CourseCurriculum from './CourseCurriculum';
 
 interface CourseOverviewProps {
   courseId: string;
@@ -10,11 +12,13 @@ const SECTION_ORDER = [
   'introduction',
   'overview',
   'objectives',
-  'learningObjectives',
+  'learningObjectives', // Only this for objectives
   'learningOutcomes',
   'targetAudience',
+  'learningMaterials',
+  'assessment',
   'prerequisites',
-  'courseCurriculum',
+  'courseCurriculum', // Always include
 ];
 
 const SECTION_LABELS: Record<string, string> = {
@@ -24,6 +28,8 @@ const SECTION_LABELS: Record<string, string> = {
   learningObjectives: 'Learning Objectives',
   learningOutcomes: 'Learning Outcomes',
   targetAudience: 'Target Audience',
+  learningMaterials: 'Learning Materials/Resources',
+  assessment: 'Assessment/Evaluation Methods',
   prerequisites: 'Prerequisites',
   courseCurriculum: 'Course Curriculum',
 };
@@ -35,6 +41,8 @@ const SECTION_ICONS: Record<string, any> = {
   learningObjectives: <Target className="h-5 w-5 text-blue-600" />,
   learningOutcomes: <ListChecks className="h-5 w-5 text-blue-500" />,
   targetAudience: <Users className="h-5 w-5 text-orange-600" />,
+  learningMaterials: <Layers className="h-5 w-5 text-pink-600" />,
+  assessment: <Star className="h-5 w-5 text-yellow-500" />,
   prerequisites: <Layers className="h-5 w-5 text-red-600" />,
   courseCurriculum: <BookOpen className="h-5 w-5 text-blue-600" />,
 };
@@ -83,19 +91,48 @@ const CourseOverview = ({ courseId }: CourseOverviewProps) => {
       ]
     },
     'c9d8e7f6-a5b4-9483-d2e3-f4a5b6c7d8e9': {
-      overview: "Entrepreneurship is the cornerstone of the modern economy. Every day, entrepreneurs around the world are starting their own business. This course will teach you the characteristics of successful entrepreneurs. It will also discuss the kind of business models and marketing strategies an entrepreneur can use to start a business, and more!",
-      objectives: [
-        'Develop an understanding of the common characteristics of an entrepreneur',
-        'Explain the development process and the planning process involved in the launch of a new product',
-        'Describe the business ecosystem and have a vast knowledge of successful business models'
+      overview: `"Entrepreneurship: Building Your Business” is a comprehensive online course designed to empower aspiring entrepreneurs with the skills, mindset, and strategies needed to launch and sustain a successful business. This course covers the entrepreneurial journey from ideation to execution, exploring critical topics such as identifying market opportunities, conducting effective market research, crafting business models, and implementing targeted marketing strategies. Learners will gain practical insights into the planning and development processes, understand the business ecosystem, and discover how to create a unique value proposition that resonates with customers. Delivered entirely online, this course is accessible globally and combines engaging content with actionable tools to help you turn your business ideas into reality, whether you're starting a local service or a scalable tech venture.\n\nThe course emphasizes real-world application, guiding learners through hands-on exercises like conducting a Community Scan to identify market needs and developing a business plan tailored to their target audience. Its relevance lies in equipping individuals with the knowledge to navigate today’s dynamic economy, where entrepreneurship drives innovation and growth. With flexible, self-paced learning and support from an AI-powered voice tutor, this course is ideal for anyone looking to build a business with confidence and clarity.`,
+      learningObjectives: [
+        'Identify and articulate the mindset and common characteristics of successful entrepreneurs, applying these traits to their own ventures.',
+        'Conduct a Community Scan to evaluate market needs and validate business opportunities using observational and interview techniques.',
+        'Perform targeted market research to define customer segments, analyze demand, and develop a unique value proposition.',
+        'Explain and apply the development and planning processes involved in launching a new product or service, including creating a business plan.',
+        'Analyze the business ecosystem and evaluate successful business models (e.g., subscription, freemium, or product-based) to select the most suitable for their venture.',
+        'Design effective marketing strategies that focus on specific customer segments to maximize impact and resource efficiency.',
+        'Develop a comprehensive business pitch tailored to attract investors, partners, or customers.'
       ],
-      learningOutcomes: [
-        'Identify and understand the mind of the entrepreneur',
-        'Identify the common characteristics of an entrepreneur',
-        'Recognise and gain a good knowledge of the development process and the planning process involved in the launch of a new product',
-        'Examine the business ecosystem and knowledge of successful business models'
+      targetAudience: [
+        'Aspiring entrepreneurs with little to no prior business experience who want to start their own venture.',
+        'Professionals seeking to transition into entrepreneurship or launch a side hustle.',
+        'Small business owners looking to refine their strategies and scale their operations.',
+        'Students or young professionals interested in understanding the entrepreneurial process and business ecosystem.',
+        'Individuals from any industry (e.g., tech, retail, services) interested in creating a business that addresses local or global market needs. The course is beginner-friendly and optimized for online learning, requiring no prior business knowledge. Basic digital literacy (e.g., navigating online platforms) is sufficient, making it accessible to a global audience with diverse backgrounds.'
       ],
-      introduction: "Entrepreneurship is the process of identifying a business opportunity, developing a plan, and taking the necessary steps to establish a successful venture. This lecture will explore the key aspects of starting a business, from idea generation to execution."
+      learningMaterials: [
+        'Video Lectures: Engaging, bite-sized videos covering key topics like market research, business models, and marketing strategies, accessible via the course platform.',
+        'Downloadable PDFs: Templates for business plans, Community Scan checklists, and market research frameworks.',
+        'Interactive Quizzes: Online quizzes to reinforce key concepts, such as identifying entrepreneurial traits or analyzing business ecosystems.',
+        'Case Studies: Real-world examples of successful startups, available as downloadable PDFs or embedded in video content.',
+        'Discussion Forums: Online forums for learners to share ideas, discuss Community Scan findings, and collaborate on business ideas.',
+        'AI Voice Tutor: An intelligent, voice-enabled tutor available 24/7 to answer questions, clarify concepts, and provide personalized guidance.',
+        'External Resources: Links to free online tools for market research (e.g., Google Trends, social media analytics) and business planning (e.g., Canva for pitch decks).',
+        'Required Tools: A computer or mobile device with internet access, a web browser (e.g., Chrome, Firefox), and access to the course platform (e.g., via grok.com or the Grok mobile app). No additional software is required.'
+      ],
+      assessment: [
+        'Online Quizzes: Multiple-choice and scenario-based quizzes to test understanding of entrepreneurial concepts, such as identifying market needs or selecting business models (graded automatically).',
+        'Community Scan Assignment: A practical exercise where learners conduct a Community Scan in their local area, submit a report via the course platform, and receive feedback from instructors.',
+        'Business Plan Project: A capstone project requiring learners to create a business plan, including market research, a value proposition, and a marketing strategy. Submitted online and evaluated by instructors.',
+        'Peer Reviews: Learners review and provide feedback on each other’s business pitches in discussion forums, fostering collaboration and critical thinking.',
+        'Progress Tracking: The course platform provides a dashboard to monitor quiz scores, assignment completion, and overall progress. Feedback is provided via automated quiz results, instructor comments on assignments, and AI tutor responses to questions, ensuring learners receive timely guidance.'
+      ],
+      support: [
+        'AI Voice Tutor: Available through the Grok iOS and Android apps, the AI tutor provides instant, voice-based responses to learner questions, offering clarifications and personalized advice.',
+        'Discussion Forums: Online forums where learners can post questions, share Community Scan insights, discuss business ideas, and receive peer feedback.',
+        'Email Helpdesk: A dedicated support email for technical issues or course-related inquiries, with responses within 24–48 hours.',
+        'Live Q&A Sessions: Weekly live sessions (via Zoom or the course platform) with instructors to address common challenges and discuss real-world applications.',
+        'Community Engagement: Learners can join group projects (e.g., collaborative business pitches) and participate in forum challenges to network with peers globally.',
+        'Instructor Office Hours: Scheduled virtual office hours for one-on-one guidance, bookable through the course platform. The AI voice tutor ensures 24/7 support, making it easy for learners in different time zones to get help whenever needed. The combination of forums and live sessions fosters a vibrant online community for collaboration and idea-sharing.'
+      ]
     },
     'podcast-management': {
       description: "This course equips learners with the skills to manage and grow professional podcasts—from pre-production to publishing and promotion. Students will learn technical, strategic, and creative elements of podcast management, including content planning, audio editing, guest coordination, distribution, marketing, and monetization.",
@@ -396,7 +433,7 @@ const CourseOverview = ({ courseId }: CourseOverviewProps) => {
         ))}
       </nav>
       {/* Main Content */}
-      <div className="flex-1 space-y-8">
+      <div className="flex-1 space-y-8 w-full">
         {SECTION_ORDER.map((key, idx) => {
           if (!data[key]) return null;
           return (
@@ -406,15 +443,23 @@ const CourseOverview = ({ courseId }: CourseOverviewProps) => {
               className="relative group animate-fade-in-card"
               style={{ animationDelay: `${idx * 100 + 200}ms` }}
             >
-              <Card className="glassmorphism-card border-0 shadow-xl rounded-3xl overflow-hidden animate-fade-in-card">
-                <CardHeader className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 py-6 px-8 flex flex-row items-center gap-3 rounded-t-3xl border-b-0">
-                  <span className="text-2xl md:text-3xl font-extrabold gradient-text drop-shadow-lg flex items-center gap-2">
+              <Card className="glassmorphism-card border-0 shadow-xl rounded-3xl overflow-hidden animate-fade-in-card w-full">
+                <CardHeader className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 py-2 px-4 flex flex-row items-center gap-3 rounded-t-3xl border-b-0">
+                  <span className="text-base md:text-lg font-extrabold gradient-text drop-shadow-lg flex items-center gap-2">
                     {SECTION_ICONS[key]}
                     {SECTION_LABELS[key]}
                   </span>
           </CardHeader>
-                <CardContent className="py-6 px-8 bg-white/80 dark:bg-gray-900/80">
+                <CardContent className="py-2 px-4 bg-white/80 dark:bg-gray-900/80 w-full">
+                  {key === 'overview' ? (
+                    <div className="text-[10px] text-gray-700 leading-relaxed" style={{ fontSize: '6px' }}>
+                      {renderSectionContent(key)}
+                    </div>
+                  ) : (
+                    <div className="text-[10px] text-gray-700 leading-relaxed">
                   {renderSectionContent(key)}
+                    </div>
+                  )}
           </CardContent>
         </Card>
             </section>

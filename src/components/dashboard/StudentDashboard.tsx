@@ -1,288 +1,402 @@
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
-import { 
-  Play,
-  Clock,
-  CheckCircle,
-  Star,
-  BarChart3,
-  Target,
-  Calendar,
-  Brain,
-  Download,
-  Award
-} from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { Profile } from '@/types/auth';
-import { Enrollment } from '@/types/enrollment';
-import DashboardStats from './DashboardStats';
-import { getStatsForRole } from '@/utils/dashboardStats';
-import { Course } from '@/hooks/useCourses';
-import MakeAdminButton from '../admin/MakeAdminButton';
+import { Button } from '@/components/ui/button';
+import { Award, BookOpen, Calendar, CheckCircle, Clock, Inbox, MessageCircle, PieChart, Settings, Star, Users, Pencil } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { supabase } from '@/integrations/supabase/client';
 
-interface StudentDashboardProps {
-  profile: Profile;
-  enrollments: Enrollment[];
-  courses: Course[];
-  userId?: string;
-}
+// Helper for animated confetti
+// REMOVE Confetti component definition and all references to <Confetti />
 
-const StudentDashboard = ({ profile, enrollments, courses, userId }: StudentDashboardProps) => {
-  const stats = getStatsForRole(profile, courses, enrollments, userId);
-  
-  // Get the most recent enrollment with actual course data
-  const enrolledCourses = enrollments.map(enrollment => {
-    const course = courses.find(c => c.id === enrollment.course_id);
-    return { ...enrollment, course };
-  }).filter(item => item.course);
-  
-  const currentEnrollment = enrolledCourses[0];
+const sidebarLinks = [
+  { label: 'Dashboard', icon: BookOpen, to: '/dashboard' },
+  { label: 'Courses', icon: BookOpen, to: '/courses' },
+  { label: 'Students', icon: Users },
+  { label: 'Exam', icon: Star },
+  { label: 'Projects', icon: PieChart },
+  { label: 'Policies', icon: Calendar },
+  { label: 'My Folder', icon: Inbox },
+  { label: 'Payrolls', icon: Award },
+  { label: 'Reports', icon: MessageCircle },
+  { label: 'Settings', icon: Settings },
+];
+
+const mockInbox = [
+  { name: 'Michael Wong', message: 'Don’t forget to work on assignment page 36 in...', time: '09:32', file: 'Exam-Science.xls' },
+  { name: 'Cindy Chen', message: 'Have you made history assignments?', time: '11:32', file: 'Algebra.pdf' },
+];
+
+const mockFriends = [
+  { name: 'Francis Tran', status: 'Health is not good.', time: '05 Minutes Ago', avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
+  { name: 'Elliana Palacios', status: 'Health is not good.', time: '23 Minutes Ago', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
+  { name: 'Katherine Webster', status: 'Going on trip with my fam...', time: '10 Minutes Ago', avatar: 'https://randomuser.me/api/portraits/women/65.jpg' },
+  { name: 'Avalon Carey', status: 'Going on trip with my fam...', time: '10 Minutes Ago', avatar: 'https://randomuser.me/api/portraits/men/45.jpg' },
+];
+
+const mockTasks = [
+  { title: 'Discussion Algorithm', time: '08:00 AM - 12:00 PM', icon: 'A', color: 'bg-orange-100 text-orange-600' },
+  { title: 'Fundamental Math', time: '12:00 PM - 15:00 PM', icon: 'M', color: 'bg-yellow-100 text-yellow-600' },
+  { title: 'DNA Modifications in Humans', time: 'Ongoing', icon: 'H', color: 'bg-blue-100 text-blue-600' },
+];
+
+const StudentDashboard = ({ profile, enrollments = [], courses = [], userId }: any) => {
+  const location = useLocation();
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [editProfile, setEditProfile] = useState({
+    first_name: profile?.first_name || '',
+    last_name: profile?.last_name || '',
+    imageUrl: profile?.imageUrl || '',
+  });
+  const [saving, setSaving] = useState(false);
+  const [error, setError] = useState('');
+
+  // Get actual student name
+  const studentName = profile?.first_name && profile?.last_name 
+    ? `${profile.first_name} ${profile.last_name}`
+    : profile?.first_name 
+    ? profile.first_name 
+    : profile?.email?.split('@')[0] || 'Student';
+
+  // Map enrollments to course progress and completion
+  const enrolledCourses = enrollments.map((enrollment: any) => {
+    const course = courses.find((c: any) => c.id === enrollment.course_id);
+    return {
+      id: course?.id || enrollment.course_id,
+      title: course?.title || enrollment.course_title || 'Untitled Course',
+      progress: Math.round(enrollment.progress || 0),
+      completed: Math.round(enrollment.progress || 0) === 100,
+      certificateUrl: enrollment.certificateUrl || '#',
+    };
+  });
+
+  // Calculate overall progress
+  const overallProgress = enrolledCourses.length > 0 
+    ? Math.round(enrolledCourses.reduce((acc, c) => acc + c.progress, 0) / enrolledCourses.length)
+    : 0;
+
+  // Generate dynamic recent activities based on actual enrollments
+  const recentActivities = [
+    ...enrolledCourses.slice(0, 2).map((course, index) => ({
+      activity: `Enrolled in ${course.title}`,
+      date: index === 0 ? '2 days ago' : '1 day ago'
+    })),
+    ...enrolledCourses.slice(0, 1).map(course => ({
+      activity: `Completed Lesson 1 in ${course.title}`,
+      date: 'Today'
+    }))
+  ].slice(0, 3);
+
+  // Generate dynamic goals based on enrolled courses
+  const goals = enrolledCourses.map((course, i) => ({
+    goal: `Complete ${Math.min(3 + i, 5)} lessons in ${course.title}`,
+    status: course.progress < 100 ? 'In Progress' : 'Completed',
+    progress: course.progress
+  }));
+
+  // Generate dynamic upcoming tasks based on enrolled courses
+  const upcomingTasks = enrolledCourses.slice(0, 3).map((course, i) => {
+    const taskTypes = ['Assignment', 'Quiz', 'Project'];
+    const colors = ['bg-orange-100 text-orange-600', 'bg-yellow-100 text-yellow-600', 'bg-blue-100 text-blue-600'];
+    const icons = ['A', 'Q', 'P'];
+    const times = ['09:00 AM - 11:00 AM', '02:00 PM - 04:00 PM', 'Ongoing'];
+    
+    return {
+      title: `${taskTypes[i % 3]} - ${course.title}`,
+      time: times[i % 3],
+      icon: icons[i % 3],
+      color: colors[i % 3]
+    };
+  });
+
+  // Save profile changes to Supabase
+  const handleSaveProfile = async () => {
+    setSaving(true);
+    setError('');
+    try {
+      const { error } = await supabase
+        .from('profiles')
+        .update({
+          first_name: editProfile.first_name,
+          last_name: editProfile.last_name,
+          imageUrl: editProfile.imageUrl,
+        })
+        .eq('id', userId);
+
+      if (error) throw error;
+      setShowProfileModal(false);
+    } catch (e) {
+      setError('Failed to update profile.');
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  // Animation variants
+  const fadeSlideIn = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+    exit: { opacity: 0, y: 40, transition: { duration: 0.4, ease: 'easeIn' } },
+  };
+  const fadeIn = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 0.7, ease: 'easeOut' } },
+    exit: { opacity: 0, transition: { duration: 0.4, ease: 'easeIn' } },
+  };
 
   return (
-    <div className="container mx-auto px-6 py-8 animate-fade-in">
-      {/* Welcome Section */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold gradient-text mb-2">
-          Welcome back, {profile.first_name}! 👋
-        </h1>
-        <div className="flex items-center justify-between">
-          <p className="text-muted-foreground">Ready to continue your learning journey?</p>
-          <MakeAdminButton 
-            userId={profile.id} 
-            currentRole={profile.role}
-            onRoleUpdate={() => {}}
-          />
+    <motion.div
+      className="flex min-h-screen bg-gray-50"
+      initial="hidden"
+      animate="visible"
+      exit="exit"
+      variants={fadeSlideIn}
+    >
+      {/* Sidebar */}
+      <aside className="w-64 bg-white shadow-lg flex flex-col py-8 px-4 animate-slide-in-left">
+        {/* Profile section */}
+        <div
+          className="flex items-center gap-3 mb-10 cursor-pointer hover:bg-red-50 rounded-lg p-2 transition"
+          onClick={() => setShowProfileModal(true)}
+        >
+          {profile?.imageUrl ? (
+            <img src={profile.imageUrl} alt="Profile" className="w-12 h-12 rounded-full object-cover border-2 border-red-600" />
+          ) : (
+            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-red-600 to-black flex items-center justify-center text-white font-bold text-xl">
+              {profile?.first_name ? profile.first_name[0].toUpperCase() : 'S'}
+            </div>
+          )}
+          <div className="flex flex-col">
+            <span className="font-extrabold text-lg tracking-wide text-red-700">{studentName}</span>
+            <span className="text-xs text-gray-400 flex items-center gap-1"><Pencil className="w-3 h-3" /> Edit Profile</span>
+          </div>
         </div>
-      </div>
-
-      {/* Stats Cards */}
-      <DashboardStats stats={stats} />
-
-      <div className="grid lg:grid-cols-3 gap-8">
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-6">
-          {/* Continue Learning Section */}
-          <Card className="animate-fade-in">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Play className="h-5 w-5 text-blue-600" />
-                Continue Learning
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              {currentEnrollment ? (
-                <div className="space-y-4">
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 rounded-lg border border-blue-100">
-                    <h3 className="font-semibold text-lg mb-2">{currentEnrollment.course?.title || 'Course Title'}</h3>
-                    <p className="text-gray-600 mb-4">{currentEnrollment.course?.description || 'Course description'}</p>
-                    
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between text-sm">
-                        <span className="text-gray-600">Progress</span>
-                        <span className="font-semibold text-blue-600">{Math.round(currentEnrollment.progress)}%</span>
-                      </div>
-                      <Progress value={currentEnrollment.progress} className="h-2" />
-                      
-                      <div className="flex items-center justify-between pt-2">
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
-                          <span className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            {currentEnrollment.progress < 100 ? 'In Progress' : 'Completed'}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Target className="h-4 w-4" />
-                            {currentEnrollment.course?.level || 'Beginner'}
-                          </span>
-                        </div>
-                        <div className="flex gap-2">
-                          <Link to={`/course/${currentEnrollment.course_id}`}>
-                            <Button className="bg-gradient-primary hover:opacity-90">
-                              {currentEnrollment.progress < 100 ? 'Continue Learning' : 'Review Course'}
-                            </Button>
-                          </Link>
-                          {currentEnrollment.progress === 100 && (
-                            <Link to={`/course/${currentEnrollment.course_id}/certificate`}>
-                              <Button variant="outline" className="border-green-500 text-green-600 hover:bg-green-50">
-                                <Award className="h-4 w-4 mr-2" />
-                                Certificate
-                              </Button>
-                            </Link>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className="text-center py-8">
-                  <Brain className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-700 mb-2">No Active Enrollments</h3>
-                  <p className="text-gray-500 mb-4">Start your learning journey by enrolling in a course</p>
-                  <Link to="/courses">
-                    <Button className="bg-gradient-primary hover:opacity-90">
-                      Browse Courses
-                    </Button>
-                  </Link>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-
-          {/* Recent Activity */}
-          <Card className="animate-fade-in" style={{ animationDelay: '100ms' }}>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <BarChart3 className="h-5 w-5 text-green-600" />
-                Recent Activity
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {enrollments.length > 0 ? (
-                  enrollments.slice(0, 3).map((enrollment, index) => {
-                    const course = courses.find(c => c.id === enrollment.course_id);
-                    const activityType = enrollment.progress === 100 ? 'completion' : 
-                                       enrollment.progress > 0 ? 'progress' : 'start';
-                    
-                    return (
-                      <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                        <div className={`w-2 h-2 rounded-full ${
-                          activityType === 'completion' ? 'bg-green-500' :
-                          activityType === 'progress' ? 'bg-blue-500' : 'bg-yellow-500'
-                        }`} />
-                        <div className="flex-1">
-                          <p className="text-sm">
-                            <span className="font-medium">
-                              {activityType === 'completion' ? 'Completed' : 
-                               activityType === 'progress' ? 'Continuing' : 'Started'}
-                            </span> {course?.title || 'Course'}
-                          </p>
-                          <p className="text-xs text-gray-500">
-                            {Math.round(enrollment.progress)}% complete • {new Date(enrollment.enrolled_at).toLocaleDateString()}
-                          </p>
-                        </div>
-                        {activityType === 'completion' && (
-                          <div className="flex items-center gap-2">
-                            <Link to={`/course/${enrollment.course_id}/certificate`}>
-                              <Button size="sm" variant="outline" className="h-6 border-green-500 text-green-600 hover:bg-green-50">
-                                <Download className="h-3 w-3 mr-1" />
-                                Certificate
-                              </Button>
-                            </Link>
-                            <CheckCircle className="h-4 w-4 text-green-500" />
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })
+        {/* Profile Modal */}
+        {showProfileModal && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+            <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md relative animate-fade-in-up">
+              <button className="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl font-bold" onClick={() => setShowProfileModal(false)}>&times;</button>
+              <h2 className="text-xl font-bold mb-4 text-red-700">Edit Profile</h2>
+              <div className="flex flex-col items-center gap-4 mb-4">
+                {editProfile.imageUrl ? (
+                  <img src={editProfile.imageUrl} alt="Profile" className="w-20 h-20 rounded-full object-cover border-2 border-red-600" />
                 ) : (
-                  [
-                    { action: "Welcome!", item: "Get started by enrolling in a course", time: "Just now", type: "welcome" }
-                  ].map((activity, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                      <div className="w-2 h-2 rounded-full bg-blue-500" />
-                      <div className="flex-1">
-                        <p className="text-sm">
-                          <span className="font-medium">{activity.action}</span> {activity.item}
-                        </p>
-                        <p className="text-xs text-gray-500">{activity.time}</p>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Sidebar */}
-        <div className="space-y-6">
-          {/* Learning Goals */}
-          <Card className="animate-fade-in" style={{ animationDelay: '150ms' }}>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Target className="h-5 w-5 text-red-600" />
-                Learning Progress
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Active Enrollments</span>
-                  <Badge variant="secondary">{enrollments.length}</Badge>
-                </div>
-                <Progress value={enrollments.length > 0 ? 100 : 0} className="h-2" />
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Completed Courses</span>
-                  <Badge className="bg-green-100 text-green-800">
-                    {enrollments.filter(e => e.progress === 100).length}
-                  </Badge>
-                </div>
-                <Progress value={enrollments.length > 0 ? (enrollments.filter(e => e.progress === 100).length / enrollments.length) * 100 : 0} className="h-2" />
-              </div>
-              
-              <div className="space-y-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm">Average Progress</span>
-                  <Badge variant="secondary">
-                    {enrollments.length > 0 ? Math.round(enrollments.reduce((acc, e) => acc + e.progress, 0) / enrollments.length) : 0}%
-                  </Badge>
-                </div>
-                <Progress value={enrollments.length > 0 ? enrollments.reduce((acc, e) => acc + e.progress, 0) / enrollments.length : 0} className="h-2" />
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Calendar Widget */}
-          <Card className="animate-fade-in" style={{ animationDelay: '200ms' }}>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-purple-600" />
-                Your Courses
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3">
-                {enrolledCourses.length > 0 ? (
-                  enrolledCourses.map((enrollment, index) => (
-                    <Link
-                      key={index}
-                      to={`/course/${enrollment.course_id}`}
-                      className="block bg-blue-50 p-3 rounded-lg border border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer"
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex-1">
-                          <p className="text-sm font-medium text-blue-800">{enrollment.course?.title}</p>
-                          <p className="text-xs text-blue-600">{Math.round(enrollment.progress)}% Complete</p>
-                        </div>
-                        {enrollment.progress === 100 && (
-                          <Link to={`/course/${enrollment.course_id}/certificate`} onClick={e => e.stopPropagation()}>
-                            <Button size="sm" variant="outline" className="h-6 border-green-500 text-green-600 hover:bg-green-50">
-                              <Award className="h-3 w-3" />
-                            </Button>
-                          </Link>
-                        )}
-                      </div>
-                    </Link>
-                  ))
-                ) : (
-                  <div className="bg-gray-50 p-3 rounded-lg">
-                    <p className="text-sm font-medium text-gray-800">No active courses</p>
-                    <p className="text-xs text-gray-600">Enroll in a course to start learning</p>
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-red-600 to-black flex items-center justify-center text-white font-bold text-3xl">
+                    {editProfile.first_name ? editProfile.first_name[0].toUpperCase() : 'S'}
                   </div>
                 )}
+                <input
+                  type="text"
+                  placeholder="Image URL (optional)"
+                  className="w-full border rounded px-3 py-2 text-sm"
+                  value={editProfile.imageUrl}
+                  onChange={e => setEditProfile({ ...editProfile, imageUrl: e.target.value })}
+                />
               </div>
-            </CardContent>
-          </Card>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">First Name</label>
+                <input
+                  type="text"
+                  className="w-full border rounded px-3 py-2"
+                  value={editProfile.first_name}
+                  onChange={e => setEditProfile({ ...editProfile, first_name: e.target.value })}
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-sm font-medium mb-1">Last Name</label>
+                <input
+                  type="text"
+                  className="w-full border rounded px-3 py-2"
+                  value={editProfile.last_name}
+                  onChange={e => setEditProfile({ ...editProfile, last_name: e.target.value })}
+                />
+              </div>
+              {error && <div className="text-red-500 text-sm mb-2">{error}</div>}
+              <Button className="w-full bg-purple-600 text-white font-bold" onClick={handleSaveProfile} disabled={saving}>
+                {saving ? 'Saving...' : 'Save'}
+              </Button>
+            </div>
+          </div>
+        )}
+        <nav className="flex-1 space-y-2">
+          {sidebarLinks.map(link => (
+            link.to ? (
+              <Link
+                key={link.label}
+                to={link.to}
+                className={`flex items-center gap-3 px-3 py-2 rounded-lg transition-all font-medium text-gray-700 hover:bg-purple-50 ${location.pathname === link.to ? 'bg-purple-100 text-purple-700 font-bold' : ''}`}
+              >
+                <link.icon className="h-5 w-5 text-purple-400" />
+                <span>{link.label}</span>
+              </Link>
+            ) : (
+              <div key={link.label} className="flex items-center gap-3 px-3 py-2 rounded-lg text-gray-400 cursor-not-allowed opacity-60">
+                <link.icon className="h-5 w-5" />
+                <span>{link.label}</span>
+              </div>
+            )
+          ))}
+        </nav>
+        <div className="mt-10 text-xs text-gray-400">Settings</div>
+      </aside>
+
+      {/* Main Content */}
+      <motion.main
+        className="flex-1 p-8"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeSlideIn}
+      >
+        {/* Welcome Card */}
+        <motion.div
+          className="relative rounded-2xl p-8 mb-8 overflow-hidden shadow-lg"
+          style={{ backgroundImage: `url(/images/generation-f4a1277d-3867-48ad-9ca4-d8d9965d2670.png)`, backgroundSize: 'cover', backgroundPosition: 'center' }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={fadeIn}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-red-600/90 to-black/90 z-0" />
+          {/* Confetti removed */}
+          <div className="relative z-10">
+            <h2 className="text-white text-2xl font-bold mb-2">WELCOME BACK! {studentName}</h2>
+            <p className="text-white mb-4">You have completed {overallProgress}% of your goals this week!<br/>Start a new goal and improve your result</p>
+            {/* Learn More button removed */}
+          </div>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Enrolled Courses & Progress */}
+          <motion.div
+            className="lg:col-span-2 space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeIn}
+          >
+            <div>
+              <h3 className="font-bold text-lg mb-4">Enrolled Courses</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {enrolledCourses.length === 0 && (
+                  <div className="col-span-full text-center py-8 text-gray-500 bg-white rounded-xl shadow">
+                    <BookOpen className="w-12 h-12 mx-auto mb-3 text-gray-300" />
+                    <p>No enrollments yet.</p>
+                    <p className="text-sm">Enroll in a course to get started!</p>
+                  </div>
+                )}
+                {enrolledCourses.map((course: any, i: number) => (
+                  <div key={course.id} className="bg-white rounded-xl p-6 flex flex-col gap-3 shadow-lg hover:shadow-xl transition-shadow animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+                    <div className="flex justify-between items-start">
+                      <div className="font-semibold text-gray-800 text-lg">{course.title}</div>
+                      {course.completed && (
+                        <a href={course.certificateUrl} target="_blank" rel="noopener noreferrer">
+                          <Button size="sm" className="bg-green-500 hover:bg-green-600 text-white">
+                            <Award className="w-4 h-4 mr-1" />
+                            Certificate
+                          </Button>
+                        </a>
+                      )}
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-3">
+                      <div className="bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full transition-all duration-500" style={{ width: `${course.progress}%` }}></div>
+                    </div>
+                    <div className="flex justify-between items-center text-sm">
+                      <span className="text-gray-600">Progress: {course.progress}%</span>
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.progress === 100 ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
+                        {course.progress === 100 ? 'Completed' : 'In Progress'}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            
+            {/* Goals for the Week */}
+            <div>
+              <h3 className="font-bold text-lg mb-4">Goals for the Week</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                {goals.length === 0 && (
+                  <div className="col-span-full text-center py-6 text-gray-500 bg-white rounded-xl shadow">
+                    <Star className="w-10 h-10 mx-auto mb-2 text-gray-300" />
+                    <p>No goals set yet.</p>
+                  </div>
+                )}
+                {goals.map((goal, i) => (
+                  <div key={i} className="flex items-center gap-3 bg-white rounded-lg px-4 py-3 shadow animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
+                    <div className="flex-shrink-0">
+                      <span className={`w-3 h-3 rounded-full ${goal.status === 'Completed' ? 'bg-green-500' : 'bg-yellow-400'}`}></span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm text-gray-700 truncate">{goal.goal}</div>
+                      <div className="w-full bg-gray-200 rounded-full h-1.5 mt-1">
+                        <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-1.5 rounded-full" style={{ width: `${goal.progress}%` }}></div>
+                      </div>
+                    </div>
+                    <span className="text-xs text-gray-400 font-medium">{goal.status}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Recent Activities & Upcoming Tasks */}
+          <motion.div
+            className="space-y-6"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeIn}
+          >
+            {/* Recent Activities */}
+            <div>
+              <h3 className="font-bold text-lg mb-4">Recent Activities</h3>
+              <div className="space-y-3">
+                {recentActivities.length === 0 && (
+                  <div className="text-center py-6 text-gray-500 bg-white rounded-xl shadow">
+                    <Clock className="w-10 h-10 mx-auto mb-2 text-gray-300" />
+                    <p>No recent activities.</p>
+                  </div>
+                )}
+                {recentActivities.map((activity, i) => (
+                  <div key={i} className="flex items-center gap-3 bg-white rounded-lg px-4 py-3 shadow animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
+                    <div className="flex-shrink-0">
+                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-500"></span>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="text-sm text-gray-700 truncate">{activity.activity}</div>
+                    </div>
+                    <span className="text-xs text-gray-400 font-medium">{activity.date}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Upcoming Tasks */}
+            <div>
+              <h3 className="font-bold text-lg mb-4">Upcoming Tasks</h3>
+              <div className="space-y-3">
+                {upcomingTasks.length === 0 && (
+                  <div className="text-center py-6 text-gray-500 bg-white rounded-xl shadow">
+                    <Calendar className="w-10 h-10 mx-auto mb-2 text-gray-300" />
+                    <p>No upcoming tasks.</p>
+                  </div>
+                )}
+                {upcomingTasks.map((task, i) => (
+                  <div key={i} className="flex items-center gap-3 bg-white rounded-lg p-4 shadow animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
+                    <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg ${task.color}`}>{task.icon}</div>
+                    <div className="flex-1 min-w-0">
+                      <div className="font-semibold text-gray-800 text-sm truncate">{task.title}</div>
+                      <div className="text-xs text-gray-500">{task.time}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </div>
-    </div>
+      </motion.main>
+    </motion.div>
   );
 };
 

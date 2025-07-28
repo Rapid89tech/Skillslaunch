@@ -2,6 +2,9 @@
 import React, { Suspense, lazy } from 'react';
 import { useCourseLogic } from '@/hooks/useCourseLogic';
 import CourseSkeleton from '@/components/skeletons/CourseSkeleton';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 // Lazy load heavy components
 const CourseEnrollmentView = lazy(() => import('@/components/course/CourseEnrollmentView'));
@@ -32,6 +35,8 @@ const Course = () => {
     markComplete
   } = useCourseLogic();
 
+  const navigate = useNavigate();
+
   console.log("Course Page: Loading state:", isLoading, "Course exists:", !!course, "Is enrolled:", isEnrolled);
 
   if (isLoading) {
@@ -48,6 +53,24 @@ const Course = () => {
             ← Back to Courses
           </a>
         </div>
+      </div>
+    );
+  }
+
+  // Check for pending enrollment
+  if (enrollment && enrollment.status !== 'approved') {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <Card className="w-full max-w-md">
+          <CardHeader>
+            <CardTitle>Enrollment Pending Approval</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p>Your enrollment request for {course.title} has been submitted and is awaiting admin approval.</p>
+            <p>You will be notified once approved.</p>
+            <Button onClick={() => navigate('/dashboard')} className="mt-4">Back to Dashboard</Button>
+          </CardContent>
+        </Card>
       </div>
     );
   }
