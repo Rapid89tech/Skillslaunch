@@ -110,24 +110,24 @@ const CourseSidebar = ({
                   opacity="1"
                 />
                 {/* Foreground progress ring, thick and 3D-style */}
-                <circle
+            <circle
                   cx="50" cy="50" r="40"
                   fill="none"
                   stroke="url(#progressRedGradient)"
                   strokeWidth="14"
                   strokeDasharray={2 * Math.PI * 40}
                   strokeDashoffset={2 * Math.PI * 40 * (1 - progress / 100)}
-                  strokeLinecap="round"
+              strokeLinecap="round"
                   filter="url(#shadow)"
                   style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,2,.3,1)' }}
-                />
-              </svg>
+            />
+          </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <span className="text-3xl font-extrabold text-white drop-shadow-md">{Math.round(progress)}%</span>
-              </div>
-            </div>
+        </div>
+      </div>
             <h3 className="text-lg font-bold text-white mb-1">Course Progress</h3>
-            {/* Removed lessons completed line here */}
+            {/* Removed lessons completed text here */}
           </div>
           <div className="space-y-3">
             <div className="flex items-center justify-between text-sm">
@@ -156,21 +156,24 @@ const CourseSidebar = ({
           <h2 className="font-bold text-white text-base leading-tight line-clamp-2">
             {course.title}
           </h2>
-        </div>
+      </div>
 
         {/* Modules List */}
-        <div className="flex-1 overflow-y-auto">
+      <div className="flex-1 overflow-y-auto">
           <div className="p-4 space-y-4">
-            {course.modules.map((module, moduleIndex) => {
+          {course.modules.map((module, moduleIndex) => {
               const moduleStartIndex = course.modules
                 .slice(0, moduleIndex)
-                .reduce((acc, m) => acc + m.lessons.length, 0);
+              .reduce((acc, m) => acc + m.lessons.length, 0);
+              
               const completedInModule = module.lessons.filter((_, lessonIndex) => 
                 completedLessons.includes(moduleStartIndex + lessonIndex)
               ).length;
+              
               const totalModuleLessons = module.lessons.length;
               const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
-              return (
+
+            return (
                 <ModuleCard
                   key={module.id}
                   module={module}
@@ -183,21 +186,22 @@ const CourseSidebar = ({
                   currentLesson={currentLesson}
                   setCurrentLesson={setCurrentLesson}
                 />
-              );
-            })}
+            );
+          })}
           </div>
         </div>
-        {/* Floating Toggle Button */}
-        {!sidebarOpen && (
-          <button
-            onClick={() => setSidebarOpen(true)}
-            className="fixed top-20 left-4 z-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
-            aria-label="Open Course Navigation"
-          >
-            <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
-          </button>
-        )}
       </div>
+
+      {/* Floating Toggle Button */}
+      {!sidebarOpen && (
+        <button
+          onClick={() => setSidebarOpen(true)}
+          className="fixed top-20 left-4 z-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
+          aria-label="Open Course Navigation"
+        >
+          <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+        </button>
+      )}
     </>
   );
 };
@@ -221,7 +225,7 @@ const ModuleCard = ({
       {/* Module Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
-        className="w-full p-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors group/module"
+        className="w-full p-4 flex items-center justify-between transition-colors group-hover:bg-white/30 group-hover:shadow-lg"
       >
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-gradient-to-br from-red-500/80 to-pink-500/80 rounded-lg flex items-center justify-center shadow-md">
@@ -229,30 +233,17 @@ const ModuleCard = ({
           </div>
           <div className="text-left">
             <div className="flex items-center gap-2 mb-1">
-             <h3
-               className="font-semibold text-white text-sm group-hover/module:bg-gradient-to-r group-hover/module:from-red-700 group-hover/module:to-black group-hover/module:bg-clip-text group-hover/module:text-transparent"
-               style={{
-                 background: 'linear-gradient(90deg, #b91c1c 0%, #000 100%)',
-                 WebkitBackgroundClip: 'text',
-                 WebkitTextFillColor: 'transparent',
-               }}
-             >
-               Module {moduleIndex + 1}
-             </h3>
-            <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md">
-              {completedInModule}/{totalModuleLessons}
-            </Badge>
+              <h3 className="font-semibold text-white text-sm group-hover:text-red-600">
+                Module {moduleIndex + 1}
+              </h3>
+              <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md group-hover:bg-white group-hover:text-red-600">
+                {completedInModule}/{totalModuleLessons}
+              </Badge>
+            </div>
+            <p className="text-xs text-white/80 line-clamp-1 group-hover:text-red-500">
+              {module.title}
+            </p>
           </div>
-         <p
-           className="text-xs text-white/80 line-clamp-1 group-hover/module:bg-gradient-to-r group-hover/module:from-red-700 group-hover/module:to-black group-hover/module:bg-clip-text group-hover/module:text-transparent"
-           style={{
-             background: 'linear-gradient(90deg, #b91c1c 0%, #000 100%)',
-             WebkitBackgroundClip: 'text',
-             WebkitTextFillColor: 'transparent',
-           }}
-         >
-           {module.title}
-         </p>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-16 h-1.5 bg-white/40 rounded-full overflow-hidden">
