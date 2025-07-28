@@ -71,13 +71,13 @@ const Auth = () => {
     console.log('Auth useEffect - user:', user, 'loading:', loading, 'profile:', profile);
     if (user && !loading) {
       if (profile) {
-        let path = '/dashboard';
-        if (profile.role === 'admin') path = '/admin-dashboard';
-        else if (profile.role === 'instructor') path = '/instructor-dashboard';
+      let path = '/dashboard';
+      if (profile.role === 'admin') path = '/admin-dashboard';
+      else if (profile.role === 'instructor') path = '/instructor-dashboard';
         console.log('Redirecting to:', path);
-        setTimeout(() => {
-          navigate(path);
-        }, 100);
+      setTimeout(() => {
+        navigate(path);
+      }, 100);
       } else {
         console.log('User exists but profile is null, waiting for profile...');
         // If user exists but profile is null, wait a bit for profile to load

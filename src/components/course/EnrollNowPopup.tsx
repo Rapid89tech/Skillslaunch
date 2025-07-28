@@ -40,7 +40,7 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
     // In production, you'd upload to Supabase storage
     const mockUrl = `proof_${userId}_${Date.now()}_${file.name}`;
     setProgress(50);
-    
+
     return mockUrl;
   }
 
@@ -60,7 +60,7 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
       await new Promise(resolve => setTimeout(resolve, 500));
 
       // Create enrollment in Supabase database
-      const enrollmentData = {
+    const enrollmentData = {
         user_id: user.id,
         user_email: user.email,
         course_id: course.id,

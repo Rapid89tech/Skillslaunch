@@ -566,9 +566,9 @@ const InstructorDashboard = ({ profile, enrollments = [], courses = [], userId }
             {isMainInstructor && (
               <div className="text-xs text-white/60 mt-1">
                 Real-time updates every 1 second • Last refresh: {new Date().toLocaleTimeString()}
-              </div>
-            )}
           </div>
+            )}
+        </div>
           {isMainInstructor && (
             <div className="flex gap-2">
               <Button 
@@ -742,11 +742,11 @@ const InstructorDashboard = ({ profile, enrollments = [], courses = [], userId }
                       <div className="text-sm text-gray-600 mb-1">Course: {req.course_title}</div>
                       <div className="text-xs text-gray-500">
                         Enrolled: {new Date(req.enrolled_at).toLocaleDateString()}
-                      </div>
+                  </div>
                       {req.payment_date && (
                         <div className="text-xs text-gray-500">
                           Payment Date: {req.payment_date}
-                        </div>
+                  </div>
                       )}
                     </div>
                     <div className="flex gap-2 ml-4">
