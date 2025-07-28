@@ -190,10 +190,13 @@ const CourseSidebar = ({
       {!sidebarOpen && (
         <button
           onClick={() => setSidebarOpen(true)}
-          className="fixed top-20 left-4 z-40 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105 group"
+          className="fixed top-20 left-4 z-40 flex items-center gap-2 bg-gradient-to-r from-red-500 via-pink-500 to-red-400 border-0 rounded-full px-4 py-3 shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105 group animate-pulse-slow"
           aria-label="Open Course Navigation"
         >
-          <Menu className="w-5 h-5 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400" />
+          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-200">
+            <Menu className="w-6 h-6 text-white group-hover:scale-110 group-active:scale-90 transition-transform duration-150 animate-gradient-x" />
+          </span>
+          <span className="font-bold text-transparent bg-gradient-to-r from-white via-pink-100 to-white bg-clip-text text-base group-hover:text-white animate-gradient-x transition-all duration-200">Course Content</span>
         </button>
       )}
     </>
