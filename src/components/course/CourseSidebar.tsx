@@ -63,13 +63,13 @@ const CourseSidebar = ({
         ref={sidebarRef}
         className={`fixed top-0 left-0 h-full z-50 transform transition-all duration-300 ease-out
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-          w-[320px] md:w-[380px] bg-[linear-gradient(135deg,_rgba(239,68,68,0.4)_0%,_rgba(244,63,94,0.4)_100%)] border-r border-gray-200 dark:border-gray-800
+          w-[320px] md:w-[380px] bg-[linear-gradient(135deg,_rgba(239,68,68,0.8)_0%,_rgba(244,63,94,0.8)_100%)] border-r border-gray-200 dark:border-gray-800
           shadow-2xl flex flex-col overflow-hidden`}
       >
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-red-500 to-pink-500 rounded-xl flex items-center justify-center shadow-md">
+          <div className="flex items-center gap-3 animate-fade-in-down">
+            <div className="w-10 h-10 bg-gradient-to-br from-red-500/80 to-pink-500/80 rounded-xl flex items-center justify-center shadow-md">
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -88,9 +88,9 @@ const CourseSidebar = ({
         </div>
 
         {/* Progress Section */}
-        <div className="p-6 bg-[linear-gradient(135deg,_rgba(239,68,68,0.12)_0%,_rgba(244,63,94,0.12)_100%)] border-b border-gray-200 dark:border-gray-700">
+        <div className="p-6 bg-[linear-gradient(135deg,_rgba(239,68,68,0.16)_0%,_rgba(244,63,94,0.16)_100%)] border-b border-gray-200 dark:border-gray-700 animate-fade-in-up">
           <div className="text-center mb-4">
-            <div className="relative inline-block mb-3">
+            <div className="relative inline-block mb-3 animate-scale-in">
               <svg width="100" height="100" viewBox="0 0 100 100" className="drop-shadow-lg">
                 <defs>
                   <linearGradient id="progressRedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -220,14 +220,14 @@ const ModuleCard = ({
   const [isExpanded, setIsExpanded] = React.useState(moduleIndex === 0);
 
   return (
-    <div className="bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="bg-gray-50/80 dark:bg-gray-800/80 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden animate-fade-in-up" style={{ animationDelay: `${moduleIndex * 80}ms` }}>
       {/* Module Header */}
       <button
         onClick={() => setIsExpanded(!isExpanded)}
         className="w-full p-4 flex items-center justify-between hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
       >
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-red-500 to-pink-500 rounded-lg flex items-center justify-center shadow-md">
+          <div className="w-8 h-8 bg-gradient-to-br from-red-500/80 to-pink-500/80 rounded-lg flex items-center justify-center shadow-md">
             <span className="text-white text-xs font-bold">{moduleIndex + 1}</span>
           </div>
           <div className="text-left">
@@ -235,7 +235,7 @@ const ModuleCard = ({
               <h3 className="font-semibold text-gray-900 dark:text-white text-sm">
                 Module {moduleIndex + 1}
               </h3>
-              <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500 to-pink-500 text-white border-0 shadow-md">
+              <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md">
                 {completedInModule}/{totalModuleLessons}
               </Badge>
             </div>
@@ -245,9 +245,9 @@ const ModuleCard = ({
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <div className="w-16 h-1.5 bg-red-100 rounded-full overflow-hidden">
+          <div className="w-16 h-1.5 bg-red-100/80 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-gradient-to-r from-red-500 to-pink-500 transition-all duration-300"
+              className="h-full bg-gradient-to-r from-red-500/80 to-pink-500/80 transition-all duration-300"
               style={{ width: `${moduleProgress}%` }}
             />
           </div>
