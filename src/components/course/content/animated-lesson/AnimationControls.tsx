@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Play, Pause, RotateCcw, CheckCircle, Scroll } from 'lucide-react';
 
@@ -27,6 +27,13 @@ const AnimationControls = ({
   onReset, 
   onComplete 
 }: AnimationControlsProps) => {
+  // Automatically start animation if content is not displayed
+  useEffect(() => {
+    if (!displayedContent) {
+      onScrollStart();
+    }
+  }, [displayedContent, onScrollStart]);
+
   return (
     <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 dark:from-gray-800 dark:via-blue-900/30 dark:to-purple-900/30 p-6 border border-blue-200/50 shadow-xl backdrop-blur-sm">
       {/* Floating Background Elements */}
@@ -37,16 +44,7 @@ const AnimationControls = ({
 
       <div className="relative z-10 flex flex-wrap gap-4 items-center justify-between">
         <div className="flex flex-wrap gap-4">
-          {!displayedContent && (
-            <Button 
-              onClick={onScrollStart}
-              className="group relative overflow-hidden bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 hover:from-blue-700 hover:via-purple-700 hover:to-indigo-700 text-white shadow-2xl hover:shadow-purple-500/25 transform transition-all duration-300 hover:scale-105 rounded-xl px-6 py-3 font-semibold"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-              <Scroll className="w-5 h-5 mr-3 animate-bounce" />
-              🚀 Continue with {lessonTitle || "Learning Journey"}
-            </Button>
-          )}
+          {/* Removed 'Continue with' button */}
           
           {isAnimating && (
             <Button
