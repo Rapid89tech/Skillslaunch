@@ -232,14 +232,14 @@ const ModuleCard = ({
           </div>
           <div className="text-left">
             <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-white text-sm">
+              <h3 className="font-semibold text-black text-sm">
                 Module {moduleIndex + 1}
               </h3>
               <Badge variant={moduleProgress === 100 ? "default" : "secondary"} className="text-xs bg-gradient-to-r from-red-500/80 to-pink-500/80 text-white border-0 shadow-md">
                 {completedInModule}/{totalModuleLessons}
               </Badge>
             </div>
-            <p className="text-xs text-white/80 line-clamp-1">
+            <p className="text-xs text-black/80 line-clamp-1">
               {module.title}
             </p>
           </div>
@@ -289,20 +289,20 @@ const ModuleCard = ({
                 <div className="flex-1 min-w-0">
                   <p className={`text-sm font-medium line-clamp-1 ${
                     isCurrent 
-                      ? 'text-white' 
+                      ? 'text-black' 
                       : isCompleted 
-                        ? 'text-white/90' 
-                        : 'text-white/80'
+                        ? 'text-black/90' 
+                        : 'text-black/80'
                   }`}>
                     {lesson.title}
                   </p>
                   <div className="flex items-center gap-2 mt-1">
-                    <Clock className="w-3 h-3 text-white/60" />
-                    <span className="text-xs text-white/80">
+                    <Clock className="w-3 h-3 text-black/60" />
+                    <span className="text-xs text-black/80">
                       {lesson.duration || '5 min'}
                     </span>
-                    <span className="text-xs text-white/60">•</span>
-                    <span className="text-xs text-white/80 capitalize">
+                    <span className="text-xs text-black/60">•</span>
+                    <span className="text-xs text-black/80 capitalize">
                       {lesson.type || 'lesson'}
                     </span>
                   </div>
