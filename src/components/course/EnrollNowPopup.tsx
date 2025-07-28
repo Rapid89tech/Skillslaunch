@@ -16,9 +16,10 @@ interface EnrollNowPopupProps {
   };
   userId: string;
   userEmail: string; // <-- Add this prop
+  onEnrollmentSuccess?: () => void; // <-- Add this prop
 }
 
-export default function EnrollNowPopup({ open, onClose, course, userId, userEmail }: EnrollNowPopupProps) {
+export default function EnrollNowPopup({ open, onClose, course, userId, userEmail, onEnrollmentSuccess }: EnrollNowPopupProps) {
   const [step, setStep] = useState(1);
   const [file, setFile] = useState<File | null>(null);
   const [paymentRef, setPaymentRef] = useState('');
@@ -175,6 +176,7 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
       
       // Success!
       setSuccess(true);
+      if (onEnrollmentSuccess) onEnrollmentSuccess(); // <-- Call the callback
       
       // Auto-close after 3 seconds
       setTimeout(() => {

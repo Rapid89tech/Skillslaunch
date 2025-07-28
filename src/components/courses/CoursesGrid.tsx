@@ -277,6 +277,10 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
           course={selectedCourse}
           userId={user?.id}
           userEmail={user?.email}
+          onEnrollmentSuccess={() => {
+            refetch();
+            // Optionally, update pendingEnrollments state if needed
+          }}
         />
       )}
       <style>{`
