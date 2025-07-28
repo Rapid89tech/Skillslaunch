@@ -10,7 +10,7 @@ import { module7BiosFirmware } from './computerRepairs/module7-biosFirmware';
 import { module8OperatingSystem } from './computerRepairs/module8-operatingSystem';
 import { module9VirusRemoval } from './computerRepairs/module9-virusRemoval';
 import { module10DataRecovery } from './computerRepairs/module10-dataRecovery';
-import { module11CustomerService } from './computerRepairs/module11-customerService';
+// import { module11CustomerService } from './computerRepairs/module11-customerService';
 import { module12Assessment } from './computerRepairs/module12-assessment';
 
 export const computerRepairsCourse: Course = {
@@ -57,7 +57,7 @@ export const computerRepairsCourse: Course = {
     module8OperatingSystem,
     module9VirusRemoval,
     module10DataRecovery,
-    module11CustomerService,
+    // module11CustomerService, // Removed because file is missing
     module12Assessment
   ]
 };
