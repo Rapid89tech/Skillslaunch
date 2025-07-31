@@ -2,47 +2,44 @@
 export const storageContent = `
   <div class="bg-white p-6 rounded-lg shadow-md">
     <h3 class="text-2xl font-bold text-gray-800 mb-4">Storage Devices: HDD, SSD, NVMe</h3>
-    
     <div class="grid md:grid-cols-3 gap-4 mb-6">
       <div class="border rounded-lg p-4">
-        <h5 class="font-semibold text-blue-600 mb-2">1. Hard Disk Drive (HDD)</h5>
-        <p class="text-sm text-gray-700 mb-2"><strong>Definition:</strong> Traditional storage device that uses spinning magnetic disks (platters) to store data.</p>
-        <ul class="text-sm text-gray-700 space-y-1">
-          <li>• <strong>How it works:</strong> Data written to/read from magnetic platters using read/write heads</li>
-          <li>• <strong>Speed:</strong> Slower data access (~80-160 MB/s) due to mechanical movement</li>
-          <li>• <strong>Capacity:</strong> Large storage sizes (500GB, 1TB, 2TB) at lower cost per GB</li>
-          <li>• <strong>Durability:</strong> More prone to mechanical failure, sensitive to shock</li>
-          <li>• <strong>Uses:</strong> Ideal for mass storage, backups</li>
-          <li>• <strong>Issues:</strong> Clicking noises, slow performance, bad sectors</li>
+        <h5 class="font-semibold text-blue-600 mb-2">Hard Disk Drive (HDD)</h5>
+        <p class="text-sm text-gray-700 mb-2"><strong>Definition:</strong> Uses spinning magnetic platters for data storage, offering large capacities at low cost.</p>
+        <ul class="text-sm text-gray-700 mb-2">
+          <li>• Capacity: Ranges from 500GB to several TB, ideal for mass storage.</li>
+          <li>• Speed: Slower read/write speeds (80-160 MB/s) due to mechanical parts.</li>
+          <li>• Common Issues: Clicking noises, bad sectors, mechanical failure.</li>
         </ul>
+        <div class="my-2 flex justify-center">
+          <iframe width="320" height="180" src="https://www.youtube.com/embed/r3Jy5dHOj3g" title="HDD Explained" frameborder="0" allowfullscreen class="rounded-xl shadow-lg w-full max-w-xs min-h-[180px]"></iframe>
+        </div>
       </div>
-      
       <div class="border rounded-lg p-4">
-        <h5 class="font-semibold text-green-600 mb-2">2. Solid State Drive (SSD)</h5>
-        <p class="text-sm text-gray-700 mb-2"><strong>Definition:</strong> Storage device using NAND flash memory with no moving parts, making it faster and more durable than HDDs.</p>
-        <ul class="text-sm text-gray-700 space-y-1">
-          <li>• <strong>How it works:</strong> Data stored in interconnected flash memory chips</li>
-          <li>• <strong>Speed:</strong> Much faster read/write speeds (200-550 MB/s for SATA SSDs)</li>
-          <li>• <strong>Durability:</strong> More resistant to physical shock, no mechanical parts</li>
-          <li>• <strong>Capacity:</strong> More expensive per GB, sizes from 120GB to several TB</li>
-          <li>• <strong>Uses:</strong> Primary storage for OS, applications, games</li>
-          <li>• <strong>Issues:</strong> Firmware bugs, wear leveling degradation</li>
+        <h5 class="font-semibold text-green-600 mb-2">Solid State Drive (SSD)</h5>
+        <p class="text-sm text-gray-700 mb-2"><strong>Definition:</strong> Uses NAND flash memory for faster, more durable storage than HDDs.</p>
+        <ul class="text-sm text-gray-700 mb-2">
+          <li>• Speed: 200-550 MB/s for SATA SSDs, enhancing system responsiveness.</li>
+          <li>• Durability: No moving parts, resistant to shock and vibration.</li>
+          <li>• Common Issues: Firmware bugs, wear leveling over time.</li>
         </ul>
+        <div class="my-2 flex justify-center">
+          <iframe width="320" height="180" src="https://www.youtube.com/embed/r3Jy5dHOj3g" title="SSD Explained" frameborder="0" allowfullscreen class="rounded-xl shadow-lg w-full max-w-xs min-h-[180px]"></iframe>
+        </div>
       </div>
-      
       <div class="border rounded-lg p-4">
-        <h5 class="font-semibold text-purple-600 mb-2">3. NVMe SSD</h5>
-        <p class="text-sm text-gray-700 mb-2"><strong>Definition:</strong> High-speed interface protocol designed specifically for SSDs, using the PCIe bus for faster data transfer.</p>
-        <ul class="text-sm text-gray-700 space-y-1">
-          <li>• <strong>How it works:</strong> Communicates directly with CPU over PCIe lanes</li>
-          <li>• <strong>Speed:</strong> Significantly faster (2000-7000 MB/s depending on PCIe lanes)</li>
-          <li>• <strong>Form Factors:</strong> Usually M.2 or U.2 cards installed on motherboard</li>
-          <li>• <strong>Uses:</strong> High-performance computing, gaming, video editing</li>
-          <li>• <strong>Issues:</strong> Requires NVMe-compatible motherboard, possible overheating</li>
+        <h5 class="font-semibold text-purple-600 mb-2">NVMe SSD</h5>
+        <p class="text-sm text-gray-700 mb-2"><strong>Definition:</strong> High-speed SSD interface using PCIe for ultra-fast data transfer.</p>
+        <ul class="text-sm text-gray-700 mb-2">
+          <li>• Speed: 2000-7000 MB/s, ideal for high-performance tasks.</li>
+          <li>• Form Factors: M.2 or U.2, requiring specific motherboard slots.</li>
+          <li>• Common Issues: Overheating, driver support needs.</li>
         </ul>
+        <div class="my-2 flex justify-center">
+          <iframe width="320" height="180" src="https://www.youtube.com/embed/AXoDZF61-c4" title="NVMe Explained" frameborder="0" allowfullscreen class="rounded-xl shadow-lg w-full max-w-xs min-h-[180px]"></iframe>
+        </div>
       </div>
     </div>
-
     <div class="bg-gray-50 p-4 rounded-lg mb-4">
       <h4 class="font-bold text-lg mb-3 text-gray-800">Storage Comparison Table</h4>
       <div class="overflow-x-auto">
@@ -84,19 +81,17 @@ export const storageContent = `
         </table>
       </div>
     </div>
-
     <div class="bg-blue-50 p-4 rounded-lg mb-4">
-      <h5 class="font-semibold text-blue-800 mb-2">Practical Tips:</h5>
-      <ul class="text-blue-700 text-sm space-y-1">
+      <h5 class="font-semibold text-blue-800 mb-2">Practical Tips</h5>
+      <ul class="text-blue-700 text-sm mb-2">
         <li>• Always check motherboard compatibility for NVMe slots before purchasing</li>
         <li>• Use SSDs for faster boot times and improved system responsiveness</li>
         <li>• Back up important data regularly regardless of storage type</li>
         <li>• Monitor SSD health with manufacturer utilities to track wear levels</li>
       </ul>
     </div>
-
     <div class="bg-gray-100 p-4 rounded-lg">
-      <h5 class="font-semibold text-gray-800 mb-2">📺 Educational Video:</h5>
+      <h5 class="font-semibold text-gray-800 mb-2">🎥 Educational Video:</h5>
       <p class="text-gray-700 text-sm">SSD vs HDD vs NVMe vs SATA vs mSATA vs M2: Storage Devices EXPLAINED!</p>
     </div>
   </div>

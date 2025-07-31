@@ -6,13 +6,11 @@ export const lesson2SignalFlow: Lesson = {
   description: 'Understanding signal flow diagrams and their importance in audio systems',
   duration: '50 minutes',
   type: 'lesson',
-  content: `
-# 📊 Signal Flow Diagrams
+  content: `# 📊 Signal Flow Diagrams
 
 ## 1. Introduction to Signal Flow Diagrams (SFDs)
 
 **YouTube Video**: [Basics of Audio Engineering Signal Flow](https://youtu.be/zDouGdDtGoI)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/zDouGdDtGoI" 
@@ -43,7 +41,6 @@ Signal flow diagrams help:
 ## 3. Basic Components in Signal Flow Diagrams
 
 **YouTube Video**: [Signal Flow Components](https://youtu.be/q5aBt8M8ZR0)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/q5aBt8M8ZR0" 
@@ -62,7 +59,6 @@ Signal flow diagrams help:
 ## 4. Symbols and Conventions
 
 **YouTube Video**: [Signal Flow Symbols](https://youtu.be/PWXydd85GRk)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/PWXydd85GRk" 
@@ -80,7 +76,6 @@ Signal flow diagrams help:
 ## 5. Types of Signal Flow Diagrams
 
 **YouTube Video**: [Types of Signal Flow](https://www.youtube.com/watch?v=2yW2e4jzZ9g&pp=ygUddHlwZXMgb2Ygc2lnbmFsIGZsb3cgaW4gc291bmQ%3D)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/2yW2e4jzZ9g?pp=ygUddHlwZXMgb2Ygc2lnbmFsIGZsb3cgaW4gc291bmQ%3D" 
@@ -96,7 +91,6 @@ Signal flow diagrams help:
 ## 6. Common Audio Signal Flow Example
 
 **YouTube Video**: [Recording Studio Signal Flow](https://youtu.be/example)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/example" 
@@ -118,7 +112,6 @@ Typical signal flow in a recording setup:
 ## 7. Reading and Creating Signal Flow Diagrams
 
 **YouTube Video**: [Creating Signal Flow Diagrams](https://youtu.be/PWXydd85GRk)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/PWXydd85GRk" 
@@ -146,7 +139,6 @@ Signal flow diagrams are invaluable for troubleshooting:
 ## 9. Examples and Practice
 
 **YouTube Video**: [Signal Flow Examples](https://youtu.be/example)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/example" 
@@ -163,7 +155,6 @@ Practice scenarios:
 ## 10. Summary
 
 **YouTube Video**: [Summary of Signal Flow Diagrams](https://youtu.be/example)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/example" 

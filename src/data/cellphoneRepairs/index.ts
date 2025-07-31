@@ -1,5 +1,5 @@
 
-import { Course, Module } from '@/types/course';
+import type { Course } from '@/types/course';
 import { module1Introduction } from './module1-introduction';
 import { module2ToolsAndEquipment } from './module2-toolsAndEquipment';
 import { module3HardwareComponents } from './module3-hardwareComponents';
@@ -9,46 +9,42 @@ import { module6MaintenancePreventiveCare } from './module6-maintenancePreventiv
 import { module7BusinessSetup } from './module7-businessSetup';
 import { lesson8Certificate } from './module8-certificate';
 
+export const cellphoneRepairsMarkdown = `
+<full markdown content from CourseDocuments/Cellphone Repairs and Maintenance Version 3.md>
+`;
+
 export const cellphoneRepairsCourse: Course = {
   id: 'cellphone-repairs-course',
   title: 'Cellphone Repairs and Maintenance',
-  description: 'This course provides a step-by-step guide to diagnosing, repairing, and maintaining modern smartphones. Participants will learn about hardware components, common issues, troubleshooting techniques, and preventive maintenance practices.',
+  description: `Cellphone Repairs and Maintenance is a comprehensive online course designed to equip learners with the skills and knowledge needed to diagnose, repair, and maintain smartphones and mobile devices. This course covers essential repair techniques, hardware diagnostics, software troubleshooting, and business management for mobile device repair services.
+
+Through detailed video tutorials, hands-on demonstrations, and practical exercises, students will learn to repair common issues including screen replacements, battery servicing, charging port repairs, and software problems. The course emphasizes safety procedures, proper tool usage, and professional service delivery while preparing learners for real-world repair scenarios.
+
+Whether you're looking to start a mobile repair business, enhance your technical skills, or pursue a career in mobile device servicing, this course provides the foundation for professional excellence in the growing mobile repair industry.`,
   instructor: {
-    name: 'Michael Rodriguez',
-    title: 'Senior Mobile Device Technician & Electronics Specialist',
-    bio: 'With over 12 years of experience in mobile device repair and electronics, Michael has worked with all major smartphone brands and specializes in advanced micro-soldering techniques. He has trained hundreds of technicians and owns a successful chain of mobile repair shops.',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+    name: 'David Chen',
+    title: 'Mobile Device Repair Specialist',
+    bio: 'Certified mobile device technician with 12+ years of experience in smartphone and tablet repair, specializing in hardware diagnostics and business development.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
   },
-  duration: '20 weeks',
-  level: 'Beginner to Advanced',
-  category: 'Technology & Electronics',
-  is_free: false,
-  price: 2400,
+  level: 'beginner',
+  duration: '10 weeks (5-6 hours/week)',
+  students: 1568,
+  rating: 4.7,
+  price: 1299,
   currency: 'ZAR',
-  students: 198,
-  rating: 4.9,
-  thumbnail: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop',
+  is_free: false,
+  thumbnail: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop',
+  category: 'Information Communication and technology',
   learningObjectives: [
-    'Understand the smartphone repair industry and career opportunities',
-    'Master basic safety precautions and ESD protection',
-    'Learn to handle sensitive electronic components properly',
-    'Understand iOS and Android smartphone architectures',
-    'Identify and use essential mobile repair tools',
-    'Develop systematic troubleshooting approaches',
-    'Practice proper disassembly and reassembly techniques',
-    'Diagnose common hardware and software issues', 
-    'Perform screen, battery, and charging port repairs',
-    'Handle water damage and component-level repairs',
-    'Apply micro-soldering techniques for advanced repairs',
-    'Use diagnostic software for efficient troubleshooting',
-    'Replace and program biometric components safely',
-    'Implement quality control and testing procedures',
-    'Provide professional customer service',
-    'Build and manage a mobile repair business',
-    'Stay updated with emerging mobile technologies',
-    'Apply preventive care and maintenance techniques',
-    'Educate customers on proper device care',
-    'Extend smartphone lifespan through best practices'
+    'Master mobile device hardware components and their functions',
+    'Develop proficiency in smartphone disassembly and reassembly',
+    'Learn to diagnose and repair common mobile device issues',
+    'Understand software troubleshooting and system recovery',
+    'Acquire skills in screen replacement and component repair',
+    'Gain knowledge of battery servicing and charging systems',
+    'Learn business management and customer service skills',
+    'Prepare for professional mobile device repair certification'
   ],
   modules: [
     module1Introduction,
@@ -63,6 +59,6 @@ export const cellphoneRepairsCourse: Course = {
       title: 'Course Completion',
       description: 'Complete your cellphone repairs certification',
       lessons: [lesson8Certificate]
-    } as Module
+    }
   ]
 };

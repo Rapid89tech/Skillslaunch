@@ -12,8 +12,7 @@ export const module14BuildingCareerInHairdressing: Module = {
       type: 'video',
       content: {
         videoUrl: 'isMjVLvAIMY',
-        textContent: `
-# 14.1 Creating a Portfolio and Branding Yourself
+        textContent: `# **Module 14: Building a Career in Hairdressing**
 
 ## Why Building Your Professional Identity Matters
 
@@ -101,8 +100,7 @@ export const module14BuildingCareerInHairdressing: Module = {
       type: 'video',
       content: {
         videoUrl: 'isMjVLvAIMY',
-        textContent: `
-# 14.2 Marketing Strategies for Hairstylists
+        textContent: `# **Module 14: Building a Career in Hairdressing**
 
 ## The Importance of Marketing
 
@@ -209,8 +207,7 @@ export const module14BuildingCareerInHairdressing: Module = {
       type: 'video',
       content: {
         videoUrl: 'isMjVLvAIMY',
-        textContent: `
-# 14.3 Opening and Managing a Successful Salon
+        textContent: `# **Module 14: Building a Career in Hairdressing**
 
 ## The Salon Journey
 

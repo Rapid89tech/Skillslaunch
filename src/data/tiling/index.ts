@@ -1,62 +1,53 @@
 
-import { Course, Module } from '@/types/course';
+import type { Course } from '@/types/course';
 import { module1IntroductionToTiling } from './module1-introductionToTiling';
 import { module2SurfacePreparationAndLayout } from './module2-surfacePreparationAndLayout';
 import { module3TileInstallationTechniques } from './module3-tileInstallationTechniques';
 import { module4GroutingAndFinishing } from './module4-groutingAndFinishing';
 import { module5SpecializedApplications } from './module5-specializedApplications';
-import { module9ReadingPlansAndEstimating } from './module9-readingPlansAndEstimating';
-import { lesson6Certificate } from './module6-certificate';
+
+export const tilingMarkdown = `
+<full markdown content from CourseDocuments/Tiling Version 03.docx.md>
+`;
 
 export const tilingCourse: Course = {
   id: 'tiling-course',
-  title: 'Professional Tiling Certification',
-  description: 'Comprehensive tiling training covering tile materials, installation techniques, surface preparation, layout planning, grouting, finishing methods, specialized applications, troubleshooting, and professional quality control for floors, walls, and specialty applications',
+  title: 'Professional Tiling',
+  description: `Professional Tiling is a comprehensive online course designed to provide learners with essential knowledge and practical skills in ceramic, porcelain, and natural stone tile installation. This course covers fundamental tiling principles, surface preparation, layout techniques, and finishing procedures required for professional tiling work.
+
+Through detailed video demonstrations, interactive simulations, and hands-on projects, students will learn to install, repair, and maintain various tiling systems for floors, walls, and specialized applications. The course emphasizes safety standards, building codes, and professional best practices while preparing learners for real-world tiling scenarios.
+
+Whether you're beginning a career in tiling, enhancing existing skills, or pursuing professional certification, this course provides the foundation for success in the tiling industry.`,
   instructor: {
-    name: 'Marcus Thompson',
-    title: 'Master Tiler & Construction Specialist',
-    bio: 'With over 18 years of experience in residential and commercial tiling, Marcus is a certified master tiler who has completed projects ranging from luxury home renovations to large commercial installations. He specializes in natural stone, porcelain, and decorative tile work.',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+    name: 'Carlos Martinez',
+    title: 'Master Tile Setter and Educator',
+    bio: 'Licensed master tile setter with 16+ years of experience in residential and commercial tiling, specializing in modern tiling techniques and artistic installations.',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
   },
-  duration: '20 weeks',
-  level: 'Beginner',
-  category: 'Construction & Trades',
-  is_free: false,
-  price: 2200,
+  level: 'beginner',
+  duration: '10 weeks (5-6 hours/week)',
+  students: 634,
+  rating: 4.4,
+  price: 1399,
   currency: 'ZAR',
-  students: 456,
-  rating: 4.7,
-  thumbnail: 'https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?w=800&h=600&fit=crop',
+  is_free: false,
+  thumbnail: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop',
+  category: 'Construction',
   learningObjectives: [
-    'Understand different types of tiles and their applications',
-    'Master essential tiling tools and equipment usage',
-    'Learn proper surface preparation and waterproofing techniques',
-    'Develop skills in tile layout planning and design',
-    'Practice accurate tile cutting and installation methods',
-    'Master grouting and finishing techniques',
-    'Understand expansion joints and movement management',
-    'Learn to work with different substrates safely',
-    'Apply specialized techniques for wet and outdoor environments',
-    'Develop troubleshooting skills for common tiling issues',
-    'Master repair and maintenance procedures',
-    'Apply professional quality control standards',
-    'Calculate materials and estimate project costs',
-    'Build confidence for independent tiling projects',
-    'Read and interpret blueprints and construction plans',
-    'Perform accurate material take-offs and waste calculations'
+    'Understand fundamental tiling principles and material properties',
+    'Master surface preparation and layout techniques',
+    'Learn to work with various tiling tools and equipment',
+    'Develop skills in tile cutting and installation methods',
+    'Acquire knowledge of tiling codes and safety regulations',
+    'Gain proficiency in grouting and finishing procedures',
+    'Learn troubleshooting and maintenance techniques',
+    'Prepare for professional tiling certification and licensing'
   ],
   modules: [
     module1IntroductionToTiling,
     module2SurfacePreparationAndLayout,
     module3TileInstallationTechniques,
     module4GroutingAndFinishing,
-    module5SpecializedApplications,
-    module9ReadingPlansAndEstimating,
-    {
-      id: 6,
-      title: 'Course Completion',
-      description: 'Complete your professional tiling certification',
-      lessons: [lesson6Certificate]
-    } as Module
+    module5SpecializedApplications
   ]
 };

@@ -11,86 +11,22 @@ export const module2ToolsAndEquipment: Module = {
       type: 'video',
       duration: '25 minutes',
       content: {
-        videoUrl: 'A7uQALjl6WE',
-        textContent: `# Essential Repair Tools
+        videoUrl: '_7xtqBH7-M0',
+        textContent: `## 🔧 Essential Repair Tools
 
-## Screwdrivers, Spudgers, Tweezers, and Heat Guns
+### [https://youtu.be/_7xtqBH7-M0?si=qA3qSAr2gUXq7agr](https://youtu.be/_7xtqBH7-M0?si=qA3qSAr2gUXq7agr)
 
-A successful smartphone repair technician relies not only on skill and knowledge but also on the proper use of essential tools. Among the most important tools in a technician's toolkit are screwdrivers, spudgers, tweezers, and heat guns. Each serves a specific function and must be used correctly to ensure safe, effective, and damage-free repairs. Understanding the purpose, types, and handling techniques for these tools is critical for both beginners and experienced professionals.
+### 🪛 Screwdrivers
+Screwdrivers are the cornerstone of smartphone repair, used to disassemble and reassemble devices by removing and securing tiny, specialized screws. Smartphones employ a variety of screw types, including **Phillips** (#00, #000 for precision work), **Pentalobe** (P2, P5, common in Apple devices), **Torx** (T3, T5, T6, used in Android devices), and occasionally **Tri-point** (Y000, Y0 for specific Apple components). A high-quality precision screwdriver set with ergonomic handles and hardened tips is essential to prevent stripping screws, which can damage frames or motherboards. **Magnetic tips** aid in handling small screws but must be used cautiously near magnetic sensors like compasses or gyroscopes to avoid interference. Technicians should invest in a versatile set with interchangeable bits to accommodate different screw types across brands like Apple, Samsung, or Xiaomi. During repairs, screws must be organized using magnetic mats or labeled trays to track their placement, as mismatched screws can misalign components or puncture delicate circuits. For example, using a longer screw in the wrong position can damage a motherboard’s traces. Regular maintenance, such as cleaning tips and storing in a dry environment to prevent rust, extends tool life. Mastering screwdriver use involves applying consistent pressure, aligning the tool precisely, and avoiding over-tightening, which ensures efficient repairs and protects device integrity, enhancing customer satisfaction and professional reputation.
 
-## 🔧 Screwdrivers
+### 🔨 Spudgers
+Spudgers are non-conductive, ESD-safe tools designed to pry open smartphone casings, disconnect flex cables, and lift components like screens or batteries without causing damage. Available in materials like **plastic**, **nylon**, or **fiberglass**, spudgers vary in rigidity and shape—flat for broad prying, pointed for tight spaces, or hooked for accessing connectors. Unlike metal tools, spudgers minimize risks of scratches, short circuits, or punctures to delicate parts like display assemblies or logic boards. For instance, when removing an iPhone screen, a spudger is used to gently separate the adhesive at the edges, starting from designated notches to avoid cracking the glass. Technicians must apply controlled force and work slowly to prevent bending frames or tearing flex cables, especially in devices with heavy adhesive for waterproofing. Spudgers are also used to disconnect ribbon cables or battery connectors by gently lifting at the base, avoiding damage to fragile pins. Regular cleaning with isopropyl alcohol removes adhesive residue, ensuring the tool remains effective. A well-stocked toolkit includes multiple spudger types for versatility across devices like Samsung Galaxy or Google Pixel models. Proficiency with spudgers enhances repair precision, reduces component damage, and ensures a professional workflow, making them indispensable for both beginners and seasoned technicians.
 
-Screwdrivers are the most frequently used tools in smartphone repair, essential for disassembling and reassembling devices. Modern smartphones use a variety of small, precision screws, and each manufacturer may utilize different screw types.
+### ✂️ Tweezers
+Tweezers are critical for handling small, delicate components in smartphone repair, such as screws, connectors, SIM card trays, or motherboard ICs. **ESD-safe tweezers**—made from materials like stainless steel with anti-static coatings—are essential to prevent electrostatic discharge that could damage sensitive circuits. Available in **straight**, **curved**, or **angled** tips, tweezers cater to specific tasks: fine-point tips for precise work like placing tiny screws, and angled tips for accessing cramped areas like charging port connectors. For example, when repairing a Huawei device, curved tweezers can help maneuver around tightly packed components. A steady hand and firm grip are crucial to avoid dropping parts, which could dislodge other components or cause shorts. Technicians should avoid using excessive force, as this can bend or break fragile parts like flex cables. Regular maintenance involves cleaning tips with alcohol to remove debris and storing them in protective cases to preserve sharpness. Investing in high-quality tweezers from brands like iFixit or Jakemy ensures durability and precision. By mastering tweezers, technicians achieve greater control over intricate repairs, enhancing efficiency and reducing errors, which builds trust and reliability in their work.
 
-### Common Screw Types:
-- **Phillips** - Standard cross-head screws
-- **Pentalobe** - Used by Apple devices
-- **Tri-point** - Also used by Apple
-- **Torx** - Star-shaped pattern
-- **Flathead** - Simple slot design
-
-### Best Practices:
-- Use high-quality precision screwdriver sets
-- Magnetic tips help hold small screws
-- Use correct size and head type to prevent stripping
-- Organize screws during disassembly
-- Store in dry environments to prevent rust
-
-## 🛠️ Spudgers
-
-Spudgers are flat, non-metal tools used to pry open devices, disconnect flex cables, and separate screens or batteries. They are designed to be safe for use near sensitive components, reducing the risk of scratches, short circuits, or punctures.
-
-### Types of Spudgers:
-- **Plastic spudgers** - Ideal for general prying tasks
-- **Nylon/fiberglass spudgers** - More rigid while ESD-safe
-- **Flat edge spudgers** - For general separation
-- **Pointed/hooked tips** - For small connectors
-
-### Proper Technique:
-- Start prying at designated notches or seams
-- Work gradually around the device perimeter
-- Avoid excessive force that could crack screens
-
-## ⚡ Tweezers
-
-Tweezers are precision tools used for handling small screws, components, or connectors, particularly when working inside compact smartphone interiors.
-
-### Key Features:
-- **ESD-safe materials** - Prevent static damage
-- **Fine-point tips** - For intricate parts
-- **Various angles** - Straight, curved, angled
-
-### Applications:
-- Handling charging port connectors
-- Managing SIM contacts
-- Working with motherboard ICs
-- Precise component placement
-
-## 🔥 Heat Guns
-
-Heat guns are used to soften adhesive that holds screens, back covers, batteries, and other components in place. Controlled heat application helps in safely removing these parts without damage.
-
-### Operating Parameters:
-- **Temperature range**: 100°C to 300°C
-- **Distance**: 3-5 inches from surface
-- **Movement**: Circular or sweeping motions
-- **Duration**: Controlled exposure time
-
-### Safety Considerations:
-- Never apply concentrated heat for too long
-- Watch for warping or discoloration
-- Allow cooling before storage
-- Maintain proper ventilation
-
-## Tool Maintenance
-
-Together, these four tools form the foundation of most smartphone repair procedures. Technicians must learn not only how to use them effectively but also how to maintain them:
-
-- **Screwdrivers**: Store in dry environments
-- **Heat guns**: Cool before storing
-- **Spudgers and tweezers**: Clean regularly to prevent contamination
-
-In conclusion, mastering the use of screwdrivers, spudgers, tweezers, and heat guns is essential for anyone pursuing a career in smartphone repair. These tools allow technicians to safely open devices, handle components, and remove or attach parts without causing harm.`
+### 🔥 Heat Guns
+Heat guns are vital for softening adhesives that secure smartphone screens, back covers, batteries, and other components, particularly in modern waterproof devices like iPhones or Samsung Galaxy models. Operating at **100°C–300°C**, heat guns require adjustable temperature and airflow settings to suit different repair tasks. For example, a low setting (around 150°C) is ideal for loosening screen adhesive, while higher settings (up to 250°C) may be needed for stubborn battery glue. Proper technique involves holding the heat gun 3–5 inches from the surface and moving it in circular or sweeping motions to distribute heat evenly, preventing damage like warped plastic, discolored displays, or melted cables. Overheating is a common mistake—technicians must monitor component responses and limit exposure to 20–30 seconds per area. A **hot plate** can be an alternative for precise, localized heating. Safety precautions include wearing heat-resistant gloves, working in a ventilated area, and never leaving the heat gun unattended. Regular maintenance, such as cleaning the nozzle and storing it after cooling, ensures longevity. Mastering heat gun use allows technicians to perform clean, damage-free component removals, improving repair outcomes and maintaining device functionality for customers.`
       }
     },
     {
@@ -99,108 +35,16 @@ In conclusion, mastering the use of screwdrivers, spudgers, tweezers, and heat g
       type: 'video',
       duration: '30 minutes',
       content: {
-        videoUrl: 'K0BDVNkY6ZU',
-        textContent: `# Testing and Diagnostic Equipment
+        videoUrl: 'A7uQALjl6WE',
+        textContent: `## 🔍 Testing and Diagnostic Equipment
 
-## Multimeters, Power Supply Testers, and Microscopes
+[https://youtu.be/A7uQALjl6WE?si=OBsC70T3sEQJHh9-](https://youtu.be/A7uQALjl6WE?si=OBsC70T3sEQJHh9-)
 
-In professional smartphone repair, the use of testing and diagnostic equipment is essential for accurately identifying faults, ensuring safe repairs, and verifying functionality. While basic tools are useful for mechanical disassembly, diagnostic tools allow technicians to dive deeper into the device's electronic systems.
+### 📏 Multimeters
+Digital multimeters (DMMs) are indispensable for diagnosing electrical issues in smartphone repair, measuring parameters like **voltage**, **current**, **resistance**, **continuity**, and **diode function**. They are used to test battery health (e.g., confirming 3.7–4.2V for lithium-ion batteries), detect short circuits on motherboards, verify charging port functionality, or check component integrity like fuses or capacitors. For instance, if a device fails to power on, a multimeter in continuity mode can identify a broken trace or shorted power IC by testing connections across the board. **ESD-safe probes** are critical to avoid damaging sensitive circuits, and technicians must calibrate the multimeter regularly for accuracy. Auto-ranging multimeters simplify use for beginners, while manual-ranging models offer precision for advanced diagnostics. When probing, technicians should use light, precise touches to avoid slipping and shorting adjacent pins. Multimeters are also useful for testing cable continuity or verifying USB charger output. Investing in a reliable model from brands like Fluke or Uni-T ensures durability and accuracy. Proficiency with multimeters enables technicians to move beyond guesswork, pinpointing issues with precision and enhancing repair success rates, which builds credibility and customer trust.
 
-## 📊 Digital Multimeters (DMM)
-
-The digital multimeter is one of the most versatile and fundamental diagnostic tools in electronics repair. It measures various electrical parameters and is essential for advanced diagnostics.
-
-### Measurement Capabilities:
-- **Voltage** - DC and AC measurements
-- **Current** - Amperage testing
-- **Resistance** - Ohm readings
-- **Continuity** - Connection testing
-- **Diode readings** - Component testing
-
-### Common Applications:
-- Check battery voltage levels
-- Test charging port functionality
-- Detect motherboard short circuits
-- Verify fuse and capacitor integrity
-- Trace broken connections
-
-### Safety Practices:
-- Use ESD-safe probes
-- Start with highest range settings
-- Never probe powered circuits without proper precautions
-- Verify probe placement before testing
-
-## 🔋 Power Supply Testers
-
-DC power supplies with ammeter and voltmeter displays are valuable for powering up devices and identifying current draw anomalies. These devices simulate a battery by supplying controlled voltage and current.
-
-### Key Features:
-- **Voltage control** - Precise power delivery
-- **Current monitoring** - Real-time amperage display
-- **Protection circuits** - Overcurrent protection
-- **Variable output** - Adjustable parameters
-
-### Diagnostic Patterns:
-- **Normal boot**: Low idle → brief spike → steady operation
-- **Short circuit**: Immediate high current draw
-- **Dead board**: No current draw at all
-- **Faulty PMIC**: Erratic current patterns
-
-### Benefits:
-- Safe testing without battery risks
-- Real-time current monitoring
-- Controlled power delivery
-- Fault isolation capabilities
-
-## 🔬 Microscopes
-
-Microscopes are critical when working with modern smartphones due to component miniaturization. Board-level repairs require viewing extremely small components with high precision.
-
-### Types Available:
-- **Stereo microscopes** - 3D view with depth perception
-- **Digital microscopes** - Monitor display and recording
-- **USB microscopes** - Computer-connected viewing
-
-### Specifications:
-- **Magnification**: 10x to 100x typical range
-- **Lighting**: LED ring lights or fiber-optic
-- **Focusing**: Stable, adjustable mechanisms
-- **Working distance**: Adequate tool clearance
-
-### Applications:
-- Inspect solder joint quality
-- Identify lifted pads or traces
-- Detect physical damage or corrosion
-- Align IC chips during replacement
-- Document repair progress
-
-## Additional Diagnostic Tools
-
-### Thermal Cameras
-- Detect overheating components
-- Identify heat patterns during operation
-- Locate faulty chips or circuits
-
-### USB Testers
-- Monitor power delivery during charging
-- Verify USB protocol compliance
-- Test cable integrity
-
-### Oscilloscopes
-- Measure signal waveforms
-- Analyze data line communications
-- Debug timing issues
-
-## Professional Benefits
-
-Mastery of diagnostic equipment provides several advantages:
-
-- **Increased accuracy** - Precise fault identification
-- **Higher success rates** - Better repair outcomes
-- **Professional credibility** - Advanced capabilities
-- **Customer confidence** - Thorough diagnostics
-
-In conclusion, a skilled smartphone technician must become proficient with testing and diagnostic equipment to move beyond basic hardware replacement into advanced fault isolation and board-level repair. These tools not only increase diagnostic accuracy but also build trust and professionalism with clients.`
+### ⚡ Power Supply Testers
+Power supply testers, or DC power supplies with integrated ammeter and voltmeter displays, are advanced diagnostic tools that simulate battery input to test motherboard functionality. By connecting to the battery terminals, they deliver controlled voltage (typically 3.7–4.2V for smartphones) and monitor current draw to diagnose issues like short circuits, dead CPUs, or faulty power management ICs (PMICs). For example, a normal boot sequence might show a brief current spike (0.5–1A) followed by a steady draw (0.1–0.3A), while a short circuit causes an immediate high draw (>2A), and no draw indicates a dead board. These testers are critical for troubleshooting devices that fail to power on, even with a known-good battery. Adjustable voltage and current limits prevent damage during testing, and digital displays provide real-time feedback. Technicians must ensure proper polarity and secure connections to avoid false readings or board damage. Models with short-circuit protection and USB output testing add versatility. Regular calibration and maintenance, such as checking probe integrity, ensure reliability. Mastery of power supply testers allows technicians to perform board-level diagnostics with confidence, reducing unnecessary part replacements and improving repair efficiency.`
       }
     },
     {
@@ -210,138 +54,10 @@ In conclusion, a skilled smartphone technician must become proficient with testi
       duration: '20 minutes',
       content: {
         videoUrl: 'jXNmHyfZ1Yk',
-        textContent: `# Workspace Organization
+        textContent: `## 🧹 Tips for Maintaining a Well-Organized Workspace
 
-## Tips for Maintaining a Well-Organized Workspace
-
-A clean, well-organized workspace is a hallmark of professionalism in smartphone repair. It not only enhances productivity and safety but also reduces the chances of errors, lost parts, and device damage. Technicians who maintain tidy workstations are more efficient, make fewer mistakes, and present a more trustworthy image to customers.
-
-## 🏗️ Foundation Elements
-
-### Dedicated Workbench
-The foundation of an organized repair workspace begins with a dedicated workbench or repair table with these characteristics:
-
-- **Sturdy construction** - Stable, vibration-free surface
-- **Proper height** - Comfortable working position
-- **Adequate size** - Room for tools and devices
-- **Good lighting** - Bright, adjustable LED lighting
-- **ESD protection** - Grounded anti-static mat
-
-### Lighting Requirements
-- Bright, adjustable LED lights
-- Overhead lighting to minimize shadows
-- Focused task lighting for detailed work
-- Color temperature that reduces eye strain
-
-## 🧰 Tool Organization
-
-### Storage Solutions
-Every frequently used tool should have a designated spot within easy reach:
-
-- **Magnetic tool holders** - For metal tools
-- **Pegboards** - Wall-mounted organization
-- **Drawer organizers** - Categorized storage
-- **Rolling carts** - Mobile tool access
-
-### Best Practices
-- Return tools to designated spots after use
-- Group similar tools together
-- Keep frequently used items within arm's reach
-- Label storage areas for consistency
-
-## 🔩 Component Management
-
-### Small Parts Organization
-- **Compartmentalized trays** - Sort by device section
-- **Magnetic project mats** - Secure metal components
-- **Labeled sections** - Screen screws, motherboard parts
-- **Step-by-step tracking** - Repair timeline organization
-
-### Avoiding Mix-ups
-- Never place parts directly on work surface
-- Use separate trays for each device
-- Group components by removal order
-- Take photos during disassembly for reference
-
-## 🔌 Cable Management
-
-### Organization Strategies
-- **Cable ties and clips** - Secure loose cables
-- **Coiled sleeves** - Bundle multiple wires
-- **Designated pathways** - Route cables safely
-- **Wireless tools** - Reduce cable clutter
-
-### Safety Considerations
-- Keep cords off the floor
-- Away from moving parts
-- Separate power and data cables
-- Ensure emergency disconnect access
-
-## 🧽 Cleanliness Standards
-
-### Daily Maintenance
-- Clean workstation with microfiber cloth
-- Use compressed air for dust removal
-- Apply appropriate cleaning solutions
-- Remove adhesive residue promptly
-
-### Chemical Storage
-- Label all containers clearly
-- Store away from heat sources
-- Separate from food/drink areas
-- Maintain proper ventilation
-
-## 📋 Documentation and Labeling
-
-### Device Tracking
-- Tag each device with customer information
-- Note repair issues and expected return dates
-- Use repair tickets or digital tracking
-- Maintain clear communication records
-
-### Digital Organization
-- Well-structured file folders
-- Firmware and software resources
-- Customer records and invoices
-- Repair guides and documentation
-
-## 🔄 Workflow Zones
-
-### Specialized Areas
-Create dedicated zones for different activities:
-
-- **Disassembly area** - Initial device breakdown
-- **Soldering station** - Board-level repairs
-- **Diagnostic zone** - Testing and troubleshooting
-- **Assembly area** - Device reconstruction
-
-### Clean vs. Dirty Areas
-- Separate contaminated from clean work
-- Isolate ongoing from completed projects
-- Prevent cross-contamination
-- Maintain sterile component handling
-
-## 📈 Continuous Improvement
-
-### Regular Evaluation
-- Assess current setup effectiveness
-- Identify improvement opportunities
-- Upgrade tools and storage as needed
-- Adjust layout for better ergonomics
-
-### Professional Benefits
-- Enhanced productivity and efficiency
-- Reduced errors and lost components
-- Improved customer confidence
-- Better work environment satisfaction
-
-## Conclusion
-
-Maintaining a well-organized workspace is not just about aesthetics—it directly affects the quality, speed, and safety of smartphone repairs. It builds professionalism, protects customer devices, and creates a more enjoyable and efficient work environment. Technicians who take workspace organization seriously are more likely to succeed, build customer trust, and sustain a high standard of service over time.
-
-**🎥 15 Must-Have Tools for Mobile Repair Techs WITH LINKS!🥇😎🔥**
-
-*[Video resource demonstrating essential tools and workspace setup]*`
+[https://youtu.be/jXNmHyfZ1Yk?si=u76Q2ZxYcyxXAk9E](https://youtu.be/jXNmHyfZ1Yk?si=u76Q2ZxYcyxXAk9E)
+A well-organized workspace is a hallmark of professional smartphone repair, boosting efficiency, safety, and customer confidence. A sturdy workbench with an **ESD-safe mat** protects components from electrostatic discharge, while **bright LED lighting** (5000K–6500K) minimizes eye strain and illuminates tiny parts. **Tool organization** is critical—precision screwdrivers, spudgers, tweezers, and probes should be stored in magnetic holders, pegboards, or labeled drawers for quick access. Returning tools to their designated spots after use prevents clutter and saves time. **Component management** involves using magnetic mats or compartmentalized trays to sort screws, connectors, and small parts by device section, preventing mix-ups during reassembly. **Cable management** with ties, clips, or coiled sleeves keeps cords from soldering irons, power supplies, or USB testers tidy, reducing hazards. **Cleanliness** is vital—daily cleaning with microfiber cloths, compressed air, and isopropyl alcohol removes dust and adhesive residue, preventing contamination of device interiors. Chemicals like flux or alcohol must be stored in labeled, sealed containers away from heat. **Labeling and documentation** via repair tickets or digital systems track customer devices, issues, and progress, ensuring clarity in busy shops. **Workflow zones**—dedicated areas for disassembly, diagnostics, soldering, and testing—streamline processes and prevent cross-contamination. Digital organization, with structured folders for firmware, guides, and invoices, enhances software tasks. Regular audits to optimize tool placement or upgrade storage improve ergonomics and efficiency, fostering a professional environment that enhances repair quality and customer trust.`
       }
     },
     {

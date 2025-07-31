@@ -6,8 +6,7 @@ export const lesson3MicPlacement: Lesson = {
   description: 'Understanding microphone placement techniques for optimal sound capture',
   duration: '55 minutes',
   type: 'lesson',
-  content: `
-# 🎤 Mic Placement Techniques
+  content: `# 🎤 Mic Placement Techniques
 
 ## 1. Introduction to Mic Placement
 
@@ -28,7 +27,6 @@ export const lesson3MicPlacement: Lesson = {
 ## 3. General Guidelines for Mic Placement
 
 **YouTube Video**: [Mic Placement Guidelines](https://youtu.be/z7bglcSQOC4)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/z7bglcSQOC4" 
@@ -55,7 +53,6 @@ export const lesson3MicPlacement: Lesson = {
 ## 5. Mic Placement for Instruments
 
 **YouTube Video**: [Instrument Mic Placement](https://youtu.be/4G-XRxrqdbo)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/4G-XRxrqdbo" 
@@ -88,7 +85,6 @@ export const lesson3MicPlacement: Lesson = {
 ## 7. Mic Placement for Podcasting/Voiceovers
 
 **YouTube Video**: [Podcasting Mic Placement](https://youtu.be/TDFrK6x1r7E)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/TDFrK6x1r7E" 
@@ -126,7 +122,6 @@ export const lesson3MicPlacement: Lesson = {
 ## 10. Summary
 
 **YouTube Video**: [Summary of Mic Placement Techniques](https://youtu.be/example)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/example" 

@@ -63,10 +63,10 @@ export const lesson3AudioEquipment: Lesson = {
 
               <div class="bg-gradient-to-r from-green-50 to-emerald-50 p-4 rounded-lg">
                 <h4 class="font-semibold text-green-700 mb-2">Why Use an Audio Interface?</h4>
-                <ul class="text-gray-700 space-y-1">
-                  <li>• Better audio quality than a computer's built-in sound card</li>
-                  <li>• Lower latency (delay) for real-time monitoring</li>
-                  <li>• Allows multi-channel recording</li>
+                <ul class="modern-bullet-list">
+                  <li>Better audio quality than a computer's built-in sound card</li>
+                  <li>Lower latency (delay) for real-time monitoring</li>
+                  <li>Allows multi-channel recording</li>
                 </ul>
               </div>
             </div>
@@ -92,7 +92,7 @@ export const lesson3AudioEquipment: Lesson = {
 
               <div class="bg-white p-4 rounded-lg">
                 <h4 class="font-semibold text-purple-700 mb-3">Types of Mixers:</h4>
-                <div class="grid md:grid-cols-3 gap-4">
+                <div class="space-y-6">
                   <div class="bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-lg border-2 border-red-200">
                     <h5 class="font-semibold text-red-700 mb-2">Analog Mixer</h5>
                     <p class="text-sm text-gray-600">Uses physical knobs, faders, and switches</p>
@@ -144,10 +144,10 @@ export const lesson3AudioEquipment: Lesson = {
 
               <div class="bg-gradient-to-r from-amber-50 to-orange-50 p-4 rounded-lg">
                 <h4 class="font-semibold text-amber-700 mb-2">Use Cases:</h4>
-                <ul class="text-gray-700 space-y-1">
-                  <li>• Live sound reinforcement</li>
-                  <li>• Studio recording</li>
-                  <li>• Broadcast and podcast production</li>
+                <ul class="modern-bullet-list">
+                  <li>Live sound reinforcement</li>
+                  <li>Studio recording</li>
+                  <li>Broadcast and podcast production</li>
                 </ul>
               </div>
             </div>

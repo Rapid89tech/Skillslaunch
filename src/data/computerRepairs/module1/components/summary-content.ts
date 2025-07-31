@@ -40,9 +40,8 @@ export const summaryContent = `
         </tbody>
       </table>
     </div>
-    
     <div class="mt-6 p-4 bg-blue-50 rounded-lg">
-      <p class="text-blue-800 text-sm"><strong>Note:</strong> If you want, I can also prepare slides, diagrams, or practical exercises related to these components. Would you like that?</p>
+      <p class="text-blue-800 text-sm"><strong>Note:</strong> This table summarizes the key hardware components, their functions, and common problems. Use it as a quick reference for troubleshooting and review.</p>
     </div>
   </div>
 `;

@@ -24,7 +24,9 @@ export const module4GroutingAndFinishing: Module = {
     <span class="text-2xl mr-3">🏗️</span>
     What It Is
   </h4>
-  <p>• Contains fine sand particles for added strength and durability</p>
+  <ul class="modern-bullet-list">
+    <li>Contains fine sand particles for added strength and durability</li>
+  </ul>
 </div>
 
 <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-xl mb-6 shadow-lg">
@@ -32,8 +34,10 @@ export const module4GroutingAndFinishing: Module = {
     <span class="text-2xl mr-3">✅</span>
     Best Uses
   </h4>
-  <p>• Joints wider than 1/8 inch (large-format tiles, uneven surfaces)</p>
-  <p>• High-traffic areas like floors and entryways</p>
+  <ul class="modern-bullet-list">
+    <li>Joints wider than 1/8 inch (large-format tiles, uneven surfaces)</li>
+    <li>High-traffic areas like floors and entryways</li>
+  </ul>
 </div>
 
 <div class="bg-emerald-50 border-l-4 border-emerald-500 p-6 rounded-r-xl mb-6 shadow-lg">
@@ -41,8 +45,10 @@ export const module4GroutingAndFinishing: Module = {
     <span class="text-2xl mr-3">👍</span>
     Advantages
   </h4>
-  <p>• Resists cracking and shrinkage in wider joints</p>
-  <p>• Affordable and widely available</p>
+  <ul class="modern-bullet-list">
+    <li>Resists cracking and shrinkage in wider joints</li>
+    <li>Affordable and widely available</li>
+  </ul>
 </div>
 
 <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-xl mb-6 shadow-lg">
@@ -50,7 +56,9 @@ export const module4GroutingAndFinishing: Module = {
     <span class="text-2xl mr-3">⚠️</span>
     Disadvantages
   </h4>
-  <p>• May scratch delicate surfaces like polished marble or glass tiles</p>
+  <ul class="modern-bullet-list">
+    <li>May scratch delicate surfaces like polished marble or glass tiles</li>
+  </ul>
 </div>
 
 ### Unsanded Grout

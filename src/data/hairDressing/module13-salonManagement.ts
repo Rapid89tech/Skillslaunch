@@ -12,8 +12,7 @@ export const module13SalonManagement: Module = {
       duration: '20 minutes',
       content: {
         videoUrl: 'https://www.youtube.com/watch?v=example1',
-        textContent: `
-# Effective Communication and Customer Relations
+        textContent: `# **Module 13: Salon Management and Customer Service**
 
 ## Learning Objectives
 🎯 Develop effective communication skills to build strong customer relationships
@@ -92,8 +91,7 @@ YOUTUBE LINK: Winning Customer Service Strategies for Salons 2024
       duration: '18 minutes',
       content: {
         videoUrl: 'https://www.youtube.com/watch?v=example2',
-        textContent: `
-# Appointment Scheduling and Time Management
+        textContent: `# **Module 13: Salon Management and Customer Service**
 
 ## Importance of Organized Scheduling
 
@@ -162,8 +160,7 @@ YOUTUBE LINK: Winning Customer Service Strategies for Salons 2024
       duration: '22 minutes',
       content: {
         videoUrl: 'https://www.youtube.com/watch?v=example3',
-        textContent: `
-# Handling Difficult Clients Professionally
+        textContent: `# **Module 13: Salon Management and Customer Service**
 
 ## Common Challenges and Responses
 

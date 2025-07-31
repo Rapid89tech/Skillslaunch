@@ -12,9 +12,11 @@ export const module7HairStylingFinishing: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/dQw4w9WgXcQ',
-        textContent: `# 💇‍♀️ Hair Styling and Finishing
+        textContent: `# **Module 7: Hair Styling and Finishing**
 
-Blow-drying and heat styling are essential techniques in hairdressing that enhance hair texture, volume, and smoothness. Proper styling techniques and the use of the right tools and products can help create long-lasting and professional results.
+Blow-drying and heat styling are foundational skills in professional hairdressing. These techniques not only enhance the natural beauty of hair but also allow stylists to create a wide range of looks, from voluminous blowouts to sleek, polished finishes. Mastery of these methods, along with the correct use of tools and products, is essential for achieving salon-quality results while maintaining hair health.
+
+---
 
 ## 3.1 Blow-Drying and Heat Styling
 

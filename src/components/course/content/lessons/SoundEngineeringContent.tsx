@@ -77,24 +77,7 @@ const WhatIsSoundContent = () => {
             </p>
           </div>
 
-          <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <Youtube className="h-5 w-5 text-red-600" />
-              <span className="font-semibold text-red-800">Video: Definition of Sound</span>
-            </div>
-            <div className="aspect-video">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/m3aojGTTDT8" 
-                title="Definition of Sound" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                className="rounded-lg"
-              ></iframe>
-            </div>
-          </div>
+          {/* REMOVE: YouTube video and label */}
         </CardContent>
       </Card>
 
@@ -126,24 +109,7 @@ const WhatIsSoundContent = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <Youtube className="h-5 w-5 text-red-600" />
-              <span className="font-semibold text-red-800">Video: How Sound is Produced</span>
-            </div>
-            <div className="aspect-video">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/u04H-CupEY8" 
-                title="How Sound is Produced" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                className="rounded-lg"
-              ></iframe>
-            </div>
-          </div>
+          {/* REMOVE: YouTube video and label */}
         </CardContent>
       </Card>
 
@@ -182,24 +148,7 @@ const WhatIsSoundContent = () => {
             </table>
           </div>
 
-          <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg mt-6">
-            <div className="flex items-center gap-2 mb-4">
-              <Youtube className="h-5 w-5 text-red-600" />
-              <span className="font-semibold text-red-800">Video: Properties of Sound Waves</span>
-            </div>
-            <div className="aspect-video">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/KUMI9sqD6vc" 
-                title="Properties of Sound Waves" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                className="rounded-lg"
-              ></iframe>
-            </div>
-          </div>
+          {/* REMOVE: YouTube video and label */}
         </CardContent>
       </Card>
 
@@ -229,24 +178,7 @@ const WhatIsSoundContent = () => {
             </div>
           </div>
 
-          <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <Youtube className="h-5 w-5 text-red-600" />
-              <span className="font-semibold text-red-800">Video: Types of Sound Waves</span>
-            </div>
-            <div className="aspect-video">
-              <iframe 
-                width="100%" 
-                height="100%" 
-                src="https://www.youtube.com/embed/F8B_3_1Z7R8" 
-                title="Types of Sound Waves" 
-                frameBorder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowFullScreen
-                className="rounded-lg"
-              ></iframe>
-            </div>
-          </div>
+          {/* REMOVE: YouTube video and label */}
         </CardContent>
       </Card>
 
@@ -449,10 +381,7 @@ const BasicSoundPropertiesContent = () => {
           
           <div className="mb-8">
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Key Properties of Sound Waves</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -580,10 +509,7 @@ const BasicSoundPropertiesContent = () => {
           {/* Additional Videos */}
           <div className="space-y-6 mt-8">
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Amplitude</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -599,10 +525,7 @@ const BasicSoundPropertiesContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Wavelength</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -618,10 +541,7 @@ const BasicSoundPropertiesContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Mediums for Sound Transmission</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -637,10 +557,7 @@ const BasicSoundPropertiesContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Human Perception of Sound</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -656,10 +573,7 @@ const BasicSoundPropertiesContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Reflection, Absorption, Diffusion</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -675,10 +589,7 @@ const BasicSoundPropertiesContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Sound Environments</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -734,10 +645,7 @@ const IndustryApplicationsContent = () => {
           
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Entertainment & Media Overview</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -753,10 +661,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Film & Television Sound</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -772,10 +677,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Video Game Audio</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -791,10 +693,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Podcasting & Broadcasting</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -819,10 +718,7 @@ const IndustryApplicationsContent = () => {
           
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Telecommunications</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -838,10 +734,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Consumer Audio</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -866,10 +759,7 @@ const IndustryApplicationsContent = () => {
           
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Acoustic Monitoring</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -885,10 +775,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Alarm Systems</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -913,10 +800,7 @@ const IndustryApplicationsContent = () => {
           
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Vehicle Acoustics</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -932,10 +816,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Aerospace Acoustics</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -959,10 +840,7 @@ const IndustryApplicationsContent = () => {
           <h3 className="text-2xl font-bold text-purple-600 mb-6">Architecture & Design</h3>
           
           <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-            <div className="flex items-center gap-2 mb-4">
-              <Youtube className="h-5 w-5 text-red-600" />
-              <span className="font-semibold text-red-800">Video: Performance Spaces</span>
-            </div>
+            {/* REMOVE: YouTube video and label */}
             <div className="aspect-video">
               <iframe 
                 width="100%" 
@@ -986,10 +864,7 @@ const IndustryApplicationsContent = () => {
           
           <div className="space-y-6">
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Sonic Branding</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -1005,10 +880,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: Retail Environments</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -1024,10 +896,7 @@ const IndustryApplicationsContent = () => {
             </div>
             
             <div className="bg-gradient-to-r from-red-100 to-orange-100 p-4 rounded-lg">
-              <div className="flex items-center gap-2 mb-4">
-                <Youtube className="h-5 w-5 text-red-600" />
-                <span className="font-semibold text-red-800">Video: E-learning & Instructional Design</span>
-              </div>
+              {/* REMOVE: YouTube video and label */}
               <div className="aspect-video">
                 <iframe 
                   width="100%" 
@@ -1106,7 +975,7 @@ const IndustryApplicationsContent = () => {
             applications: [
               { name: '🏥 Medical Imaging', desc: 'Ultrasound technology' },
               { name: '🦻 Audiology', desc: 'Hearing tests, hearing aids' },
-              { name: '🧠 Therapeutic Uses', desc: 'Sound therapy, neuroscience' }
+              { name: '�� Therapeutic Uses', desc: 'Sound therapy, neuroscience' }
             ]
           },
           {

@@ -174,21 +174,14 @@ A signal is a function that conveys information about a phenomenon. Signals can 
 <ul>
   <li>Microphones, vinyl records, analog radio, traditional telephony.</li>
 </ul>
-<div style="margin-bottom:1rem;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/2pQ5pKp2r6A" title="How FM Radio Works: A History and Exploration" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+
 <strong>Digital Signals:</strong>
 <ul>
   <li>Digital audio workstations (DAWs), streaming platforms, smartphones, digital broadcasting.</li>
 </ul>
-<div style="margin-bottom:1rem;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/8Zp_8Qy0wHc" title="Demystifying DAWs: Introduction and Overview" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
 
 <h2>9. Summary</h2>
-<div style="margin-bottom:1rem;">
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/2Q6YkQ7Qw6A" title="Analog vs Digital Signals Summary" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+
 <p>
 Analog signals are continuous and closely mimic real-world phenomena but are prone to noise. Digital signals use discrete values, enabling robust transmission, storage, and processing. Most modern audio and communication systems use digital signals due to their flexibility and quality preservation. Understanding both is essential for audio engineering, telecommunications, and signal processing careers.
 </p>

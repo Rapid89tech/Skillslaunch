@@ -4,103 +4,178 @@ import { Lesson } from '@/types/course';
 export const lesson56WorkflowAutomation: Lesson = {
   id: 56,
   title: 'Workflow Automation',
-  duration: '40 minutes',
+  duration: '45 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://www.youtube.com/embed/0R0G6N_vHp4',
+    videoUrl: 'https://youtu.be/xV-bOHvfbPQ',
     textContent: `
 # Workflow Automation
 
-## Learning Objectives:
-- Understand the power of workflow automation for podcasting
-- Identify tasks that can be automated
-- Master automation tools and best practices
-- Create efficient automated workflows
+## What is Workflow Automation?
 
-## 🤖 What is Workflow Automation?
+**Overview:** Automation minimizes manual input for repetitive tasks. **On-demand access:** Automation ensures consistent, accessible episode releases.
 
-Workflow automation is the use of tools and systems to complete repetitive tasks with minimal manual input.
+Workflow automation enhances on-demand access by streamlining repetitive tasks, ensuring episodes are released on Spotify for streaming during commutes. Tools like Zapier reduce errors, supporting global accessibility. This frees creative energy, boosting retention as listeners access content anytime, driven by efficient, automated production processes.
 
-### 🔹 Why It Matters
-- **Saves time and reduces human error**
-- **Ensures consistency** across episodes or projects
-- **Frees up creative energy** for content rather than admin
-- **Helps teams collaborate** more efficiently
+## Types of Tasks to Automate in Podcasting
 
-**"Automation allows you to scale without burning out."**
+### Pre-Production
+**Tasks:** Planning templates, guest outreach, recording scheduling.  
+**On-demand access:** Automates planning for accessible episodes.  
+Automating pre-production tasks like guest outreach via Calendly enhances on-demand access by ensuring timely episode planning for Apple Podcasts. Templates streamline scripting, supporting streaming during workouts. This ensures global accessibility, boosting engagement as listeners access content anytime, driven by efficient, automated pre-production.
 
-## 🧩 Types of Tasks to Automate in Podcasting
+### Production
+**Tasks:** Task reminders, file organization, editing checklists.  
+**On-demand access:** Automates production for consistent episode access.  
+Automating production tasks like editing reminders in Asana enhances on-demand access by ensuring consistent episode releases on Spotify. Organized file naming supports streaming during travel, ensuring global accessibility. This boosts retention, as listeners access polished content anytime, driven by automated, error-free production workflows.
 
-### ✅ Pre-Production
-- Episode planning templates
-- Guest outreach and confirmation emails
-- Scheduling recordings
+### Post-Production
+**Tasks:** Publishing, social media scheduling, newsletter distribution.  
+**On-demand access:** Automates promotion for accessible episodes.  
+Automating post-production tasks like social media scheduling via Buffer enhances on-demand access by ensuring episodes are promoted on Apple Podcasts for streaming during commutes. Automated uploads and newsletters support global accessibility, boosting engagement as listeners access content anytime, driven by streamlined, automated promotion.
 
-### ✅ Production
-- Setting task reminders (editing, intro/outro insertion)
-- File naming and folder organization
-- Standard editing checklists
+## Recommended Tools for Automation
 
-### ✅ Post-Production
-- Publishing workflows (upload + show notes entry)
-- Social media promo scheduling
-- Email newsletter distribution
+| Tool | Purpose | Best For | On-demand Access |
+|------|---------|----------|------------------|
+| **Zapier** | Connects apps | Non-coders | Automates tasks for accessible episodes |
+| **Asana** | Workflow automation | Teams | Streamlines team-driven episode access |
+| **Trello** | Automate cards/lists | Visual planners | Simplifies accessible production |
+| **Notion** | Templates, databases | Flexible creators | Centralizes accessible content |
+| **Buffer / Hootsuite** | Schedule social posts | Marketing | Drives accessible episode promotion |
+| **Calendly + Zoom** | Auto-schedule recordings | Interview shows | Ensures guest-driven episode access |
 
-## 🛠 Recommended Tools for Automation
+### Details: Automation tools ensure globally accessible, efficient episode production.
 
-| Tool | Purpose | Best For |
-|------|---------|----------|
-| **Zapier** | Connects apps (e.g., Google Drive → Asana) | Non-coders |
-| **Asana** | Workflow automation + task management | Teams |
-| **Trello** | Automate cards/lists with Butler | Visual planners |
-| **Notion** | Templates and linked databases | Flexible creators |
-| **Buffer / Hootsuite** | Schedule social posts | Marketing |
-| **Calendly + Zoom** | Auto-schedule guest recordings | Interview-based shows |
+## Examples of Automated Workflows
 
-## 🔄 Examples of Automated Workflows
+### Episode Release Workflow
+**Trigger:** New episode file in Google Drive.  
+**Steps:** Zapier assigns editing task in Asana, schedules social posts via Buffer, updates Notion metadata.  
+**On-demand access:** Automates publishing for accessible episodes.  
+An automated release workflow enhances on-demand access by streamlining publishing, ensuring episodes are available on Spotify for streaming during workouts. Zapier's integrations reduce manual tasks, supporting global accessibility. This boosts retention, as listeners access content anytime, driven by efficient, automated release processes.
 
-### 🎙 Podcast Episode Release Workflow
+### Template-Based Planning
+**Components:** Script, guest info, task checklist, deadline tracker.  
+**On-demand access:** Templates ensure consistent, accessible episode planning.  
+Template-based planning in Notion enhances on-demand access by standardizing episode production, ensuring releases on Apple Podcasts for streaming during commutes. Checklists and trackers streamline tasks, supporting global accessibility. This boosts engagement, as listeners access content anytime, driven by consistent, automated planning.
 
-**Trigger:** New episode file added to Google Drive
+## Automation Best Practices
 
-**Zapier Workflow:**
-1. Copy file link → Asana task → Assign to editor
-2. Post-edit: Automatically move task to "Publish" column
-3. Trigger Buffer → Schedule social post with title + link
-4. Update Notion database with episode metadata
+### Start Small
+- Begin with one automation
+- Test thoroughly before scaling
+- Monitor performance and results
+- Gradually add more automations
 
-### 🧠 Template-Based Planning (in Notion or Asana)
+### Choose the Right Tools
+- Consider your team's technical skills
+- Evaluate cost vs. benefit
+- Ensure compatibility with existing tools
+- Plan for scalability
 
-Episode template includes:
-- Script section
-- Guest info
-- Task checklist (edit, upload, promote)
-- Deadline tracker
+### Monitor and Optimize
+- Track automation performance
+- Identify bottlenecks
+- Adjust workflows as needed
+- Regular reviews and updates
 
-## 🧠 Best Practices for Workflow Automation
+## Common Automation Workflows
 
-- **Start simple:** Automate one task at a time
-- **Use templates** wherever possible
-- **Keep human checkpoints** in creative steps
-- **Review automation monthly** to improve or fix bugs
-- **Always test automations** before going live
+### Guest Booking Automation
+1. **Guest submits availability** via Calendly
+2. **Automatically creates** recording task in Asana
+3. **Sends confirmation email** with Zoom link
+4. **Adds to guest database** in Notion
+5. **Creates follow-up tasks** for post-interview
 
-## ⚠️ Common Pitfalls
+### Social Media Automation
+1. **Episode published** triggers automation
+2. **Creates social posts** for multiple platforms
+3. **Schedules posts** at optimal times
+4. **Tracks engagement** and performance
+5. **Generates reports** for analysis
 
-- **Over-automation:** Not all tasks should be automated (e.g., custom guest emails)
-- **Ignoring context:** Automated posts that don't match platform tone
-- **Poor naming or file structure:** Leads to confusion
-- **Lack of documentation:** Team can't understand or update the system
+### File Management Automation
+1. **New audio file uploaded** to Google Drive
+2. **Automatically renames** file with episode number
+3. **Moves to correct folder** structure
+4. **Notifies team** of new file
+5. **Creates editing task** in project management tool
 
-## 🚀 Key Takeaways
+## Implementation Strategy
 
-- Automation is about **efficiency + consistency**, not removing creativity
-- Choose tools that **integrate well** with your workflow
-- Focus on **high-impact, repeatable tasks** first
-- Regularly **refine and adapt** your automation based on feedback and team needs
+### Phase 1: Identify Opportunities
+- Map your current workflow
+- Identify repetitive tasks
+- Prioritize by time savings
+- Consider team impact
 
-### 💡 Suggested Activity
-Map out your own podcast workflow, then identify 3 tasks you could automate using a tool of your choice (e.g., Trello, Notion, Asana, or Zapier).
-    `
+### Phase 2: Choose Tools
+- Research automation options
+- Test with free trials
+- Consider integration needs
+- Plan for team training
+
+### Phase 3: Implement Gradually
+- Start with one automation
+- Train your team
+- Monitor and adjust
+- Scale successful automations
+
+### Phase 4: Optimize and Scale
+- Review performance regularly
+- Identify new opportunities
+- Update workflows as needed
+- Share best practices
+
+## Benefits of Workflow Automation
+
+### Time Savings
+- Reduces manual tasks
+- Eliminates repetitive work
+- Frees time for creative work
+- Improves efficiency
+
+### Consistency
+- Standardizes processes
+- Reduces human error
+- Ensures quality standards
+- Maintains brand consistency
+
+### Scalability
+- Handles increased workload
+- Supports team growth
+- Manages multiple shows
+- Maintains quality at scale
+
+### Better Collaboration
+- Clear task assignments
+- Automated notifications
+- Shared workflows
+- Improved communication
+
+## Common Mistakes to Avoid
+
+1. **Over-automating** - Don't automate everything
+2. **Ignoring human touch** - Some tasks need personal attention
+3. **Not testing** - Always test automations thoroughly
+4. **Poor documentation** - Document your automation workflows
+5. **Ignoring maintenance** - Regular updates and monitoring needed
+
+## Next Steps
+
+After implementing workflow automation:
+- Monitor performance and results
+- Identify additional automation opportunities
+- Train your team on new workflows
+- Document your automation processes
+- Plan for scaling and growth
+- Regular reviews and optimization
+
+## Final Thoughts
+
+"Automation frees you to focus on what matters most - creating great content." The right automation can transform your podcast production from manual to magical, ensuring consistent, high-quality episodes that reach your audience efficiently and effectively.
+`
   }
 };

@@ -13,119 +13,35 @@ export const module4CommonRepairs: Module = {
       type: 'video',
       content: {
         videoUrl: '7dZwru1ujgo',
-        textContent: `
-          ## Understanding Screen Diagnosis
+        textContent: `## 🔍 Diagnosing Screen Issues: Cracks, Unresponsive Touch, and More
 
-          Smartphone screens are one of the most essential yet fragile parts of a mobile device. They serve both as the primary display and the main input method via touch. Diagnosing screen issues accurately is critical to ensuring proper repair and avoiding unnecessary component replacement.
+[https://youtu.be/mTT8UgpbnOg?si=kBAy0oHU_wdJd9L7](https://youtu.be/mTT8UgpbnOg?si=kBAy0oHU_wdJd9L7)
+**Diagnosing screen issues** is a foundational skill for smartphone repair technicians, as screens are the primary user interface and highly susceptible to damage due to their exposed position. Accurate diagnosis minimizes unnecessary part replacements, reduces repair costs, and enhances customer trust by ensuring precise solutions. A **screen assembly** integrates multiple layers: the **protective glass** (e.g., Corning Gorilla Glass Victus on Samsung Galaxy S23 or iPhone 14, designed for scratch and drop resistance), the **digitizer** (a capacitive layer detecting touch input, enabling gestures like swiping or pinching), and the **display panel** (LCD for budget devices like Motorola Moto G series or OLED/AMOLED for flagships like Google Pixel 8, rendering visuals). These layers are often laminated, meaning damage to one (e.g., cracked glass) typically requires replacing the entire assembly, especially in high-end devices where separating layers risks further damage.
 
-          🔹 **1. Anatomy of a Smartphone Screen**
+**Cracked screens** show visible fractures, ranging from hairline cracks to spiderweb patterns, often resulting from drops or impacts (e.g., an iPhone 13 dropped face-down, showing cracks but retaining touch functionality). Diagnosis involves inspecting for glass shards, impact points, or compromised waterproof seals. Even if touch works, cracked screens risk worsening damage, as glass particles can infiltrate internals or impair digitizer performance. Recommend replacement to prevent user injury or further deterioration.
 
-          To diagnose screen problems, it's important to first understand what the screen consists of. Most modern smartphones have the following layers:
+**Unresponsive touch/dead zones** occur when the screen fails to register touch entirely or in specific areas (e.g., a Samsung Galaxy A54 with an unresponsive bottom third after a drop). Causes include digitizer damage, loose flex cables, water exposure, or motherboard faults. Use diagnostic apps like **Touch Screen Test** (Android) or **Apple Configurator** (iOS) to map touch response, creating visual grids to identify dead zones. Boot in safe mode or perform a soft reset to rule out software glitches (e.g., an Android 14 bug causing touch lag). If software is not the issue, inspect flex cables or test with a replacement screen.
 
-          **Glass Layer:** The outermost protective glass, often made of Gorilla Glass.
+**Flickering/no display** manifests as a black screen, intermittent flickering, or distorted colors/lines (e.g., a Google Pixel 7 with a black screen but audible notifications). Causes include LCD/OLED failure, loose display connectors, or motherboard power delivery issues. Shine a flashlight at an angle to check for faint backlight activity, indicating a display fault. Connect a known-good screen to isolate the issue or use a multimeter to test connector voltages (e.g., 1.8V or 3.3V for display lines). If the screen remains blank, motherboard diagnostics may be needed.
 
-          **Touch Digitizer:** The layer that detects touch input.
+**Ghost touch** occurs when the screen registers inputs without user interaction, such as random scrolling or typing (e.g., a Xiaomi 14 scrolling during calls). Causes include a faulty digitizer, static buildup, moisture under the glass, or software conflicts. Clean the screen with isopropyl alcohol, remove screen protectors, and test in safe mode to eliminate software causes. If persistent, replace the screen or check for moisture corrosion on connectors. For example, a water-exposed iPhone 12 exhibited ghost touch until the digitizer was replaced.
 
-          **LCD/OLED Display:** Responsible for showing images, colors, and interface.
+The **diagnostic process** is methodical to ensure accuracy:
 
-          In many phones, these components are fused together, meaning damage to one layer may require replacing the entire screen assembly.
+1. **Visual inspection**: Examine the screen under a magnifying lamp for cracks, discoloration, dead pixels, or lifted edges. Check for signs of water damage (e.g., corrosion on flex cables) or battery swelling pressing against the screen (e.g., an iPhone SE 2020 with a lifted display).
+2. **Power cycling**: Restart the device to rule out temporary software glitches. For non-booting devices, connect to a charger or computer to check for boot signals (e.g., iTunes detecting an iPhone in DFU mode).
+3. **Diagnostic tools/apps**: Use apps like **Device Info HW** (Android) or built-in iOS diagnostics via Recovery Mode to test touch and display functionality. Multimeters measure voltage/continuity at screen connectors, while test screens confirm if the issue is screen-specific.
+4. **Flex cable checks**: Power off, open the device, and inspect digitizer/display cables for tears, bends, or looseness. Reseat connectors gently using tweezers (e.g., reseating a loose cable on a Samsung S22 fixed flickering).
+5. **Test screen swaps**: Temporarily connect a known-good screen to isolate faults. If the replacement works, the original screen is defective; if not, investigate motherboard or software issues (e.g., a Pixel 6 with no display required motherboard repair after a test screen failed).
 
-          🔹 **2. Common Screen Problems**
+**Key considerations** include:  
+Removing screen protectors, as they can interfere with touch sensitivity (e.g., a thick tempered glass on a OnePlus 11 causing lag).  
+Checking for **battery swelling**, which can lift screens or disrupt touch (e.g., a swollen battery in a Huawei P40).  
+Assessing **moisture exposure**, as corrosion may not be immediately visible but can degrade connectors over time.  
+Evaluating **software issues**, as updates or bugs (e.g., iOS 17 touch glitches) can mimic hardware faults—factory reset or safe mode testing helps.
 
-          Here are the most common screen-related issues seen in smartphone repairs:
-
-          **A. Cracked or Shattered Screen**
-          - **Symptoms:** Visible cracks or shattering; may still be functional if the digitizer and LCD are intact
-          - **Diagnosis Tip:** Look for spider web patterns or localized impact points
-          - **Cause:** Usually due to drops or blunt force impact
-
-          **B. Unresponsive Touch**
-          - **Symptoms:** The screen lights up, but doesn't respond to finger input
-          - **Diagnosis Tip:** Use safe mode or diagnostic tools to rule out software issues
-          - **Cause:** May be due to digitizer damage, water exposure, or software malfunction
-
-          **C. Dead Zones**
-          - **Symptoms:** Certain parts of the screen do not respond to touch
-          - **Diagnosis Tip:** Use a drawing app or touch diagnostic tool to test touch responsiveness in different areas
-          - **Cause:** Partial damage to digitizer, flex cable issues, or motherboard connection problems
-
-          **D. Flickering or No Display**
-          - **Symptoms:** Screen turns black, flickers, or shows distorted colors
-          - **Diagnosis Tip:** Use a flashlight to see if the backlight is working; try connecting to an external screen if possible
-          - **Cause:** LCD/OLED failure, loose display connector, power delivery issues
-
-          **E. Ghost Touch or Random Inputs**
-          - **Symptoms:** Screen responds on its own without being touched
-          - **Diagnosis Tip:** Clean the screen; test with a different screen to confirm it's not software
-          - **Cause:** Faulty digitizer, static charge, or moisture under the glass
-
-          🔹 **3. Diagnostic Procedure**
-
-          Here's a step-by-step approach to diagnosing screen issues:
-
-          **Step 1: Initial Visual Inspection**
-          - Look for cracks, discoloration, dead pixels, or lifting edges
-          - Use magnification if necessary
-
-          **Step 2: Power Cycle and External Check**
-          - Restart the device to rule out temporary software glitches
-          - If the screen doesn't light up, test with a known-good screen if available
-
-          **Step 3: Use Diagnostic Tools or Apps**
-          - Android: Device Info HW, Touch Screen Test
-          - iOS: Use built-in diagnostics via DFU/Recovery Mode or Apple Configurator
-          - Use multimeters to test screen connector pins for continuity and voltage
-
-          **Step 4: Check for Loose or Damaged Flex Cables**
-          - Power off the device and carefully check the digitizer and display cables for damage
-          - Reseat all connectors
-
-          **Step 5: Cross-Test with Replacement Screen**
-          - Install a temporary working screen to see if the issue persists
-          - If the replacement works, the original screen is faulty
-          - If not, the issue may lie with the motherboard
-
-          🔹 **4. Important Considerations**
-
-          - **Screen Protectors** can sometimes interfere with touch sensitivity—remove and test without one
-          - **Battery Issues** (e.g., swelling) can affect screen response or cause lifting from the frame
-          - **Software Updates** can also cause touch problems—consider performing a factory reset or booting in safe mode
-          - **Moisture Exposure** may not show immediately but can slowly corrode internal screen contacts
-
-          🔹 **5. Tools for Diagnosing Screen Issues**
-
-          | Tool | Purpose |
-          |------|---------|
-          | Multimeter | Check voltage across screen flex connector |
-          | Magnifying Lamp | Inspect physical screen and digitizer |
-          | Test Screens | Rule out mainboard vs screen issues |
-          | Plastic Pry Tools | Safely open the phone to inspect internal connections |
-          | Diagnostic Software | Evaluate touch sensitivity and dead zones |
-
-          🔹 **6. When to Replace vs. Repair**
-
-          **Replace the screen assembly if:**
-          - The LCD/OLED is damaged
-          - The digitizer is unresponsive
-          - Cracks impact usability or appearance
-
-          **Repair or reattach if:**
-          - Flex cables are loose
-          - There's minor connector corrosion
-          - It's a software-related malfunction
-
-          🔹 **7. Case Study Examples**
-
-          **Case 1:** A user drops their phone. The glass is cracked but the touch still works — recommend full screen replacement due to risk of future damage or glass particles injuring the user.
-
-          **Case 2:** Phone has random ghost touches — clean the screen, test with new digitizer; final diagnosis is faulty digitizer from heat damage.
-
-          **Case 3:** Screen shows no image but makes notification sounds — test with external display, find out LCD is dead; replace screen assembly.
-
-          ## Conclusion
-
-          Accurately diagnosing screen issues requires a mix of careful observation, technical tools, and experience. By understanding the function of each layer of the screen and applying methodical diagnostic steps, technicians can avoid misdiagnosis, improve repair quality, and ensure customer satisfaction.
-        `
+**Tools** for diagnosis include multimeters (for electrical tests), magnifying lamps (for physical inspection), test screens (to isolate faults), plastic pry tools (for safe access), and diagnostic software. For example, diagnosing a Galaxy S23 with dead zones involved using Touch Screen Test to confirm digitizer failure, followed by a successful screen replacement. Mastering screen diagnosis ensures efficient, cost-effective repairs and builds a technician’s reputation for reliability.
+`
       }
     },
     {
@@ -135,8 +51,9 @@ export const module4CommonRepairs: Module = {
       type: 'video',
       content: {
         videoUrl: 'mTT8UgpbnOg',
-        textContent: `
-## Advanced Diagnostic Techniques
+        textContent: `## Advanced Diagnostic Techniques
+
+[https://youtu.be/mTT8UgpbnOg?si=kBAy0oHU_wdJd9L7](https://youtu.be/mTT8UgpbnOg?si=kBAy0oHU_wdJd9L7)
 
 Effective diagnostics are crucial for successful smartphone repairs. This lesson covers advanced techniques for identifying hardware and software issues quickly and accurately.
 
@@ -168,8 +85,9 @@ Proper diagnosis saves time and ensures accurate repairs.`
       type: 'video',
       content: {
         videoUrl: 'E0qAowF0MK4',
-        textContent: `
-## Safe Screen Removal Procedures
+        textContent: `## Safe Screen Removal Procedures
+
+(https://youtu.be/E0qAowF0MK4?si=kBAy0oHU_wdJd9L7)
 
 Screen removal is one of the most common repair procedures but requires careful technique to avoid damaging the device or injuring yourself.
 
@@ -207,101 +125,102 @@ Mastering safe removal prevents costly mistakes and ensures successful repairs.`
       type: 'video',
       content: {
         videoUrl: '',
-        textContent: `
-          ## Safe Screen Removal Procedures
+        textContent: `## Safe Screen Removal Procedures
 
-          **Course Objective:** By the end of this lesson, students will be able to identify the tools, safety precautions, and step-by-step process required to safely remove a broken screen from a smartphone without causing further damage to internal components.
+[https://youtu.be/E0qAowF0MK4?si=kBAy0oHU_wdJd9L7](https://youtu.be/E0qAowF0MK4?si=kBAy0oHU_wdJd9L7)
 
-          🔹 **1. Introduction: Why Safe Screen Removal Matters**
+**Course Objective:** By the end of this lesson, students will be able to identify the tools, safety precautions, and step-by-step process required to safely remove a broken screen from a smartphone without causing further damage to internal components.
 
-          Removing a broken screen is one of the most common and delicate tasks in phone repair. The process requires precision, patience, and the correct tools. Improper removal can damage flex cables, connectors, the frame, or internal components like the motherboard. Whether the screen is cracked, shattered, or unresponsive, following proper removal techniques ensures successful replacement and preserves the device's integrity.
+🔹 **1. Introduction: Why Safe Screen Removal Matters**
 
-          🔹 **2. Tools Required for Safe Screen Removal**
+Removing a broken screen is one of the most common and delicate tasks in phone repair. The process requires precision, patience, and the correct tools. Improper removal can damage flex cables, connectors, the frame, or internal components like the motherboard. Whether the screen is cracked, shattered, or unresponsive, following proper removal techniques ensures successful replacement and preserves the device's integrity.
 
-          | Tool | Purpose |
-          |------|---------|
-          | Heat Gun/Heating Pad | Softens the adhesive that holds the screen in place |
-          | Plastic Pry Tools/Spudgers | Lifts screen without damaging internal parts |
-          | Suction Cup Tool | Helps separate the screen from the frame |
-          | Precision Screwdrivers | Opens screws (typically Philips #000 or Torx) |
-          | Tweezers | Handles tiny components and connectors |
-          | ESD Mat & Wrist Strap | Prevents electrostatic discharge |
-          | Plastic Cards/Shim Tools | Slide under the screen to break adhesive |
-          | Magnifying Lamp (optional) | Enhances visibility for intricate parts |
+🔹 **2. Tools Required for Safe Screen Removal**
 
-          🔹 **3. Safety Precautions Before Starting**
+| Tool | Purpose |
+|------|---------|
+| Heat Gun/Heating Pad | Softens the adhesive that holds the screen in place |
+| Plastic Pry Tools/Spudgers | Lifts screen without damaging internal parts |
+| Suction Cup Tool | Helps separate the screen from the frame |
+| Precision Screwdrivers | Opens screws (typically Philips #000 or Torx) |
+| Tweezers | Handles tiny components and connectors |
+| ESD Mat & Wrist Strap | Prevents electrostatic discharge |
+| Plastic Cards/Shim Tools | Slide under the screen to break adhesive |
+| Magnifying Lamp (optional) | Enhances visibility for intricate parts |
 
-          - Power off the device completely
-          - Disconnect the battery first to prevent short circuits
-          - Use an anti-static mat and wrist strap to prevent electrostatic damage
-          - Work in a clean, dust-free, and organized workspace
-          - Do not use metal tools directly under the screen to avoid shorting or breaking components
-          - Be cautious of broken glass splinters—consider wearing safety glasses
+🔹 **3. Safety Precautions Before Starting**
 
-          🔹 **4. Preparation: Assess the Device**
+- Power off the device completely
+- Disconnect the battery first to prevent short circuits
+- Use an anti-static mat and wrist strap to prevent electrostatic damage
+- Work in a clean, dust-free, and organized workspace
+- Do not use metal tools directly under the screen to avoid shorting or breaking components
+- Be cautious of broken glass splinters—consider wearing safety glasses
 
-          Before proceeding with removal, assess:
+🔹 **4. Preparation: Assess the Device**
 
-          **Type of screen (LCD or OLED):** OLEDs are more fragile and require extra care.
+Before proceeding with removal, assess:
 
-          **Device construction:** Is it a unibody device? Does the screen come off from the front or the back?
+**Type of screen (LCD or OLED):** OLEDs are more fragile and require extra care.
 
-          **Level of damage:** If glass is shattered, applying packing tape or plastic film over the screen helps prevent shards from scattering.
+**Device construction:** Is it a unibody device? Does the screen come off from the front or the back?
 
-          **Screen bonding:** Some screens are fused (glass + digitizer + LCD), and removing just the glass is not feasible for beginners.
+**Level of damage:** If glass is shattered, applying packing tape or plastic film over the screen helps prevent shards from scattering.
 
-          🔹 **5. Step-by-Step Screen Removal Process**
+**Screen bonding:** Some screens are fused (glass + digitizer + LCD), and removing just the glass is not feasible for beginners.
 
-          **🔸 Step 1: Remove Back Cover & Screws**
-          - Use a screwdriver to remove all visible screws from the back housing or midframe
-          - For unibody phones, gently heat and pry open the back panel if necessary
+🔹 **5. Step-by-Step Screen Removal Process**
 
-          **🔸 Step 2: Disconnect Battery**
-          - Open the device housing and locate the battery connector
-          - Use a plastic spudger to safely disconnect the battery to avoid power flow during disassembly
+🔸 Step 1: Remove Back Cover & Screws
+- Use a screwdriver to remove all visible screws from the back housing or midframe
+- For unibody phones, gently heat and pry open the back panel if necessary
 
-          **🔸 Step 3: Heat the Edges of the Screen**
-          - Use a heat gun or heating pad at 80–100°C (176–212°F) to soften adhesive
-          - Evenly heat around the screen edges for 1–2 minutes
+🔸 Step 2: Disconnect Battery
+- Open the device housing and locate the battery connector
+- Use a plastic spudger to safely disconnect the battery to avoid power flow during disassembly
 
-          **🔸 Step 4: Use Suction Cup and Pry Tool**
-          - Attach the suction cup near the screen's edge to lift a small gap
-          - Insert a plastic pick or card into the gap and begin sliding along the edge
-          - Continue slowly and carefully—do not force it
+🔸 Step 3: Heat the Edges of the Screen
+- Use a heat gun or heating pad at 80–100°C (176–212°F) to soften adhesive
+- Evenly heat around the screen edges for 1–2 minutes
 
-          **🔸 Step 5: Detach the Screen Connectors**
-          - Once the screen is free, carefully lift it without pulling too hard
-          - Locate the screen flex cable connectors (usually shielded or taped)
-          - Disconnect the LCD and digitizer connectors using tweezers or spudgers
+🔸 Step 4: Use Suction Cup and Pry Tool
+- Attach the suction cup near the screen's edge to lift a small gap
+- Insert a plastic pick or card into the gap and begin sliding along the edge
+- Continue slowly and carefully—do not force it
 
-          **🔸 Step 6: Clean Remaining Adhesive**
-          - After removal, clean the frame or chassis with isopropyl alcohol to remove leftover glue
-          - Be gentle to avoid bending the frame
+🔸 Step 5: Detach the Screen Connectors
+- Once the screen is free, carefully lift it without pulling too hard
+- Locate the screen flex cable connectors (usually shielded or taped)
+- Disconnect the LCD and digitizer connectors using tweezers or spudgers
 
-          🔹 **6. Tips for Difficult Removals**
+🔸 Step 6: Clean Remaining Adhesive
+- After removal, clean the frame or chassis with isopropyl alcohol to remove leftover glue
+- Be gentle to avoid bending the frame
 
-          - If the screen is badly shattered and suction doesn't work, use tape over the screen before lifting
-          - For OLED screens, apply less heat and use thinner pry tools to reduce risk of burn marks
-          - If the screen is fused, it's safer to replace the full assembly rather than attempt separating layers
+🔹 **6. Tips for Difficult Removals**
 
-          🔹 **7. Final Inspection**
+- If the screen is badly shattered and suction doesn't work, use tape over the screen before lifting
+- For OLED screens, apply less heat and use thinner pry tools to reduce risk of burn marks
+- If the screen is fused, it's safer to replace the full assembly rather than attempt separating layers
 
-          After the screen is removed:
-          - Inspect the motherboard and connectors for any damage or corrosion
-          - Ensure the flex cables and frame clips are intact
-          - Prepare the device for screen replacement or further diagnostics
+🔹 **7. Final Inspection**
 
-          🔹 **8. Common Mistakes to Avoid**
+After the screen is removed:
+- Inspect the motherboard and connectors for any damage or corrosion
+- Ensure the flex cables and frame clips are intact
+- Prepare the device for screen replacement or further diagnostics
 
-          - **Applying too much heat** – can damage internal components
-          - **Using metal tools under the screen** – can scratch or short circuits
-          - **Forcing a cracked screen** – may damage the housing or break internals
-          - **Skipping battery disconnection** – can cause power surge and damage
+🔹 **8. Common Mistakes to Avoid**
 
-          ## Conclusion
+- **Applying too much heat** – can damage internal components
+- **Using metal tools under the screen** – can scratch or short circuits
+- **Forcing a cracked screen** – may damage the housing or break internals
+- **Skipping battery disconnection** – can cause power surge and damage
 
-          Screen removal is one of the most vital skills in smartphone repair. It combines technique, patience, and the right tools. With proper training and precautions, even severely damaged screens can be removed safely, preserving the device for quality repair and replacement.
-        `
+## Conclusion
+
+Screen removal is one of the most vital skills in smartphone repair. It combines technique, patience, and the right tools. With proper training and precautions, even severely damaged screens can be removed safely, preserving the device for quality repair and replacement.
+`
       }
     },
     {
@@ -311,126 +230,127 @@ Mastering safe removal prevents costly mistakes and ensures successful repairs.`
       type: 'video',
       content: {
         videoUrl: '',
-        textContent: `
-          ## Proper Display Installation for Long-Lasting Performance
+        textContent: `## Proper Display Installation for Long-Lasting Performance
 
-          **Why Proper Installation Matters**
+[https://youtu.be/-8muMM9KUX4?si=4eVz6KN-CoQxlHPo](https://youtu.be/-8muMM9KUX4?si=4eVz6KN-CoQxlHPo)
 
-          Replacing a display is more than just plugging in a new screen. A poorly installed display can cause:
-          - Touch sensitivity issues
-          - Gaps in the frame
-          - Loose connections
-          - Dust infiltration
-          - Premature failure
+**Why Proper Installation Matters**
 
-          Proper installation is essential to restore full functionality, protect the internal components, and ensure customer satisfaction.
+Replacing a display is more than just plugging in a new screen. A poorly installed display can cause:
+- Touch sensitivity issues
+- Gaps in the frame
+- Loose connections
+- Dust infiltration
+- Premature failure
 
-          🔹 **2. Tools & Materials Needed**
+Proper installation is essential to restore full functionality, protect the internal components, and ensure customer satisfaction.
 
-          | Tool | Purpose |
-          |------|---------|
-          | Replacement Screen (LCD/OLED Assembly) | New display part specific to device model |
-          | Heat Gun/Heating Pad | Softens adhesives |
-          | Precision Screwdrivers | Reassemble frame and housing |
-          | Plastic Pry Tools & Spudgers | Handle components safely |
-          | Tweezers | Connect delicate flex cables |
-          | Adhesive Strips/Liquid Glue (LOCA, B-7000) | Secure screen in place |
-          | Isopropyl Alcohol (90%+) | Clean surfaces before installation |
-          | Suction Cup Tool | Positioning and lifting the display |
-          | Screen Clamp Kit or Rubber Bands | Apply pressure while adhesive cures |
-          | ESD Strap/Mat | Prevent electrostatic discharge |
+🔹 **2. Tools & Materials Needed**
 
-          🔹 **3. Pre-Installation Checklist**
+| Tool | Purpose |
+|------|---------|
+| Replacement Screen (LCD/OLED Assembly) | New display part specific to device model |
+| Heat Gun/Heating Pad | Softens adhesives |
+| Precision Screwdrivers | Reassemble frame and housing |
+| Plastic Pry Tools & Spudgers | Handle components safely |
+| Tweezers | Connect delicate flex cables |
+| Adhesive Strips/Liquid Glue (LOCA, B-7000) | Secure screen in place |
+| Isopropyl Alcohol (90%+) | Clean surfaces before installation |
+| Suction Cup Tool | Positioning and lifting the display |
+| Screen Clamp Kit or Rubber Bands | Apply pressure while adhesive cures |
+| ESD Strap/Mat | Prevent electrostatic discharge |
 
-          Before installing the new display:
-          - **Verify compatibility:** Correct model, connector type, and size
-          - **Inspect the new screen** for cracks, dead pixels, or missing components
-          - **Test the screen before final installation** by connecting it while the device is open
-          - **Ensure the battery is disconnected** to avoid electrical damage
-          - **Clean the phone's frame** to remove dust, adhesive residue, or glass particles
+🔹 **3. Pre-Installation Checklist**
 
-          🔹 **4. Step-by-Step Display Installation Process**
+Before installing the new display:
+- **Verify compatibility:** Correct model, connector type, and size
+- **Inspect the new screen** for cracks, dead pixels, or missing components
+- **Test the screen before final installation** by connecting it while the device is open
+- **Ensure the battery is disconnected** to avoid electrical damage
+- **Clean the phone's frame** to remove dust, adhesive residue, or glass particles
 
-          **🔸 Step 1: Connect and Test Before Final Mounting**
-          - Temporarily plug in the new screen's flex cables to the motherboard
-          - Power on the device and test:
-            - Display brightness and clarity
-            - Touch response across entire screen
-            - No dead spots or flickering
-          - If the screen works correctly, proceed to mount it
+🔹 **4. Step-by-Step Display Installation Process**
 
-          **🔸 Step 2: Prepare the Frame**
-          - Remove any old glue, tape, or broken glass fragments
-          - Clean the frame and edges with isopropyl alcohol
-          - If the frame is bent or warped, use light pressure to straighten it
+🔸 Step 1: Connect and Test Before Final Mounting
+- Temporarily plug in the new screen's flex cables to the motherboard
+- Power on the device and test:
+  - Display brightness and clarity
+  - Touch response across entire screen
+  - No dead spots or flickering
+- If the screen works correctly, proceed to mount it
 
-          **🔸 Step 3: Apply Adhesive or Tape**
-          Choose between:
-          - **Pre-cut double-sided adhesive** for clean installs (e.g., 3M tape)
-          - **Liquid adhesive (B-7000)** for stronger bond (requires drying time)
-          - Apply evenly along the edges—avoid adhesive near internal components
+🔸 Step 2: Prepare the Frame
+- Remove any old glue, tape, or broken glass fragments
+- Clean the frame and edges with isopropyl alcohol
+- If the frame is bent or warped, use light pressure to straighten it
 
-          **🔸 Step 4: Seat the New Display**
-          - Gently align the new screen with the frame and begin pressing it into place from one side to the other
-          - Make sure the screen flex cables are not pinched or bent during installation
-          - Once seated, connect all flex cables securely and reattach shields if required
+🔸 Step 3: Apply Adhesive or Tape
+Choose between:
+- **Pre-cut double-sided adhesive** for clean installs (e.g., 3M tape)
+- **Liquid adhesive (B-7000)** for stronger bond (requires drying time)
+- Apply evenly along the edges—avoid adhesive near internal components
 
-          **🔸 Step 5: Secure and Let Adhesive Cure**
-          - Use clamps, screen holders, or rubber bands to hold the screen firmly in place
-          - Allow 2–4 hours for adhesive to cure (24 hours for full strength)
-          - Avoid powering on the device until the adhesive has partially set
+🔸 Step 4: Seat the New Display
+- Gently align the new screen with the frame and begin pressing it into place from one side to the other
+- Make sure the screen flex cables are not pinched or bent during installation
+- Once seated, connect all flex cables securely and reattach shields if required
 
-          **🔸 Step 6: Reassemble the Device**
-          - Reinstall internal screws, battery connector, and back cover
-          - Power on the phone and test all functions again:
-            - Display
-            - Touch
-            - Front camera alignment
-            - Proximity sensor and earpiece
-          - If everything functions properly, the replacement is complete
+🔸 Step 5: Secure and Let Adhesive Cure
+- Use clamps, screen holders, or rubber bands to hold the screen firmly in place
+- Allow 2–4 hours for adhesive to cure (24 hours for full strength)
+- Avoid powering on the device until the adhesive has partially set
 
-          🔹 **5. Best Practices for Long-Lasting Display Performance**
+🔸 Step 6: Reassemble the Device
+- Reinstall internal screws, battery connector, and back cover
+- Power on the phone and test all functions again:
+  - Display
+  - Touch
+  - Front camera alignment
+  - Proximity sensor and earpiece
+- If everything functions properly, the replacement is complete
 
-          - **Avoid overtightening screws:** Can warp the screen or damage threads
-          - **Use OEM-quality screens:** Cheaper screens may not last
-          - **Avoid using fingers on adhesive:** Oil can affect bonding
-          - **Always test the screen before final gluing:** Prevents repeated disassembly
-          - **Let adhesives fully cure** before returning the phone to the customer
+🔹 **5. Best Practices for Long-Lasting Display Performance**
 
-          🔹 **6. Common Installation Mistakes to Avoid**
+- **Avoid overtightening screws:** Can warp the screen or damage threads
+- **Use OEM-quality screens:** Cheaper screens may not last
+- **Avoid using fingers on adhesive:** Oil can affect bonding
+- **Always test the screen before final gluing:** Prevents repeated disassembly
+- **Let adhesives fully cure** before returning the phone to the customer
 
-          | Mistake | Consequence |
-          |---------|-------------|
-          | Not testing before installation | Time wasted if the screen is defective |
-          | Forgetting to disconnect the battery | Can cause a short circuit |
-          | Leaving dust between screen and frame | Leads to display issues or weak bonding |
-          | Misaligned screen | Affects look and function; may lift over time |
-          | Skipping adhesive curing time | Screen may fall off or allow dust entry |
+🔹 **6. Common Installation Mistakes to Avoid**
 
-          🔹 **7. Post-Installation Quality Check**
+| Mistake | Consequence |
+|---------|-------------|
+| Not testing before installation | Time wasted if the screen is defective |
+| Forgetting to disconnect the battery | Can cause a short circuit |
+| Leaving dust between screen and frame | Leads to display issues or weak bonding |
+| Misaligned screen | Affects look and function; may lift over time |
+| Skipping adhesive curing time | Screen may fall off or allow dust entry |
 
-          Run the device through a functionality checklist:
-          ✔ Screen clarity, brightness, and touch accuracy
-          ✔ No ghost touches or flickering
-          ✔ Camera and proximity sensor alignment
-          ✔ Frame flush with screen, no gaps
-          ✔ No flexing or movement when applying light pressure
+🔹 **7. Post-Installation Quality Check**
 
-          Optionally, use diagnostic apps to check touch zones and sensor alignment.
+Run the device through a functionality checklist:
+✔ Screen clarity, brightness, and touch accuracy
+✔ No ghost touches or flickering
+✔ Camera and proximity sensor alignment
+✔ Frame flush with screen, no gaps
+✔ No flexing or movement when applying light pressure
 
-          🔹 **8. Practical Tips from Industry Technicians**
+Optionally, use diagnostic apps to check touch zones and sensor alignment.
 
-          - Always keep extra adhesive and clamps on hand for emergency fixes
-          - Keep a log of screen replacements and test results for quality control
-          - If you're doing high-volume repair, consider a UV curing station for faster adhesive setup
-          - Store replacement screens in anti-static bags and away from heat or pressure
+🔹 **8. Practical Tips from Industry Technicians**
 
-          📺 **YOUTUBE: Mobile Repair Course Video For Beginners - https://youtu.be/-8muMM9KUX4?si=4eVz6KN-CoQxlHPo**
+- Always keep extra adhesive and clamps on hand for emergency fixes
+- Keep a log of screen replacements and test results for quality control
+- If you're doing high-volume repair, consider a UV curing station for faster adhesive setup
+- Store replacement screens in anti-static bags and away from heat or pressure
 
-          ## Conclusion
+📺 **YOUTUBE: Mobile Repair Course Video For Beginners - https://youtu.be/-8muMM9KUX4?si=4eVz6KN-CoQxlHPo**
 
-          Proper installation of a smartphone display is an essential skill that blends technical knowledge, tool proficiency, and precision. Following a careful process ensures high-quality repairs, improves customer satisfaction, and extends the life of the device.
-        `
+## Conclusion
+
+Proper installation of a smartphone display is an essential skill that blends technical knowledge, tool proficiency, and precision. Following a careful process ensures high-quality repairs, improves customer satisfaction, and extends the life of the device.
+`
       }
     },
     {

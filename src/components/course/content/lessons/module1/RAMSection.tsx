@@ -29,31 +29,31 @@ const RAMSection = () => {
         <div className="grid md:grid-cols-2 gap-4 mb-4">
           <div className="border rounded-lg p-4">
             <h5 className="font-semibold text-blue-600 mb-2">RAM Types:</h5>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• <strong>DDR3:</strong> Older standard</li>
-              <li>• <strong>DDR4:</strong> Current mainstream</li>
-              <li>• <strong>DDR5:</strong> Latest, fastest standard</li>
-              <li>• <strong>Form Factors:</strong> DIMM (desktop), SO-DIMM (laptop)</li>
+            <ul className="modern-bullet-list text-sm">
+              <li><strong>DDR3:</strong> Older standard</li>
+              <li><strong>DDR4:</strong> Current mainstream</li>
+              <li><strong>DDR5:</strong> Latest, fastest standard</li>
+              <li><strong>Form Factors:</strong> DIMM (desktop), SO-DIMM (laptop)</li>
             </ul>
           </div>
           <div className="border rounded-lg p-4">
             <h5 className="font-semibold text-purple-600 mb-2">Key Features:</h5>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• <strong>Capacity:</strong> 4GB, 8GB, 16GB, 32GB+</li>
-              <li>• <strong>Speed:</strong> MHz rating</li>
-              <li>• <strong>Temporary:</strong> Erased when power off</li>
-              <li>• <strong>Fast Access:</strong> Much faster than storage</li>
+            <ul className="modern-bullet-list text-sm">
+              <li><strong>Capacity:</strong> 4GB, 8GB, 16GB, 32GB+</li>
+              <li><strong>Speed:</strong> MHz rating</li>
+              <li><strong>Temporary:</strong> Erased when power off</li>
+              <li><strong>Fast Access:</strong> Much faster than storage</li>
             </ul>
           </div>
         </div>
 
         <div className="bg-red-50 p-4 rounded-lg">
           <h5 className="font-semibold text-red-800 mb-2">Common RAM Issues:</h5>
-          <ul className="text-red-700 text-sm space-y-1">
-            <li>• Blue Screen of Death (BSOD)</li>
-            <li>• Random system crashes</li>
-            <li>• Failure to boot</li>
-            <li>• Faulty or incompatible modules</li>
+          <ul className="modern-bullet-list text-red-700 text-sm">
+            <li>Blue Screen of Death (BSOD)</li>
+            <li>Random system crashes</li>
+            <li>Failure to boot</li>
+            <li>Faulty or incompatible modules</li>
           </ul>
         </div>
       </CardContent>

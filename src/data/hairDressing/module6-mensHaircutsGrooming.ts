@@ -12,9 +12,12 @@ export const module6MensHaircutsGrooming: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/g3PRJgSfFuk',
-        textContent: `# ✂️ Men's Haircuts and Grooming
+        textContent: `
+# **Module 6: Men’s Haircuts and Grooming**
 
-Men's haircuts and grooming techniques have evolved over time, requiring skill and precision to achieve polished results. From fades and tapers to beard shaping and clipper techniques, mastering these elements is essential for professional barbers and hairstylists.
+Men’s haircuts and grooming have become increasingly sophisticated, with clients expecting not just a basic cut, but a tailored, stylish, and well-groomed look. Mastering fades, tapers, beard shaping, and advanced clipper techniques is essential for any barber or stylist aiming to deliver modern, high-quality results. This module explores the theory, techniques, and artistry behind the most in-demand men’s grooming services.
+
+---
 
 ## 1. Fades and Tapers
 

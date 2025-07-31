@@ -1,58 +1,52 @@
 
 import { Course } from '@/types/course';
-import { module1PodcastBasics } from './module1-podcastBasics';
-import { module2ContentStrategy } from './module2-contentStrategy';
-import { module3RecordingProduction } from './module3-recordingProduction';
-import { module4PodcastMarketing } from './module4-podcastMarketing';
-import { module5HostingDistribution } from './module5-hostingDistribution';
-import { module6MarketingPromotion } from './module6-marketingPromotion';
-import { module6AnalyticsOptimization } from './module6-analyticsOptimization';
-import { module7MonetizationStrategies } from './module7-monetizationStrategies';
-import { module9ProjectTeamManagement } from './module9/index';
-import { module10LaunchingClientShows } from './module10-launchingClientShows';
+import { module1IntroductionToPodcasting } from './module1/index';
+import { module2PreProductionPlanning } from './module2/index';
+import { module3RecordingProduction } from './module3/index';
+import { module4AudioEditingEssentials } from './module4/index';
+import { module5HostingDistribution } from './module5/index';
+import { module6MarketingPromotion } from './module6/index';
+import { module7MonetizationStrategies } from './module7/index';
+import { module8AnalyticsGrowth } from './module8/index';
+import { module9ProjectManagementAutomation } from './module9/index';
+import { module10BusinessScaling } from './module10/index';
 
 export const podcastManagementCourse: Course = {
   id: 'podcast-management',
-  title: 'Mastering Podcast Management',
-  description: 'Master the complete podcast lifecycle from concept to monetization. Learn technical skills, content strategy, guest coordination, marketing, and revenue optimization.',
+  title: 'Podcast Management',
+  description: 'Master the complete podcast creation, management, and business development process',
   instructor: {
-    name: 'Sarah Mitchell',
-    title: 'Senior Podcast Producer & Digital Media Strategist',
-    bio: 'With over 8 years in digital media and podcast production, Sarah has managed top-ranking shows across multiple genres, helping creators grow their audiences and revenue streams.',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b332c63c?w=150&h=150&fit=crop&crop=face'
+    name: 'Podcast Management Expert',
+    title: 'Senior Podcast Consultant',
+    avatar: '/avatars/podcast-expert.jpg',
+    bio: 'Experienced podcast consultant with over 10 years in the industry, helping creators build successful shows and businesses.'
   },
-  duration: '10 weeks',
   level: 'Intermediate',
-  category: 'Media Production',
-  is_free: false,
-  price: 1200,
-  currency: 'ZAR',
-  students: 892,
+  duration: '40 hours',
+  students: 1250,
   rating: 4.8,
-  thumbnail: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&h=600&fit=crop',
+  price: 299,
+  currency: 'USD',
+  is_free: false,
+  thumbnail: '/thumbnails/podcast-management.jpg',
+  category: 'Business',
   learningObjectives: [
-    'Develop comprehensive podcast content strategies',
-    'Master technical aspects of podcast production',
-    'Build effective guest coordination systems',
-    'Create powerful marketing and promotion campaigns',
-    'Implement multiple monetization strategies',
-    'Set up professional hosting and distribution systems',
-    'Use analytics to optimize podcast performance',
-    'Master project management and team collaboration',
-    'Launch and manage successful podcast projects',
-    'Work professionally with clients and manage contracts',
-    'Price services effectively and manage multiple shows'
+    'Understand the podcast industry landscape and opportunities',
+    'Develop compelling show concepts and content strategies',
+    'Master professional recording and production techniques',
+    'Learn effective marketing and audience growth strategies',
+    'Build sustainable monetization and business models'
   ],
   modules: [
-    module1PodcastBasics,
-    module2ContentStrategy,
+    module1IntroductionToPodcasting,
+    module2PreProductionPlanning,
     module3RecordingProduction,
-    module4PodcastMarketing,
+    module4AudioEditingEssentials,
     module5HostingDistribution,
     module6MarketingPromotion,
-    module6AnalyticsOptimization,
     module7MonetizationStrategies,
-    module9ProjectTeamManagement,
-    module10LaunchingClientShows
+    module8AnalyticsGrowth,
+    module9ProjectManagementAutomation,
+    module10BusinessScaling
   ]
 };

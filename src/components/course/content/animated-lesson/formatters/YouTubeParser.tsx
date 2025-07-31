@@ -33,6 +33,7 @@ export const parseYouTubeRenderer = (text: string) => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               className="absolute top-0 left-0 w-full h-full transition-all duration-300"
+              style={{ minHeight: '500px' }}
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -74,7 +75,8 @@ export const parseYouTubeLink = (text: string) => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-              className="absolute top-0 left-0 w-full h-full transition-all duration-300"
+              className="absolute top-0 left-0 w-full h-full"
+              style={{ minHeight: '500px' }}
             />
           </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -108,6 +110,7 @@ export const parseYouTubeLink = (text: string) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute top-0 left-0 w-full h-full"
+                style={{ minHeight: '500px' }}
               />
             </div>
           </div>
@@ -169,6 +172,7 @@ export const parseYouTubeLink = (text: string) => {
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
                 className="absolute top-0 left-0 w-full h-full transition-all duration-300"
+                style={{ minHeight: '500px' }}
               />
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

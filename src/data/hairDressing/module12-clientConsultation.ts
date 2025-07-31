@@ -12,251 +12,69 @@ export const module12ClientConsultation: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://www.youtube.com/watch?v=nbkg5VuWunk',
-        textContent: `
-          <div class="space-y-8">
-            <div class="bg-gradient-to-r from-pink-50 to-purple-50 p-6 rounded-lg border-l-4 border-pink-500">
-              <h2 class="text-2xl font-bold text-gray-800 mb-4">💼 Client Consultation and Business Skills</h2>
-              <p class="text-gray-700 leading-relaxed">
-                Professional client consultation is the foundation of successful hair services. This comprehensive lesson will teach you how to understand client needs, recommend appropriate treatments, and manage concerns effectively to build lasting client relationships.
-              </p>
-            </div>
+        textContent: `# **Module 12: Client Consultation and Business Skills**
 
-            <div class="bg-white p-6 rounded-lg shadow-sm border">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">🎯 Learning Objectives</h3>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">•</span>
-                  <span>Understand how to identify and address client needs and expectations</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">•</span>
-                  <span>Learn to recommend appropriate hairstyles and treatments based on client preferences</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">•</span>
-                  <span>Develop strategies for managing client concerns and handling hair-related challenges</span>
-                </li>
-              </ul>
-            </div>
+## 💼 Client Consultation and Business Skills
 
-            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">🤝 Understanding Client Needs and Expectations</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">The Consultation Process</h4>
-                  <div class="space-y-3">
-                    <div class="bg-blue-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Initial Interaction:</h5>
-                      <ul class="text-gray-700 text-sm space-y-1 mt-1">
-                        <li>• Welcome clients in a professional and friendly manner</li>
-                        <li>• Create a comfortable, relaxed environment where clients feel heard</li>
-                        <li>• Establish trust from the first moment of contact</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="bg-blue-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Active Listening Techniques:</h5>
-                      <ul class="text-gray-700 text-sm space-y-1 mt-1">
-                        <li>• Use open-ended questions to learn about lifestyle, preferences, and hair goals</li>
-                        <li>• Confirm understanding by paraphrasing what the client says</li>
-                        <li>• Note any past experiences—positive or negative—with previous stylists</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="bg-blue-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Identifying Key Needs:</h5>
-                      <ul class="text-gray-700 text-sm space-y-1 mt-1">
-                        <li>• Determine what the client wants to change or maintain</li>
-                        <li>• Recognize hair-related challenges (dryness, frizz, thinning, color fading)</li>
-                        <li>• Establish client priorities (easy maintenance, trendy style, hair health)</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+Professional client consultation is the foundation of successful hair services. This comprehensive lesson will teach you how to understand client needs, recommend appropriate treatments, and manage concerns effectively to build lasting client relationships.
 
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">Managing Expectations</h4>
-                  <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-blue-100 p-4 rounded-lg">
-                      <h5 class="font-semibold text-gray-800 mb-2">Setting Realistic Outcomes:</h5>
-                      <ul class="space-y-1 text-gray-700 text-sm">
-                        <li>• Be transparent about what's achievable in one session</li>
-                        <li>• Explain factors that influence results</li>
-                        <li>• Discuss hair texture and previous treatments</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="bg-blue-100 p-4 rounded-lg">
-                      <h5 class="font-semibold text-gray-800 mb-2">Providing Visual Examples:</h5>
-                      <ul class="space-y-1 text-gray-700 text-sm">
-                        <li>• Use photos, charts, or color swatches</li>
-                        <li>• Show potential outcomes clearly</li>
-                        <li>• Clarify ongoing upkeep requirements</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+## 🎯 Learning Objectives
 
-            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">✨ Recommending Suitable Styles and Treatments</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-3">Matching Styles to Personalities and Lifestyles</h4>
-                  <div class="space-y-3">
-                    <div class="bg-green-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Lifestyle Considerations:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Recommend low-maintenance styles for busy clients and intricate options for those who enjoy frequent styling.
-                      </p>
-                    </div>
-                    
-                    <div class="bg-green-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Face Shape and Features:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Suggest cuts that complement facial structure and enhance natural features using highlights or layers.
-                      </p>
-                    </div>
-                    
-                    <div class="bg-green-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Hair Texture and Length:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Choose styles that work with natural texture and discuss options for desired length changes.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+• Understand how to identify and address client needs and expectations
+• Learn to recommend appropriate hairstyles and treatments based on client preferences
+• Develop strategies for managing client concerns and handling hair-related challenges
 
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-3">Treatment Recommendations</h4>
-                  <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-green-100 p-4 rounded-lg">
-                      <h5 class="font-semibold text-gray-800 mb-2">Addressing Common Conditions:</h5>
-                      <ul class="space-y-1 text-gray-700 text-sm">
-                        <li>• Conditioning treatments for dry/damaged hair</li>
-                        <li>• Smoothing systems for frizz control</li>
-                        <li>• Color services for enhancement or correction</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="bg-green-100 p-4 rounded-lg">
-                      <h5 class="font-semibold text-gray-800 mb-2">Explaining Benefits:</h5>
-                      <ul class="space-y-1 text-gray-700 text-sm">
-                        <li>• Educate on home maintenance</li>
-                        <li>• Highlight professional follow-up importance</li>
-                        <li>• Provide realistic timeline expectations</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+## 🤝 Understanding Client Needs and Expectations
 
-            <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">🛡️ Managing Client Concerns and Hair Conditions</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-3">Common Client Concerns</h4>
-                  <div class="space-y-3">
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Previous Bad Experiences:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Listen empathetically and reassure with examples of expertise and clear action plans.
-                      </p>
-                    </div>
-                    
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Uncertainty or Indecision:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Guide clients by presenting tailored options and explaining pros and cons of each approach.
-                      </p>
-                    </div>
-                    
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Time and Budget Constraints:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Be upfront about costs and suggest phased approaches when budget or time is limited.
-                      </p>
-                    </div>
-                  </div>
-                </div>
+### The Consultation Process
 
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-3">Handling Hair Conditions</h4>
-                  <div class="space-y-3">
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Damage or Breakage:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Identify over-processed hair and offer strengthening treatments with gentle care instructions.
-                      </p>
-                    </div>
-                    
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Thinning or Hair Loss:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Discuss causes, suggest volumizing styles, and refer to specialists when appropriate.
-                      </p>
-                    </div>
-                    
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">Color Issues:</h5>
-                      <p class="text-gray-700 text-sm mt-1">
-                        Correct uneven tones with appropriate toners and propose subtle enhancements.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+• Initial Interaction: Welcome clients in a professional and friendly manner, create a comfortable, relaxed environment where clients feel heard, and establish trust from the first moment of contact.
+• Active Listening Techniques: Use open-ended questions to learn about lifestyle, preferences, and hair goals, confirm understanding by paraphrasing what the client says, and note any past experiences—positive or negative—with previous stylists.
+• Identifying Key Needs: Determine what the client wants to change or maintain, recognize hair-related challenges (dryness, frizz, thinning, color fading), and establish client priorities (easy maintenance, trendy style, hair health).
 
-            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">🏆 Tips for Building Client Trust and Retention</h3>
-              <div class="grid md:grid-cols-2 gap-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">Professional Practices:</h4>
-                  <ul class="space-y-1 text-gray-700 text-sm">
-                    <li>• Maintain professional demeanor throughout consultation</li>
-                    <li>• Follow up after appointments to check satisfaction</li>
-                    <li>• Keep detailed records of client preferences and services</li>
-                    <li>• Provide personalized experiences on return visits</li>
-                  </ul>
-                </div>
-                
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">Communication Excellence:</h4>
-                  <ul class="space-y-1 text-gray-700 text-sm">
-                    <li>• Listen actively and understand client goals completely</li>
-                    <li>• Recommend treatments based on hair type and lifestyle</li>
-                    <li>• Manage concerns with empathy and clear communication</li>
-                    <li>• Continuously improve consultation skills</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+### Managing Expectations
 
-            <div class="bg-gradient-to-r from-pink-100 to-purple-100 p-6 rounded-lg">
-              <h3 class="text-xl font-semibold text-gray-800 mb-3">🌟 Key Takeaways</h3>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Client consultation is the foundation of professional hair services</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Active listening and empathy build trust and understanding</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Matching recommendations to lifestyle ensures client satisfaction</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Professional follow-up and record-keeping enhance client relationships</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+• Setting Realistic Outcomes: Be transparent about what's achievable in one session, explain factors that influence results, and discuss hair texture and previous treatments.
+• Providing Visual Examples: Use photos, charts, or color swatches, show potential outcomes clearly, and clarify ongoing upkeep requirements.
+
+## ✨ Recommending Suitable Styles and Treatments
+
+### Matching Styles to Personalities and Lifestyles
+
+• Lifestyle Considerations: Recommend low-maintenance styles for busy clients and intricate options for those who enjoy frequent styling.
+• Face Shape and Features: Suggest cuts that complement facial structure and enhance natural features using highlights or layers.
+• Hair Texture and Length: Choose styles that work with natural texture and discuss options for desired length changes.
+
+### Treatment Recommendations
+
+• Addressing Common Conditions: Conditioning treatments for dry/damaged hair, smoothing systems for frizz control, color services for enhancement or correction.
+• Explaining Benefits: Educate on home maintenance, highlight professional follow-up importance, and provide realistic timeline expectations.
+
+## 🛡️ Managing Client Concerns and Hair Conditions
+
+### Common Client Concerns
+
+• Previous Bad Experiences: Listen empathetically and reassure with examples of expertise and clear action plans.
+• Uncertainty or Indecision: Guide clients by presenting tailored options and explaining pros and cons of each approach.
+• Time and Budget Constraints: Be upfront about costs and suggest phased approaches when budget or time is limited.
+
+### Handling Hair Conditions
+
+• Damage or Breakage: Identify over-processed hair and offer strengthening treatments with gentle care instructions.
+• Thinning or Hair Loss: Discuss causes, suggest volumizing styles, and refer to specialists when appropriate.
+• Color Issues: Correct uneven tones with appropriate toners and propose subtle enhancements.
+
+## 🏆 Tips for Building Client Trust and Retention
+
+• Professional Practices: Maintain professional demeanor throughout consultation, follow up after appointments to check satisfaction, keep detailed records of client preferences and services, and provide personalized experiences on return visits.
+• Communication Excellence: Listen actively and understand client goals completely, recommend treatments based on hair type and lifestyle, manage concerns with empathy and clear communication, and continuously improve consultation skills.
+
+## 🌟 Key Takeaways
+
+• Client consultation is the foundation of professional hair services
+• Active listening and empathy build trust and understanding
+• Matching recommendations to lifestyle ensures client satisfaction
+• Professional follow-up and record-keeping enhance client relationships
         `
       }
     },

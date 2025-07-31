@@ -3,480 +3,193 @@ import type { VideoLesson } from '@/types/course';
 
 export const lesson2LaptopParts: VideoLesson = {
   id: 2,
-  title: 'Laptop Parts – Battery, Cooling Fan, Keyboard, Screen',
-  duration: '50 min',
+  title: 'Laptop Disassembly, Tools, and ESD Safety',
+  duration: '60 min',
   type: 'video',
   content: {
-    videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+    videoUrl: 'https://www.youtube.com/embed/mPzcsU8Cpco',
     textContent: `
-      <div class="space-y-8">
-        <div class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-2xl p-8 text-white">
-          <div class="text-center space-y-4">
-            <div class="text-6xl mb-4">💻</div>
-            <h2 class="text-3xl font-bold">✅ Module 2: Laptop Disassembly and Identification</h2>
-            <p class="text-xl opacity-90">Topics: Battery, Cooling Fan, Keyboard, Screen</p>
-          </div>
-        </div>
+# 🖥️ Module 2: Laptop Disassembly, Tools, and ESD Safety
 
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-blue-600 mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center text-lg">🔋</span>
-            1. Battery
-          </h3>
-          
-          <div class="space-y-4">
-            <div class="bg-blue-50 p-4 rounded-lg">
-              <h4 class="font-bold text-blue-800 mb-2">Purpose</h4>
-              <p class="text-blue-700">Provides portable power to the laptop when it is not connected to an external power source.</p>
-            </div>
+This module focuses on the essential skills needed to safely disassemble laptops, use proper tools, and implement ESD (Electrostatic Discharge) safety measures. Students will learn systematic disassembly procedures, tool identification and usage, and critical safety protocols to prevent damage to sensitive electronic components.
 
-            <div class="grid md:grid-cols-2 gap-4">
-              <div class="bg-green-50 p-4 rounded-lg">
-                <h4 class="font-bold text-green-800 mb-2">Types</h4>
-                <ul class="text-green-700 space-y-1">
-                  <li>• <strong>Lithium-ion (Li-ion):</strong> Most common type; offers high energy density and lighter weight</li>
-                  <li>• <strong>Lithium-polymer (Li-Po):</strong> Similar to Li-ion but more flexible in shape and slightly safer</li>
-                </ul>
-              </div>
-              
-              <div class="bg-purple-50 p-4 rounded-lg">
-                <h4 class="font-bold text-purple-800 mb-2">Components</h4>
-                <ul class="text-purple-700 space-y-1">
-                  <li>• Cells (usually multiple in series/parallel)</li>
-                  <li>• Battery management system (BMS) for monitoring charge, temperature, and health</li>
-                </ul>
-              </div>
-            </div>
+## 🔧 Essential Tools for Laptop Repair
 
-            <div class="bg-yellow-50 p-4 rounded-lg">
-              <h4 class="font-bold text-yellow-800 mb-2">Key Specifications</h4>
-              <ul class="text-yellow-700 space-y-1">
-                <li>• <strong>Voltage:</strong> e.g., 11.1V, 14.8V</li>
-                <li>• <strong>Capacity:</strong> measured in mAh or Wh, determining battery life</li>
-              </ul>
-            </div>
+### **Basic Hand Tools**
+- **Phillips and Torx screwdrivers** (various sizes)
+- **Plastic pry tools and spudgers** for safe component removal
+- **Tweezers** for handling small screws and connectors
+- **Anti-static wrist strap** for ESD protection
+- **Magnifying glass or loupe** for detailed inspection
 
-            <div class="bg-red-50 p-4 rounded-lg">
-              <h4 class="font-bold text-red-800 mb-2">Common Issues</h4>
-              <ul class="text-red-700 space-y-1">
-                <li>• Reduced battery life due to wear (charge cycles)</li>
-                <li>• Swelling or bulging caused by gas buildup — safety hazard, immediate replacement needed</li>
-                <li>• Failure to charge due to faulty charging circuits or DC jack</li>
-              </ul>
-            </div>
+### **Specialized Equipment**
+- **Heat gun or hot plate** for adhesive removal
+- **Multimeter** for electrical testing
+- **Battery tester** for power diagnostics
+- **Cleaning supplies** (isopropyl alcohol, microfiber cloths)
 
-            <div class="bg-cyan-50 p-4 rounded-lg">
-              <h4 class="font-bold text-cyan-800 mb-2">Maintenance Tips</h4>
-              <ul class="text-cyan-700 space-y-1">
-                <li>• Avoid full discharges frequently</li>
-                <li>• Keep battery cool and avoid overheating</li>
-                <li>• Use manufacturer-approved chargers</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+## ⚡ ESD Safety Fundamentals
 
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-green-600 mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-full bg-green-600 text-white flex items-center justify-center text-lg">🌀</span>
-            2. Cooling Fan
-          </h3>
-          
-          <div class="space-y-4">
-            <div class="bg-green-50 p-4 rounded-lg">
-              <h4 class="font-bold text-green-800 mb-2">Purpose</h4>
-              <p class="text-green-700">Prevents overheating by dissipating heat generated by the CPU, GPU, and other components.</p>
-            </div>
+### **What is ESD?**
+Electrostatic Discharge occurs when static electricity builds up and discharges through electronic components, potentially causing immediate or latent damage.
 
-            <div class="grid md:grid-cols-2 gap-4">
-              <div class="bg-blue-50 p-4 rounded-lg">
-                <h4 class="font-bold text-blue-800 mb-2">Components</h4>
-                <ul class="text-blue-700 space-y-1">
-                  <li>• Fan blades</li>
-                  <li>• Motor</li>
-                  <li>• Air vents and heat sinks (usually copper or aluminum)</li>
-                </ul>
-              </div>
-              
-              <div class="bg-purple-50 p-4 rounded-lg">
-                <h4 class="font-bold text-purple-800 mb-2">Operation</h4>
-                <ul class="text-purple-700 space-y-1">
-                  <li>• Fans spin faster or slower depending on temperature sensors and system load</li>
-                  <li>• Heat pipes transfer heat from chips to heat sinks and fans</li>
-                </ul>
-              </div>
-            </div>
+### **ESD Prevention Methods**
+1. **Anti-static workspace**: Use anti-static mats and work surfaces
+2. **Personal grounding**: Wear anti-static wrist straps connected to ground
+3. **Proper handling**: Always hold components by edges, avoid touching pins
+4. **Humidity control**: Maintain 40-60% relative humidity in workspace
+5. **Static-free storage**: Use anti-static bags for component storage
 
-            <div class="bg-red-50 p-4 rounded-lg">
-              <h4 class="font-bold text-red-800 mb-2">Common Issues</h4>
-              <ul class="text-red-700 space-y-1">
-                <li>• Fan noise due to dust accumulation or mechanical wear</li>
-                <li>• Fan failure causing overheating and automatic shutdowns</li>
-                <li>• Blocked air vents reducing airflow and cooling efficiency</li>
-              </ul>
-            </div>
+### **Common ESD Hazards**
+- Walking on carpeted floors
+- Wearing synthetic clothing
+- Handling components without grounding
+- Working in low humidity environments
 
-            <div class="bg-cyan-50 p-4 rounded-lg">
-              <h4 class="font-bold text-cyan-800 mb-2">Maintenance Tips</h4>
-              <ul class="text-cyan-700 space-y-1">
-                <li>• Clean dust and debris regularly with compressed air</li>
-                <li>• Replace faulty fans promptly</li>
-                <li>• Avoid blocking air vents during use</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+## 📱 Systematic Laptop Disassembly
 
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-purple-600 mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-full bg-purple-600 text-white flex items-center justify-center text-lg">⌨️</span>
-            3. Keyboard
-          </h3>
-          
-          <div class="space-y-4">
-            <div class="bg-purple-50 p-4 rounded-lg">
-              <h4 class="font-bold text-purple-800 mb-2">Purpose</h4>
-              <p class="text-purple-700">Primary input device for typing and controlling the laptop.</p>
-            </div>
+### **Pre-Disassembly Checklist**
+1. **Backup data** if possible
+2. **Remove battery** and disconnect power
+3. **Document screw locations** with photos or diagrams
+4. **Organize workspace** with proper lighting
+5. **Ground yourself** with anti-static wrist strap
 
-            <div class="grid md:grid-cols-2 gap-4">
-              <div class="bg-blue-50 p-4 rounded-lg">
-                <h4 class="font-bold text-blue-800 mb-2">Types</h4>
-                <ul class="text-blue-700 space-y-1">
-                  <li>• <strong>Membrane keyboard:</strong> Uses a pressure pad system beneath keys; common and cost-effective</li>
-                  <li>• <strong>Mechanical keyboard:</strong> Uses individual mechanical switches (rare in laptops)</li>
-                </ul>
-              </div>
-              
-              <div class="bg-green-50 p-4 rounded-lg">
-                <h4 class="font-bold text-green-800 mb-2">Components</h4>
-                <ul class="text-green-700 space-y-1">
-                  <li>• Keycaps</li>
-                  <li>• Underlying membrane or switches</li>
-                  <li>• Ribbon cable connecting keyboard to motherboard</li>
-                </ul>
-              </div>
-            </div>
+### **Step-by-Step Disassembly Process**
 
-            <div class="bg-red-50 p-4 rounded-lg">
-              <h4 class="font-bold text-red-800 mb-2">Common Issues</h4>
-              <ul class="text-red-700 space-y-1">
-                <li>• Stuck or unresponsive keys due to dirt or damage</li>
-                <li>• Ribbon cable disconnection or damage causing partial or total keyboard failure</li>
-                <li>• Liquid spills causing short circuits</li>
-              </ul>
-            </div>
+#### **Step 1: External Component Removal**
+- Remove battery (if removable)
+- Remove access panels and covers
+- Document screw types and locations
+- Label components and cables
 
-            <div class="bg-cyan-50 p-4 rounded-lg">
-              <h4 class="font-bold text-cyan-800 mb-2">Maintenance Tips</h4>
-              <ul class="text-cyan-700 space-y-1">
-                <li>• Clean regularly with compressed air or keyboard cleaning tools</li>
-                <li>• Avoid eating or drinking near laptops</li>
-                <li>• Replace keyboard if keys fail or after liquid damage</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+#### **Step 2: Keyboard and Top Case Removal**
+- Remove keyboard bezel and keyboard
+- Disconnect keyboard ribbon cables carefully
+- Remove top case assembly
+- Note cable routing for reassembly
 
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-orange-600 mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-full bg-orange-600 text-white flex items-center justify-center text-lg">🖥️</span>
-            4. Screen (Display)
-          </h3>
-          
-          <div class="space-y-4">
-            <div class="bg-orange-50 p-4 rounded-lg">
-              <h4 class="font-bold text-orange-800 mb-2">Purpose</h4>
-              <p class="text-orange-700">Visual output device for displaying the operating system interface, applications, and videos.</p>
-            </div>
+#### **Step 3: Display Assembly**
+- Remove display bezel
+- Disconnect display cables and antennas
+- Remove display hinges
+- Separate display from base
 
-            <div class="grid md:grid-cols-2 gap-4">
-              <div class="bg-blue-50 p-4 rounded-lg">
-                <h4 class="font-bold text-blue-800 mb-2">Types</h4>
-                <ul class="text-blue-700 space-y-1">
-                  <li>• <strong>LCD:</strong> Most common type, uses backlight to illuminate pixels</li>
-                  <li>• <strong>LED:</strong> A type of LCD with LED backlighting for better brightness and efficiency</li>
-                  <li>• <strong>IPS:</strong> Offers better viewing angles and color accuracy</li>
-                  <li>• <strong>TN:</strong> Faster response times but poorer viewing angles and colors</li>
-                </ul>
-              </div>
-              
-              <div class="bg-green-50 p-4 rounded-lg">
-                <h4 class="font-bold text-green-800 mb-2">Components</h4>
-                <ul class="text-green-700 space-y-1">
-                  <li>• LCD panel</li>
-                  <li>• Backlight (LED or CCFL in older screens)</li>
-                  <li>• Digitizer (for touchscreens)</li>
-                  <li>• Display cable (usually a flat ribbon cable connecting to motherboard)</li>
-                </ul>
-              </div>
-            </div>
+#### **Step 4: Internal Component Access**
+- Remove hard drive/SSD
+- Remove RAM modules
+- Remove wireless cards
+- Access motherboard and other components
 
-            <div class="bg-red-50 p-4 rounded-lg">
-              <h4 class="font-bold text-red-800 mb-2">Common Issues</h4>
-              <ul class="text-red-700 space-y-1">
-                <li>• Dead pixels or lines appearing on the screen</li>
-                <li>• Flickering due to loose or damaged display cable</li>
-                <li>• Cracks or physical damage from impact</li>
-                <li>• Dim or no backlight caused by inverter failure (in older CCFL screens)</li>
-              </ul>
-            </div>
+## 🛠️ Tool Usage Best Practices
 
-            <div class="bg-cyan-50 p-4 rounded-lg">
-              <h4 class="font-bold text-cyan-800 mb-2">Maintenance Tips</h4>
-              <ul class="text-cyan-700 space-y-1">
-                <li>• Handle carefully to avoid pressure damage</li>
-                <li>• Avoid excessive screen flexing and closing laptop lid gently</li>
-                <li>• Replace faulty cables or screen assemblies as needed</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+### **Screwdriver Selection**
+- Use correct size to prevent stripping
+- Apply consistent pressure
+- Keep tools clean and organized
+- Use magnetic tips when appropriate
 
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-gray-800 mb-6">📊 Summary Table</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full border-collapse border border-gray-300">
-              <thead>
-                <tr class="bg-gray-100">
-                  <th class="border border-gray-300 p-3 text-left font-bold">Part</th>
-                  <th class="border border-gray-300 p-3 text-left font-bold">Function</th>
-                  <th class="border border-gray-300 p-3 text-left font-bold">Common Issues</th>
-                  <th class="border border-gray-300 p-3 text-left font-bold">Maintenance Tips</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold text-blue-600">Battery</td>
-                  <td class="border border-gray-300 p-3">Provides portable power</td>
-                  <td class="border border-gray-300 p-3">Reduced life, swelling, charging problems</td>
-                  <td class="border border-gray-300 p-3">Avoid overheating, use approved chargers</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold text-green-600">Cooling Fan</td>
-                  <td class="border border-gray-300 p-3">Cools internal components</td>
-                  <td class="border border-gray-300 p-3">Noise, failure, dust accumulation</td>
-                  <td class="border border-gray-300 p-3">Clean regularly, replace faulty fans</td>
-                </tr>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold text-purple-600">Keyboard</td>
-                  <td class="border border-gray-300 p-3">User input device</td>
-                  <td class="border border-gray-300 p-3">Unresponsive keys, liquid damage</td>
-                  <td class="border border-gray-300 p-3">Clean regularly, avoid spills</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold text-orange-600">Screen</td>
-                  <td class="border border-gray-300 p-3">Displays visual output</td>
-                  <td class="border border-gray-300 p-3">Dead pixels, flickering, cracks</td>
-                  <td class="border border-gray-300 p-3">Handle gently, replace damaged parts</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+### **Pry Tool Techniques**
+- Start from corners or designated areas
+- Apply gentle, even pressure
+- Work around the perimeter gradually
+- Avoid forcing or prying too aggressively
 
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-indigo-600 mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center text-lg">🔧</span>
-            Essential Disassembly Tools and Their Functions
-          </h3>
-          
-          <div class="overflow-x-auto">
-            <table class="w-full border-collapse border border-gray-300">
-              <thead>
-                <tr class="bg-indigo-100">
-                  <th class="border border-gray-300 p-3 text-left font-bold">Tool</th>
-                  <th class="border border-gray-300 p-3 text-left font-bold">Function</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold">Precision Screwdriver Set</td>
-                  <td class="border border-gray-300 p-3">For removing small screws found in laptops and desktops (Phillips, Torx, flathead)</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold">Plastic Pry Tools / Spudger</td>
-                  <td class="border border-gray-300 p-3">Used to gently open plastic casings without damaging or scratching the surfaces</td>
-                </tr>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold">Tweezers</td>
-                  <td class="border border-gray-300 p-3">For picking up small screws and handling delicate connectors</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold">Anti-static Wrist Strap</td>
-                  <td class="border border-gray-300 p-3">Protects sensitive components from electrostatic discharge (ESD)</td>
-                </tr>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold">Magnetic Mat / Screw Tray</td>
-                  <td class="border border-gray-300 p-3">Keeps screws organized during disassembly to avoid loss</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold">Plastic Card or Guitar Pick</td>
-                  <td class="border border-gray-300 p-3">Helps separate screen bezels or open cases without damage</td>
-                </tr>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold">Suction Cup Tool</td>
-                  <td class="border border-gray-300 p-3">Used to lift screens or glass panels without applying pressure directly</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold">Isopropyl Alcohol (90%+)</td>
-                  <td class="border border-gray-300 p-3">Cleans thermal paste or dust safely from electronic components</td>
-                </tr>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold">Compressed Air Can</td>
-                  <td class="border border-gray-300 p-3">Removes dust and debris from fans, ports, and motherboards</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold">Thermal Paste</td>
-                  <td class="border border-gray-300 p-3">Applied between CPU/GPU and heat sink during reassembly for efficient cooling</td>
-                </tr>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold">Multimeter</td>
-                  <td class="border border-gray-300 p-3">Measures voltage, continuity, and resistance for power and board diagnostics</td>
-                </tr>
-                <tr class="bg-gray-50">
-                  <td class="border border-gray-300 p-3 font-semibold">Mini Flashlight / Headlamp</td>
-                  <td class="border border-gray-300 p-3">Illuminates internal components for better visibility during repairs</td>
-                </tr>
-                <tr>
-                  <td class="border border-gray-300 p-3 font-semibold">Brush (Anti-static)</td>
-                  <td class="border border-gray-300 p-3">Used to clean dirt or corrosion from circuit boards safely</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+### **Heat Application**
+- Use appropriate temperature settings
+- Apply heat evenly across adhesive areas
+- Monitor component temperature
+- Allow adequate cooling time
 
-          <div class="mt-6 bg-yellow-50 p-4 rounded-lg">
-            <h4 class="font-bold text-yellow-800 mb-2">🛠️ Notes for Students</h4>
-            <ul class="text-yellow-700 space-y-1">
-              <li>• Always match screwdriver size to screw head to avoid stripping</li>
-              <li>• Use plastic tools—not metal—for prying open cases to avoid electrical shorts and cosmetic damage</li>
-              <li>• Always ground yourself using an ESD strap before touching internal components</li>
-              <li>• Take pictures during disassembly to assist with reassembly later</li>
-              <li>• Work on a clean, non-conductive surface like a rubber mat or wooden table</li>
-            </ul>
-          </div>
-        </div>
+## 🔍 Component Identification and Handling
 
-        <div class="bg-white p-8 rounded-lg shadow-lg">
-          <h3 class="text-2xl font-bold text-red-600 mb-6 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-full bg-red-600 text-white flex items-center justify-center text-lg">⚡</span>
-            ESD Safety and Precautions
-          </h3>
-          
-          <div class="space-y-6">
-            <div class="bg-red-50 p-4 rounded-lg">
-              <h4 class="font-bold text-red-800 mb-2">🔹 What is ESD?</h4>
-              <p class="text-red-700">Electrostatic Discharge (ESD) is the sudden flow of electricity between two objects with different electrical potentials. It often occurs when a person touches a sensitive electronic component after building up static electricity, such as from walking on carpet or wearing synthetic clothing.</p>
-            </div>
+### **Common Laptop Components**
+- **Motherboard**: Main circuit board with CPU, RAM slots, and connectors
+- **Display Assembly**: LCD/OLED panel with backlight and digitizer
+- **Battery**: Lithium-ion or lithium-polymer power source
+- **Storage**: HDD, SSD, or NVMe drives
+- **Cooling System**: Heat pipes, fans, and thermal paste
 
-            <div class="bg-orange-50 p-4 rounded-lg">
-              <h4 class="font-bold text-orange-800 mb-2">🔹 Why is ESD Dangerous?</h4>
-              <ul class="text-orange-700 space-y-1">
-                <li>• ESD can damage or destroy sensitive electronic components, including CPUs, RAM, GPUs, and motherboards</li>
-                <li>• The damage might not be immediately visible, leading to intermittent faults or complete failure later</li>
-                <li>• Just 10 volts of ESD can damage some modern ICs — humans can't feel static discharge below 3,000 volts</li>
-              </ul>
-            </div>
+### **Safe Handling Procedures**
+- Handle components by edges only
+- Avoid touching gold contacts or pins
+- Use anti-static bags for storage
+- Keep components organized and labeled
 
-            <div class="bg-yellow-50 p-4 rounded-lg">
-              <h4 class="font-bold text-yellow-800 mb-2">🔹 Sources of Static Electricity</h4>
-              <ul class="text-yellow-700 space-y-1">
-                <li>• Walking on carpet or plastic flooring</li>
-                <li>• Wearing wool or synthetic clothing</li>
-                <li>• Sitting on plastic chairs</li>
-                <li>• Handling plastic bags or foam packaging</li>
-                <li>• Low humidity environments</li>
-              </ul>
-            </div>
+## ⚠️ Safety Considerations
 
-            <div class="bg-green-50 p-4 rounded-lg">
-              <h4 class="font-bold text-green-800 mb-2">🛡️ ESD Safety Precautions</h4>
-              <div class="space-y-3">
-                <div class="border-l-4 border-green-500 pl-3">
-                  <h5 class="font-semibold text-green-700">1. Use an Anti-Static Wrist Strap</h5>
-                  <p class="text-green-600 text-sm">Connect the wrist strap to a grounded surface or metal part of the computer. Ensures your body stays at the same electrical potential as the components.</p>
-                </div>
-                <div class="border-l-4 border-blue-500 pl-3">
-                  <h5 class="font-semibold text-blue-700">2. Work on an ESD Mat</h5>
-                  <p class="text-blue-600 text-sm">Use an anti-static mat on your work surface. Ground the mat using an ESD grounding wire.</p>
-                </div>
-                <div class="border-l-4 border-purple-500 pl-3">
-                  <h5 class="font-semibold text-purple-700">3. Avoid Synthetic Materials</h5>
-                  <p class="text-purple-600 text-sm">Wear cotton clothing and avoid rubbing against plastic or wool fabrics. Avoid plastic or rubber shoes when possible.</p>
-                </div>
-                <div class="border-l-4 border-orange-500 pl-3">
-                  <h5 class="font-semibold text-orange-700">4. Touch a Grounded Object Before Handling Components</h5>
-                  <p class="text-orange-600 text-sm">Touch a grounded metal object (e.g., metal table leg) to discharge any built-up static.</p>
-                </div>
-                <div class="border-l-4 border-red-500 pl-3">
-                  <h5 class="font-semibold text-red-700">5. Handle Components by the Edges</h5>
-                  <p class="text-red-600 text-sm">Avoid touching metal pins, chips, or contact surfaces. Hold RAM, GPUs, and motherboards by the corners or edges.</p>
-                </div>
-                <div class="border-l-4 border-indigo-500 pl-3">
-                  <h5 class="font-semibold text-indigo-700">6. Keep Components in Anti-Static Bags</h5>
-                  <p class="text-indigo-600 text-sm">Always store and transport electronic components in anti-static (ESD-safe) bags, not plastic or paper bags.</p>
-                </div>
-                <div class="border-l-4 border-teal-500 pl-3">
-                  <h5 class="font-semibold text-teal-700">7. Work in a Humid Environment</h5>
-                  <p class="text-teal-600 text-sm">A humidity level between 40% to 60% reduces static buildup.</p>
-                </div>
-              </div>
-            </div>
+### **Electrical Safety**
+- Always disconnect power before disassembly
+- Discharge capacitors in power supplies
+- Use insulated tools when working with live circuits
+- Test components before reassembly
 
-            <div class="bg-gray-50 p-4 rounded-lg">
-              <h4 class="font-bold text-gray-800 mb-2">🔧 ESD-Proof Tools and Materials</h4>
-              <div class="overflow-x-auto">
-                <table class="w-full border-collapse border border-gray-300">
-                  <thead>
-                    <tr class="bg-gray-100">
-                      <th class="border border-gray-300 p-2 text-left font-bold">Tool/Material</th>
-                      <th class="border border-gray-300 p-2 text-left font-bold">Purpose</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr><td class="border border-gray-300 p-2">Anti-static wrist strap</td><td class="border border-gray-300 p-2">Grounds technician's body</td></tr>
-                    <tr class="bg-gray-50"><td class="border border-gray-300 p-2">Anti-static mat</td><td class="border border-gray-300 p-2">Grounds workspace</td></tr>
-                    <tr><td class="border border-gray-300 p-2">Anti-static bag</td><td class="border border-gray-300 p-2">Safe storage/transport for electronics</td></tr>
-                    <tr class="bg-gray-50"><td class="border border-gray-300 p-2">ESD-safe brush</td><td class="border border-gray-300 p-2">Cleaning circuit boards safely</td></tr>
-                    <tr><td class="border border-gray-300 p-2">ESD-safe tweezers</td><td class="border border-gray-300 p-2">Handling small components safely</td></tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+### **Physical Safety**
+- Wear safety glasses for eye protection
+- Use proper lighting to avoid eye strain
+- Take regular breaks to prevent fatigue
+- Keep workspace clean and organized
 
-            <div class="bg-red-100 p-4 rounded-lg">
-              <h4 class="font-bold text-red-800 mb-2">⚠️ Common Mistakes to Avoid</h4>
-              <ul class="text-red-700 space-y-1">
-                <li>• Working on carpet or plastic surfaces</li>
-                <li>• Wearing wool or synthetic clothes</li>
-                <li>• Touching component contacts or circuits directly</li>
-                <li>• Not grounding yourself or your tools</li>
-              </ul>
-            </div>
+### **Chemical Safety**
+- Use isopropyl alcohol in well-ventilated areas
+- Avoid contact with thermal paste
+- Dispose of cleaning materials properly
+- Follow manufacturer safety guidelines
 
-            <div class="bg-green-100 p-4 rounded-lg">
-              <h4 class="font-bold text-green-800 mb-2">✅ Summary</h4>
-              <p class="text-green-700">Electrostatic discharge is invisible but can silently damage expensive and sensitive components. Practicing proper ESD safety procedures is critical for every repair technician and should become second nature before handling any internal hardware.</p>
-            </div>
-          </div>
-        </div>
+## 🔧 Troubleshooting During Disassembly
 
-        <div class="bg-gradient-to-r from-emerald-500 via-blue-500 to-purple-500 text-white p-8 rounded-lg">
-          <div class="text-center">
-            <div class="text-4xl mb-4">🎯</div>
-            <h3 class="text-2xl font-bold mb-4">Ready for the Next Step?</h3>
-            <p class="text-lg opacity-90 mb-6">Now that you understand laptop components and safety procedures, you're ready to tackle hands-on disassembly!</p>
-            <div class="flex justify-center gap-4 text-2xl">
-              <span class="animate-bounce">🔧</span>
-              <span class="animate-bounce delay-100">💻</span>
-              <span class="animate-bounce delay-200">⚡</span>
-              <span class="animate-bounce delay-300">🛡️</span>
-              <span class="animate-bounce delay-400">✨</span>
-            </div>
-          </div>
-        </div>
-      </div>
+### **Common Issues and Solutions**
+- **Stripped screws**: Use screw extractors or drill out carefully
+- **Stuck components**: Apply heat or use appropriate solvents
+- **Broken clips**: Use replacement parts or alternative mounting
+- **Damaged cables**: Replace or repair as needed
+
+### **Documentation Importance**
+- Take photos at each step
+- Note cable routing and connections
+- Document screw types and locations
+- Record any damage or issues found
+
+## 📋 Quality Control and Testing
+
+### **Pre-Reassembly Checklist**
+- All components cleaned and inspected
+- Screws and fasteners organized
+- Cables and connectors undamaged
+- Replacement parts ready if needed
+
+### **Post-Reassembly Testing**
+- Power on test
+- Functionality verification
+- Performance testing
+- Customer approval process
+
+## 🎯 Learning Outcomes
+
+By the end of this module, students will be able to:
+- Identify and use essential laptop repair tools
+- Implement proper ESD safety measures
+- Perform systematic laptop disassembly
+- Handle components safely and professionally
+- Troubleshoot common disassembly issues
+- Document repair procedures accurately
+
+## 📚 Additional Resources
+
+### **Recommended Tools and Equipment**
+- iFixit Pro Tech Toolkit
+- Anti-static workstation setup
+- Digital multimeter
+- Heat gun with temperature control
+- Magnification equipment
+
+### **Safety Standards and Certifications**
+- CompTIA A+ certification requirements
+- OSHA workplace safety guidelines
+- Manufacturer-specific training programs
+- Industry best practices and standards
+
+This module provides the foundation for safe and professional laptop repair work, emphasizing the importance of proper tools, safety protocols, and systematic approaches to complex electronic device servicing.
     `
   }
 };

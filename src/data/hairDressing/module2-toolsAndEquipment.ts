@@ -1,4 +1,3 @@
-import { Module } from '@/types/course';
 
 export const module2ToolsAndEquipment: Module = {
   id: 2,

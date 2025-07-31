@@ -259,10 +259,10 @@ export const lesson1MicrophoneTypes: VideoLesson = {
             <h3 class="text-xl font-semibold text-gray-800 mb-4">8. Conclusion</h3>
             <div class="space-y-3">
               <p class="text-gray-700">Understanding microphone types helps in choosing the right mic for:</p>
-              <ul class="text-gray-700 space-y-1 ml-4">
-                <li>• Optimal sound quality</li>
-                <li>• Appropriate application</li>
-                <li>• Maximum performance in different recording environments</li>
+              <ul class="modern-bullet-list ml-4">
+                <li>Optimal sound quality</li>
+                <li>Appropriate application</li>
+                <li>Maximum performance in different recording environments</li>
               </ul>
               <div class="bg-blue-100 p-4 rounded-lg mt-4">
                 <p class="text-blue-800 font-semibold">💡 Tip: Always match mic type and pattern to the sound source and setting.</p>

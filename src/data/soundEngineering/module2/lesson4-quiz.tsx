@@ -6,8 +6,7 @@ export const lesson4Quiz: Lesson = {
   description: 'Test your understanding of analog vs digital signals, signal flow, and audio equipment',
   duration: '30 minutes',
   type: 'quiz',
-  content: `
-# ✅ Quiz: Module 2 – Audio Technology and Signal Flow
+  content: `# ✅ Quiz: Module 2 – Audio Technology and Signal Flow
 
 ## Instructions
 This quiz covers analog vs digital signals, signal flow diagrams, and audio equipment. Read each question carefully and select the best answer. You have 30 minutes to complete this quiz.
@@ -239,8 +238,7 @@ If you struggled with certain questions, focus on reviewing:
 - **Questions 6-10**: Audio equipment and their functions
 - **Questions 11-15**: Signal flow and practical applications
 
-Remember, understanding these fundamentals is crucial for success in audio engineering and sound design careers!
-  `
+Remember, understanding these fundamentals is crucial for success in audio engineering and sound design careers!  `
 };
 
 export default lesson4Quiz; 

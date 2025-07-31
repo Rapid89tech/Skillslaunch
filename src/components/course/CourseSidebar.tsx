@@ -50,7 +50,7 @@ const CourseSidebar = ({
 
   return (
     <>
-      {/* Mobile Overlay */}
+      {/* Mobile Overlay - Only show on mobile when sidebar is open */}
       {sidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden animate-fade-in"
@@ -58,16 +58,17 @@ const CourseSidebar = ({
         />
       )}
 
-      {/* Sidebar */}
+      {/* Sidebar - Now uses flex layout with width transitions */}
       <div
         ref={sidebarRef}
-        className={`fixed top-0 left-0 h-full z-50 transform transition-all duration-300 ease-out
-          ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-          w-[320px] md:w-[380px] bg-[linear-gradient(135deg,_rgba(239,68,68,0.8)_0%,_rgba(244,63,94,0.8)_100%)] border-r border-gray-200 dark:border-gray-800
-          shadow-2xl flex flex-col overflow-hidden`}
+        className={`h-full transition-all duration-300 ease-out bg-[linear-gradient(135deg,_rgba(239,68,68,0.8)_0%,_rgba(244,63,94,0.8)_100%)] border-r border-gray-200 dark:border-gray-800 shadow-2xl flex flex-col overflow-hidden z-50
+          ${sidebarOpen ? 'w-[320px] md:w-[380px]' : 'w-0'} 
+          ${sidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}
+          md:relative md:opacity-100 md:pointer-events-auto
+          ${sidebarOpen ? 'fixed md:relative' : 'fixed md:relative'} top-0 left-0`}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700">
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 min-w-[320px] md:min-w-[380px]">
           <div className="flex items-center gap-3 animate-fade-in-down">
             <div className="w-10 h-10 bg-gradient-to-br from-red-500/80 to-pink-500/80 rounded-xl flex items-center justify-center shadow-md">
               <BookOpen className="w-5 h-5 text-white" />
@@ -88,7 +89,7 @@ const CourseSidebar = ({
         </div>
 
         {/* Progress Section */}
-        <div className="p-6 bg-[linear-gradient(135deg,_rgba(239,68,68,0.16)_0%,_rgba(244,63,94,0.16)_100%)] border-b border-gray-200 dark:border-gray-700 animate-fade-in-up">
+        <div className="p-6 bg-[linear-gradient(135deg,_rgba(239,68,68,0.16)_0%,_rgba(244,63,94,0.16)_100%)] border-b border-gray-200 dark:border-gray-700 animate-fade-in-up min-w-[320px] md:min-w-[380px]">
           <div className="text-center mb-4">
             <div className="relative inline-block mb-3 animate-scale-in">
               <svg width="100" height="100" viewBox="0 0 100 100" className="drop-shadow-lg">
@@ -98,106 +99,85 @@ const CourseSidebar = ({
                     <stop offset="100%" stopColor="#f43f5e" />
                   </linearGradient>
                   <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                    <feDropShadow dx="0" dy="2" stdDeviation="2" floodColor="#fca5a5"/>
+                    <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#ef4444" floodOpacity="0.3"/>
                   </filter>
                 </defs>
-                {/* Solid white background ring */}
+                {/* Background circle */}
                 <circle
-                  cx="50" cy="50" r="40"
+                  cx="50"
+                  cy="50"
+                  r="45"
                   fill="none"
-                  stroke="#fff"
-                  strokeWidth="14"
-                  opacity="1"
+                  stroke="rgba(239,68,68,0.2)"
+                  strokeWidth="8"
                 />
-                {/* Foreground progress ring, thick and 3D-style */}
-            <circle
-                  cx="50" cy="50" r="40"
+                {/* Progress circle */}
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="45"
                   fill="none"
                   stroke="url(#progressRedGradient)"
-                  strokeWidth="14"
-                  strokeDasharray={2 * Math.PI * 40}
-                  strokeDashoffset={2 * Math.PI * 40 * (1 - progress / 100)}
-              strokeLinecap="round"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  strokeDasharray={`${2 * Math.PI * 45}`}
+                  strokeDashoffset={`${2 * Math.PI * 45 * (1 - progress / 100)}`}
+                  transform="rotate(-90 50 50)"
                   filter="url(#shadow)"
-                  style={{ transition: 'stroke-dashoffset 1s cubic-bezier(.4,2,.3,1)' }}
-            />
-          </svg>
+                  style={{ transition: 'stroke-dashoffset 0.5s ease-in-out' }}
+                />
+              </svg>
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="text-3xl font-extrabold text-white drop-shadow-md">{Math.round(progress)}%</span>
-        </div>
-      </div>
-            {/* Removed 'Course Progress' text here */}
-            {/* <h3 className="text-lg font-bold text-white mb-1">Course Progress</h3> */}
-            <p className="text-xs text-white/80">{completedCount} of {totalLessons} lessons completed</p>
-          </div>
-          <div className="space-y-3">
-            <div className="flex items-center justify-between text-sm">
-              <span className="text-white/90">Overall Progress</span>
-              <span className="font-semibold text-white">{Math.round(progress)}%</span>
+                <span className="text-2xl font-bold text-white drop-shadow-lg">{Math.round(progress)}%</span>
+              </div>
             </div>
-            <div className="relative w-full h-3 rounded-full overflow-hidden bg-gradient-to-r from-black via-black/80 to-red-700/80 mt-1 mb-1">
-              <div
-                className="absolute left-0 top-0 h-full rounded-full transition-all duration-700 ease-in-out"
-                style={{
-                  width: `${progress}%`,
-                  background: 'linear-gradient(90deg, #fff 0%, #fff 100%)',
-                  boxShadow: '0 2px 8px 0 rgba(255,255,255,0.15)',
-                }}
-              />
-            </div>
-            <div className="flex items-center justify-between text-xs text-white/80">
-              <span>{completedCount} lessons completed</span>
-              <span>{totalLessons} total lessons</span>
+            <div className="text-center">
+              <p className="text-lg font-semibold text-white mb-1">{completedCount} of {totalLessons} lessons completed</p>
+              <div className="w-full bg-white/20 rounded-full h-2 mb-2">
+                <div 
+                  className="bg-gradient-to-r from-red-500 to-pink-500 h-2 rounded-full transition-all duration-500 ease-out"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <div className="flex justify-between text-sm text-white/80">
+                <span>{completedCount} lessons completed</span>
+                <span>{totalLessons} total lessons</span>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Modules List */}
-      <div className="flex-1 overflow-y-auto">
-          <div className="p-4 space-y-4">
+        {/* Course Modules */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 min-w-[320px] md:min-w-[380px]">
           {course.modules.map((module, moduleIndex) => {
-              const moduleStartIndex = course.modules
-                .slice(0, moduleIndex)
+            const moduleStartIndex = course.modules
+              .slice(0, moduleIndex)
               .reduce((acc, m) => acc + m.lessons.length, 0);
-              
-              const completedInModule = module.lessons.filter((_, lessonIndex) => 
-                completedLessons.includes(moduleStartIndex + lessonIndex)
-              ).length;
-              
-              const totalModuleLessons = module.lessons.length;
-              const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
+            
+            const completedInModule = module.lessons.filter((_, lessonIndex) => 
+              completedLessons.includes(moduleStartIndex + lessonIndex)
+            ).length;
+            
+            const totalModuleLessons = module.lessons.length;
+            const moduleProgress = totalModuleLessons > 0 ? (completedInModule / totalModuleLessons) * 100 : 0;
 
             return (
-                <ModuleCard
-                  key={module.id}
-                  module={module}
-                  moduleIndex={moduleIndex}
-                  moduleStartIndex={moduleStartIndex}
-                  completedInModule={completedInModule}
-                  totalModuleLessons={totalModuleLessons}
-                  moduleProgress={moduleProgress}
-                  completedLessons={completedLessons}
-                  currentLesson={currentLesson}
-                  setCurrentLesson={setCurrentLesson}
-                />
+              <ModuleCard
+                key={module.id}
+                module={module}
+                moduleIndex={moduleIndex}
+                moduleStartIndex={moduleStartIndex}
+                completedInModule={completedInModule}
+                totalModuleLessons={totalModuleLessons}
+                moduleProgress={moduleProgress}
+                completedLessons={completedLessons}
+                currentLesson={currentLesson}
+                setCurrentLesson={setCurrentLesson}
+              />
             );
           })}
-          </div>
         </div>
       </div>
-
-      {/* Floating Toggle Button */}
-      {!sidebarOpen && (
-        <button
-          onClick={() => setSidebarOpen(true)}
-          className="fixed top-20 left-4 z-40 flex items-center bg-gradient-to-r from-red-500 via-pink-500 to-red-400 border-0 rounded-full p-3 shadow-xl hover:shadow-2xl transition-all duration-200 hover:scale-105 group animate-pulse-slow"
-          aria-label="Open Course Navigation"
-        >
-          <span className="flex items-center justify-center w-8 h-8 rounded-full bg-white/20 group-hover:bg-white/30 transition-all duration-200">
-            <Menu className="w-6 h-6 text-white group-hover:scale-110 group-active:scale-90 transition-transform duration-150 animate-gradient-x" />
-          </span>
-        </button>
-      )}
     </>
   );
 };

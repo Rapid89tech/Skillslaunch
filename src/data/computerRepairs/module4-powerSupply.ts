@@ -3,413 +3,367 @@ import type { Module } from '@/types/course';
 
 export const module4PowerSupply: Module = {
   id: 4,
-  title: 'Power Supply & Battery Repair',
-  description: 'Testing and replacing power components and batteries',
+  title: 'Module 4: Power Supply Troubleshooting and Repair',
+  description: 'Master power supply diagnostics, testing, and replacement procedures for both desktop and laptop systems, including voltage testing, component safety, and power management.',
+  learningObjectives: [
+    'Understand power supply fundamentals and specifications',
+    'Diagnose power-related issues systematically',
+    'Test power supplies safely and accurately',
+    'Replace power supplies in desktop and laptop systems',
+    'Troubleshoot power management and battery issues',
+    'Implement proper safety procedures for electrical work',
+    'Optimize power efficiency and system stability'
+  ],
   lessons: [
     {
       id: 4,
-      title: 'Power Supply Testing and Repair',
+      title: 'Power Supply Fundamentals and Troubleshooting',
       duration: '70 min',
       type: 'video',
       content: {
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        videoUrl: 'https://www.youtube.com/embed/mPzcsU8Cpco',
         textContent: `
-          <div class="space-y-8">
-            <div class="bg-white p-6 rounded-lg shadow-md">
-              <h2 class="text-3xl font-bold text-blue-600 mb-6">Module 4: Power Supply & Battery Repair</h2>
-              
-              <div class="bg-blue-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-blue-800 mb-3">🔋 Types of Power Issues</h3>
-                <p class="text-blue-700 mb-3">
-                  Power issues are among the most common problems encountered in laptops and desktop computers. Understanding the types, causes, diagnosis, and resolution techniques is critical for any repair technician.
-                </p>
-              </div>
+# ⚡ Module 4: Power Supply Troubleshooting and Repair
 
-              <div class="grid md:grid-cols-2 gap-6 mb-6">
-                <div class="bg-red-50 p-4 rounded-lg">
-                  <h4 class="text-lg font-semibold text-red-800 mb-3">⚠️ 1. No Power / Dead System</h4>
-                  <div class="mb-3">
-                    <h5 class="font-semibold text-red-700">Symptoms:</h5>
-                    <ul class="text-sm text-red-600 list-disc list-inside">
-                      <li>No lights, sounds, or display when pressing power button</li>
-                      <li>No fan movement or charging indicators</li>
-                    </ul>
-                  </div>
-                  <div class="mb-3">
-                    <h5 class="font-semibold text-red-700">Possible Causes:</h5>
-                    <ul class="text-sm text-red-600 list-disc list-inside">
-                      <li>Faulty AC adapter or charger</li>
-                      <li>Damaged DC power jack</li>
-                      <li>Dead battery or CMOS battery</li>
-                      <li>Internal component short</li>
-                    </ul>
-                  </div>
-                </div>
+This module covers comprehensive power supply diagnostics, testing, and repair procedures for both desktop and laptop systems. Students will learn to identify power-related issues, test components safely, and implement effective solutions.
 
-                <div class="bg-orange-50 p-4 rounded-lg">
-                  <h4 class="text-lg font-semibold text-orange-800 mb-3">⚡ 2. Battery Not Charging</h4>
-                  <div class="mb-3">
-                    <h5 class="font-semibold text-orange-700">Symptoms:</h5>
-                    <ul class="text-sm text-orange-600 list-disc list-inside">
-                      <li>Laptop runs only on AC power</li>
-                      <li>Battery shows "Not Charging"</li>
-                      <li>Charging light doesn't come on</li>
-                    </ul>
-                  </div>
-                  <div class="mb-3">
-                    <h5 class="font-semibold text-orange-700">Solutions:</h5>
-                    <ul class="text-sm text-orange-600 list-disc list-inside">
-                      <li>Replace battery with known good one</li>
-                      <li>Test adapter voltage output</li>
-                      <li>Update BIOS/firmware</li>
-                      <li>Clean battery connectors</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+## 🔌 Power Supply Fundamentals
 
-              <div class="bg-yellow-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-yellow-800 mb-3">🔋 Laptop Battery Replacement</h3>
-                
-                <div class="mb-4">
-                  <h4 class="font-semibold text-yellow-700 mb-2">Understanding Laptop Batteries:</h4>
-                  <YouTubeVideoRenderer videoId="wqL3ZT26i4c" title="Understanding Laptop Batteries" />
-                </div>
-                
-                <div class="mb-4">
-                  <h4 class="font-semibold text-yellow-700 mb-2">Signs of a Failing Battery:</h4>
-                  <YouTubeVideoRenderer videoId="ba4ToTzqF2o" title="Signs of a Failing Battery" />
-                </div>
-                
-                <div class="mb-4">
-                  <h4 class="font-semibold text-yellow-700 mb-2">Tools Required for Battery Replacement:</h4>
-                  <YouTubeVideoRenderer videoId="Gdditi3KvW0" title="Battery Replacement Tools" />
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 class="font-semibold text-yellow-700 mb-2">Battery Types:</h4>
-                    <ul class="text-sm text-yellow-600 space-y-1">
-                      <li>• <strong>Li-ion:</strong> Most common; light, high capacity, durable</li>
-                      <li>• <strong>Li-Po:</strong> Slimmer, lighter, used in ultrabooks</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-yellow-700 mb-2">Signs of Failing Battery:</h4>
-                    <ul class="text-sm text-yellow-600 space-y-1">
-                      <li>• Rapid discharge</li>
-                      <li>• Random shutdowns</li>
-                      <li>• Physical bulging (Critical!)</li>
-                      <li>• "Replace soon" messages</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+### **What is a Power Supply Unit (PSU)?**
+A power supply unit converts alternating current (AC) from the wall outlet into direct current (DC) that computer components can use, providing stable voltages at different levels.
 
-              <div class="bg-green-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-green-800 mb-3">🛠️ Battery Replacement Procedure</h3>
-                
-                <div class="mb-4">
-                  <h4 class="font-semibold text-green-700 mb-2">Battery Replacement Procedure:</h4>
-                  <YouTubeVideoRenderer videoId="rR9A9F5-YRg" title="Battery Replacement Procedure" />
-                </div>
-                
-                <div class="mb-4">
-                  <h4 class="font-semibold text-green-700 mb-2">Testing After Replacement:</h4>
-                  <YouTubeVideoRenderer videoId="ZLB0XvKmsP0" title="Testing After Battery Replacement" />
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-green-700 mb-2">For Removable Batteries:</h4>
-                    <ol class="text-sm text-green-600 list-decimal list-inside space-y-1">
-                      <li>Power off the laptop</li>
-                      <li>Unplug the power adapter</li>
-                      <li>Slide battery release latches</li>
-                      <li>Remove and replace battery</li>
-                      <li>Secure latches and test</li>
-                    </ol>
-                  </div>
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-green-700 mb-2">For Internal Batteries:</h4>
-                    <ol class="text-sm text-green-600 list-decimal list-inside space-y-1">
-                      <li>Power off and unplug charger</li>
-                      <li>Use ESD protection</li>
-                      <li>Remove bottom panel</li>
-                      <li>Disconnect battery cable</li>
-                      <li>Install new battery carefully</li>
-                      <li>Reassemble and test</li>
-                    </ol>
-                  </div>
-                </div>
-              </div>
+### **Power Supply Specifications**
+- **Wattage**: Total power capacity (e.g., 500W, 750W, 1000W)
+- **Efficiency Rating**: 80 Plus certification levels (Bronze, Silver, Gold, Platinum)
+- **Modular Design**: Fully modular, semi-modular, or non-modular
+- **Form Factor**: ATX, SFX, TFX for different case sizes
+- **Connectors**: Various connectors for different components
 
-              <div class="bg-purple-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-purple-800 mb-3">🔌 DC Jack and Adapter Testing</h3>
-                
-                <div class="space-y-4 mb-6">
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">DC Jack (Charging Port):</h4>
-                    <YouTubeVideoRenderer videoId="pzhGMi6120o" title="DC Jack Overview" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Common Symptoms of DC Jack Issues:</h4>
-                    <YouTubeVideoRenderer videoId="JREsQQfFN9E" title="DC Jack Symptoms" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Testing the Laptop Adapter:</h4>
-                    <YouTubeVideoRenderer videoId="SW5c5b7b6AY" title="Testing Laptop Adapter" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Set Multimeter to DC Voltage:</h4>
-                    <YouTubeVideoRenderer videoId="YBhsVHideGE" title="Multimeter DC Voltage" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Wiggle Test:</h4>
-                    <YouTubeVideoRenderer videoId="r0-6YYixUdw" title="Adapter Wiggle Test" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Testing the DC Jack:</h4>
-                    <YouTubeVideoRenderer videoId="AdGHqfVFQdY" title="Testing DC Jack" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Repair or Replacement:</h4>
-                    <YouTubeVideoRenderer videoId="b5rtZZB06fU" title="DC Jack Repair" />
-                  </div>
-                </div>
-                
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Testing Adapter:</h4>
-                    <ul class="text-sm text-purple-600 space-y-1">
-                      <li>• Set multimeter to DC voltage</li>
-                      <li>• Red probe to inner pin (positive)</li>
-                      <li>• Black probe to outer ring (ground)</li>
-                      <li>• Expected: ~19V (check label)</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-purple-700 mb-2">Testing DC Jack:</h4>
-                    <ul class="text-sm text-purple-600 space-y-1">
-                      <li>• Visual inspection for damage</li>
-                      <li>• Continuity test with multimeter</li>
-                      <li>• Check solder joints</li>
-                      <li>• Test voltage at motherboard</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+### **Voltage Rails**
+- **+3.3V**: Used by motherboard and some components
+- **+5V**: Powers USB ports and some drives
+- **+12V**: Powers CPU, GPU, and high-power components
+- **-12V**: Used by some legacy components
+- **+5VSB**: Standby power for wake-on-LAN and USB charging
 
-              <div class="bg-cyan-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-cyan-800 mb-3">🌡️ Additional Power Issues</h3>
-                
-                <div class="space-y-4 mb-6">
-                  <div>
-                    <h4 class="font-semibold text-cyan-700 mb-2">Intermittent Power / Random Shutdowns:</h4>
-                    <YouTubeVideoRenderer videoId="ipTyEY-fGNA" title="Intermittent Power Issues" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-cyan-700 mb-2">Overheating and Thermal Shutdown:</h4>
-                    <YouTubeVideoRenderer videoId="pDq-TuwWI5k" title="Overheating Issues" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-cyan-700 mb-2">Reboot Loop:</h4>
-                    <YouTubeVideoRenderer videoId="7BM-tG5vqPs" title="Boot Loop Issues" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-cyan-700 mb-2">Short Circuit / Burnt Smell:</h4>
-                    <YouTubeVideoRenderer videoId="Wqvi3nLg19o" title="Short Circuit Diagnosis" />
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-cyan-700 mb-2">Power Button Not Working:</h4>
-                    <YouTubeVideoRenderer videoId="UD7RHpY8mlE" title="Power Button Issues" />
-                  </div>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-4">
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-cyan-700 mb-2">Random Shutdowns</h4>
-                    <p class="text-sm text-gray-700 mb-2"><strong>Causes:</strong> Overheating, loose connections, PSU instability</p>
-                    <p class="text-sm text-gray-700"><strong>Fix:</strong> Clean fans, reseat components, check thermal paste</p>
-                  </div>
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-cyan-700 mb-2">Boot Loop</h4>
-                    <p class="text-sm text-gray-700 mb-2"><strong>Causes:</strong> Faulty RAM, corrupt BIOS, power delivery issues</p>
-                    <p class="text-sm text-gray-700"><strong>Fix:</strong> Test RAM, flash BIOS, check power rails</p>
-                  </div>
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-cyan-700 mb-2">Short Circuit</h4>
-                    <p class="text-sm text-gray-700 mb-2"><strong>Signs:</strong> Burnt smell, adapter LED turns off</p>
-                    <p class="text-sm text-gray-700"><strong>Fix:</strong> Inspect motherboard, replace damaged components</p>
-                  </div>
-                </div>
-              </div>
+## 🔍 Power Supply Testing
 
-              <div class="bg-red-100 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-red-800 mb-3">🚨 Safety Precautions</h3>
-                <ul class="text-red-700 space-y-2">
-                  <li>• Never puncture or bend batteries (fire hazard)</li>
-                  <li>• Use ESD protection when handling internal components</li>
-                  <li>• Always power off and unplug before testing</li>
-                  <li>• Dispose of old batteries at certified recycling centers</li>
-                  <li>• If battery is swollen, isolate in fire-safe bag</li>
-                </ul>
-              </div>
+### **Visual Inspection**
+- Check for physical damage or burns
+- Look for bulging or leaking capacitors
+- Verify all connectors are intact
+- Check for dust buildup or overheating signs
 
-              <div class="bg-gray-100 p-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">🧰 Required Tools</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 class="font-semibold text-gray-700 mb-2">Basic Tools:</h4>
-                    <ul class="text-gray-600 space-y-1">
-                      <li>• Digital multimeter</li>
-                      <li>• Precision screwdriver set</li>
-                      <li>• Anti-static wrist strap</li>
-                      <li>• Plastic spudger/pry tools</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-gray-700 mb-2">Testing Equipment:</h4>
-                    <ul class="text-gray-600 space-y-1">
-                      <li>• Known-good power adapter</li>
-                      <li>• Battery testing software</li>
-                      <li>• Thermal monitoring tools</li>
-                      <li>• Replacement batteries/adapters</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+### **Multimeter Testing**
+- **Voltage Testing**: Measure output voltages at connectors
+- **Continuity Testing**: Check for open or short circuits
+- **Load Testing**: Test under various load conditions
+- **Ripple Testing**: Check for voltage stability
+
+### **Power Supply Tester**
+- Use dedicated PSU testers for quick diagnosis
+- Test all voltage rails simultaneously
+- Verify proper voltage levels
+- Check for proper power-on sequence
+
+### **Paperclip Test (Desktop PSUs)**
+- Connect green wire (PS_ON) to any black wire (ground)
+- Power supply should turn on if functional
+- Use only for basic functionality testing
+- Not recommended for detailed diagnostics
+
+## 🖥️ Desktop Power Supply Issues
+
+### **Common Problems**
+- **No Power**: Check wall outlet, power cord, and PSU switch
+- **Intermittent Power**: Test under load, check for overheating
+- **Insufficient Power**: Calculate power requirements, upgrade if needed
+- **Unstable Voltages**: Check capacitors, test under load
+- **Excessive Noise**: Clean dust, check fan operation
+
+### **Power Calculation**
+- **CPU**: 65W-150W depending on model
+- **GPU**: 75W-350W depending on model
+- **Motherboard**: 20W-50W
+- **Storage**: 5W-15W per drive
+- **RAM**: 5W-10W per module
+- **Fans**: 2W-5W each
+
+### **Replacement Procedures**
+1. **Safety First**: Disconnect power and discharge capacitors
+2. **Document Connections**: Take photos of all connections
+3. **Remove Old PSU**: Unscrew and disconnect all cables
+4. **Install New PSU**: Mount and connect all cables
+5. **Test System**: Power on and verify all functions
+6. **Cable Management**: Organize cables for airflow
+
+## 💻 Laptop Power Issues
+
+### **AC Adapter Problems**
+- **No Charging**: Check adapter, cable, and charging port
+- **Intermittent Charging**: Test with different adapter
+- **Slow Charging**: Check adapter wattage and cable quality
+- **Overheating**: Clean charging port, check for damage
+
+### **Battery Issues**
+- **No Battery Life**: Test battery health, consider replacement
+- **Rapid Discharge**: Check for power-hungry applications
+- **Battery Swelling**: Replace immediately for safety
+- **Calibration Issues**: Recalibrate battery if needed
+
+### **Charging Port Repair**
+- **Loose Connection**: Check for broken solder joints
+- **Physical Damage**: Replace charging port assembly
+- **Corrosion**: Clean with isopropyl alcohol
+- **Broken Pins**: Replace port or motherboard
+
+## 🔋 Battery Technology and Maintenance
+
+### **Battery Types**
+- **Lithium-Ion (Li-ion)**: Most common, good energy density
+- **Lithium-Polymer (Li-Po)**: Flexible form factor, higher cost
+- **Nickel-Metal Hydride (NiMH)**: Older technology, lower capacity
+
+### **Battery Health Monitoring**
+- **Cycle Count**: Track charge/discharge cycles
+- **Capacity**: Monitor remaining capacity vs. original
+- **Temperature**: Check for overheating during use
+- **Voltage**: Monitor cell voltages for balance
+
+### **Battery Maintenance**
+- **Avoid Deep Discharge**: Keep above 20% when possible
+- **Temperature Control**: Avoid extreme temperatures
+- **Regular Use**: Use battery regularly to maintain health
+- **Proper Storage**: Store at 40-60% charge in cool location
+
+## ⚠️ Safety Procedures
+
+### **Electrical Safety**
+- **Always disconnect power** before working on PSU
+- **Discharge capacitors** using proper procedures
+- **Use insulated tools** when working with live circuits
+- **Work in dry conditions** to prevent electrical shock
+
+### **Component Safety**
+- **Handle components carefully** to prevent damage
+- **Use anti-static protection** when working with electronics
+- **Avoid touching live circuits** or exposed components
+- **Follow manufacturer guidelines** for specific components
+
+### **Personal Safety**
+- **Wear safety glasses** for eye protection
+- **Use proper lighting** to see clearly
+- **Take regular breaks** to prevent fatigue
+- **Keep workspace clean** and organized
+
+## 🛠️ Diagnostic Tools and Equipment
+
+### **Essential Tools**
+- **Multimeter**: For voltage and continuity testing
+- **Power Supply Tester**: For quick PSU diagnosis
+- **Load Tester**: For testing under load conditions
+- **Oscilloscope**: For detailed waveform analysis (advanced)
+
+### **Software Tools**
+- **Hardware Monitoring**: CPU-Z, HWiNFO for system monitoring
+- **Battery Monitoring**: Built-in OS tools, third-party software
+- **Power Management**: Windows Power Options, manufacturer utilities
+- **Diagnostic Software**: Manufacturer-specific testing tools
+
+## 📊 Troubleshooting Flowcharts
+
+### **Desktop No Power**
+1. Check wall outlet and power cord
+2. Verify PSU switch is on
+3. Test PSU with paperclip test
+4. Check motherboard connections
+5. Test with known-good PSU
+
+### **Laptop No Power**
+1. Check AC adapter and cable
+2. Test with different adapter
+3. Check charging port for damage
+4. Test battery separately
+5. Check motherboard power circuits
+
+### **Intermittent Power**
+1. Check for loose connections
+2. Test under load conditions
+3. Monitor temperatures
+4. Check for component failures
+5. Verify power requirements
+
+## 🔧 Advanced Power Management
+
+### **Power Efficiency**
+- **80 Plus Certification**: Ensures 80%+ efficiency at various loads
+- **Active PFC**: Power Factor Correction for better efficiency
+- **Modular Design**: Reduces cable clutter and improves airflow
+- **Fan Control**: Automatic fan speed adjustment based on load
+
+### **Power Management Features**
+- **Sleep Mode**: Low-power state for quick resume
+- **Hibernation**: Saves system state to disk
+- **Wake-on-LAN**: Remote power-on capability
+- **USB Power Delivery**: Fast charging for devices
+
+### **System Optimization**
+- **Power Plan Settings**: Balance performance and efficiency
+- **Background Processes**: Disable unnecessary services
+- **Hardware Monitoring**: Track power consumption
+- **Thermal Management**: Ensure proper cooling
+
+## 📋 Quality Control and Testing
+
+### **Pre-Installation Testing**
+- Test PSU before installation
+- Verify all voltage outputs
+- Check for proper fan operation
+- Test under load conditions
+
+### **Post-Installation Verification**
+- Power on system successfully
+- Verify all components work
+- Monitor temperatures and stability
+- Test under various load conditions
+
+### **Long-term Monitoring**
+- Track power consumption
+- Monitor component temperatures
+- Check for performance degradation
+- Schedule regular maintenance
+
+## 🎯 Learning Outcomes
+
+By the end of this module, students will be able to:
+- Understand power supply fundamentals and specifications
+- Diagnose power-related issues systematically
+- Test power supplies safely and accurately
+- Replace power supplies in desktop and laptop systems
+- Troubleshoot power management and battery issues
+- Implement proper safety procedures for electrical work
+- Optimize power efficiency and system stability
+
+This module provides essential skills for power supply troubleshooting and repair, emphasizing safety, accuracy, and systematic problem-solving approaches.
         `
       }
     },
     {
       id: 14,
-      title: 'Module 4 Quiz: Power Supply & Battery Repair',
+      title: 'Quiz: Power Supply Troubleshooting (Module 4)',
       duration: '15 min',
       type: 'quiz',
       content: {
         questions: [
           {
-            question: 'Which of the following is NOT a typical symptom of a laptop with no power?',
+            question: 'What is the primary function of a power supply unit (PSU)?',
             options: [
-              'No display or lights',
-              'Fan spins but no charging light',
-              'BIOS error message',
-              'No fan or sound when pressing power'
-            ],
-            correct: 2,
-            explanation: 'A BIOS error message indicates the system is powered on and running POST. The other options indicate no power issues.'
-          },
-          {
-            question: 'What is the most common voltage output for a standard laptop adapter?',
-            options: [
-              '5V',
-              '12V',
-              '19V',
-              '24V'
-            ],
-            correct: 2,
-            explanation: '19V is the most common voltage output for standard laptop adapters, though this can vary by manufacturer.'
-          },
-          {
-            question: 'A laptop runs fine on AC but shows "Plugged in, not charging." What is the LEAST likely cause?',
-            options: [
-              'A faulty battery',
-              'A defective charger',
-              'Bad display cable',
-              'A damaged charging IC'
-            ],
-            correct: 2,
-            explanation: 'A bad display cable would not affect charging functionality. The other options are all potential causes of charging issues.'
-          },
-          {
-            question: 'What tool should you use to test continuity between a DC jack and the motherboard?',
-            options: [
-              'Oscilloscope',
-              'Signal tracer',
-              'Digital multimeter',
-              'Voltage regulator'
-            ],
-            correct: 2,
-            explanation: 'A digital multimeter in continuity mode is the correct tool for testing electrical continuity between components.'
-          },
-          {
-            question: 'During a wiggle test on an adapter, the voltage reading cuts in and out. What does this indicate?',
-            options: [
-              'Dead CMOS battery',
-              'Bad RAM',
-              'Loose or broken adapter wiring',
-              'BIOS failure'
-            ],
-            correct: 2,
-            explanation: 'Intermittent voltage during a wiggle test indicates loose or broken wiring inside the adapter cable.'
-          },
-          {
-            question: 'What is the first step before replacing an internal laptop battery?',
-            options: [
-              'Open the laptop\'s display',
-              'Remove the SSD',
-              'Power off and unplug the device',
-              'Format the hard drive'
-            ],
-            correct: 2,
-            explanation: 'Safety first: always power off and unplug the device before performing any internal repairs.'
-          },
-          {
-            question: 'Which of the following is a sign of a failing lithium battery?',
-            options: [
-              'Laptop charges faster than normal',
-              'Battery lasts longer than usual',
-              'Battery percentage drops suddenly',
-              'Battery icon turns red'
-            ],
-            correct: 2,
-            explanation: 'Sudden battery percentage drops indicate failing battery cells that can no longer hold charge properly.'
-          },
-          {
-            question: 'If a laptop restarts randomly, what is the FIRST thing you should check?',
-            options: [
-              'Internet connection',
-              'Thermal paste and cooling fan',
-              'Printer settings',
-              'Display brightness'
+              'To cool the computer components',
+              'To convert AC to DC power for computer components',
+              'To store data temporarily',
+              'To connect to the internet'
             ],
             correct: 1,
-            explanation: 'Random restarts are often caused by overheating, so checking thermal paste and cooling fans should be the first step.'
+            explanation: 'A PSU converts alternating current (AC) from the wall outlet into direct current (DC) that computer components can use.'
           },
           {
-            question: 'A burnt smell and adapter LED turning off when plugged in may indicate:',
+            question: 'Which voltage rail powers the CPU and GPU?',
             options: [
-              'Normal behavior',
-              'Dead battery',
-              'Short circuit on motherboard',
-              'BIOS update required'
+              '+3.3V',
+              '+5V',
+              '+12V',
+              '-12V'
             ],
             correct: 2,
-            explanation: 'A burnt smell combined with adapter LED turning off indicates a short circuit, which is a serious safety issue.'
+            explanation: 'The +12V rail powers high-power components like the CPU and GPU.'
           },
           {
-            question: 'When testing a barrel-type adapter with a multimeter, the red probe should contact:',
+            question: 'What is the paperclip test used for?',
             options: [
-              'Outer shell (negative)',
-              'Power switch',
-              'Inner pin (positive)',
-              'Laptop battery terminal'
+              'To test if a PSU can turn on',
+              'To measure voltage output',
+              'To check power efficiency',
+              'To test battery life'
             ],
-            correct: 2,
-            explanation: 'The red probe (positive) should contact the inner pin of the barrel connector, while the black probe contacts the outer shell (ground).'
+            correct: 0,
+            explanation: 'The paperclip test connects the green wire (PS_ON) to a black wire (ground) to test if a PSU can turn on.'
+          },
+          {
+            question: 'Which tool is best for measuring voltage output from a PSU?',
+            options: [
+              'Screwdriver',
+              'Multimeter',
+              'Power supply tester',
+              'Oscilloscope'
+            ],
+            correct: 1,
+            explanation: 'A multimeter is the best tool for measuring voltage output from a PSU accurately.'
+          },
+          {
+            question: 'What should you do first when troubleshooting a "no power" issue?',
+            options: [
+              'Replace the power supply',
+              'Check the wall outlet and power cord',
+              'Test the motherboard',
+              'Check the CPU'
+            ],
+            correct: 1,
+            explanation: 'Always start with the basics: check the wall outlet and power cord before assuming hardware failure.'
+          },
+          {
+            question: 'Which battery type is most commonly used in laptops?',
+            options: [
+              'Nickel-Metal Hydride (NiMH)',
+              'Lithium-Ion (Li-ion)',
+              'Lead-Acid',
+              'Alkaline'
+            ],
+            correct: 1,
+            explanation: 'Lithium-Ion (Li-ion) batteries are the most commonly used in laptops due to their good energy density and reliability.'
+          },
+          {
+            question: 'What does 80 Plus certification ensure?',
+            options: [
+              '80% or higher efficiency at various loads',
+              '80% or higher power output',
+              '80% or higher reliability',
+              '80% or higher compatibility'
+            ],
+            correct: 0,
+            explanation: '80 Plus certification ensures that a PSU maintains 80% or higher efficiency at various load levels.'
+          },
+          {
+            question: 'What should you do if a laptop battery is swollen?',
+            options: [
+              'Continue using it normally',
+              'Replace it immediately for safety',
+              'Try to fix it yourself',
+              'Ignore the issue'
+            ],
+            correct: 1,
+            explanation: 'Swollen batteries are a safety hazard and should be replaced immediately to prevent potential fire or explosion.'
+          },
+          {
+            question: 'Which voltage rail powers USB ports?',
+            options: [
+              '+3.3V',
+              '+5V',
+              '+12V',
+              '-12V'
+            ],
+            correct: 1,
+            explanation: 'The +5V rail powers USB ports and some storage drives.'
+          },
+          {
+            question: 'What is the purpose of Power Factor Correction (PFC)?',
+            options: [
+              'To increase power output',
+              'To improve power efficiency',
+              'To reduce noise',
+              'To increase reliability'
+            ],
+            correct: 1,
+            explanation: 'Power Factor Correction (PFC) improves power efficiency by ensuring the PSU draws power more efficiently from the electrical grid.'
           }
         ]
       }

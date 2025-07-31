@@ -6,8 +6,7 @@ export const lesson4Quiz: Lesson = {
   description: 'Test your understanding of microphone types, pickup patterns, and placement techniques',
   duration: '30 minutes',
   type: 'quiz',
-  content: `
-# 🎧 Quiz: Types of Microphones
+  content: `# 🎧 Quiz: Types of Microphones
 
 ## Instructions
 This quiz covers microphone types, pickup patterns, and placement techniques. Read each question carefully and select the best answer. You have 30 minutes to complete this quiz.
@@ -239,8 +238,4 @@ If you struggled with certain questions, focus on reviewing:
 - **Questions 6-10**: Pickup patterns and their applications
 - **Questions 11-15**: Mic placement techniques and practical considerations
 
-Remember, understanding these fundamentals is crucial for success in audio engineering and sound design careers!
-  `
-};
-
-export default lesson4Quiz; 
+Remember, understanding these fundamentals is crucial for success in audio engineering and sound design careers! 

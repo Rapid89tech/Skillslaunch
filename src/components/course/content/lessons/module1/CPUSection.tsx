@@ -29,20 +29,20 @@ const CPUSection = () => {
         <div className="grid md:grid-cols-2 gap-4 mb-4">
           <div className="border rounded-lg p-4">
             <h5 className="font-semibold text-blue-600 mb-2">Key Functions:</h5>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• Executes program instructions</li>
-              <li>• Performs basic arithmetic and logic operations</li>
-              <li>• Controls input/output operations</li>
-              <li>• Coordinates other components</li>
+            <ul className="modern-bullet-list text-sm">
+              <li>Executes program instructions</li>
+              <li>Performs basic arithmetic and logic operations</li>
+              <li>Controls input/output operations</li>
+              <li>Coordinates other components</li>
             </ul>
           </div>
           <div className="border rounded-lg p-4">
             <h5 className="font-semibold text-purple-600 mb-2">Key Specifications:</h5>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• <strong>Clock Speed:</strong> Measured in GHz</li>
-              <li>• <strong>Cores:</strong> Multiple processing units</li>
-              <li>• <strong>Cache:</strong> Fast memory on CPU</li>
-              <li>• <strong>Types:</strong> Intel (i3, i5, i7, i9), AMD (Ryzen)</li>
+            <ul className="modern-bullet-list text-sm">
+              <li><strong>Clock Speed:</strong> Measured in GHz</li>
+              <li><strong>Cores:</strong> Multiple processing units</li>
+              <li><strong>Cache:</strong> Fast memory on CPU</li>
+              <li><strong>Types:</strong> Intel (i3, i5, i7, i9), AMD (Ryzen)</li>
             </ul>
           </div>
         </div>
@@ -68,11 +68,11 @@ const CPUSection = () => {
 
         <div className="bg-red-50 p-4 rounded-lg">
           <h5 className="font-semibold text-red-800 mb-2">Common CPU Issues:</h5>
-          <ul className="text-red-700 text-sm space-y-1">
-            <li>• Overheating due to thermal paste failure</li>
-            <li>• Improper installation</li>
-            <li>• Bent pins (on some CPU types)</li>
-            <li>• Compatibility problems with motherboard</li>
+          <ul className="modern-bullet-list text-red-700 text-sm">
+            <li>Overheating due to thermal paste failure</li>
+            <li>Improper installation</li>
+            <li>Bent pins (on some CPU types)</li>
+            <li>Compatibility problems with motherboard</li>
           </ul>
         </div>
       </CardContent>

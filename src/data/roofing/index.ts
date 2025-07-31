@@ -1,7 +1,7 @@
 
-import { Course, Module } from '@/types/course';
+import type { Course } from '@/types/course';
 import { module1IntroductionToRoofing } from './module1-introductionToRoofing';
-import { module2RoofingToolsAndEquipment } from './module2/index';
+import { module2RoofingToolsAndEquipment } from './module2';
 import { module3RoofingMaterials } from './module3-roofingMaterials';
 import { module4RoofStructuresAndComponents } from './module4-roofStructuresAndComponents';
 import { module5RoofInstallationTechniques } from './module5-roofInstallationTechniques';
@@ -11,53 +11,39 @@ import { module8RoofingSafetyAndRegulations } from './module8-roofingSafetyAndRe
 import { module9ReadingPlansAndEstimating } from './module9-readingPlansAndEstimating';
 import { module10SustainableModernRoofing } from './module10-sustainableModernRoofing';
 import { module11HandsOnPracticum } from './module11-handsOnPracticum';
-import { lesson5Certificate } from './module5-certificate';
 
 export const roofingCourse: Course = {
   id: 'roofing-course',
-  title: 'Professional Roofing Certification',
-  description: 'Comprehensive roofing training covering roofing fundamentals, materials, installation techniques, safety protocols, maintenance, sustainable solutions, hands-on practicum, and professional career development in the roofing industry',
+  title: 'Professional Roofing',
+  description: `Professional Roofing is a comprehensive online course designed to provide learners with essential knowledge and practical skills in residential and commercial roofing systems. This course covers fundamental roofing principles, material selection, installation techniques, and maintenance procedures required for professional roofing work.
+
+Through detailed video demonstrations, interactive simulations, and hands-on projects, students will learn to install, repair, and maintain various roofing systems including asphalt shingles, metal roofing, tile roofing, and flat roofing systems. The course emphasizes safety standards, building codes, and professional best practices while preparing learners for real-world roofing scenarios.
+
+Whether you're beginning a career in roofing, enhancing existing skills, or pursuing professional certification, this course provides the foundation for success in the roofing industry.`,
   instructor: {
-    name: 'David Wilson',
-    title: 'Master Roofer & Construction Specialist',
-    bio: 'With over 20 years of experience in residential and commercial roofing, David is a certified master roofer who has managed projects ranging from single-family homes to large industrial complexes. He specializes in metal roofing, green roof systems, and sustainable roofing solutions.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
+    name: 'Robert Thompson',
+    title: 'Master Roofer and Educator',
+    bio: 'Licensed master roofer with 18+ years of experience in residential and commercial roofing, specializing in modern roofing systems and sustainable practices.',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
   },
-  duration: '44 weeks',
-  level: 'Beginner',
-  category: 'Construction & Trades',
-  is_free: false,
-  price: 2500,
+  level: 'beginner',
+  duration: '12 weeks (6-7 hours/week)',
+  students: 756,
+  rating: 4.5,
+  price: 1599,
   currency: 'ZAR',
-  students: 324,
-  rating: 4.8,
-  thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',
+  is_free: false,
+  thumbnail: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=300&fit=crop',
+  category: 'Construction',
   learningObjectives: [
-    'Understand different types of roofing systems and their applications',
-    'Master essential roofing tools and equipment usage',
-    'Learn proper safety protocols and fall protection systems',
-    'Develop skills in roofing material selection and installation',
-    'Practice accurate measuring, cutting, and installation methods',
-    'Master weatherproofing and waterproofing techniques',
-    'Understand building codes and inspection requirements',
-    'Learn to work with various roofing materials safely',
-    'Apply specialized techniques for different roof types',
-    'Develop troubleshooting skills for common roofing issues',
-    'Master repair and maintenance procedures',
-    'Apply professional quality control standards',
-    'Calculate materials and estimate project costs',
-    'Build confidence for independent roofing projects',
-    'Conduct thorough roof inspections and assessments',
-    'Implement effective preventative maintenance strategies',
-    'Read and interpret blueprints and construction plans',
-    'Perform accurate material take-offs and waste calculations',
-    'Understand sustainable roofing solutions and green technologies',
-    'Learn about solar roofing systems and energy-efficient designs',
-    'Apply environmental considerations and recycling practices',
-    'Gain hands-on experience through practical training exercises',
-    'Develop teamwork and communication skills for construction projects',
-    'Master safety procedures through drills and simulated scenarios',
-    'Practice installation techniques in controlled environments'
+    'Understand fundamental roofing principles and system components',
+    'Master installation and repair of various roofing materials',
+    'Learn to work with different roofing tools and equipment',
+    'Develop skills in roof structure analysis and preparation',
+    'Acquire knowledge of roofing codes and safety regulations',
+    'Gain proficiency in troubleshooting and maintenance procedures',
+    'Learn sustainable roofing practices and modern techniques',
+    'Prepare for professional roofing certification and licensing'
   ],
   modules: [
     module1IntroductionToRoofing,
@@ -70,12 +56,10 @@ export const roofingCourse: Course = {
     module8RoofingSafetyAndRegulations,
     module9ReadingPlansAndEstimating,
     module10SustainableModernRoofing,
-    module11HandsOnPracticum,
-    {
-      id: 12,
-      title: 'Course Completion',
-      description: 'Complete your roofing certification',
-      lessons: [lesson5Certificate]
-    } as Module
+    module11HandsOnPracticum
   ]
 };
+
+export const roofingMarkdown = `
+<full markdown content from CourseDocuments/Roofing Version 03.md>
+`;

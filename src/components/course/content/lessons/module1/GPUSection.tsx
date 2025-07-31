@@ -22,31 +22,31 @@ const GPUSection = () => {
         <div className="grid md:grid-cols-2 gap-4 mb-4">
           <div className="border rounded-lg p-4">
             <h5 className="font-semibold text-blue-600 mb-2">Types of GPUs:</h5>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• <strong>Integrated:</strong> Built into CPU/motherboard</li>
-              <li>• <strong>Dedicated:</strong> Separate card with own memory</li>
-              <li>• <strong>Brands:</strong> NVIDIA GeForce, AMD Radeon</li>
-              <li>• <strong>VRAM:</strong> Graphics memory for textures</li>
+            <ul className="modern-bullet-list text-sm">
+              <li><strong>Integrated:</strong> Built into CPU/motherboard</li>
+              <li><strong>Dedicated:</strong> Separate card with own memory</li>
+              <li><strong>Brands:</strong> NVIDIA GeForce, AMD Radeon</li>
+              <li><strong>VRAM:</strong> Graphics memory for textures</li>
             </ul>
           </div>
           <div className="border rounded-lg p-4">
             <h5 className="font-semibold text-purple-600 mb-2">Common Uses:</h5>
-            <ul className="text-sm text-gray-700 space-y-1">
-              <li>• Gaming and 3D graphics</li>
-              <li>• Video editing and streaming</li>
-              <li>• CAD and 3D modeling</li>
-              <li>• Essential for high-performance tasks</li>
+            <ul className="modern-bullet-list text-sm">
+              <li>Gaming and 3D graphics</li>
+              <li>Video editing and streaming</li>
+              <li>CAD and 3D modeling</li>
+              <li>Essential for high-performance tasks</li>
             </ul>
           </div>
         </div>
 
         <div className="bg-yellow-50 p-4 rounded-lg">
           <h5 className="font-semibold text-yellow-800 mb-2">Common GPU Issues:</h5>
-          <ul className="text-yellow-700 text-sm space-y-1">
-            <li>• Driver conflicts and updates needed</li>
-            <li>• Overheating and thermal throttling</li>
-            <li>• Artifacts or display corruption</li>
-            <li>• No display output</li>
+          <ul className="modern-bullet-list text-yellow-700 text-sm">
+            <li>Driver conflicts and updates needed</li>
+            <li>Overheating and thermal throttling</li>
+            <li>Artifacts or display corruption</li>
+            <li>No display output</li>
           </ul>
         </div>
       </CardContent>

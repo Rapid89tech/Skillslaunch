@@ -3,120 +3,120 @@ import type { QuizLesson } from '@/types/course';
 
 export const lesson12Quiz: QuizLesson = {
   id: 12,
-  title: 'Module 2 Quiz: Essential Tools and ESD Safety',
+  title: 'Quiz: Laptop Disassembly, Tools, and ESD Safety (Module 2)',
   duration: '15 min',
   type: 'quiz',
   content: {
     questions: [
       {
-        question: 'Which tool is used to remove small screws in laptops and desktops?',
+        question: 'What is the primary purpose of an anti-static wrist strap?',
         options: [
-          'Tweezers',
-          'Precision screwdriver set',
-          'Spudger',
-          'Magnetic mat'
+          'To keep your wrist comfortable during long repairs',
+          'To prevent electrostatic discharge (ESD) damage to components',
+          'To hold tools while working',
+          'To identify you as a repair technician'
         ],
         correct: 1,
-        explanation: 'A precision screwdriver set contains various small screwdrivers (Phillips, Torx, flathead) specifically designed for small screws found in electronic devices.'
+        explanation: 'Anti-static wrist straps prevent electrostatic discharge by grounding the technician, protecting sensitive electronic components from damage.'
       },
       {
-        question: 'What is the main function of a plastic pry tool or spudger?',
+        question: 'Which of the following is NOT a recommended ESD prevention method?',
         options: [
-          'Cut wires',
-          'Hold components',
-          'Open plastic casings without damage',
-          'Measure voltage'
+          'Using anti-static mats and work surfaces',
+          'Wearing anti-static wrist straps',
+          'Working on carpeted floors',
+          'Maintaining 40-60% relative humidity'
         ],
         correct: 2,
-        explanation: 'Plastic pry tools or spudgers are specifically designed to safely separate plastic casings without scratching or damaging the surfaces.'
+        explanation: 'Working on carpeted floors creates static electricity and should be avoided. Anti-static mats, wrist straps, and proper humidity control are all recommended ESD prevention methods.'
       },
       {
-        question: 'What is the purpose of using an anti-static wrist strap?',
+        question: 'What should you do before starting laptop disassembly?',
         options: [
-          'Prevent cuts during disassembly',
-          'Stabilize the motherboard',
-          'Protect components from electrostatic discharge',
-          'Prevent overheating'
-        ],
-        correct: 2,
-        explanation: 'Anti-static wrist straps ground your body to prevent electrostatic discharge (ESD) which can damage sensitive electronic components.'
-      },
-      {
-        question: 'Which tool is best for organizing small screws during disassembly?',
-        options: [
-          'Compressed air',
-          'Brush',
-          'Magnetic mat or screw tray',
-          'Isopropyl alcohol'
-        ],
-        correct: 2,
-        explanation: 'Magnetic mats or screw trays are specifically designed to keep small screws organized and prevent them from getting lost during disassembly.'
-      },
-      {
-        question: 'Which cleaning agent is safe and effective for removing thermal paste?',
-        options: [
-          'Water',
-          'WD-40',
-          'Isopropyl alcohol (90% or higher)',
-          'Glass cleaner'
-        ],
-        correct: 2,
-        explanation: 'Isopropyl alcohol at 90% concentration or higher is safe for electronics and effectively removes thermal paste without leaving residue.'
-      },
-      {
-        question: 'When should thermal paste be applied?',
-        options: [
-          'Before cleaning dust from a fan',
-          'Between CPU/GPU and heat sink during reassembly',
-          'On the motherboard traces',
-          'To lubricate a fan'
+          'Start immediately to save time',
+          'Remove the battery and disconnect power',
+          'Turn on the laptop to test it first',
+          'Call the customer for permission'
         ],
         correct: 1,
-        explanation: 'Thermal paste should be applied between the CPU/GPU and heat sink during reassembly to ensure efficient heat transfer.'
+        explanation: 'Always remove the battery and disconnect power before disassembly to prevent electrical shock and component damage.'
       },
       {
-        question: 'Which of the following can generate static electricity?',
+        question: 'Which tool is best for removing adhesive-backed components?',
         options: [
-          'Metal tables',
-          'Cotton clothing',
-          'Plastic or foam packaging',
-          'Ceramic flooring'
-        ],
-        correct: 2,
-        explanation: 'Plastic and foam packaging materials can build up static electricity, which is why components should be stored in anti-static bags.'
-      },
-      {
-        question: 'What is the function of a multimeter during computer repair?',
-        options: [
-          'Cooling the CPU',
-          'Removing screws',
-          'Measuring voltage, continuity, and resistance',
-          'Displaying BIOS settings'
-        ],
-        correct: 2,
-        explanation: 'A multimeter is used to measure electrical properties like voltage, continuity, and resistance for diagnostic purposes.'
-      },
-      {
-        question: 'What is a safe way to handle RAM or GPU components?',
-        options: [
-          'By the contacts',
-          'By the edges',
-          'Using bare hands on the pins',
-          'Wearing rubber gloves'
+          'A hammer and chisel',
+          'A heat gun or hot plate',
+          'A screwdriver',
+          'A pair of pliers'
         ],
         correct: 1,
-        explanation: 'Components should be handled by their edges to avoid touching sensitive contacts, pins, or circuits that could be damaged by oils or ESD.'
+        explanation: 'Heat guns or hot plates are used to soften adhesives, making it easier and safer to remove components without damage.'
       },
       {
-        question: 'Which is NOT an ESD-safe practice?',
+        question: 'How should you handle laptop components to prevent damage?',
         options: [
-          'Using an anti-static mat',
-          'Wearing synthetic clothes',
-          'Grounding yourself before touching components',
-          'Storing parts in anti-static bags'
+          'Hold them by any convenient part',
+          'Hold them by the edges only',
+          'Use your bare hands for better grip',
+          'Throw them in a toolbox for storage'
         ],
         correct: 1,
-        explanation: 'Wearing synthetic clothes can generate static electricity. Cotton clothing is preferred for ESD-safe practices.'
+        explanation: 'Components should always be held by the edges to avoid touching sensitive contacts, pins, or circuits that could be damaged by oils or static electricity.'
+      },
+      {
+        question: 'What is the purpose of documenting screw locations during disassembly?',
+        options: [
+          'To show off your organizational skills',
+          'To ensure proper reassembly and prevent damage',
+          'To waste time during the repair',
+          'To create unnecessary paperwork'
+        ],
+        correct: 1,
+        explanation: 'Documenting screw locations ensures that the correct screws are used in the right places during reassembly, preventing damage and ensuring proper function.'
+      },
+      {
+        question: 'Which of the following is a common ESD hazard?',
+        options: [
+          'Working in a well-lit area',
+          'Wearing synthetic clothing',
+          'Using proper tools',
+          'Following safety procedures'
+        ],
+        correct: 1,
+        explanation: 'Synthetic clothing can generate static electricity, making it a common ESD hazard. Natural fibers are preferred when working with electronics.'
+      },
+      {
+        question: 'What should you do if you encounter a stripped screw during disassembly?',
+        options: [
+          'Force it out with pliers',
+          'Use a screw extractor or drill it out carefully',
+          'Leave it in place and work around it',
+          'Use a hammer to break it'
+        ],
+        correct: 1,
+        explanation: 'Stripped screws should be carefully removed using screw extractors or by drilling them out, rather than forcing them which could damage the component.'
+      },
+      {
+        question: 'Why is it important to take photos during disassembly?',
+        options: [
+          'To share on social media',
+          'To document cable routing and component placement for reassembly',
+          'To prove you did the work',
+          'To waste storage space'
+        ],
+        correct: 1,
+        explanation: 'Photos help document cable routing, component placement, and screw locations, making reassembly easier and more accurate.'
+      },
+      {
+        question: 'What is the recommended humidity level for ESD-safe work environments?',
+        options: [
+          '20-30% relative humidity',
+          '40-60% relative humidity',
+          '70-80% relative humidity',
+          '90-100% relative humidity'
+        ],
+        correct: 1,
+        explanation: '40-60% relative humidity is ideal for preventing static electricity buildup while avoiding condensation that could damage components.'
       }
     ]
   }

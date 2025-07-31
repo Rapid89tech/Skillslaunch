@@ -12,237 +12,110 @@ export const module11ChemicalProcesses: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://www.youtube.com/watch?v=8X4LeI1TsKQ',
-        textContent: `
-          <div class="space-y-8">
-            <div class="bg-gradient-to-r from-pink-50 to-purple-50 p-6 rounded-lg border-l-4 border-pink-500">
-              <h2 class="text-2xl font-bold text-gray-800 mb-4">🧪 Chemical Processes in Hairdressing</h2>
-              <p class="text-gray-700 leading-relaxed">
-                Chemical processes are fundamental to professional hairdressing, allowing stylists to permanently alter hair texture, create stunning curls, straighten hair, and correct color issues. This comprehensive lesson covers the essential chemical treatments every professional stylist should master.
-              </p>
-            </div>
+        textContent: `# **Module 11: Chemical Processes in Hairdressing**
 
-            <div class="bg-white p-6 rounded-lg shadow-sm border">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">🎯 Lesson Objectives</h3>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">•</span>
-                  <span>Understand the fundamentals of perming and relaxing hair</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">•</span>
-                  <span>Explore keratin treatments and smoothing systems</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">•</span>
-                  <span>Learn color correction techniques for professional results</span>
-                </li>
-              </ul>
-            </div>
+## 🧪 Understanding Chemical Processes
 
-            <div class="bg-blue-50 p-6 rounded-lg border-l-4 border-blue-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">💫 Perming Hair</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">What Is Perming?</h4>
-                  <p class="text-gray-700">
-                    A chemical process that alters hair's natural texture, creating curls or waves by restructuring the protein bonds in hair using perm rods and chemical solutions (alkaline or acid-based).
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">The Perming Process:</h4>
-                  <ol class="list-decimal list-inside space-y-2 text-gray-700 ml-4">
-                    <li>Hair is wound onto perm rods</li>
-                    <li>Waving lotion is applied, breaking down natural bonds</li>
-                    <li>Hair is reshaped into the curl pattern of the rods</li>
-                    <li>Neutralizer is applied to set the new shape and restore pH balance</li>
-                  </ol>
-                </div>
+Chemical processes are fundamental to professional hairdressing, allowing stylists to permanently alter hair texture, create stunning curls, straighten hair, and correct color issues. This comprehensive lesson covers the essential chemical treatments every professional stylist should master.
 
-                <div class="bg-blue-100 p-4 rounded-lg">
-                  <h4 class="font-semibold text-gray-800 mb-2">⚠️ Key Considerations:</h4>
-                  <ul class="space-y-1 text-gray-700">
-                    <li>• Hair health and porosity assessment</li>
-                    <li>• Proper timing to avoid over-processing</li>
-                    <li>• Always conduct strand tests</li>
-                    <li>• Use quality products and follow manufacturer guidelines</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+### 🎯 Lesson Objectives
 
-            <div class="bg-green-50 p-6 rounded-lg border-l-4 border-green-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">🌿 Relaxing Hair</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">What Is Relaxing?</h4>
-                  <p class="text-gray-700">
-                    A chemical process used to straighten curly or textured hair by breaking down disulfide bonds in the hair shaft, using sodium hydroxide (lye) or calcium hydroxide (no-lye) relaxers.
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">The Relaxing Process:</h4>
-                  <ol class="list-decimal list-inside space-y-2 text-gray-700 ml-4">
-                    <li>Apply relaxer evenly, avoiding scalp contact</li>
-                    <li>Smooth hair to desired straightness</li>
-                    <li>Rinse thoroughly and neutralize to halt the chemical process</li>
-                  </ol>
-                </div>
+- Understand the fundamentals of perming and relaxing hair
+- Explore keratin treatments and smoothing systems
+- Learn color correction techniques for professional results
 
-                <div class="bg-green-100 p-4 rounded-lg">
-                  <h4 class="font-semibold text-gray-800 mb-2">✅ Best Practices:</h4>
-                  <ul class="space-y-1 text-gray-700">
-                    <li>• Always neutralize properly</li>
-                    <li>• Avoid overlapping applications on previously relaxed hair</li>
-                    <li>• Use post-relaxer treatments to restore moisture and protein</li>
-                    <li>• Consider scalp sensitivity and timing</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+### 💫 Perming Hair
 
-            <div class="bg-purple-50 p-6 rounded-lg border-l-4 border-purple-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">✨ Keratin Treatments & Smoothing Systems</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">Keratin Treatments:</h4>
-                  <p class="text-gray-700 mb-3">
-                    Treatments that infuse hair with keratin (natural protein) to reduce frizz, improve manageability, and add shine. Applied with heat sealing using a flat iron.
-                  </p>
-                  
-                  <div class="grid md:grid-cols-2 gap-4">
-                    <div class="bg-purple-100 p-4 rounded-lg">
-                      <h5 class="font-semibold text-gray-800 mb-2">💫 Benefits:</h5>
-                      <ul class="space-y-1 text-gray-700 text-sm">
-                        <li>• Smoother, more manageable hair</li>
-                        <li>• Reduces blow-drying time</li>
-                        <li>• Lasts several weeks to months</li>
-                        <li>• Adds natural shine</li>
-                      </ul>
-                    </div>
-                    
-                    <div class="bg-purple-100 p-4 rounded-lg">
-                      <h5 class="font-semibold text-gray-800 mb-2">⚠️ Considerations:</h5>
-                      <ul class="space-y-1 text-gray-700 text-sm">
-                        <li>• Some contain formaldehyde compounds</li>
-                        <li>• Results vary by hair type</li>
-                        <li>• Requires professional application</li>
-                        <li>• Use sulfate-free maintenance products</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+**What Is Perming?**
+A chemical process that alters hair's natural texture, creating curls or waves by restructuring the protein bonds in hair using perm rods and chemical solutions (alkaline or acid-based).
 
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">Smoothing Systems:</h4>
-                  <p class="text-gray-700">
-                    Non-permanent treatments designed to eliminate frizz and enhance shine without completely altering natural curl patterns. Gentler alternative with temporary results lasting several weeks.
-                  </p>
-                </div>
-              </div>
-            </div>
+**The Perming Process:**
+1. Hair is wound onto perm rods
+2. Waving lotion is applied, breaking down natural bonds
+3. Hair is reshaped into the curl pattern of the rods
+4. Neutralizer is applied to set the new shape and restore pH balance
 
-            <div class="bg-orange-50 p-6 rounded-lg border-l-4 border-orange-500">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">🎨 Color Correction Techniques</h3>
-              <div class="space-y-4">
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-2">What Is Color Correction?</h4>
-                  <p class="text-gray-700">
-                    The process of fixing unwanted hair color results, such as brassy tones, uneven application, or incorrect shades. Often requires multiple steps and sessions.
-                  </p>
-                </div>
-                
-                <div>
-                  <h4 class="font-semibold text-gray-800 mb-3">Common Issues & Solutions:</h4>
-                  <div class="space-y-3">
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">🧡 Brassy or Warm Tones:</h5>
-                      <p class="text-gray-700 text-sm">Use blue or purple-based toners to neutralize orange or yellow undertones</p>
-                    </div>
-                    
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">⚫ Overly Dark Results:</h5>
-                      <p class="text-gray-700 text-sm">Gradual lightening with gentle lightener; use filler before darkening too-light hair</p>
-                    </div>
-                    
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">🎭 Uneven Color:</h5>
-                      <p class="text-gray-700 text-sm">Strand tests and sectioning to target specific areas; layer glazes for seamless blending</p>
-                    </div>
-                    
-                    <div class="bg-orange-100 p-3 rounded-lg">
-                      <h5 class="font-semibold text-gray-800">🌫️ Faded or Patchy Color:</h5>
-                      <p class="text-gray-700 text-sm">Refresh with semi-permanent glosses; deep condition for even application</p>
-                    </div>
-                  </div>
-                </div>
+**⚠️ Key Considerations:**
+- Hair health and porosity assessment
+- Proper timing to avoid over-processing
+- Always conduct strand tests
+- Use quality products and follow manufacturer guidelines
 
-                <div class="bg-red-100 p-4 rounded-lg">
-                  <h4 class="font-semibold text-gray-800 mb-2">🔑 Key Considerations:</h4>
-                  <ul class="space-y-1 text-gray-700">
-                    <li>• Always start with thorough consultation</li>
-                    <li>• Work slowly and in stages</li>
-                    <li>• Use gentle, high-quality products</li>
-                    <li>• Understand client's hair history and goals</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+### 🌿 Relaxing Hair
 
-            <div class="bg-gray-50 p-6 rounded-lg">
-              <h3 class="text-xl font-semibold text-gray-800 mb-4">📚 Professional Development</h3>
-              <div class="space-y-3">
-                <p class="text-gray-700">
-                  Chemical processes require continuous learning and practice. Consider pursuing advanced certifications and staying updated with the latest techniques and products.
-                </p>
-                
-                <div class="grid md:grid-cols-2 gap-4 mt-4">
-                  <div>
-                    <h4 class="font-semibold text-gray-800 mb-2">📖 Recommended Resources:</h4>
-                    <ul class="space-y-1 text-gray-700 text-sm">
-                      <li>• Professional development classes</li>
-                      <li>• Advanced certifications</li>
-                      <li>• Trusted product brand training</li>
-                      <li>• Online tutorials and workshops</li>
-                    </ul>
-                  </div>
-                  
-                  <div>
-                    <h4 class="font-semibold text-gray-800 mb-2">🎯 Practice Tips:</h4>
-                    <ul class="space-y-1 text-gray-700 text-sm">
-                      <li>• Always perform strand tests</li>
-                      <li>• Document successful formulas</li>
-                      <li>• Practice on mannequins first</li>
-                      <li>• Stay updated on safety protocols</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+**What Is Relaxing?**
+A chemical process used to straighten curly or textured hair by breaking down disulfide bonds in the hair shaft, using sodium hydroxide (lye) or calcium hydroxide (no-lye) relaxers.
 
-            <div class="bg-gradient-to-r from-pink-100 to-purple-100 p-6 rounded-lg">
-              <h3 class="text-xl font-semibold text-gray-800 mb-3">🌟 Key Takeaways</h3>
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Chemical processes require thorough understanding of hair structure and chemistry</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Always prioritize hair health and client safety</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Proper consultation and strand testing are essential</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-pink-500 font-bold">✓</span>
-                  <span>Color correction requires patience and skill</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+**The Relaxing Process:**
+1. Apply relaxer evenly, avoiding scalp contact
+2. Smooth hair to desired straightness
+3. Rinse thoroughly and neutralize to halt the chemical process
+
+**✅ Best Practices:**
+- Always neutralize properly
+- Avoid overlapping applications on previously relaxed hair
+- Use post-relaxer treatments to restore moisture and protein
+- Consider scalp sensitivity and timing
+
+### ✨ Keratin Treatments & Smoothing Systems
+
+**Keratin Treatments:**
+Treatments that infuse hair with keratin (natural protein) to reduce frizz, improve manageability, and add shine. Applied with heat sealing using a flat iron.
+
+**Benefits:**
+- Smoother, more manageable hair
+- Reduces blow-drying time
+- Lasts several weeks to months
+- Adds natural shine
+
+**Considerations:**
+- Some contain formaldehyde compounds
+- Results vary by hair type
+- Requires professional application
+- Use sulfate-free maintenance products
+
+**Smoothing Systems:**
+Non-permanent treatments designed to eliminate frizz and enhance shine without completely altering natural curl patterns. Gentler alternative with temporary results lasting several weeks.
+
+### 🎨 Color Correction Techniques
+
+**What Is Color Correction?**
+The process of fixing unwanted hair color results, such as brassy tones, uneven application, or incorrect shades. Often requires multiple steps and sessions.
+
+**Common Issues & Solutions:**
+- **Brassy or Warm Tones:** Use blue or purple-based toners to neutralize orange or yellow undertones
+- **Overly Dark Results:** Gradual lightening with gentle lightener; use filler before darkening too-light hair
+- **Uneven Color:** Strand tests and sectioning to target specific areas; layer glazes for seamless blending
+- **Faded or Patchy Color:** Refresh with semi-permanent glosses; deep condition for even application
+
+**🔑 Key Considerations:**
+- Always start with thorough consultation
+- Work slowly and in stages
+- Use gentle, high-quality products
+- Understand client's hair history and goals
+
+## 📚 Professional Development
+
+Chemical processes require continuous learning and practice. Consider pursuing advanced certifications and staying updated with the latest techniques and products.
+
+### 📖 Recommended Resources:
+- Professional development classes
+- Advanced certifications
+- Trusted product brand training
+- Online tutorials and workshops
+
+### 🎯 Practice Tips:
+- Always perform strand tests
+- Document successful formulas
+- Practice on mannequins first
+- Stay updated on safety protocols
+
+## 🌟 Key Takeaways
+
+- Chemical processes require thorough understanding of hair structure and chemistry
+- Always prioritize hair health and client safety
+- Proper consultation and strand testing are essential
+- Color correction requires patience and skill
         `
       }
     },

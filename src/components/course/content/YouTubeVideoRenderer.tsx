@@ -113,6 +113,7 @@ const YouTubeVideoRenderer = ({ videoId, title = "Educational Video" }: YouTubeV
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="absolute top-0 left-0 w-full h-full transition-all duration-300"
+            style={{ minHeight: '400px' }}
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>

@@ -8,8 +8,10 @@ import { module5MixingPrinciples } from './soundEngineering/module5/index';
 
 export const soundEngineeringCourse: Course = {
   id: 'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d4',
-  title: 'Sound Engineering Professional Certification',
-  description: 'Master the fundamentals of sound engineering with hands-on training in recording, mixing, and audio production.',
+  title: 'Sound Engineering',
+  description: `Sonic Mastery: Comprehensive Sound Engineering Online is a dynamic, fully online course designed to equip learners with the skills to excel in professional audio production and sound design. Covering the fundamentals of sound theory, recording techniques, mixing, mastering, and post-production, this course blends technical expertise with creative application, preparing students for careers in music production, film audio, podcasting, and live sound engineering. Through engaging digital content and hands-on projects, learners will explore industry-standard tools and workflows, all accessible from anywhere in the world, making it ideal for aspiring audio professionals seeking flexible, high-quality training. The course emphasizes real-world applications, ensuring students can produce professional-grade audio and adapt to evolving industry trends.
+
+Whether you're a beginner looking to break into the audio industry or a seasoned professional aiming to refine your skills, this course offers a structured yet flexible learning path. With a focus on practical experience, students will work on real-world projects, such as recording a podcast or mixing a music track, while leveraging cutting-edge online tools to collaborate and create, ensuring relevance in today’s digital audio landscape.`,
   instructor: {
     name: 'David Martinez',
     title: 'Senior Audio Engineer & Producer',
@@ -26,12 +28,14 @@ export const soundEngineeringCourse: Course = {
   thumbnail: 'https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=400&h=300&fit=crop',
   category: 'Audio Technology',
   learningObjectives: [
-    'Master recording techniques and studio equipment',
-    'Learn mixing fundamentals and gain staging',
-    'Understand acoustics and sound physics',
-    'Operate digital audio workstations (DAWs)',
-    'Apply EQ, compression, and reverb techniques',
-    'Develop critical listening skills'
+    'Understand the principles of acoustics, sound wave propagation, and audio signal flow in digital and analog environments.',
+    'Master industry-standard digital audio workstations (DAWs) such as Pro Tools, Logic Pro, and Ableton Live for recording, editing, and mixing.',
+    'Apply advanced mixing techniques, including equalization, compression, and reverb, to achieve professional-quality audio.',
+    'Design and implement soundscapes for film, games, and multimedia using Foley, sound effects, and spatial audio techniques.',
+    'Execute mastering processes to prepare audio tracks for commercial release, ensuring compatibility across platforms like streaming services.',
+    'Analyze and troubleshoot common audio issues, such as phase cancellation and distortion, using online diagnostic tools.',
+    'Collaborate effectively in virtual production environments, integrating feedback from peers and instructors to refine projects.',
+    'Create a professional portfolio showcasing a variety of audio projects, including a mixed music track, a podcast episode, and a film audio segment.'
   ],
   modules: [
     module1IntroductionToSoundEngineering,

@@ -12,12 +12,11 @@ export const module9CurlingAndStraightening: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/RoX3gZaFmZE',
-        textContent: `# 💇‍♀️ Curling and Straightening
+        textContent: `# **Module 9: Curling and Straightening**
 
-## Lesson Objectives:
-- Understand various curling techniques and tools
-- Learn effective methods to achieve sleek, straight hair
-- Differentiate between temporary and permanent styling options
+Curling and straightening are fundamental hair styling techniques that transform hair texture and create diverse looks. These methods allow stylists to enhance natural hair patterns or completely change them for special occasions, daily styling, or client preferences.
+
+---
 
 ## Part 1: Introduction
 

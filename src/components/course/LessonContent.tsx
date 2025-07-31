@@ -5,6 +5,7 @@ import VideoLessonRenderer from './content/VideoLessonRenderer';
 import QuizLessonRenderer from './content/QuizLessonRenderer';
 import AssignmentLessonRenderer from './content/AssignmentLessonRenderer';
 import CertificateLessonRenderer from './content/CertificateLessonRenderer';
+import ContentFormatter from './content/animated-lesson/ContentFormatter';
 import type { Lesson, QuizLesson, AssignmentLesson, CertificateLesson, VideoLesson, Course } from '@/types/course';
 
 interface LessonContentProps {
@@ -19,7 +20,10 @@ interface LessonContentProps {
   lessonId: number;
 }
 
-const LessonContent = ({ lesson, course, isCompleted, hasAttempted = false, onMarkComplete, onNext, progress, moduleId, lessonId }: LessonContentProps) => {
+const LessonContent = ({ lesson, course, isCompleted, hasAttempted = false, onMarkComplete, onNext, progress, moduleId, lessonId, markdownContent }: LessonContentProps & { markdownContent?: string }) => {
+  if (markdownContent) {
+    return <ContentFormatter content={markdownContent} />;
+  }
   const renderLessonContent = () => {
     switch (lesson.type) {
       case 'video':

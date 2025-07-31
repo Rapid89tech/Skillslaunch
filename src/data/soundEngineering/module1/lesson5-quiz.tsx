@@ -6,8 +6,7 @@ export const lesson5Quiz: Lesson = {
   description: 'Test your understanding of sound fundamentals and industry applications',
   duration: '30 minutes',
   type: 'quiz',
-  content: `
-# 🎓 Module 1 Quiz: Fundamentals and Applications of Sound
+  content: `# 🎓 Module 1 Quiz: Fundamentals and Applications of Sound
 
 ## Instructions
 This quiz covers the fundamental concepts of sound, audio careers, sound properties, and industry applications. Read each question carefully and select the best answer. You have 30 minutes to complete this quiz.
@@ -229,8 +228,7 @@ If you struggled with certain questions, focus on reviewing:
 - **Questions 6-10**: Audio careers and industry applications
 - **Questions 11-15**: Advanced concepts and practical applications
 
-Remember, understanding these fundamentals is crucial for success in audio engineering and sound design careers!
-  `
+Remember, understanding these fundamentals is crucial for success in audio engineering and sound design careers!  `
 };
 
 export default lesson5Quiz; 

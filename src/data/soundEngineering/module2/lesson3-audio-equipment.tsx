@@ -9,37 +9,26 @@ export const lesson3AudioEquipment: Lesson = {
   content: `
 # 🎚️ Audio Interface, Mixers, Preamps
 
-## 1. Audio Interface
+---
 
-**YouTube Video**: [Audio Interface Overview](https://youtu.be/5wabpxVRFfM)
+## 1. <span style="color:#5a67d8;font-weight:700">Audio Interface</span>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/5wabpxVRFfM" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <iframe width="900" height="506" src="https://www.youtube.com/embed/5wabpxVRFfM" frameborder="0" allowfullscreen style="border-radius:18px;box-shadow:0 8px 32px rgba(90,103,216,0.18);"></iframe>
 </div>
 
-**What is an Audio Interface?**
 A hardware device that connects microphones, instruments, and other audio sources to a computer. Converts analog signals to digital for recording and digital signals back to analog for playback.
 
-**Main Functions**:
-- **Analog-to-Digital Conversion (ADC)**: Converts analog input signals into digital audio data
-- **Digital-to-Analog Conversion (DAC)**: Converts digital audio data back into analog signals for monitoring
+**Main Functions:**
+- <b>ADC</b>: Converts analog input signals into digital audio data
+- <b>DAC</b>: Converts digital audio data back into analog signals for monitoring
 - Provides inputs (mic, instrument, line) and outputs (monitors, headphones)
 - Often includes built-in preamps for mic/instrument signal amplification
 - Supplies phantom power (+48V) for condenser microphones
-- Supports various connection protocols: USB, Thunderbolt, FireWire, PCIe
+- Supports USB, Thunderbolt, FireWire, PCIe
 
-**YouTube Video**: [Audio Interface Setup](https://youtu.be/example)
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/example" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <iframe width="900" height="506" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen style="border-radius:18px;box-shadow:0 8px 32px rgba(90,103,216,0.18);"></iframe>
 </div>
 
 **Why Use an Audio Interface?**
@@ -47,133 +36,117 @@ A hardware device that connects microphones, instruments, and other audio source
 - Lower latency (delay) for real-time monitoring
 - Allows multi-channel recording
 
-## 2. Mixers
+---
 
-**YouTube Video**: [Types of Mixers](https://www.youtube.com/watch?v=EZr6M6jE3Iw&pp=ygUPVFlQRVMgT0YgTUlYRVJT)
+## 2. <span style="color:#5a67d8;font-weight:700">Mixers</span>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/EZr6M6jE3Iw?pp=ygUPVFlQRVMgT0YgTUlYRVJT" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <iframe width="900" height="506" src="https://www.youtube.com/embed/EZr6M6jE3Iw?pp=ygUPVFlQRVMgT0YgTUlYRVJT" frameborder="0" allowfullscreen style="border-radius:18px;box-shadow:0 8px 32px rgba(90,103,216,0.18);"></iframe>
 </div>
 
-**What is a Mixer?**
 A device that takes multiple audio inputs and combines them into one or more outputs. Allows control of volume, tone, and effects on each input channel.
 
-**Types of Mixers**:
+**Types of Mixers:**
+- <b>Analog Mixer</b>: Uses physical knobs, faders, and switches.
+- <b>Digital Mixer</b>: Uses digital processing, offers presets, effects, and recallable settings.
+- <b>Hybrid Mixer</b>: Combines analog controls with digital processing.
 
-**Analog Mixer**: Uses physical knobs, faders, and switches.
-
-**YouTube Video**: [Digital Mixers Basics](https://youtu.be/example)
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/example" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <iframe width="900" height="506" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen style="border-radius:18px;box-shadow:0 8px 32px rgba(90,103,216,0.18);"></iframe>
 </div>
 
-**Digital Mixer**: Uses digital processing, offers presets, effects, and recallable settings.
+**Key Components:**
+- <b>Channels</b>: Input strips for microphones or instruments
+- <b>Faders</b>: Adjust channel volume
+- <b>EQ (Equalizer)</b>: Modify frequency response of each channel
+- <b>Aux Sends</b>: Create separate mixes for monitors or effects
+- <b>Buses</b>: Group several channels for collective control
+- <b>Master Section</b>: Controls the final output level
 
-**YouTube Video**: [Hybrid Mixing](https://youtu.be/example)
-
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/example" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
-</div>
-
-**Hybrid Mixer**: Combines analog controls with digital processing.
-
-**Key Components**:
-- **Channels**: Input strips for microphones or instruments
-- **Faders**: Adjust channel volume
-- **EQ (Equalizer)**: Modify frequency response of each channel
-- **Aux Sends**: Create separate mixes for monitors or effects
-- **Buses**: Group several channels for collective control
-- **Master Section**: Controls the final output level
-
-**Use Cases**:
+**Use Cases:**
 - Live sound reinforcement
 - Studio recording
 - Broadcast and podcast production
 
-## 3. Preamps (Preamplifiers)
+---
 
-**YouTube Video**: [Understanding Preamps](https://youtu.be/7UGEvcXlRlw)
+## 3. <span style="color:#5a67d8;font-weight:700">Preamps (Preamplifiers)</span>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/7UGEvcXlRlw" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <iframe width="900" height="506" src="https://www.youtube.com/embed/7UGEvcXlRlw" frameborder="0" allowfullscreen style="border-radius:18px;box-shadow:0 8px 32px rgba(90,103,216,0.18);"></iframe>
 </div>
 
-**What is a Preamp?**
 A device that boosts very low-level signals (like from microphones or guitars) to line level. Essential for providing clean, noise-free amplification before processing or recording.
 
-**Characteristics**:
+**Characteristics:**
 - Provides gain (signal boost)
 - Should have a low noise floor and high headroom
 - Influences the tone and character of the sound
 - Available as standalone units or built into mixers and audio interfaces
 - Common types: Solid-state (clean, transparent) and Tube (warm, colored)
 
-## 4. How They Work Together
+---
 
-**YouTube Video**: [Audio Equipment Integration](https://youtu.be/EP9zVernOwg)
+## 4. <span style="color:#5a67d8;font-weight:700">How They Work Together</span>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/EP9zVernOwg" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <iframe width="900" height="506" src="https://www.youtube.com/embed/EP9zVernOwg" frameborder="0" allowfullscreen style="border-radius:18px;box-shadow:0 8px 32px rgba(90,103,216,0.18);"></iframe>
 </div>
 
-| Device | Function | Role in Signal Chain |
-|--------|----------|---------------------|
-| **Preamp** | Amplifies mic/instrument signal to line level | First stage after microphone or instrument |
-| **Mixer** | Combines and processes multiple signals | Mixes all input sources, applies EQ and effects |
-| **Audio Interface** | Converts analog signals to/from digital | Connects audio hardware to computer for recording/playback |
+<table>
+  <tr>
+    <th>Device</th>
+    <th>Function</th>
+    <th>Role in Signal Chain</th>
+  </tr>
+  <tr>
+    <td><b>Preamp</b></td>
+    <td>Amplifies mic/instrument signal to line level</td>
+    <td>First stage after microphone or instrument</td>
+  </tr>
+  <tr>
+    <td><b>Mixer</b></td>
+    <td>Combines and processes multiple signals</td>
+    <td>Mixes all input sources, applies EQ and effects</td>
+  </tr>
+  <tr>
+    <td><b>Audio Interface</b></td>
+    <td>Converts analog signals to/from digital</td>
+    <td>Connects audio hardware to computer for recording/playback</td>
+  </tr>
+</table>
 
 In many modern setups, audio interfaces have built-in preamps and mixing functions. External mixers or preamps are used when more control or higher quality is needed.
 
-## 5. Summary
+---
 
-**YouTube Video**: [Summary of Audio Equipment](https://youtu.be/example)
+## 5. <span style="color:#5a67d8;font-weight:700">Summary</span>
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
-  <iframe 
-    src="https://www.youtube.com/embed/example" 
-    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" 
-    allowfullscreen>
-  </iframe>
+<div style="display:flex;justify-content:center;margin:2rem 0;">
+  <iframe width="900" height="506" src="https://www.youtube.com/embed/example" frameborder="0" allowfullscreen style="border-radius:18px;box-shadow:0 8px 32px rgba(90,103,216,0.18);"></iframe>
 </div>
 
-- **Audio Interface**: Converts signals between analog and digital, connects to a computer
-- **Mixer**: Combines, controls, and processes multiple audio signals
-- **Preamplifier**: Boosts low-level signals to line level cleanly
+- <b>Audio Interface</b>: Converts signals between analog and digital, connects to a computer
+- <b>Mixer</b>: Combines, controls, and processes multiple audio signals
+- <b>Preamplifier</b>: Boosts low-level signals to line level cleanly
 
-## Key Takeaways
+---
 
-1. **Audio interfaces** bridge analog and digital audio worlds
-2. **Mixers** combine and control multiple audio sources
-3. **Preamps** provide clean amplification for low-level signals
-4. **Different mixer types** serve different applications (analog, digital, hybrid)
-5. **Integration** between these devices creates complete audio systems
-6. **Quality of each component** affects overall audio quality
-7. **Modern interfaces** often include built-in preamps and mixing functions
-8. **Understanding signal flow** helps optimize equipment setup
-9. **Equipment selection** depends on specific needs and budget
-10. **Proper setup and calibration** ensures optimal performance
-  `
+## 🚀 <span style="color:#764ba2;font-weight:700">Key Takeaways</span>
+
+1. <b>Audio interfaces</b> bridge analog and digital audio worlds  
+2. <b>Mixers</b> combine and control multiple audio sources  
+3. <b>Preamps</b> provide clean amplification for low-level signals  
+4. <b>Different mixer types</b> serve different applications (analog, digital, hybrid)  
+5. <b>Integration</b> between these devices creates complete audio systems  
+6. <b>Quality of each component</b> affects overall audio quality  
+7. <b>Modern interfaces</b> often include built-in preamps and mixing functions  
+8. <b>Understanding signal flow</b> helps optimize equipment setup  
+9. <b>Equipment selection</b> depends on specific needs and budget  
+10. <b>Proper setup and calibration</b> ensures optimal performance  
+
+---
+`
 };
 
-export default lesson3AudioEquipment; 
+export default lesson3AudioEquipment;

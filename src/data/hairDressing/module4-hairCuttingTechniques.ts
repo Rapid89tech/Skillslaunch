@@ -12,9 +12,12 @@ export const module4HairCuttingTechniques: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/Hrv0q_xLXFo',
-        textContent: `# ✂️ Basic Hair Cutting Styles
+        textContent: `
+# **Module 4: Hair Cutting Techniques**
 
-Hair cutting is a fundamental skill in hairdressing that requires precision, technique, and creativity. This lecture explores the key basic cutting styles, including the one-length cut, layered cut, and short styles like bob and pixie cuts.
+Hair cutting is a blend of technical skill, creativity, and understanding of hair structure. Every professional hairdresser must master the foundational cutting styles—one-length, layered, bob, and pixie cuts—to offer clients a range of looks that suit their face shape, lifestyle, and hair type. In this module, you’ll learn the theory, benefits, and step-by-step techniques for each style, along with practical examples and tips for real-world salon scenarios.
+
+---
 
 ## 1. One-Length Cut
 

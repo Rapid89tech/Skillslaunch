@@ -1,4 +1,4 @@
-import { Course, Module } from '@/types/course';
+import type { Course } from '@/types/course';
 import { module1IntroductionToHairdressing } from './module1-introductionToHairdressing';
 import { module2ToolsAndEquipment } from './module2-toolsAndEquipment';
 import { module3SalonSafetyAndHygiene } from './module3-salonSafetyAndHygiene';
@@ -13,39 +13,39 @@ import { module11ChemicalProcesses } from './module11-chemicalProcesses';
 import { module12ClientConsultation } from './module12-clientConsultation';
 import { module13SalonManagement } from './module13-salonManagement';
 import { module14BuildingCareerInHairdressing } from './module14-buildingCareerInHairdressing';
-import { lesson5Certificate } from './module5-certificate';
 
 export const hairDressingCourse: Course = {
   id: 'hair-dressing-course',
-  title: 'Professional Hair Dressing Certification',
-  description: 'This training course is designed to provide in-depth knowledge and hands-on skills for professional hairdressing. Participants will learn various hairstyling techniques, hair care principles, and client management strategies to excel in the hairdressing industry.',
+  title: 'Hair Dressing',
+  description: `Professional Hair Dressing is a comprehensive online course designed to equip learners with essential skills and knowledge for a successful career in hairdressing. This course covers fundamental techniques, advanced styling methods, chemical services, and business management skills needed in the modern beauty industry.
+
+Through interactive video lessons, practical demonstrations, and hands-on projects, students will master hair cutting, coloring, styling, and treatment techniques. The course emphasizes safety, hygiene, client consultation, and professional standards while preparing learners for real-world salon environments.
+
+Whether you're a beginner looking to start a career in hairdressing or an experienced stylist seeking to enhance your skills, this course provides the foundation for professional excellence in the beauty industry.`,
   instructor: {
-    name: 'Sofia Rodriguez',
-    title: 'Master Hair Stylist & Educator',
-    bio: 'With over 15 years of experience in professional hairdressing and salon management, Sofia has trained hundreds of stylists and owns multiple award-winning salons. She specializes in advanced cutting techniques and color theory.',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b977?w=150&h=150&fit=crop&crop=face'
+    name: 'Sarah Johnson',
+    title: 'Master Hair Stylist and Educator',
+    bio: 'Certified hair stylist with 15+ years of experience in professional hairdressing, specializing in cutting-edge techniques and salon management.',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
   },
-  duration: '16 weeks',
-  level: 'Beginner',
-  category: 'Beauty & Wellness',
-  is_free: false,
-  price: 2800,
+  level: 'beginner',
+  duration: '12 weeks (6-8 hours/week)',
+  students: 1247,
+  rating: 4.8,
+  price: 1499,
   currency: 'ZAR',
-  students: 892,
-  rating: 4.9,
-  thumbnail: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?w=800&h=600&fit=crop',
+  is_free: false,
+  thumbnail: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop',
+  category: 'Beauty and Health',
   learningObjectives: [
-    'Understand hair structure, types, porosity, and elasticity',
-    'Master fundamental cutting and styling techniques',
-    'Learn professional coloring and chemical treatment methods',
-    'Develop client consultation and communication skills',
-    'Practice salon safety and sanitation protocols',
-    'Build expertise in hair care product knowledge',
-    'Create diverse hairstyles for different face shapes',
-    'Understand business aspects of running a salon',
-    'Develop skills in salon management and customer service',
-    'Learn advanced styling for special occasions',
-    'Develop skills for ongoing professional development'
+    'Master fundamental hairdressing techniques and safety procedures',
+    'Develop proficiency in hair cutting, styling, and coloring methods',
+    'Understand hair analysis, consultation, and client communication',
+    'Learn chemical services including perming, relaxing, and straightening',
+    'Acquire skills in hair treatments, extensions, and specialized services',
+    'Gain knowledge of salon management, hygiene, and professional standards',
+    'Build confidence in client consultation and service delivery',
+    'Prepare for professional hairdressing certification and career advancement'
   ],
   modules: [
     module1IntroductionToHairdressing,
@@ -61,12 +61,10 @@ export const hairDressingCourse: Course = {
     module11ChemicalProcesses,
     module12ClientConsultation,
     module13SalonManagement,
-    module14BuildingCareerInHairdressing,
-    {
-      id: 15,
-      title: 'Course Completion',
-      description: 'Complete your hair dressing certification',
-      lessons: [lesson5Certificate]
-    } as Module
+    module14BuildingCareerInHairdressing
   ]
 };
+
+export const hairDressingMarkdown = `
+<full markdown content from CourseDocuments/Hair Dressing Volume 3.md>
+`;

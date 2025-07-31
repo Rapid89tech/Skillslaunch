@@ -12,9 +12,11 @@ export const module8BraidingUpdos: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/fnJ6h7ivFKo',
-        textContent: `# 💇‍♀️ Braiding and Updos
+        textContent: `# **Module 8: Braiding and Updos**
 
-Braiding and updos are essential hairstyling techniques used for everyday looks, special occasions, and professional styling. Mastering different types of braids and updos allows stylists to create elegant, structured, and long-lasting hairstyles for various clients and events.
+Braiding and updo techniques are essential for any hairstylist, offering both everyday practicality and the ability to create show-stopping looks for special occasions. Mastery of these skills allows stylists to craft everything from simple, secure braids for daily wear to intricate, elegant updos for weddings, proms, and red-carpet events. Understanding the structure, tension, and finishing of these styles is key to ensuring they are both beautiful and long-lasting.
+
+---
 
 ## 1. French, Dutch, and Fishtail Braids
 

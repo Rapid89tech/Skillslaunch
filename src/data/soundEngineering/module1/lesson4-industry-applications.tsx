@@ -6,8 +6,7 @@ export const lesson4IndustryApplications: Lesson = {
   description: 'Exploring diverse applications of sound across entertainment, medicine, science, and technology',
   duration: '55 minutes',
   type: 'lesson',
-  content: `
-# 🎵 Industry Applications of Sound and Audio
+  content: `# 🎵 Industry Applications of Sound and Audio
 
 ## 1. Introduction
 

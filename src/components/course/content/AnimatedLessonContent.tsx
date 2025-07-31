@@ -21,7 +21,58 @@ const AnimatedLessonContent = ({ content, onComplete, lessonTitle }: AnimatedLes
   const containerRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
-  const contentSections = parseContent(content);
+  // If the content is a markdown export (detected by a special export variable), do not split into sections
+  const isFullMarkdown = content.startsWith('#') || 
+                        content.startsWith('---') || 
+                        content.includes('\n# ') ||
+                        content.includes('## ') ||
+                        content.includes('### ') ||
+                        content.includes('#### ') ||
+                        content.includes('**Key Features:**') ||
+                        content.includes('**What You\'ll Learn:**') ||
+                        content.includes('**Key Takeaways**') ||
+                        content.includes('## Summary') ||
+                        content.includes('## Key Takeaways') ||
+                        content.includes('## Introduction') ||
+                        content.includes('## What is') ||
+                        content.includes('## Pre-') ||
+                        content.includes('## Birth of') ||
+                        content.includes('## Podcasting Goes') ||
+                        content.includes('## The Podcast Boom') ||
+                        content.includes('## Podcasting in the 2020s') ||
+                        content.includes('## Current Trends') ||
+                        content.includes('## Future Opportunities') ||
+                        content.includes('## Script Format') ||
+                        content.includes('## Guest Preparation') ||
+                        content.includes('## Recording Day') ||
+                        content.includes('## Content Calendar') ||
+                        content.includes('## Recording Tools') ||
+                        content.includes('## File Management') ||
+                        content.includes('## Best Practices') ||
+                        content.includes('## Definition') ||
+                        content.includes('## Format') ||
+                        content.includes('## Name Origin') ||
+                        content.includes('## Radio Broadcasting') ||
+                        content.includes('## Internet Radio') ||
+                        content.includes('## Key Innovators') ||
+                        content.includes('## First Podcasts') ||
+                        content.includes('## Technical Foundations') ||
+                        content.includes('## Apple\'s iTunes Integration') ||
+                        content.includes('## Major Media Outlets') ||
+                        content.includes('## Independent Creators') ||
+                        content.includes('## Serial: A Turning Point') ||
+                        content.includes('## Celebrity & Corporate Entry') ||
+                        content.includes('## Platforms Expand') ||
+                        content.includes('## Diversification of Content') ||
+                        content.includes('## Monetization & Business Models') ||
+                        content.includes('## Video Podcasting') ||
+                        content.includes('## AI & Technology Integration') ||
+                        content.includes('## Hyper-Niche Content') ||
+                        content.includes('## Interactive Podcasts') ||
+                        content.includes('## Global Reach') ||
+                        content.includes('## Challenges') ||
+                        content.includes('## The Future of Podcasting');
+  const contentSections = isFullMarkdown ? [content] : parseContent(content);
 
   // Reset when content changes
   useEffect(() => {

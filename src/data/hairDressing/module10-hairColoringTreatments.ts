@@ -12,7 +12,7 @@ export const module10HairColoringTreatments: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/98dPekpSVGQ',
-        textContent: `# 🎨 Hair Coloring and Treatments
+        textContent: `# **Module 10: Hair Coloring and Treatments**
 
 ## Lesson Objectives:
 - Understand the fundamentals of hair color levels and tones

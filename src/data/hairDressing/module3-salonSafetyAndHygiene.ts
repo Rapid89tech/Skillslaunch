@@ -12,11 +12,14 @@ export const module3SalonSafetyAndHygiene: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/Hrv0q_xLXFo',
-        textContent: `# 🧼 Importance of Sanitation and Sterilization
+        textContent: `
+# **Module 3: Salon Safety and Hygiene**
 
-Maintaining a safe and hygienic salon environment is crucial for the well-being of clients and staff. Proper sanitation, chemical handling, and workspace organization ensure a professional and efficient working atmosphere.
+Maintaining a safe and hygienic salon environment is not just a legal requirement but a professional responsibility. Proper sanitation, careful chemical handling, and a clean, organized workspace are essential for protecting both clients and staff. These practices prevent the spread of infections, reduce accidents, and build trust, ensuring every client enjoys a safe and pleasant salon experience.
 
-## 1.1 Why Sanitation is Essential?
+---
+
+# 1.1 Why Sanitation is Essential?
 
 Proper sanitation and sterilization help prevent infections and ensure a safe experience for both clients and hairdressers.
 
@@ -74,11 +77,14 @@ Proper sanitation and sterilization help prevent infections and ensure a safe ex
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/Hrv0q_xLXFo',
-        textContent: `# ⚗️ Proper Handling of Chemicals and Tools
+        textContent: `
+# **Module 3: Salon Safety and Hygiene**
 
-Hairdressing involves various chemicals and tools that must be handled with care to avoid accidents and maintain safety.
+Maintaining a safe and hygienic salon environment is not just a legal requirement but a professional responsibility. Proper sanitation, careful chemical handling, and a clean, organized workspace are essential for protecting both clients and staff. These practices prevent the spread of infections, reduce accidents, and build trust, ensuring every client enjoys a safe and pleasant salon experience.
 
-## 2.1 Chemical Safety Guidelines
+---
+
+# 2.1 Chemical Safety Guidelines
 
 ### Reading Labels:
 - **Always check manufacturer instructions** before using hair color, relaxers, and styling products
@@ -141,11 +147,14 @@ Hairdressing involves various chemicals and tools that must be handled with care
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/Hrv0q_xLXFo',
-        textContent: `# 🏢 Maintaining a Clean and Organized Workspace
+        textContent: `
+# **Module 3: Salon Safety and Hygiene**
 
-A well-organized salon enhances productivity, efficiency, and client satisfaction.
+Maintaining a safe and hygienic salon environment is not just a legal requirement but a professional responsibility. Proper sanitation, careful chemical handling, and a clean, organized workspace are essential for protecting both clients and staff. These practices prevent the spread of infections, reduce accidents, and build trust, ensuring every client enjoys a safe and pleasant salon experience.
 
-## 3.1 Organizing Workstations
+---
+
+# 3.1 Organizing Workstations
 
 ### Efficient Organization:
 - **Keep tools and products neatly arranged** and easily accessible

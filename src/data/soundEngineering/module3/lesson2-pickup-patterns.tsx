@@ -6,13 +6,11 @@ export const lesson2PickupPatterns: Lesson = {
   description: 'Understanding microphone pickup patterns and their applications',
   duration: '45 minutes',
   type: 'lesson',
-  content: `
-# 🎤 Pickup Patterns (Polar Patterns)
+  content: `# 🎤 Pickup Patterns (Polar Patterns)
 
 ## 1. What Are Pickup Patterns?
 
 **YouTube Video**: [Understanding Pickup Patterns](https://youtu.be/36E5JZbtvfY)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/36E5JZbtvfY" 
@@ -30,7 +28,6 @@ export const lesson2PickupPatterns: Lesson = {
 ### 🎯 A. Omnidirectional
 
 **YouTube Video**: [Omnidirectional Pattern](https://youtu.be/XNu5H2qJ-hc)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/XNu5H2qJ-hc" 
@@ -55,7 +52,6 @@ export const lesson2PickupPatterns: Lesson = {
 ### 🎯 B. Cardioid
 
 **YouTube Video**: [Cardioid Pattern](https://youtu.be/rfI_YwvtmEk)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/rfI_YwvtmEk" 
@@ -80,7 +76,6 @@ export const lesson2PickupPatterns: Lesson = {
 ### 🎯 C. Supercardioid
 
 **YouTube Video**: [Supercardioid Pattern](https://youtu.be/xDUOZGLFmvA)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/xDUOZGLFmvA" 
@@ -104,7 +99,6 @@ export const lesson2PickupPatterns: Lesson = {
 ### 🎯 D. Hypercardioid
 
 **YouTube Video**: [Hypercardioid Pattern](https://youtu.be/VPol1hiXtrM)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/VPol1hiXtrM" 
@@ -128,7 +122,6 @@ export const lesson2PickupPatterns: Lesson = {
 ### 🎯 E. Bidirectional (Figure-8)
 
 **YouTube Video**: [Bidirectional Pattern](https://youtu.be/IgG9p0aO9Eg)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/IgG9p0aO9Eg" 
@@ -152,7 +145,6 @@ export const lesson2PickupPatterns: Lesson = {
 ### 🎯 F. Shotgun (Lobar)
 
 **YouTube Video**: [Shotgun Pattern](https://youtu.be/HagyNPzc-zs)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/HagyNPzc-zs" 
@@ -198,7 +190,6 @@ export const lesson2PickupPatterns: Lesson = {
 ## 5. Multi-Pattern Microphones
 
 **YouTube Video**: [Multi-Pattern Microphones](https://youtu.be/U2M0ofizDc8)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/U2M0ofizDc8" 
@@ -218,7 +209,6 @@ These mics are versatile for multiple recording applications.
 ## 6. Summary
 
 **YouTube Video**: [Summary of Microphone Polar Patterns](https://youtu.be/example)
-
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 20px 0;">
   <iframe 
     src="https://www.youtube.com/embed/example" 

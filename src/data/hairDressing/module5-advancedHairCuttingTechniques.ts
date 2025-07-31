@@ -12,9 +12,12 @@ export const module5AdvancedHairCuttingTechniques: Module = {
       type: 'video',
       content: {
         videoUrl: 'https://youtu.be/dQw4w9WgXcQ',
-        textContent: `# ✂️ Advanced Hair Cutting Techniques
+        textContent: `
+# **Module 5: Advanced Hair Cutting Techniques**
 
-Advanced hair cutting techniques allow stylists to create customized, modern, and textured looks that enhance natural hair movement. These techniques include texturizing and thinning methods, razor cutting, and precision or freehand cutting.
+Advanced hair cutting is where technical mastery meets creative vision. These techniques allow stylists to sculpt hair with precision, create bespoke textures, and adapt to the unique needs of every client. Whether you’re working backstage at fashion week, in a high-end salon, or building your own signature style, understanding and applying advanced methods is essential for standing out in the industry.
+
+---
 
 ## 1. Texturizing and Thinning Techniques
 
@@ -121,7 +124,8 @@ Mastering advanced hair cutting techniques allows stylists to create modern, dyn
 - Advanced techniques create customized, modern looks
 - Different methods serve different hair types and desired outcomes
 - Proper tool selection and technique execution are crucial
-- Practice and experience lead to mastery of these specialized skills`
+- Practice and experience lead to mastery of these specialized skills
+        `
       }
     },
     {

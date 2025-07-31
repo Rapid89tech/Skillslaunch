@@ -35,6 +35,7 @@ const courseSlugToUuid: Record<string, string> = {
   'sound-engineering': 'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d4',
   'motor-mechanic-petrol': 'a7b6c5d4-e3f2-8391-a2b3-c4d5e6f7a8b9',
   'diesel-mechanic': 'b8c7d6e5-f4a3-9281-b0c9-d8e7f6a5b4c3',
+  'podcast-management': 'p9c8d7e6-f5a4-9382-c1d0-e9f8a7b6c5d4', // Added podcast management
   // Add more mappings as needed
 };
 
@@ -48,6 +49,10 @@ export const useModuleScores = (courseId?: string) => {
   // Helper to get the real UUID for DB queries
   const getDbCourseId = (id?: string) => {
     if (!id) return undefined;
+    // If the ID is already a UUID, return it as is
+    if (id.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i)) {
+      return id;
+    }
     return courseSlugToUuid[id] || id;
   };
 
@@ -55,7 +60,10 @@ export const useModuleScores = (courseId?: string) => {
   const fetchScores = async () => {
     if (!user || !courseId) return;
     const dbCourseId = getDbCourseId(courseId);
-    if (!dbCourseId) return;
+    if (!dbCourseId) {
+      console.warn('No database course ID found for:', courseId);
+      return;
+    }
 
     setLoading(true);
     try {
@@ -98,7 +106,10 @@ export const useModuleScores = (courseId?: string) => {
   const fetchCourseSummary = async () => {
     if (!user || !courseId) return;
     const dbCourseId = getDbCourseId(courseId);
-    if (!dbCourseId) return;
+    if (!dbCourseId) {
+      console.warn('No database course ID found for course summary:', courseId);
+      return;
+    }
 
     try {
       const { data, error } = await supabase
@@ -121,11 +132,27 @@ export const useModuleScores = (courseId?: string) => {
 
   // Submit or update a score for a quiz/assignment
   const submitScore = async (moduleId: number, lessonId: number, score: number, totalPoints: number = 100) => {
-    if (!user || !courseId) return false;
+    if (!user || !courseId) {
+      console.warn('No user or courseId for score submission');
+      return false;
+    }
+    
     const dbCourseId = getDbCourseId(courseId);
-    if (!dbCourseId) return false;
+    if (!dbCourseId) {
+      console.warn('No database course ID found for score submission:', courseId);
+      return false;
+    }
 
     try {
+      console.log('Submitting score:', {
+        user_id: user.id,
+        course_id: dbCourseId,
+        module_id: moduleId,
+        lesson_id: lessonId,
+        score: score,
+        total_points: totalPoints,
+      });
+
       const { error } = await supabase
         .from('module_scores')
         .upsert({
@@ -206,8 +233,8 @@ export const useModuleScores = (courseId?: string) => {
   };
 
   useEffect(() => {
-    fetchScores();
-    if (courseId) {
+    if (user && courseId) {
+      fetchScores();
       fetchCourseSummary();
     }
   }, [user, courseId]);

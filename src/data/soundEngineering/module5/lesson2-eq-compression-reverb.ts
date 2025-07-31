@@ -8,114 +8,102 @@ export const lesson2EqCompressionReverb: VideoLesson = {
   type: 'video',
   content: {
     videoUrl: 'https://example.com/eq-compression-reverb',
-    textContent: `<h2>🎚️ EQ (Equalization)</h2>
-<h3>A. What is EQ?</h3>
-<p>EQ (Equalization) is the process of adjusting the balance of frequency content in an audio signal. It helps shape tone, correct imbalances, and create space in a mix.</p>
+    textContent: `# 🎚️ EQ, Compression, and Reverb
 
-<h3>B. Frequency Ranges</h3>
-<table>
-<tr><th>Range</th><th>Frequency</th><th>Typical Sounds</th></tr>
-<tr><td>Sub-bass</td><td>20–60 Hz</td><td>Rumble, power</td></tr>
-<tr><td>Bass</td><td>60–250 Hz</td><td>Kick drum, bass guitar</td></tr>
-<tr><td>Low mids</td><td>250–500 Hz</td><td>Warmth, muddiness</td></tr>
-<tr><td>Mids</td><td>500 Hz–2 kHz</td><td>Boxiness, clarity</td></tr>
-<tr><td>Upper mids</td><td>2–5 kHz</td><td>Presence, edge</td></tr>
-<tr><td>Highs</td><td>5–10 kHz</td><td>Air, brightness</td></tr>
-<tr><td>Brilliance</td><td>10–20 kHz</td><td>Sparkle, shimmer</td></tr>
-</table>
+## EQ (Equalization)
+### A. What is EQ?
+EQ (Equalization) is the process of adjusting the balance of frequency content in an audio signal. It helps shape tone, correct imbalances, and create space in a mix.
 
-<h3>C. Common EQ Types</h3>
-<ul>
-<li><strong>High-pass filter (HPF):</strong> Cuts low frequencies</li>
-<li><strong>Low-pass filter (LPF):</strong> Cuts high frequencies</li>
-<li><strong>Bell (Peak):</strong> Boosts or cuts a specific frequency</li>
-<li><strong>Shelf (High/Low):</strong> Raises or lowers a full range</li>
-<li><strong>Notch:</strong> Cuts a very narrow band (e.g., hum)</li>
-</ul>
+### B. Frequency Ranges
+| Range        | Frequency      | Typical Sounds           |
+|--------------|---------------|-------------------------|
+| Sub-bass     | 20–60 Hz      | Rumble, power           |
+| Bass         | 60–250 Hz     | Kick drum, bass guitar  |
+| Low mids     | 250–500 Hz    | Warmth, muddiness       |
+| Mids         | 500 Hz–2 kHz  | Boxiness, clarity       |
+| Upper mids   | 2–5 kHz       | Presence, edge          |
+| Highs        | 5–10 kHz      | Air, brightness         |
+| Brilliance   | 10–20 kHz     | Sparkle, shimmer        |
 
-<h3>D. EQ Tips</h3>
-<ul>
-<li>Cut mud at 250–400 Hz</li>
-<li>Reduce harshness at 2.5–4 kHz</li>
-<li>Boost presence around 3–6 kHz</li>
-<li>High-pass voice tracks below 80–100 Hz</li>
-<li>Don't boost and cut the same frequencies in different tracks</li>
-</ul>
+### C. Common EQ Types
+- High-pass filter (HPF): Cuts low frequencies
+- Low-pass filter (LPF): Cuts high frequencies
+- Bell (Peak): Boosts or cuts a specific frequency
+- Shelf (High/Low): Raises or lowers a full range
+- Notch: Cuts a very narrow band (e.g., hum)
 
-<h2>🔊 Compression</h2>
-<h3>A. What is Compression?</h3>
-<p>Compression reduces the dynamic range of an audio signal. It makes loud parts quieter and quiet parts louder to create a more consistent and controlled sound.</p>
+### D. EQ Tips
+- Cut mud at 250–400 Hz
+- Reduce harshness at 2.5–4 kHz
+- Boost presence around 3–6 kHz
+- High-pass voice tracks below 80–100 Hz
+- Don't boost and cut the same frequencies in different tracks
 
-<h3>B. Key Compression Controls</h3>
-<table>
-<tr><th>Control</th><th>Function</th></tr>
-<tr><td>Threshold</td><td>Level where compression starts</td></tr>
-<tr><td>Ratio</td><td>How much compression is applied (e.g., 4:1)</td></tr>
-<tr><td>Attack</td><td>How quickly compression kicks in</td></tr>
-<tr><td>Release</td><td>How quickly it stops after signal drops</td></tr>
-<tr><td>Knee</td><td>How smoothly compression is applied</td></tr>
-<tr><td>Make-up Gain</td><td>Boosts output to compensate for loss</td></tr>
-</table>
+## Compression
+### A. What is Compression?
+Compression reduces the dynamic range of an audio signal. It makes loud parts quieter and quiet parts louder to create a more consistent and controlled sound.
 
-<h3>C. Types of Compression</h3>
-<ul>
-<li><strong>Vocal Compression:</strong> Adds consistency and intimacy</li>
-<li><strong>Parallel Compression:</strong> Mixes dry + compressed signal for punch</li>
-<li><strong>Multiband Compression:</strong> Compresses by frequency range</li>
-<li><strong>Sidechain Compression:</strong> Duck one track (e.g., music) when another plays (e.g., voice)</li>
-</ul>
+### B. Key Compression Controls
+| Control      | Function                        |
+|--------------|---------------------------------|
+| Threshold    | Level where compression starts  |
+| Ratio        | How much compression is applied |
+| Attack       | How quickly compression kicks in|
+| Release      | How quickly it stops after signal drops |
+| Knee         | How smoothly compression is applied |
+| Make-up Gain | Boosts output to compensate for loss |
 
-<h3>D. Compression Tips</h3>
-<ul>
-<li>Use fast attack for controlling peaks</li>
-<li>Use slower attack for punchiness</li>
-<li>Avoid over-compression (can sound squashed or lifeless)</li>
-<li>Always match input and output levels for fair comparison</li>
-</ul>
+### C. Types of Compression
+- Vocal Compression: Adds consistency and intimacy
+- Parallel Compression: Mixes dry + compressed signal for punch
+- Multiband Compression: Compresses by frequency range
+- Sidechain Compression: Duck one track (e.g., music) when another plays (e.g., voice)
 
-<h2>🌊 Reverb</h2>
-<h3>A. What is Reverb?</h3>
-<p>Reverb simulates the reflections of sound in a physical space (room, hall, plate, etc.), adding a sense of depth, distance, and natural space.</p>
+### D. Compression Tips
+- Use fast attack for controlling peaks
+- Use slower attack for punchiness
+- Avoid over-compression (can sound squashed or lifeless)
+- Always match input and output levels for fair comparison
 
-<h3>B. Common Reverb Types</h3>
-<table>
-<tr><th>Type</th><th>Character</th></tr>
-<tr><td>Room</td><td>Small, intimate, natural</td></tr>
-<tr><td>Hall</td><td>Large, lush, ambient</td></tr>
-<tr><td>Plate</td><td>Smooth, metallic, used on vocals</td></tr>
-<tr><td>Spring</td><td>Boingy, vintage, used on guitars</td></tr>
-<tr><td>Convolution</td><td>Uses real-world impulse responses</td></tr>
-</table>
+## Reverb
+### A. What is Reverb?
+Reverb simulates the reflections of sound in a physical space (room, hall, plate, etc.), adding a sense of depth, distance, and natural space.
 
-<h3>C. Reverb Controls</h3>
-<table>
-<tr><th>Control</th><th>Purpose</th></tr>
-<tr><td>Pre-delay</td><td>Delay before reverb starts (adds clarity)</td></tr>
-<tr><td>Decay time</td><td>How long reverb tail lasts</td></tr>
-<tr><td>Wet/Dry mix</td><td>Balance between dry (original) and wet (reverberated) signal</td></tr>
-<tr><td>Size</td><td>Simulates the physical size of the space</td></tr>
-<tr><td>Damping</td><td>Controls high-frequency rolloff in reverb tail</td></tr>
-</table>
+### B. Common Reverb Types
+| Type        | Character                |
+|-------------|--------------------------|
+| Room        | Small, intimate, natural |
+| Hall        | Large, lush, ambient     |
+| Plate       | Smooth, metallic, vocals |
+| Spring      | Boingy, vintage, guitars |
+| Convolution | Uses real-world impulse responses |
 
-<h3>D. Reverb Tips</h3>
-<ul>
-<li>Use short reverb for clarity (podcast, speech)</li>
-<li>Use longer reverb for dramatic or ambient feel</li>
-<li>Pre-delay helps keep vocals upfront</li>
-<li>Avoid clutter: use one or two shared reverb buses</li>
-<li>High-pass the reverb return to avoid mud in low frequencies</li>
-</ul>
+### C. Reverb Controls
+| Control     | Purpose                                 |
+|-------------|-----------------------------------------|
+| Pre-delay   | Delay before reverb starts (adds clarity)|
+| Decay time  | How long reverb tail lasts              |
+| Wet/Dry mix | Balance between dry and wet signal      |
+| Size        | Simulates the physical size of the space|
+| Damping     | Controls high-frequency rolloff         |
 
-<h2>🧠 How These Tools Work Together</h2>
-<table>
-<tr><th>Tool</th><th>Main Function</th><th>When to Use</th></tr>
-<tr><td>EQ</td><td>Shapes tone by boosting/cutting frequencies</td><td>To fix or enhance specific frequency areas</td></tr>
-<tr><td>Compression</td><td>Controls volume dynamics</td><td>To smooth vocals or control peaks</td></tr>
-<tr><td>Reverb</td><td>Adds spatial depth and realism</td><td>To place sounds in a virtual space</td></tr>
-</table>
+### D. Reverb Tips
+- Use short reverb for clarity (podcast, speech)
+- Use longer reverb for dramatic or ambient feel
+- Pre-delay helps keep vocals upfront
+- Avoid clutter: use one or two shared reverb buses
+- High-pass the reverb return to avoid mud in low frequencies
 
-<p><strong>Order in signal chain matters:</strong><br>
-EQ → Compression → Reverb (most common)<br>
-But can change creatively depending on desired effect</p>`
+## How These Tools Work Together
+| Tool        | Main Function                | When to Use                        |
+|-------------|-----------------------------|------------------------------------|
+| EQ          | Shapes tone by boosting/cutting frequencies | To fix or enhance specific frequency areas |
+| Compression | Controls volume dynamics     | To smooth vocals or control peaks  |
+| Reverb      | Adds spatial depth and realism | To place sounds in a virtual space |
+
+**Order in signal chain matters:**
+EQ → Compression → Reverb (most common)
+But can change creatively depending on desired effect
+`
   }
 };

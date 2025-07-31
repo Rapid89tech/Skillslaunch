@@ -3,334 +3,396 @@ import type { Module } from '@/types/course';
 
 export const module3Troubleshooting: Module = {
   id: 3,
-  title: 'Troubleshooting & Diagnostics',
-  description: 'Diagnosing hardware issues and using diagnostic tools',
+  title: 'Module 3: Troubleshooting and Diagnostics',
+  description: 'Develop systematic troubleshooting approaches for computer and laptop issues, including POST diagnostics, hardware problem identification, and software troubleshooting techniques.',
+  learningObjectives: [
+    'Understand the POST (Power-On Self-Test) process and diagnostic codes',
+    'Identify common hardware and software problems systematically',
+    'Use diagnostic tools and software for problem identification',
+    'Apply logical troubleshooting methodologies',
+    'Interpret error messages and diagnostic information',
+    'Develop customer communication skills for problem diagnosis',
+    'Create effective repair plans based on diagnostic findings'
+  ],
   lessons: [
     {
       id: 3,
-      title: 'Systematic Troubleshooting Methods',
-      duration: '55 min',
+      title: 'Systematic Troubleshooting and Diagnostics',
+      duration: '75 min',
       type: 'video',
       content: {
-        videoUrl: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+        videoUrl: 'https://www.youtube.com/embed/mPzcsU8Cpco',
         textContent: `
-          <div class="space-y-8">
-            <div class="bg-white p-6 rounded-lg shadow-md">
-              <h2 class="text-3xl font-bold text-blue-600 mb-6">Module 3: Troubleshooting & Diagnostics</h2>
-              
-              <div class="bg-blue-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-blue-800 mb-3">🔷 What is POST?</h3>
-                <p class="text-blue-700 mb-3">
-                  POST (Power-On Self-Test) is a diagnostic testing sequence run by a computer's BIOS/UEFI when the system is powered on. It checks that essential hardware components are present and functioning properly before booting the operating system.
-                </p>
-                <YouTubeVideoRenderer videoId="F78v7edrNeA" title="POST Process Overview" />
-              </div>
+# 🔍 Module 3: Troubleshooting and Diagnostics
 
-              <div class="bg-red-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-red-800 mb-3">🚨 POST Error Messages</h3>
-                <p class="text-red-700 mb-3">Understanding and diagnosing POST error messages.</p>
-                <YouTubeVideoRenderer videoId="QvIVtmFq2cw" title="POST Error Messages" />
-              </div>
+This module provides comprehensive training in systematic troubleshooting approaches for computer and laptop issues. Students will learn to identify problems through logical diagnostic processes, interpret error messages, and develop effective repair strategies.
 
-              <div class="bg-gray-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">🔍 POST Process Overview</h3>
-                <ol class="list-decimal list-inside space-y-2 text-gray-700">
-                  <li>Power is supplied to the motherboard</li>
-                  <li>BIOS/UEFI initializes and begins POST</li>
-                  <li>Key components are checked: CPU, RAM, Motherboard chipset, Graphics card, Keyboard and peripherals</li>
-                  <li>If no issues found, control passes to boot loader</li>
-                  <li>If problems found, system provides POST error codes</li>
-                </ol>
-              </div>
+## 🚀 Understanding the POST Process
 
-              <div class="bg-yellow-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-yellow-800 mb-3">🛎️ Common POST Beep Codes</h3>
-                <div class="overflow-x-auto">
-                  <table class="w-full border-collapse border border-gray-300">
-                    <thead>
-                      <tr class="bg-gray-200">
-                        <th class="border border-gray-300 p-2 text-left">Beep Pattern</th>
-                        <th class="border border-gray-300 p-2 text-left">Meaning</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td class="border border-gray-300 p-2">1 short beep</td><td class="border border-gray-300 p-2">POST completed successfully</td></tr>
-                      <tr><td class="border border-gray-300 p-2">Continuous beeps</td><td class="border border-gray-300 p-2">Power supply or motherboard issue</td></tr>
-                      <tr><td class="border border-gray-300 p-2">1 long, 2 short beeps</td><td class="border border-gray-300 p-2">Graphics card error</td></tr>
-                      <tr><td class="border border-gray-300 p-2">3 short beeps</td><td class="border border-gray-300 p-2">RAM failure</td></tr>
-                      <tr><td class="border border-gray-300 p-2">5 short beeps</td><td class="border border-gray-300 p-2">CPU failure</td></tr>
-                      <tr><td class="border border-gray-300 p-2">No beep</td><td class="border border-gray-300 p-2">Power, motherboard, or speaker issue</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+### **What is POST?**
+Power-On Self-Test (POST) is a diagnostic testing sequence performed by firmware during the boot process to verify that hardware components are functioning correctly.
 
-              <div class="bg-red-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-red-800 mb-3">💻 Common POST Error Messages</h3>
-                <div class="overflow-x-auto">
-                  <table class="w-full border-collapse border border-gray-300">
-                    <thead>
-                      <tr class="bg-gray-200">
-                        <th class="border border-gray-300 p-2 text-left">Error Message</th>
-                        <th class="border border-gray-300 p-2 text-left">Likely Cause</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td class="border border-gray-300 p-2">Keyboard error or no keyboard present</td><td class="border border-gray-300 p-2">Keyboard not connected or faulty</td></tr>
-                      <tr><td class="border border-gray-300 p-2">CMOS checksum error</td><td class="border border-gray-300 p-2">Corrupted BIOS settings or bad CMOS battery</td></tr>
-                      <tr><td class="border border-gray-300 p-2">No boot device found</td><td class="border border-gray-300 p-2">Hard drive disconnected or failed</td></tr>
-                      <tr><td class="border border-gray-300 p-2">Memory test failed</td><td class="border border-gray-300 p-2">Faulty RAM</td></tr>
-                      <tr><td class="border border-gray-300 p-2">CPU fan error</td><td class="border border-gray-300 p-2">Fan not connected or malfunctioning</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+### **POST Sequence Steps**
+1. **CPU Test**: Verifies processor functionality
+2. **Memory Test**: Checks RAM integrity and capacity
+3. **BIOS/UEFI Initialization**: Loads firmware settings
+4. **Hardware Detection**: Identifies connected devices
+5. **Boot Device Selection**: Determines boot priority
+6. **Operating System Loading**: Transfers control to OS
 
-              <div class="bg-green-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-green-800 mb-3">🔧 Diagnostic Steps for POST Errors</h3>
-                <ol class="list-decimal list-inside space-y-2 text-green-700">
-                  <li><strong>Listen and Count Beeps:</strong> Identify beep pattern and refer to BIOS documentation</li>
-                  <li><strong>Observe LED or Display Code:</strong> Some systems have onboard diagnostic LEDs</li>
-                  <li><strong>Check Hardware Connections:</strong> Reseat RAM, GPU, check power cables</li>
-                  <li><strong>Test with Minimum Hardware:</strong> Remove all but essential components</li>
-                  <li><strong>Clear CMOS / Reset BIOS:</strong> Remove CMOS battery or use jumper</li>
-                  <li><strong>Use Diagnostic Tools:</strong> POST cards for desktops, built-in diagnostics for laptops</li>
-                </ol>
-              </div>
+### **Common POST Error Codes**
+- **1-3 beeps**: Memory issues
+- **4-7 beeps**: Motherboard problems
+- **8-11 beeps**: Display/graphics issues
+- **Continuous beeping**: Power supply problems
 
-              <div class="bg-purple-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-purple-800 mb-3">🧩 Common Hardware Issues</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div class="space-y-4">
-                    <div class="border rounded-lg p-3">
-                      <h4 class="font-semibold text-red-600 mb-2">1. Power Issues</h4>
-                      <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> Won't turn on, no LEDs, unexpected shutdowns</p>
-                      <p class="text-sm text-gray-700"><strong>Fix:</strong> Check PSU, power cables, DC jack, CMOS battery</p>
-                      <YouTubeVideoRenderer videoId="-u8Ioz1EaMc" title="Power Issues Troubleshooting" />
-                    </div>
-                    <div class="border rounded-lg p-3">
-                      <h4 class="font-semibold text-orange-600 mb-2">2. Storage Issues</h4>
-                      <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> OS won't boot, clicking sounds, "OS not found"</p>
-                      <p class="text-sm text-gray-700"><strong>Fix:</strong> Use diagnostics, reconnect drives, replace if needed</p>
-                      <YouTubeVideoRenderer videoId="OdlW3LyDz14" title="Hard Drive Issues" />
-                    </div>
-                    <div class="border rounded-lg p-3">
-                      <h4 class="font-semibold text-blue-600 mb-2">3. Display Problems</h4>
-                      <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> Blank screen, flickering, lines, dim backlight</p>
-                      <p class="text-sm text-gray-700"><strong>Fix:</strong> Check cables, test external monitor, replace screen/GPU</p>
-                      <YouTubeVideoRenderer videoId="2uOZbmbIHDA" title="Display Problem Diagnosis" />
-                    </div>
-                  </div>
-                  <div class="space-y-4">
-                    <div class="border rounded-lg p-3">
-                      <h4 class="font-semibold text-green-600 mb-2">4. Overheating Issues</h4>
-                      <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> Shutdowns, high fan noise, hot case, throttling</p>
-                      <p class="text-sm text-gray-700"><strong>Fix:</strong> Clean fans, replace thermal paste, check airflow</p>
-                      <YouTubeVideoRenderer videoId="1PTRCc_BRtQ" title="Overheating Solutions" />
-                    </div>
-                    <div class="border rounded-lg p-3">
-                      <h4 class="font-semibold text-purple-600 mb-2">5. RAM Problems</h4>
-                      <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> Random crashes, BSOD, boot failure, beep codes</p>
-                      <p class="text-sm text-gray-700"><strong>Fix:</strong> Test one stick at a time, clean slots, reseat/replace</p>
-                      <YouTubeVideoRenderer videoId="KUYtpY10efY" title="RAM Troubleshooting" />
-                    </div>
-                    <div class="border rounded-lg p-3">
-                      <h4 class="font-semibold text-indigo-600 mb-2">6. Motherboard Issues</h4>
-                      <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> No power/display, peripherals fail, POST errors</p>
-                      <p class="text-sm text-gray-700"><strong>Fix:</strong> Visual inspection, test minimal components, replace if needed</p>
-                      <YouTubeVideoRenderer videoId="y9umSeQCFkw" title="Motherboard Issues" />
-                    </div>
-                  </div>
-                </div>
+## 🔧 Systematic Troubleshooting Methodology
 
-                <div class="mt-6 space-y-4">
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-teal-600 mb-2">7. Keyboard and Touchpad Issues</h4>
-                    <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> Keys not working, touchpad unresponsive</p>
-                    <YouTubeVideoRenderer videoId="bfzEwAzG830" title="Keyboard and Touchpad Issues" />
-                  </div>
-                  
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-cyan-600 mb-2">8. I/O Ports and Peripheral Issues</h4>
-                    <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> Ports not working, devices not recognized</p>
-                    <YouTubeVideoRenderer videoId="7WVRYlSn5sA" title="I/O Port Issues" />
-                  </div>
-                  
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-pink-600 mb-2">9. Audio Problems</h4>
-                    <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> No sound, distorted audio, microphone issues</p>
-                    <YouTubeVideoRenderer videoId="qgCFAPit0hI" title="Audio Problems" />
-                  </div>
-                  
-                  <div class="border rounded-lg p-3">
-                    <h4 class="font-semibold text-amber-600 mb-2">10. Peripheral and Device Issues</h4>
-                    <p class="text-sm text-gray-700 mb-2"><strong>Symptoms:</strong> External devices not working</p>
-                    <YouTubeVideoRenderer videoId="ij0QfMyROxk" title="Peripheral Issues" />
-                  </div>
-                  </div>
-                </div>
-              </div>
+### **The 6-Step Troubleshooting Process**
 
-              <div class="bg-cyan-50 p-4 rounded-lg mb-6">
-                <h3 class="text-xl font-semibold text-cyan-800 mb-3">🔧 Using Multimeters and Diagnostic Software</h3>
-                <div class="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <h4 class="font-semibold text-cyan-700 mb-2">Multimeter Testing:</h4>
-                    <ul class="text-sm text-gray-700 space-y-1">
-                      <li>• <strong>Laptop Charger:</strong> Set to DC Voltage (20V range), compare to rating</li>
-                      <li>• <strong>CMOS Battery:</strong> Should read ~3V (CR2032)</li>
-                      <li>• <strong>DC Jack Continuity:</strong> Use continuity mode, beep indicates good connection</li>
-                      <li>• <strong>Safety:</strong> Remove power before testing, use insulated probes</li>
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 class="font-semibold text-cyan-700 mb-2">Diagnostic Software:</h4>
-                    <ul class="text-sm text-gray-700 space-y-1">
-                      <li>• <strong>MemTest86:</strong> RAM testing for errors</li>
-                      <li>• <strong>CrystalDiskInfo:</strong> HDD/SSD health and S.M.A.R.T data</li>
-                      <li>• <strong>HWMonitor:</strong> Monitor temps, fan speeds, voltages</li>
-                      <li>• <strong>CPU-Z/GPU-Z:</strong> Identify hardware specifications</li>
-                    </ul>
-                  </div>
-                </div>
-                
-                <div class="mt-4">
-                  <h4 class="font-semibold text-cyan-700 mb-2">Using Diagnostic Software:</h4>
-                  <YouTubeVideoRenderer videoId="c89RojX624U" title="Diagnostic Software Tools" />
-                </div>
-              </div>
+#### **Step 1: Identify the Problem**
+- Gather information from the customer
+- Observe symptoms and error messages
+- Document the issue clearly
+- Determine if it's hardware or software related
 
-              <div class="bg-gray-100 p-4 rounded-lg">
-                <h3 class="text-xl font-semibold text-gray-800 mb-3">🧪 Best Practices</h3>
-                <ul class="text-gray-700 space-y-2">
-                  <li>• Work methodically—test one component at a time</li>
-                  <li>• Label removed parts for reassembly</li>
-                  <li>• Keep POST code reference charts handy</li>
-                  <li>• Document symptoms and tests during troubleshooting</li>
-                  <li>• Use systematic approach: observe, test, isolate, fix</li>
-                </ul>
-              </div>
-            </div>
-          </div>
+#### **Step 2: Establish a Theory**
+- Consider common causes for the symptoms
+- Research known issues for the specific hardware/software
+- Formulate a hypothesis about the root cause
+- Prioritize theories based on likelihood
+
+#### **Step 3: Test the Theory**
+- Use diagnostic tools to verify the theory
+- Perform specific tests to confirm or rule out causes
+- Document test results and findings
+- Adjust theory if necessary
+
+#### **Step 4: Establish a Plan**
+- Develop a step-by-step repair plan
+- Identify required tools and replacement parts
+- Estimate repair time and cost
+- Communicate plan to customer
+
+#### **Step 5: Implement the Solution**
+- Execute the repair plan systematically
+- Test each step to ensure progress
+- Document all changes made
+- Verify the solution resolves the problem
+
+#### **Step 6: Verify and Document**
+- Test the system thoroughly
+- Ensure all functions work correctly
+- Document the final solution
+- Provide customer with maintenance recommendations
+
+## 🖥️ Hardware Troubleshooting
+
+### **Power Issues**
+- **No Power**: Check power supply, cables, and wall outlet
+- **Intermittent Power**: Test power supply under load
+- **Overheating**: Clean dust, check fans, verify thermal paste
+- **Random Shutdowns**: Monitor temperatures, check power supply stability
+
+### **Display Problems**
+- **No Display**: Test with external monitor, check graphics card
+- **Distorted Display**: Update drivers, check cable connections
+- **Flickering**: Test refresh rates, check for interference
+- **Dead Pixels**: Use pixel testing software, consider warranty
+
+### **Storage Issues**
+- **Slow Performance**: Check for fragmentation, run disk cleanup
+- **Corrupted Data**: Use CHKDSK, consider data recovery
+- **Boot Failures**: Check boot order, repair boot sector
+- **Bad Sectors**: Run disk diagnostics, consider replacement
+
+### **Memory Problems**
+- **System Crashes**: Run memory diagnostics, test individual modules
+- **Performance Issues**: Check memory usage, verify dual-channel setup
+- **POST Errors**: Reseat memory modules, test in different slots
+- **Blue Screen Errors**: Update drivers, check for compatibility
+
+## 💻 Software Troubleshooting
+
+### **Operating System Issues**
+- **Boot Failures**: Use recovery options, repair boot configuration
+- **Slow Performance**: Check startup programs, optimize system
+- **Driver Conflicts**: Update or rollback drivers, check compatibility
+- **Registry Problems**: Use registry cleaners, restore from backup
+
+### **Application Problems**
+- **Crashes**: Check system requirements, update applications
+- **Compatibility Issues**: Use compatibility mode, check dependencies
+- **Performance Issues**: Monitor resource usage, optimize settings
+- **Installation Failures**: Check permissions, verify system requirements
+
+### **Network Connectivity**
+- **No Internet**: Check physical connections, reset network devices
+- **Slow Connection**: Test bandwidth, check for interference
+- **DNS Issues**: Flush DNS cache, change DNS servers
+- **Firewall Problems**: Check firewall settings, verify antivirus
+
+## 🛠️ Diagnostic Tools and Software
+
+### **Hardware Diagnostics**
+- **MemTest86**: Memory testing and validation
+- **CrystalDiskInfo**: Hard drive health monitoring
+- **CPU-Z**: System information and component details
+- **HWiNFO**: Comprehensive hardware analysis
+- **Prime95**: CPU stress testing
+- **FurMark**: GPU stress testing
+
+### **Software Diagnostics**
+- **Windows Event Viewer**: System and application logs
+- **Task Manager**: Process and performance monitoring
+- **Resource Monitor**: Detailed system resource analysis
+- **System File Checker**: Windows system file verification
+- **DISM**: Windows image repair and maintenance
+
+### **Network Diagnostics**
+- **Ping**: Basic connectivity testing
+- **Tracert**: Network path analysis
+- **Ipconfig**: Network configuration display
+- **Netstat**: Network connection monitoring
+- **Wireshark**: Network packet analysis
+
+## 📊 Problem Identification Techniques
+
+### **Visual Inspection**
+- Check for physical damage
+- Look for loose connections
+- Identify overheating components
+- Notice unusual sounds or smells
+
+### **Performance Monitoring**
+- Monitor CPU, memory, and disk usage
+- Track temperature readings
+- Analyze network performance
+- Check application response times
+
+### **Error Analysis**
+- Interpret error messages
+- Check system logs
+- Analyze crash dumps
+- Review application logs
+
+### **Component Testing**
+- Test components individually
+- Use known-good parts for comparison
+- Perform stress tests
+- Verify compatibility
+
+## 🗣️ Customer Communication
+
+### **Information Gathering**
+- Ask specific questions about symptoms
+- Document customer observations
+- Understand usage patterns
+- Identify recent changes
+
+### **Problem Explanation**
+- Use non-technical language
+- Explain diagnostic findings
+- Provide repair options
+- Set realistic expectations
+
+### **Solution Communication**
+- Explain the repair process
+- Provide time and cost estimates
+- Discuss preventive measures
+- Offer maintenance recommendations
+
+## 📋 Documentation and Record Keeping
+
+### **Problem Documentation**
+- Record symptoms and error messages
+- Document diagnostic steps taken
+- Note test results and findings
+- Track time spent on troubleshooting
+
+### **Solution Documentation**
+- Document the final solution
+- Record parts replaced or repaired
+- Note any special procedures used
+- Create customer maintenance guide
+
+### **Knowledge Base**
+- Build a troubleshooting database
+- Share solutions with team members
+- Update procedures based on experience
+- Maintain current technical information
+
+## 🎯 Advanced Troubleshooting Techniques
+
+### **Logical Analysis**
+- Use deductive reasoning
+- Eliminate possibilities systematically
+- Consider multiple failure points
+- Apply Occam's Razor principle
+
+### **Pattern Recognition**
+- Identify recurring problems
+- Recognize common failure modes
+- Understand component lifecycles
+- Predict potential issues
+
+### **Root Cause Analysis**
+- Determine underlying causes
+- Prevent problem recurrence
+- Improve system reliability
+- Reduce future repair needs
+
+## 🔮 Preventive Maintenance
+
+### **Regular Maintenance Tasks**
+- Clean dust and debris
+- Update software and drivers
+- Check system temperatures
+- Monitor component health
+
+### **Performance Optimization**
+- Defragment hard drives
+- Clean temporary files
+- Optimize startup programs
+- Update security software
+
+### **Backup Strategies**
+- Regular data backups
+- System restore points
+- Image backups
+- Cloud storage solutions
+
+## 📚 Learning Outcomes
+
+By the end of this module, students will be able to:
+- Apply systematic troubleshooting methodologies
+- Interpret POST codes and error messages
+- Use diagnostic tools effectively
+- Identify hardware and software problems
+- Communicate effectively with customers
+- Document troubleshooting procedures
+- Implement preventive maintenance strategies
+
+This module provides the foundation for professional computer repair work, emphasizing logical problem-solving approaches and effective customer communication skills.
         `
       }
     },
     {
       id: 13,
-      title: 'Module 3 Quiz: Troubleshooting & Diagnostics',
+      title: 'Quiz: Troubleshooting and Diagnostics (Module 3)',
       duration: '15 min',
       type: 'quiz',
       content: {
         questions: [
           {
-            question: 'What does the POST process do during computer startup?',
+            question: 'What does POST stand for in computer diagnostics?',
             options: [
-              'Installs drivers',
-              'Loads the operating system',
-              'Diagnoses essential hardware components',
-              'Updates BIOS firmware'
-            ],
-            correct: 2,
-            explanation: 'POST (Power-On Self-Test) diagnoses essential hardware components to ensure they are present and functioning properly before booting the operating system.'
-          },
-          {
-            question: 'Which of the following beep codes typically indicates a RAM failure?',
-            options: [
-              '1 short beep',
-              'Continuous beeps',
-              '3 short beeps',
-              '5 short beeps'
-            ],
-            correct: 2,
-            explanation: '3 short beeps typically indicates a RAM failure, though beep codes can vary by BIOS manufacturer.'
-          },
-          {
-            question: 'What might a "No boot device found" error message indicate?',
-            options: [
-              'Faulty RAM',
-              'Disconnected or failed storage drive',
-              'GPU failure',
-              'Corrupted BIOS'
+              'Power-On System Test',
+              'Power-On Self-Test',
+              'Processor Operating System Test',
+              'Primary Operating System Test'
             ],
             correct: 1,
-            explanation: 'A "No boot device found" error typically indicates that the hard drive is disconnected or has failed.'
+            explanation: 'POST stands for Power-On Self-Test, which is a diagnostic testing sequence performed by firmware during the boot process.'
           },
           {
-            question: 'What should be your first step if a system has no power and no display?',
+            question: 'What is the first step in the systematic troubleshooting process?',
             options: [
-              'Replace the hard drive',
-              'Check speaker cables',
-              'Test with minimum components',
-              'Install new drivers'
+              'Test the theory',
+              'Identify the problem',
+              'Establish a plan',
+              'Implement the solution'
             ],
-            correct: 2,
-            explanation: 'When a system has no power and no display, you should test with minimum components (motherboard, CPU, one RAM stick, PSU) to isolate the issue.'
+            correct: 1,
+            explanation: 'The first step is to identify the problem by gathering information, observing symptoms, and documenting the issue clearly.'
           },
           {
-            question: 'Which tool helps you diagnose motherboard boot problems using numeric codes?',
+            question: 'Which tool is best for testing memory modules?',
             options: [
               'CrystalDiskInfo',
-              'Multimeter',
-              'POST diagnostic card',
-              'HWMonitor'
-            ],
-            correct: 2,
-            explanation: 'A POST diagnostic card displays numeric codes that help diagnose motherboard boot problems.'
-          },
-          {
-            question: 'If a laptop shuts down due to overheating, which of the following is the most appropriate fix?',
-            options: [
-              'Format the hard drive',
-              'Clean fans and vents',
-              'Reinstall the OS',
-              'Reset the BIOS'
+              'MemTest86',
+              'CPU-Z',
+              'HWiNFO'
             ],
             correct: 1,
-            explanation: 'Overheating is typically caused by dust buildup, so cleaning fans and vents is the most appropriate fix.'
+            explanation: 'MemTest86 is specifically designed for memory testing and validation, making it the best tool for testing RAM modules.'
           },
           {
-            question: 'What is the purpose of MemTest86?',
+            question: 'What do 1-3 beeps typically indicate during POST?',
             options: [
-              'Monitor fan speed',
-              'Diagnose power supply voltage',
-              'Test RAM for errors',
-              'Detect GPU driver problems'
+              'Power supply problems',
+              'Memory issues',
+              'Motherboard problems',
+              'Display/graphics issues'
             ],
-            correct: 2,
-            explanation: 'MemTest86 is specifically designed to test RAM for errors and stability issues.'
+            correct: 1,
+            explanation: '1-3 beeps during POST typically indicate memory-related problems, such as faulty RAM modules or incorrect memory configuration.'
           },
           {
-            question: 'What reading should a healthy CMOS battery (CR2032) show on a multimeter?',
+            question: 'Which Windows tool can help repair system files?',
             options: [
-              '1.5V',
-              '5V',
-              '3V',
-              '12V'
+              'Task Manager',
+              'System File Checker',
+              'Event Viewer',
+              'Resource Monitor'
             ],
-            correct: 2,
-            explanation: 'A healthy CMOS battery (CR2032) should read approximately 3V on a multimeter.'
+            correct: 1,
+            explanation: 'System File Checker (SFC) is a Windows utility that can scan and repair corrupted system files.'
           },
           {
-            question: 'If you hear 1 long and 2 short beeps during POST, what is the likely issue?',
+            question: 'What should you do first when troubleshooting a "no power" issue?',
             options: [
-              'RAM failure',
-              'CPU overheating',
-              'Graphics card error',
-              'No keyboard detected'
+              'Replace the power supply',
+              'Check power supply, cables, and wall outlet',
+              'Test the motherboard',
+              'Check the CPU'
             ],
-            correct: 2,
-            explanation: '1 long and 2 short beeps typically indicates a graphics card error during POST.'
+            correct: 1,
+            explanation: 'When troubleshooting a "no power" issue, start with the basics: check the power supply, cables, and wall outlet before assuming hardware failure.'
           },
           {
-            question: 'Which of the following best describes the purpose of CrystalDiskInfo?',
+            question: 'Which diagnostic tool provides comprehensive hardware analysis?',
             options: [
-              'Monitor CPU temperature',
-              'View BIOS version',
-              'Check HDD/SSD health and S.M.A.R.T. data',
-              'Benchmark gaming performance'
+              'CPU-Z',
+              'HWiNFO',
+              'CrystalDiskInfo',
+              'MemTest86'
             ],
-            correct: 2,
-            explanation: 'CrystalDiskInfo is used to check HDD/SSD health status and S.M.A.R.T. data to identify potential drive failures.'
+            correct: 1,
+            explanation: 'HWiNFO provides comprehensive hardware analysis, including detailed information about all system components.'
+          },
+          {
+            question: 'What is the purpose of stress testing in troubleshooting?',
+            options: [
+              'To make the computer faster',
+              'To identify components that fail under load',
+              'To clean the system',
+              'To update drivers'
+            ],
+            correct: 1,
+            explanation: 'Stress testing helps identify components that fail under load, revealing problems that may not appear during normal operation.'
+          },
+          {
+            question: 'Which command can help diagnose network connectivity issues?',
+            options: [
+              'ipconfig',
+              'ping',
+              'tracert',
+              'All of the above'
+            ],
+            correct: 3,
+            explanation: 'All three commands (ipconfig, ping, and tracert) are useful for diagnosing network connectivity issues.'
+          },
+          {
+            question: 'What should you document during troubleshooting?',
+            options: [
+              'Only the final solution',
+              'Symptoms, diagnostic steps, test results, and the solution',
+              'Only the customer complaints',
+              'Only the parts replaced'
+            ],
+            correct: 1,
+            explanation: 'Complete documentation should include symptoms, diagnostic steps taken, test results, and the final solution for future reference.'
           }
         ]
       }

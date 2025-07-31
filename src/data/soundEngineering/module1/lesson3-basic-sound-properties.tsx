@@ -6,8 +6,7 @@ export const lesson3BasicSoundProperties: Lesson = {
   description: 'Understanding frequency, amplitude, wavelength, speed, phase, and timbre',
   duration: '50 minutes',
   type: 'lesson',
-  content: `
-# 🔊 Basic Sound Properties
+  content: `# 🔊 Basic Sound Properties
 
 ## 1. Introduction to Sound Properties
 

@@ -8,7 +8,7 @@ export const lesson5Certificate: CertificateLesson = {
   type: 'certificate',
   content: {
     title: 'Sound Engineering Professional Certificate',
-    description: 'Congratulations on completing the Sound Engineering Professional Certification course!',
-    certificateText: 'This certifies that you have successfully completed the Sound Engineering Professional Certification course and demonstrated proficiency in audio fundamentals, recording techniques, microphone applications, digital audio workstations, and mixing principles.'
+    description: 'Congratulations on completing the Sound Engineering Professional Certification course! You have demonstrated proficiency in audio fundamentals, recording techniques, microphone applications, digital audio workstations, and mixing principles. This certificate recognizes your achievement and commitment to professional audio excellence.',
+    certificateText: 'This certifies that you have successfully completed the Sound Engineering Professional Certification course and demonstrated proficiency in audio fundamentals, recording techniques, microphone applications, digital audio workstations, and mixing principles. You are now equipped with the skills and knowledge to excel in the field of sound engineering.'
   }
 };

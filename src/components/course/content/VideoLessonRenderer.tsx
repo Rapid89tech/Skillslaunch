@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
+import LessonHeader from './LessonHeader';
+import LessonActions from './video-lesson/LessonActions';
+import AnimatedLessonContent from './AnimatedLessonContent';
+import ContentFormatter from './animated-lesson/ContentFormatter';
 import Module1HardwareContent from './lessons/Module1HardwareContent';
 import SoundEngineeringContent from './lessons/SoundEngineeringContent';
-import AnimatedLessonContent from './AnimatedLessonContent';
-import LessonHeader from './video-lesson/LessonHeader';
-import LessonActions from './video-lesson/LessonActions';
 import { generateFallbackContent } from './video-lesson/ContentGenerator';
 import type { VideoLesson } from '@/types/course';
 
@@ -32,7 +33,7 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
   // Check if this is a Sound Engineering lesson that should use special content
   const isSoundEngineeringLegacyLesson = false; // Disable legacy content for now
   
-  // Use animated content for ALL other lessons by default (including Sound Engineering)
+  // Use animated content for ALL other lessons by default (including Sound Engineering and Podcast Management)
   const useAnimatedContent = !isModule1Lesson1 && !isSoundEngineeringLegacyLesson;
 
   // Check if content contains HTML (applies to any course with HTML content)
@@ -56,20 +57,20 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
     onMarkComplete();
   };
 
-  // Create enhanced content that includes video URLs - use YouTubeVideoRenderer component format
-  const enhancedContent = lesson.content?.videoUrl 
-    ? `\n<YouTubeVideoRenderer videoId="${lesson.content.videoUrl}" title="${lesson.title}" />\n\n${lessonContent}`
-    : lessonContent;
+  // Remove enhancedContent logic
+  // const enhancedContent = lesson.content?.videoUrl 
+  //   ? `\n<YouTubeVideoRenderer videoId="${lesson.content.videoUrl}" title="${lesson.title}" />\n\n${lessonContent}`
+  //   : lessonContent;
 
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
-      <LessonHeader duration={lesson.duration} isCompleted={isCompleted} />
+      <LessonHeader lesson={lesson} isCompleted={isCompleted} />
 
       {/* Content */}
       {useAnimatedContent ? (
         <AnimatedLessonContent
-          content={enhancedContent}
+          content={lessonContent}
           lessonTitle={lesson.title}
           onComplete={handleContentComplete}
         />

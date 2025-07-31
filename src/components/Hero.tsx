@@ -109,7 +109,7 @@ const Hero = () => {
                   <span className="text-sm font-bold text-red-100">COURSE START DATE</span>
                 </div>
                 <div className="text-2xl lg:text-3xl font-black mb-1 text-white drop-shadow-lg animate-pulse-glow">
-                  01 AUGUST 2025
+                  15 AUGUST 2025
                 </div>
                 <div className="text-xs text-red-100 font-medium animate-fade-in" style={{ animationDelay: '1.8s' }}>
                   All courses begin on this date - Don't miss out!
