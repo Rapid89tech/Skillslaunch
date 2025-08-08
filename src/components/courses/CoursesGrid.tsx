@@ -44,18 +44,36 @@ interface CoursesGridProps {
 
 const courseImages: Record<string, string> = {
   'Entrepreneurship': entrepreneurshipNew,
+  'Entrepreneurship final': entrepreneurshipNew,
+  'entrepreneurship-final': entrepreneurshipNew,
   'AI and Human Relations': aiHumanNew,
+  'ai-human-relations': aiHumanNew,
   'Sound Engineering': soundEngineeringNew,
+  'Sound Engineering 102': soundEngineeringNew,
+  'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5': soundEngineeringNew,
   'Podcast Management': podcastNew,
+  'podcast-management-101': podcastNew,
   'Diesel Mechanic': dieselMechanicNew,
+  'diesel-mechanic': dieselMechanicNew,
   'Motor Mechanic (Petrol)': motorMechanicNew,
+  'motor-mechanic-petrol': motorMechanicNew,
+  'Computer Repairs': computerRepairsNew,
   'Computer & Laptop Repairs': computerRepairsNew,
+  'computer-repairs': computerRepairsNew,
+  'Cellphone Repairs': cellphoneRepairsNew,
   'Cellphone Repairs and Maintenance': cellphoneRepairsNew,
+  'cellphone-repairs': cellphoneRepairsNew,
   'Hair Dressing': hairDressingNew,
+  'hair-dressing': hairDressingNew,
   'Nail Technician': nailTechnicianNew,
+  'nail-technician': nailTechnicianNew,
   'Plumbing': plumbingNew,
+  'plumbing101': plumbingNew,
   'Professional Tiling': tilingNew,
+  'tiling-course': tilingNew,
+  'Roofing': roofingNew,
   'Professional Roofing': roofingNew,
+  'roofing101': roofingNew,
 };
 
 const CoursesGrid = ({ courses }: CoursesGridProps) => {
@@ -182,7 +200,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
       {courses.map((course, index) => {
         const enrolled = isEnrolled(course.id);
         const enrolling = isEnrolling(course.id);
-        const courseImage = courseImages[course.title] || '/public/placeholder.svg';
+        const courseImage = courseImages[course.id] || '/public/placeholder.svg';
         // Find enrollment for progress (if enrolled)
         const enrollment = enrollments?.find(e => e.course_id === course.id);
         const progress = enrolled && enrollment ? Math.round((enrollment.progress || 0) * 100) : 0;
@@ -193,7 +211,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
             style={{ animationDelay: `${index * 80 + 200}ms` }}
           >
             {/* Illustration/Image */}
-            <div className="relative aspect-[16/9] min-h-[180px] w-full flex items-center justify-center bg-neutral-800">
+            <div className="relative aspect-[4/3] min-h-[120px] w-full flex items-center justify-center bg-neutral-800">
               <img
                 src={courseImage}
                 alt={course.title}
@@ -203,13 +221,13 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
               />
             </div>
             {/* Card Content */}
-            <div className="flex-1 flex flex-col px-7 pt-7 pb-8">
-              <h3 className="text-sm font-bold text-white mb-2 line-clamp-2 rounded-lg px-2 py-1 bg-gradient-to-r from-red-600 to-red-800 inline-block w-fit shadow-md animate-title-gradient">
+            <div className="flex-1 flex flex-col px-4 pt-4 pb-6">
+              <h3 className="text-xs font-bold text-white mb-1 line-clamp-1 rounded-lg px-2 py-1 bg-gradient-to-r from-red-600 to-red-800 inline-block w-fit shadow-md animate-title-gradient">
                 {course.title}
               </h3>
-              <p className="text-xs text-gray-200 line-clamp-3 mb-4">{course.description}</p>
+              <p className="text-xs text-gray-200 line-clamp-2 mb-3">{course.description}</p>
               {/* Dynamic Info Row */}
-              <div className="flex items-center gap-6 text-xs text-gray-300 mb-6">
+              <div className="flex items-center gap-4 text-xs text-gray-300 mb-4">
                 <div className="flex items-center gap-2">
                   <Users className="w-4 h-4 text-red-400" />
                   <span>{course.students || 0}</span>
@@ -225,15 +243,15 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                   </div>
                 )}
               </div>
-              <div className="mt-auto flex flex-col gap-3">
+              <div className="mt-auto flex flex-col gap-2">
                 <Link to={`/course/${course.id}/overview`} className="block">
-                  <button className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
+                  <button className="w-full py-1 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
                     View Course
                   </button>
                 </Link>
                 {user && enrolled && (
                   <Button
-                    className="w-full py-2 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 animate-ripple"
+                    className="w-full py-1 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 animate-ripple"
                     onClick={() => handleContinueLearning(course.id, course.title)}
                   >
                     Continue
@@ -242,7 +260,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 {!enrolled && user && pendingEnrollments.has(course.id) && (
                   <Button
                     disabled
-                    className="w-full py-2 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold text-sm shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400/60 cursor-not-allowed"
+                    className="w-full py-1 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold text-xs shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400/60 cursor-not-allowed"
                   >
                     Pending
                   </Button>
@@ -250,16 +268,19 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 {!enrolled && user && !pendingEnrollments.has(course.id) && (
                   <Button
                     onClick={() => {
+                      console.log('Enroll Now clicked for course:', course.title, course.id);
                       setSelectedCourse(course);
                       setShowEnrollPopup(true);
+                      console.log('showEnrollPopup set to true');
                     }}
+                    className="w-full py-1 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
                   >
                     Enroll Now
                   </Button>
                 )}
                 {!user && (
                   <button
-                    className="w-full py-2 rounded-full bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold text-sm shadow-lg hover:scale-105 hover:from-red-600 hover:to-pink-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
+                    className="w-full py-1 rounded-full bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-600 hover:to-pink-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
                     onClick={() => navigate('/auth')}
                   >
                     Register To Enroll
@@ -271,17 +292,23 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
         );
       })}
       {showEnrollPopup && selectedCourse && (
-        <EnrollNowPopup
-          open={showEnrollPopup}
-          onClose={() => setShowEnrollPopup(false)}
-          course={selectedCourse}
-          userId={user?.id}
-          userEmail={user?.email}
-          onEnrollmentSuccess={() => {
-            refetch();
-            // Optionally, update pendingEnrollments state if needed
-          }}
-        />
+        <>
+          {console.log('Rendering EnrollNowPopup with:', { showEnrollPopup, selectedCourse: selectedCourse.title })}
+          <EnrollNowPopup
+            open={showEnrollPopup}
+            onClose={() => {
+              console.log('Closing enrollment popup');
+              setShowEnrollPopup(false);
+            }}
+            course={selectedCourse}
+            userId={user?.id}
+            userEmail={user?.email}
+            onEnrollmentSuccess={() => {
+              refetch();
+              // Optionally, update pendingEnrollments state if needed
+            }}
+          />
+        </>
       )}
       <style>{`
         .animate-fade-in-card {

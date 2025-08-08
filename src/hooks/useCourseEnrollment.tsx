@@ -7,9 +7,10 @@ import type { Course } from '@/types/course';
 
 export const useCourseEnrollment = (
   course: Course | null,
-  enrollInCourse: (courseId: string) => Promise<boolean>
+  enrollInCourse: (courseId: string, courseTitle: string) => Promise<boolean>
 ) => {
   const [enrolling, setEnrolling] = useState(false);
+  const [showPaymentPopup, setShowPaymentPopup] = useState(false);
   const { user } = useAuth();
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -33,42 +34,28 @@ export const useCourseEnrollment = (
       return;
     }
 
-    console.log("Starting enrollment process...");
-    setEnrolling(true);
-    
-    try {
-      const success = await enrollInCourse(course.id);
-      console.log("Enrollment completed with result:", success);
-      
-      if (success) {
-        toast({
-          title: "🎉 Enrollment Successful!",
-          description: "Welcome to the course! You can now access all course content.",
-        });
-        
-        // Navigate immediately to the course content
-        navigate(`/course/${course.id}`);
-      } else {
-        toast({
-          title: "Enrollment Failed",
-          description: "There was an issue enrolling in the course. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Enrollment error:", error);
-      toast({
-        title: "Enrollment Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setEnrolling(false);
-    }
+    console.log("Showing payment popup for course:", course.id);
+    setShowPaymentPopup(true);
+  };
+
+  const handlePaymentPopupClose = () => {
+    setShowPaymentPopup(false);
+  };
+
+  const handleEnrollmentSuccess = () => {
+    setShowPaymentPopup(false);
+    toast({
+      title: "🎉 Enrollment Successful!",
+      description: "Welcome to the course! You can now access all course content.",
+    });
+    navigate(`/course/${course?.id}`);
   };
 
   return {
     enrolling,
-    handleEnroll
+    showPaymentPopup,
+    handleEnroll,
+    handlePaymentPopupClose,
+    handleEnrollmentSuccess
   };
 };

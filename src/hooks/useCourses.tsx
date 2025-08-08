@@ -1,12 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Course } from '@/types/course';
-import { podcastManagementCourse } from '@/data/podcastManagement/index';
-import { nailTechnicianCourse } from '@/data/nailTechnician/index';
-import { plumbingCourse } from '@/data/plumbing/index';
-import { hairDressingCourse } from '@/data/hairDressing/index';
-import { tilingCourse } from '@/data/tiling/index';
-import { roofingCourse } from '@/data/roofing/index';
-import { cellphoneRepairsCourse } from '@/data/cellphoneRepairs/index';
+import { soundEngineering102Course } from '@/data/soundEngineering102Course';
 
 // Define a simplified Course type for the hook's return value
 export interface SimplifiedCourse {
@@ -53,7 +47,7 @@ export const useCourses = () => {
       return [];
     }
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false); // Start with false to avoid loading delays
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -64,105 +58,157 @@ export const useCourses = () => {
         // Restore static course data for now
         const staticCourses: SimplifiedCourse[] = [
           {
-            id: 'ai-human-relations',
-            title: 'AI and Human Relations',
-            description: 'Explore the intersection of artificial intelligence and human interaction. Learn about AI fundamentals, human-AI collaboration, and the ethical implications of AI in society.',
-            category: 'Information Communication and technology',
-            level: 'beginner',
-            duration: '8 weeks',
-            is_free: false,
-            price: 899,
-            currency: 'ZAR',
-            students: 1847,
-            rating: 4.8,
-            instructor: {
-              id: 'betaskilltutor',
-              first_name: 'Beta Skill',
-              last_name: 'Tutor',
-              email: 'betaskilltraining@gmail.com'
-            },
-            status: 'approved',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-            available: true
-          },
-          {
-            id: 'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d4',
+            id: 'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5',
             title: 'Sound Engineering',
-            description: 'Master the art and science of sound engineering with hands-on training in recording, mixing, mastering, and live sound production',
-            category: 'Information Communication and technology',
+            description: 'Master the art of sound engineering and audio production with comprehensive training in recording, mixing, and mastering techniques.',
+            category: 'Audio Technology',
             level: 'intermediate',
-            duration: '10 weeks',
+            duration: '12 weeks',
             is_free: false,
-            price: 3500,
+            price: 2500,
             currency: 'ZAR',
             students: 892,
+            rating: 4.9,
+            instructor: { id: 'betaskilltutor', first_name: 'David', last_name: 'Martinez', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          {
+            id: 'roofing101',
+            title: 'Roofing',
+            description: 'Comprehensive online course covering roofing design, installation, maintenance, and modern sustainable practices',
+            category: 'Construction',
+            level: 'beginner',
+            duration: '8-10 weeks',
+            is_free: false,
+            price: 1800,
+            currency: 'ZAR',
+            students: 650,
+            rating: 4.7,
+            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          {
+            id: 'plumbing101',
+            title: 'Plumbing',
+            description: 'Comprehensive online course covering plumbing fundamentals, tools, systems, installation, and professional practices',
+            category: 'Construction',
+            level: 'beginner',
+            duration: '8-10 weeks',
+            is_free: false,
+            price: 1800,
+            currency: 'ZAR',
+            students: 650,
+            rating: 4.7,
+            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          {
+            id: 'podcast-management-101',
+            title: 'Podcast Management',
+            description: 'Unlock the secrets to creating, managing, and growing a successful podcast with this comprehensive online course, designed to guide you from concept to chart-topping production. Covering ideation, recording, editing, publishing, and marketing, this course equips you with the tools and strategies to build a professional podcast that captivates audiences.',
+            category: 'Media & Content Creation',
+            level: 'beginner',
+            duration: '10 weeks',
+            is_free: false,
+            price: 3200,
+            currency: 'ZAR',
+            students: 892,
+            rating: 4.9,
+            instructor: { id: 'betaskilltutor', first_name: 'Alex', last_name: 'Rodriguez', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          {
+            id: 'motor-mechanic-petrol',
+            title: 'Motor Mechanic (Petrol)',
+            description: 'Comprehensive training in petrol engine diagnostics, repair, and maintenance for automotive professionals.',
+            category: 'Motor Vehicles',
+            level: 'intermediate',
+            duration: '12 weeks',
+            is_free: false,
+            price: 2200,
+            currency: 'ZAR',
+            students: 750,
+            rating: 4.6,
+            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          {
+            id: 'diesel-mechanic',
+            title: 'Diesel Mechanic',
+            description: 'Advanced training in diesel engine systems, diagnostics, and repair techniques for heavy machinery.',
+            category: 'Motor Vehicles',
+            level: 'intermediate',
+            duration: '14 weeks',
+            is_free: false,
+            price: 2400,
+            currency: 'ZAR',
+            students: 580,
             rating: 4.8,
             instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           },
           {
-            id: 'podcast-management',
-            title: 'Podcast Management',
-            description: 'Become a podcast pro! Learn planning, production, distribution, and audience growth strategies for successful podcasting.',
+            id: 'cellphone-repairs',
+            title: 'Cellphone Repairs',
+            description: 'Learn smartphone diagnostics, repairs, and maintenance for a career in mobile device repair.',
             category: 'Information Communication and technology',
-            level: 'intermediate',
+            level: 'beginner',
             duration: '8 weeks',
             is_free: false,
-            price: 1200,
+            price: 1600,
             currency: 'ZAR',
-            students: 500,
+            students: 920,
             rating: 4.7,
             instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           },
           {
             id: 'computer-repairs',
-            title: 'Computer & Laptop Repairs',
-            description: 'Master computer and laptop repair techniques including hardware diagnostics, component replacement, and professional service skills',
+            title: 'Computer Repairs',
+            description: 'Master computer hardware and software troubleshooting for IT support and repair careers.',
             category: 'Information Communication and technology',
-            level: 'beginner',
-            duration: '6 weeks',
+            level: 'intermediate',
+            duration: '10 weeks',
             is_free: false,
-            price: 950,
+            price: 2000,
             currency: 'ZAR',
-            students: 1200,
+            students: 1100,
+            rating: 4.8,
+            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          {
+            id: 'ai-human-relations',
+            title: 'AI and Human Relations',
+            description: 'Explore the intersection of artificial intelligence and human interaction, covering AI fundamentals, ethics, and workplace applications.',
+            category: 'Information Communication and technology',
+            level: 'intermediate',
+            duration: '8 weeks',
+            is_free: false,
+            price: 1800,
+            currency: 'ZAR',
+            students: 680,
+            rating: 4.9,
+            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          {
+            id: 'hair-dressing',
+            title: 'Hair Dressing',
+            description: 'Professional hair styling, cutting, coloring, and salon management training for beauty industry careers.',
+            category: 'Beauty and Health',
+            level: 'beginner',
+            duration: '12 weeks',
+            is_free: false,
+            price: 1500,
+            currency: 'ZAR',
+            students: 850,
             rating: 4.6,
             instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           },
           {
-            id: 'cellphone-repairs-course',
-            title: 'Cellphone Repairs and Maintenance',
-            description: 'Learn to repair and maintain smartphones and tablets, including diagnostics, screen replacement, and battery servicing.',
-            category: 'Information Communication and technology',
-            level: 'beginner',
-            duration: '5 weeks',
-            is_free: false,
-            price: 800,
-            currency: 'ZAR',
-            students: 900,
-            rating: 4.5,
-            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
-            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
-          },
-          {
-            id: 'hair-dressing-course',
-            title: 'Hair Dressing',
-            description: 'Become a certified hairdresser with training in cutting, coloring, styling, and salon management.',
-            category: 'Beauty and Health',
-            level: 'beginner',
-            duration: '8 weeks',
-            is_free: false,
-            price: 1500,
-            currency: 'ZAR',
-            students: 1100,
-            rating: 4.7,
-            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
-            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
-          },
-          {
-            id: 'nail-technician-course',
+            id: 'nail-technician',
             title: 'Nail Technician',
             description: 'Learn nail care, art, and extension techniques to become a certified nail technician.',
             category: 'Beauty and Health',
@@ -177,102 +223,19 @@ export const useCourses = () => {
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           },
           {
-            id: 'b8c7d6e5-f4a3-9281-b0c9-d8e7f6a5b4c3',
-            title: 'Diesel Mechanic',
-            description: 'Comprehensive training in diesel engine repair, maintenance, and troubleshooting for heavy-duty vehicles and equipment',
-            category: 'Mechanical Repairs',
-            level: 'intermediate',
-            duration: '12 weeks',
-            is_free: false,
-            price: 4200,
-            currency: 'ZAR',
-            students: 743,
-            rating: 4.7,
-            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
-            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
-          },
-          {
-            id: 'a7b6c5d4-e3f2-8391-a2b3-c4d5e6f7a8b9',
-            title: 'Motor Mechanic (Petrol)',
-            description: 'Complete training in petrol engine systems, diagnostics, repair techniques, and automotive maintenance',
-            category: 'Mechanical Repairs',
-            level: 'intermediate',
-            duration: '10 weeks',
-            is_free: false,
-            price: 3800,
-            currency: 'ZAR',
-            students: 656,
-            rating: 4.6,
-            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
-            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
-          },
-          {
-            id: 'plumbing-course',
-            title: 'Plumbing',
-            description: 'Get certified in plumbing with hands-on training in installation, repair, and maintenance of plumbing systems.',
-            category: 'Construction',
-            level: 'intermediate',
-            duration: '10 weeks',
-            is_free: false,
-            price: 2000,
-            currency: 'ZAR',
-            students: 700,
-            rating: 4.5,
-            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
-            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
-          },
-          {
-            id: 'tiling-course',
-            title: 'Professional Tiling',
-            description: 'Learn tiling techniques for floors and walls, including surface preparation, layout, and finishing.',
-            category: 'Construction',
-            level: 'beginner',
-            duration: '7 weeks',
-            is_free: false,
-            price: 1100,
-            currency: 'ZAR',
-            students: 600,
-            rating: 4.4,
-            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
-            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
-          },
-          {
-            id: 'roofing-course',
-            title: 'Professional Roofing',
-            description: 'Get certified in roofing installation, repair, and safety for residential and commercial buildings.',
-            category: 'Construction',
-            level: 'intermediate',
-            duration: '9 weeks',
-            is_free: false,
-            price: 1700,
-            currency: 'ZAR',
-            students: 550,
-            rating: 4.3,
-            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
-            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
-          },
-          {
-            id: 'c9d8e7f6-a5b4-9483-d2e3-f4a5b6c7d8e9',
+            id: 'entrepreneurship-final',
             title: 'Entrepreneurship',
-            description: 'Learn essential entrepreneurship skills including business planning, market research, funding strategies, and startup management',
-            category: 'Business',
-            level: 'beginner',
+            description: '"Entrepreneurship: Creating Your Business" is a comprehensive online course designed to empower aspiring entrepreneurs with the skills, mindset, and strategies needed to launch and sustain a successful business. This course covers the entrepreneurial journey from ideation to execution, exploring critical topics such as identifying market opportunities, conducting effective market research, crafting business models, and implementing targeted marketing strategies. Learners will gain practical insights into the planning and development processes, understand the business ecosystem, and discover how to create a unique value proposition that resonates with customers. Delivered entirely online, this course is accessible globally and combines engaging content with actionable tools to help you turn your business ideas into reality, whether you\'re starting a local service or a scalable tech venture.',
+            category: 'Business & Entrepreneurship',
+            level: 'intermediate',
             duration: '6 weeks',
-            is_free: true,
-            price: 0,
+            is_free: false,
+            price: 2800,
             currency: 'ZAR',
-            students: 2341,
-            rating: 4.5,
-            instructor: {
-              id: 'betaskilltutor',
-              first_name: 'Beta Skill',
-              last_name: 'Tutor',
-              email: 'betaskilltraining@gmail.com'
-            },
-            status: 'approved',
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString(),
-            available: true
+            students: 1247,
+            rating: 4.8,
+            instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           }
         ];
         // Set instructor for all courses to Beta Skill Tutor

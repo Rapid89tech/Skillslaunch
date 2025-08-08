@@ -8,9 +8,9 @@ interface LayoutProps {
 
 const Layout = memo(({ children, showHeader = true }: LayoutProps) => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 no-layout-shift">
       {showHeader && <Header />}
-      <main className={`${showHeader ? 'pt-20' : ''} animate-fade-in`}>
+      <main className={`${showHeader ? 'pt-20' : ''} stable-render course-content-stable`}>
         {children}
       </main>
     </div>

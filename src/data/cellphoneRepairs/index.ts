@@ -34,7 +34,7 @@ Whether you're looking to start a mobile repair business, enhance your technical
   price: 1299,
   currency: 'ZAR',
   is_free: false,
-  thumbnail: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop',
+  thumbnail: '/images/generation-f3a5d1c2-fed5-4324-be4b-7b9c526b3455.png',
   category: 'Information Communication and technology',
   learningObjectives: [
     'Master mobile device hardware components and their functions',

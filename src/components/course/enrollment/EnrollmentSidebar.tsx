@@ -20,14 +20,15 @@ const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSideba
       <Card className="sticky top-6 glassmorphism-card border-0 shadow-lg rounded-3xl overflow-hidden animate-fade-in-card">
         <CardContent className="p-6 flex flex-col items-center bg-white/90 dark:bg-gray-900/90">
           <div className="text-center mb-5">
-            {/* Only show heading for logged out users */}
-            {!user && (
+            {/* Show different headings based on user status */}
+            {!user ? (
               <div className="text-2xl font-extrabold gradient-text mb-1 animate-fade-in-card">Register To Enroll</div>
+            ) : (
+              <div className="text-2xl font-extrabold gradient-text mb-1 animate-fade-in-card">Enroll Now</div>
             )}
-            {/* Removed Lifetime access and Admin fee section */}
           </div>
 
-          {/* Only show Registration button if user is not logged in */}
+          {/* Show Registration button if user is not logged in */}
           {!user && (
             <Button 
               onClick={() => {
@@ -47,7 +48,43 @@ const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSideba
             </Button>
           )}
 
-          {/* Removed feature list section */}
+          {/* Show Enroll button if user is logged in */}
+          {user && (
+            <Button 
+              onClick={handleEnroll}
+              disabled={enrolling}
+              className="w-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:opacity-90 text-white font-semibold py-2.5 text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
+            >
+              {enrolling ? (
+                <div className="flex items-center gap-2">
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                  Enrolling...
+                </div>
+              ) : (
+                'Enroll Now'
+              )}
+            </Button>
+          )}
+
+          {/* Course Features */}
+          <div className="w-full space-y-3">
+            <div className="flex items-center gap-3 text-sm">
+              <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <span>Lifetime access to course content</span>
+            </div>
+            <div className="flex items-center gap-3 text-sm">
+              <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <span>Certificate upon completion</span>
+            </div>
+            <div className="flex items-center gap-3 text-sm">
+              <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <span>24/7 support and guidance</span>
+            </div>
+            <div className="flex items-center gap-3 text-sm">
+              <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0" />
+              <span>Mobile-friendly learning</span>
+            </div>
+          </div>
         </CardContent>
         <style>{`
           .glassmorphism-card {

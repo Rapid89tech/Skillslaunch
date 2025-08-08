@@ -9,6 +9,7 @@ import LoadingSpinner from "@/components/LoadingSpinner";
 import useScrollToTop from "@/hooks/useScrollToTop";
 import CourseEnrollmentView from "@/components/course/CourseEnrollmentView";
 import CourseOverviewPage from "@/pages/CourseOverviewPage";
+import { CertificatePage } from "@/components/course/CertificatePage";
 
 // Lazy load all pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -99,6 +100,14 @@ const App = () => (
               <Layout>
                 <CourseOverviewPage />
               </Layout>
+            } 
+          />
+          <Route 
+            path="/course/:id/certificate" 
+            element={
+              <ProtectedRoute>
+                <CertificatePage />
+              </ProtectedRoute>
             } 
           />
           <Route path="*" element={

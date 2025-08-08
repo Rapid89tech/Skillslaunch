@@ -176,6 +176,6 @@ After implementing workflow automation:
 ## Final Thoughts
 
 "Automation frees you to focus on what matters most - creating great content." The right automation can transform your podcast production from manual to magical, ensuring consistent, high-quality episodes that reach your audience efficiently and effectively.
-`
+    `
   }
 };

@@ -11,12 +11,17 @@ import {
   HelpCircle,
   ChevronRight,
   RotateCcw,
-  Award
+  Award,
+  Trophy
 } from 'lucide-react';
 import type { QuizLesson } from '@/types/course';
 import { useModuleScores } from '@/hooks/useModuleScores';
-import { useParams } from 'react-router-dom';
+import { useUserProgress } from '@/hooks/useUserProgress';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Progress } from '@/components/ui/progress';
+import { useCourseCompletion } from '@/hooks/useCourseCompletion';
+import { useCourseData } from '@/hooks/useCourseData';
+import { useAuth } from '@/hooks/AuthContext';
 
 interface QuizComponentProps {
   lesson: QuizLesson;
@@ -27,8 +32,12 @@ interface QuizComponentProps {
 }
 
 const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizComponentProps) => {
+  const navigate = useNavigate();
   const { id: courseId } = useParams<{ id: string }>();
-  const { submitScore, scores, getGradeColor, fetchScores, fetchCourseSummary } = useModuleScores(courseId);
+  const { submitScore, scores, getGradeColor, fetchScores, fetchCourseSummary, testScoringSystem } = useModuleScores(courseId);
+  const { saveQuizScore, markLessonCompleted, updateCurrentPosition } = useUserProgress(courseId);
+  const { course } = useCourseData(courseId || '');
+  const { isCompleted, forceMarkAsCompleted } = useCourseCompletion(course);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState<(number | null)[]>(
     new Array(lesson.content.questions.length).fill(null)
@@ -36,7 +45,6 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
   const [showResults, setShowResults] = useState(false);
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [score, setScore] = useState(0);
-  const [refreshKey, setRefreshKey] = useState(0);
 
   const questions = lesson.content.questions;
   const currentQ = questions[currentQuestion];
@@ -70,22 +78,159 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
     });
     
     const percentage = (correctCount / questions.length) * 100;
-    const scorePoints = Math.round(percentage); // Convert percentage to points out of 100
+    const scorePoints = correctCount; // Use actual correct answers as score points
+    const totalPoints = questions.length; // Total possible points is number of questions
     
     setScore(percentage);
     setShowResults(true);
     setQuizCompleted(true);
     
-    // Save score to database
+    // Save score to database and user progress
     if (courseId && moduleId !== undefined && lessonId !== undefined) {
-      await submitScore(moduleId, lessonId, scorePoints, 100);
-      await fetchScores(); // Force refresh after submitting
-      await fetchCourseSummary(); // Also refresh course summary
-      setRefreshKey(prev => prev + 1); // Force re-render
+      console.log('🎯 Submitting quiz score:', {
+        moduleId,
+        lessonId,
+        correctCount,
+        totalQuestions: questions.length,
+        scorePoints,
+        totalPoints,
+        percentage
+      });
+      
+      try {
+        // Submit score first (this updates local state immediately)
+        console.log('🔄 Submitting score...');
+        const scoreSubmitted = await submitScore(moduleId, lessonId, scorePoints, totalPoints);
+        
+        if (scoreSubmitted) {
+          console.log('✅ Score submitted successfully');
+          
+          // Save to permanent user progress
+          console.log('💾 Saving to permanent user progress...');
+          await saveQuizScore(moduleId, lessonId, percentage);
+          await markLessonCompleted(moduleId, lessonId);
+          
+          console.log('✅ Progress saved successfully');
+          
+          // Force refresh scores to ensure UI is updated
+          console.log('🔄 Refreshing scores...');
+          await fetchScores();
+          await fetchCourseSummary();
+          console.log('✅ Scores refreshed successfully');
+        } else {
+          console.error('❌ Failed to submit score');
+        }
+      } catch (error) {
+        console.error('❌ Error during quiz submission:', error);
+        // Don't fail the quiz - show results anyway
+      }
     }
     
     if (percentage >= 70) {
       onComplete();
+      
+      // BULLETPROOF CERTIFICATE REDIRECTION LOGIC
+      if (course) {
+        console.log('=== CERTIFICATE REDIRECTION DEBUG ===');
+        console.log('Course data:', {
+          courseId: course.id,
+          courseTitle: course.title,
+          totalModules: course.modules.length,
+          moduleIds: course.modules.map(m => m.id)
+        });
+        
+        // Method 1: Check if this is the last lesson overall
+        const allLessons = course.modules.flatMap(m => m.lessons);
+        const currentLessonIndex = allLessons.findIndex(l => l.id === lessonId);
+        const isLastLessonOverall = currentLessonIndex === allLessons.length - 1;
+        
+        // Method 2: Check if this is the last lesson of the last module
+        const totalModules = course.modules.length;
+        const lastModuleIndex = totalModules - 1;
+        const lastModule = course.modules[lastModuleIndex];
+        const isLastModule = moduleId === lastModule.id;
+        const isLastLessonOfLastModule = lessonId === lastModule.lessons[lastModule.lessons.length - 1].id;
+        
+        // Method 3: Check if this is the last quiz in the course
+        const allQuizzes = allLessons.filter(l => l.type === 'quiz');
+        const currentQuizIndex = allQuizzes.findIndex(q => q.id === lessonId);
+        const isLastQuiz = currentQuizIndex === allQuizzes.length - 1;
+        
+        console.log('Completion checks:', {
+          moduleId,
+          lessonId,
+          totalModules,
+          lastModuleId: lastModule.id,
+          isLastModule,
+          isLastLessonOfLastModule,
+          isLastLessonOverall,
+          isLastQuiz,
+          totalLessons: allLessons.length,
+          currentLessonIndex,
+          totalQuizzes: allQuizzes.length,
+          currentQuizIndex
+        });
+        
+        // REDIRECT IF ANY OF THESE CONDITIONS ARE MET
+        const shouldRedirect = isLastLessonOverall || (isLastModule && isLastLessonOfLastModule) || isLastQuiz;
+        
+        console.log('🎯 REDIRECTION DECISION:', {
+          shouldRedirect,
+          isLastLessonOverall,
+          isLastModule,
+          isLastLessonOfLastModule,
+          isLastQuiz,
+          isCompleted
+        });
+        
+        if (shouldRedirect) {
+          console.log('🎉 FINAL QUIZ DETECTED! Force marking course as completed...');
+          forceMarkAsCompleted();
+          
+          // Store certificate data for persistence
+          const { user, profile } = useAuth();
+          let studentName = 'Student';
+          if (profile?.first_name && profile?.last_name) {
+            studentName = `${profile.first_name} ${profile.last_name}`;
+          } else if (user?.user_metadata?.full_name) {
+            studentName = user.user_metadata.full_name;
+          } else if (user?.user_metadata?.first_name && user?.user_metadata?.last_name) {
+            studentName = `${user.user_metadata.first_name} ${user.user_metadata.last_name}`;
+          } else if (user?.email) {
+            studentName = user.email.split('@')[0];
+          }
+          
+          const certificateData = {
+            courseTitle: course.title,
+            studentName,
+            completionDate: new Date().toISOString().split('T')[0],
+            instructorName: course.instructor.name,
+            courseId: course.id,
+            grade: 'A'
+          };
+          
+          localStorage.setItem(`certificate-data-${courseId}`, JSON.stringify(certificateData));
+          
+          console.log('🎉 FINAL QUIZ DETECTED! Redirecting to certificate...');
+          console.log('Navigation URL:', `/course/${courseId}/certificate`);
+          
+          // Force redirect after a short delay
+          setTimeout(() => {
+            console.log('Executing navigation now...');
+            navigate(`/course/${courseId}/certificate`);
+          }, 1500);
+        } else {
+          console.log('Not the final quiz - continuing with course...');
+          
+          // FALLBACK: Check if course is actually completed
+          if (isCompleted) {
+            console.log('🎉 COURSE COMPLETION DETECTED! Redirecting to certificate...');
+            setTimeout(() => {
+              navigate(`/course/${courseId}/certificate`);
+            }, 2000);
+          }
+        }
+      }
     }
   };
 
@@ -100,10 +245,10 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
   const allAnswered = answers.every(answer => answer !== null);
   const currentAnswerSelected = answers[currentQuestion] !== null;
 
-  // Optionally, listen for score changes and force re-render
-  useEffect(() => {
-    setRefreshKey(prev => prev + 1);
-  }, [scores]);
+  // Remove the problematic useEffect that causes infinite re-renders
+  // useEffect(() => {
+  //   setRefreshKey(prev => prev + 1);
+  // }, [scores]);
 
   if (showResults) {
     // Filter past attempts for this module/lesson
@@ -111,16 +256,34 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
       (s) => s.module_id === moduleId && s.lesson_id === lessonId
     );
     const latestAttempt = pastAttempts[0];
-    // Module score for this module
+    
+    // Module score for this module - FIXED CALCULATION
     const moduleScores = scores.filter(s => s.module_id === moduleId);
     const totalScore = moduleScores.reduce((sum, s) => sum + s.score, 0);
     const totalPoints = moduleScores.reduce((sum, s) => sum + s.total_points, 0);
     const percentage = totalPoints > 0 ? (totalScore / totalPoints) * 100 : 0;
+    
     let grade = 'F';
     if (percentage >= 90) grade = 'A';
     else if (percentage >= 80) grade = 'B';
     else if (percentage >= 70) grade = 'C';
     else if (percentage >= 60) grade = 'D';
+    
+    // Debug logging
+    console.log('🎯 Quiz Results Debug:', {
+      moduleId,
+      lessonId,
+      pastAttempts: pastAttempts.length,
+      latestAttempt,
+      moduleScores: moduleScores.length,
+      totalScore,
+      totalPoints,
+      percentage,
+      grade,
+      allScores: scores,
+      scoresLength: scores.length
+    });
+    
     return (
       <div className="space-y-6 animate-fade-in">
         {/* Flex row for percentage widget and module score */}
@@ -162,36 +325,136 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
               </div>
             </div>
           )}
-          {/* Module Score Card */}
+          
+          {/* Module Score Card - ENHANCED WITH BETTER DISPLAY */}
           <div className="flex justify-center items-center">
-            <div className="w-[320px] max-w-full bg-gray-50 rounded-3xl shadow-xl border border-blue-100 p-6 flex flex-col gap-2 animate-fade-in">
+            <div className="w-[320px] max-w-full bg-gradient-to-br from-white to-blue-50/30 dark:from-gray-800 dark:to-blue-900/20 rounded-3xl shadow-xl border border-blue-100/50 dark:border-blue-800/50 p-6 flex flex-col gap-3 animate-fade-in">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="font-semibold text-lg">Module {moduleId}</h4>
+                <h4 className="font-semibold text-lg text-gray-800 dark:text-gray-200">Module {moduleId}</h4>
                 <Badge 
                   variant="outline" 
-                  className={`font-bold ${getGradeColor(grade)}`}
+                  className={`font-bold text-lg px-3 py-1 ${getGradeColor(grade)}`}
                 >
                   {grade}
                 </Badge>
               </div>
-              <div className="grid grid-cols-3 gap-4 text-sm mb-2">
-                <div>
-                  <span className="text-gray-600">Score: </span>
-                  <span className="font-semibold">{totalScore}/{totalPoints}</span>
+              
+              {/* Enhanced Score Display */}
+              <div className="grid grid-cols-1 gap-3 text-sm">
+                <div className="flex justify-between items-center p-3 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg">
+                  <span className="text-gray-600 dark:text-gray-400 font-medium">Score:</span>
+                  <span className="font-bold text-lg text-blue-600 dark:text-blue-400">
+                    {totalScore}/{totalPoints}
+                  </span>
                 </div>
-                <div>
-                  <span className="text-gray-600">Percentage: </span>
-                  <span className="font-semibold">{Math.round(percentage)}%</span>
+                <div className="flex justify-between items-center p-3 bg-green-50/50 dark:bg-green-900/20 rounded-lg">
+                  <span className="text-gray-600 dark:text-gray-400 font-medium">Percentage:</span>
+                  <span className="font-bold text-lg text-green-600 dark:text-green-400">
+                    {Math.round(percentage)}%
+                  </span>
                 </div>
-                <div>
-                  <span className="text-gray-600">Lessons: </span>
-                  <span className="font-semibold">{moduleScores.length}</span>
+                <div className="flex justify-between items-center p-3 bg-purple-50/50 dark:bg-purple-900/20 rounded-lg">
+                  <span className="text-gray-600 dark:text-gray-400 font-medium">Lessons:</span>
+                  <span className="font-bold text-lg text-purple-600 dark:text-purple-400">
+                    {moduleScores.length}
+                  </span>
                 </div>
               </div>
-              <Progress value={percentage} className="h-2" />
+              
+              {/* Progress Bar */}
+              <div className="mt-2">
+                <div className="flex justify-between text-xs text-gray-500 mb-1">
+                  <span>Progress</span>
+                  <span>{Math.round(percentage)}%</span>
+                </div>
+                <Progress value={percentage} className="h-3 bg-gray-200 dark:bg-gray-700" />
+              </div>
+              
+              {/* Debug Info (only in development) */}
+              {process.env.NODE_ENV === 'development' && (
+                <div className="mt-2 p-2 bg-gray-100 dark:bg-gray-800 rounded text-xs text-gray-600 dark:text-gray-400">
+                  <div>Debug: {moduleScores.length} scores found</div>
+                  <div>Total: {totalScore}/{totalPoints}</div>
+                  <div className="mt-2 flex gap-2">
+                    <Button
+                      onClick={async () => {
+                        console.log('🔄 Manual refresh triggered');
+                        await fetchScores();
+                        await fetchCourseSummary();
+                        console.log('✅ Manual refresh completed');
+                      }}
+                      size="sm"
+                      variant="outline"
+                      className="text-xs"
+                    >
+                      🔄 Refresh Scores
+                    </Button>
+                    <Button
+                      onClick={async () => {
+                        console.log('🧪 Testing scoring system...');
+                        const result = await testScoringSystem();
+                        console.log('🧪 Test result:', result ? 'PASSED' : 'FAILED');
+                      }}
+                      size="sm"
+                      variant="outline"
+                      className="text-xs"
+                    >
+                      🧪 Test System
+                    </Button>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
+        
+                 {/* Course Completion Notification */}
+         {course && (() => {
+           // BULLETPROOF COMPLETION DETECTION
+           const allLessons = course.modules.flatMap(m => m.lessons);
+           const currentLessonIndex = allLessons.findIndex(l => l.id === lessonId);
+           const isLastLessonOverall = currentLessonIndex === allLessons.length - 1;
+           
+           const totalModules = course.modules.length;
+           const lastModuleIndex = totalModules - 1;
+           const lastModule = course.modules[lastModuleIndex];
+           const isLastModule = moduleId === lastModule.id;
+           const isLastLessonOfLastModule = lessonId === lastModule.lessons[lastModule.lessons.length - 1].id;
+           
+           const allQuizzes = allLessons.filter(l => l.type === 'quiz');
+           const currentQuizIndex = allQuizzes.findIndex(q => q.id === lessonId);
+           const isLastQuiz = currentQuizIndex === allQuizzes.length - 1;
+           
+           return isLastLessonOverall || (isLastModule && isLastLessonOfLastModule) || isLastQuiz;
+         })() && (
+           <div className="flex justify-center mb-6 animate-fade-in">
+             <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-8 py-6 rounded-2xl shadow-2xl max-w-md text-center">
+               <div className="flex items-center justify-center mb-3">
+                 <Trophy className="w-8 h-8 text-yellow-300 mr-3" />
+                 <h3 className="text-2xl font-bold">🎉 Course Completed!</h3>
+               </div>
+               <p className="text-lg mb-4">
+                 Congratulations! You've successfully completed <strong>{course.title}</strong>
+               </p>
+               <p className="text-sm opacity-90 mb-4">
+                 You'll be redirected to your certificate in a few seconds...
+               </p>
+               <div className="flex flex-col gap-3">
+                 <div className="flex justify-center">
+                   <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
+                 </div>
+                 <Button
+                   onClick={() => navigate(`/course/${courseId}/certificate`)}
+                   className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2"
+                 >
+                   <Trophy className="w-4 h-4" />
+                   Get Certificate Now
+                 </Button>
+               </div>
+             </div>
+           </div>
+         )}
+        
         {/* Try Again Button */}
         <div className="flex justify-center mb-6 animate-fade-in">
           <Button

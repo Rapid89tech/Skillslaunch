@@ -22,6 +22,12 @@ export interface QuizContent {
   questions: QuizQuestion[];
 }
 
+export interface Quiz {
+  id: number;
+  title: string;
+  questions: QuizQuestion[];
+}
+
 export interface AssignmentContent {
   title: string;
   description: string;

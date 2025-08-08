@@ -1,4 +1,4 @@
-import { HardHat, Smartphone, Wrench, Palette, Car, Hammer, Scissors, Zap } from 'lucide-react';
+import { HardHat, Smartphone, Wrench, Palette, Car, Hammer, Scissors, Zap, Briefcase } from 'lucide-react';
 
 export const categories = [
   {
@@ -90,5 +90,15 @@ export const categories = [
     color: 'from-yellow-500 to-amber-600',
     bgColor: 'bg-yellow-50',
     courseId: 'electrician-course'
+  },
+  {
+    id: 10,
+    title: 'Business',
+    icon: Briefcase,
+    description: 'Entrepreneurship, business planning and management skills',
+    courses: 6,
+    color: 'from-green-500 to-emerald-600',
+    bgColor: 'bg-green-50',
+    courseId: 'business'
   }
 ];

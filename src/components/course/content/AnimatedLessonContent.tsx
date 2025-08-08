@@ -207,13 +207,14 @@ const AnimatedLessonContent = ({ content, onComplete, lessonTitle }: AnimatedLes
 
       {/* Ultra-Modern Content Display */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-blue-50/30 to-purple-50/30 dark:from-gray-900 dark:via-blue-900/10 dark:to-purple-900/10 shadow-2xl border border-white/20 backdrop-blur-sm">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
+        {/* Enhanced Animated Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-purple-600/20 to-pink-600/20 animate-pulse"></div>
           <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400/10 rounded-full animate-bounce [animation-delay:0s]"></div>
-            <div className="absolute top-20 right-20 w-24 h-24 bg-purple-400/10 rounded-full animate-bounce [animation-delay:2s]"></div>
-            <div className="absolute bottom-20 left-20 w-20 h-20 bg-pink-400/10 rounded-full animate-bounce [animation-delay:4s]"></div>
+            <div className="absolute top-10 left-10 w-32 h-32 bg-blue-400/20 rounded-full animate-bounce [animation-delay:0s]"></div>
+            <div className="absolute top-20 right-20 w-24 h-24 bg-purple-400/20 rounded-full animate-bounce [animation-delay:2s]"></div>
+            <div className="absolute bottom-20 left-20 w-20 h-20 bg-pink-400/20 rounded-full animate-bounce [animation-delay:4s]"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-indigo-400/15 rounded-full animate-ping [animation-delay:1s]"></div>
           </div>
         </div>
 
@@ -233,6 +234,98 @@ const AnimatedLessonContent = ({ content, onComplete, lessonTitle }: AnimatedLes
           totalSections={contentSections.length}
         />
       </div>
+      
+      {/* Enhanced styling */}
+      <style>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in {
+          animation: fade-in 0.8s ease-out forwards;
+        }
+        
+        /* Enhanced card styling */
+        .lesson-content-modern-card {
+          background: linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,250,252,0.98) 100%);
+          box-shadow: 
+            0 25px 50px -12px rgba(0, 0, 0, 0.15),
+            0 10px 20px -5px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+          border-radius: 1.5rem;
+          padding: 3rem 2.5rem;
+          margin-bottom: 2rem;
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255,255,255,0.3);
+          animation: slideInCard 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+        
+        .lesson-content-modern-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 
+            0 35px 60px -12px rgba(0, 0, 0, 0.2),
+            0 15px 25px -5px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.9);
+        }
+        
+        .lesson-content-modern-card::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+        }
+        
+        @keyframes slideInCard {
+          from {
+            opacity: 0;
+            transform: translateY(40px) scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
+        
+        @keyframes fade-in-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fade-in-up {
+          animation: fade-in-up 0.6s ease-out forwards;
+        }
+        
+        /* Enhanced video styling */
+        iframe {
+          border-radius: 1rem;
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          transition: all 0.3s ease;
+        }
+        
+        iframe:hover {
+          transform: scale(1.02);
+          box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
+        }
+      `}</style>
     </div>
   );
 };

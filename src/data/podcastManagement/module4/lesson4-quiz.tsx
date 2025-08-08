@@ -24,123 +24,121 @@ const lessonConfig: LessonConfig = {
   questions: [
     {
       id: 1,
-      question: 'Which of the following is NOT a common Digital Audio Workstation (DAW) for podcast editing?',
+      question: 'Which of the following is a FREE, open-source editing tool ideal for beginners?',
       options: [
-        'Audacity',
         'Adobe Audition',
-        'Microsoft Word',
-        'GarageBand'
+        'Descript',
+        'Audacity',
+        'Pro Tools'
       ],
       correctAnswer: 2,
-      explanation: 'Microsoft Word is a word processing application, not a Digital Audio Workstation. Audacity, Adobe Audition, and GarageBand are all popular DAWs used for podcast editing.'
+      explanation: 'Audacity is a free, open-source audio editor that is ideal for beginners due to its accessibility and powerful features without cost.'
     },
     {
       id: 2,
-      question: 'What is the primary purpose of noise reduction in podcast editing?',
+      question: 'What is the biggest advantage of using Descript for editing?',
       options: [
-        'To make the audio louder',
-        'To remove unwanted background sounds',
-        'To add music to the podcast',
-        'To change the pitch of voices'
+        'Advanced spectral editing',
+        'Drag-and-drop music tools',
+        'Text-based audio editing',
+        'Dolby Atmos support'
       ],
-      correctAnswer: 1,
-      explanation: 'Noise reduction is used to remove unwanted background sounds like air conditioning, traffic, or room echo to create cleaner, more professional audio.'
+      correctAnswer: 2,
+      explanation: 'Descript\'s biggest advantage is its text-based audio editing, which allows users to edit audio by editing text transcripts, making it much more intuitive for beginners.'
     },
     {
       id: 3,
-      question: 'Which compression parameter determines how quickly the compressor responds to audio above the threshold?',
+      question: 'True or False: Adobe Audition is a free tool best suited for beginners.',
       options: [
-        'Ratio',
-        'Attack',
-        'Release',
-        'Knee'
+        'True',
+        'False'
       ],
       correctAnswer: 1,
-      explanation: 'The attack parameter determines how quickly the compressor responds to audio that exceeds the threshold. A fast attack responds quickly, while a slow attack allows transients to pass through.'
+      explanation: 'False. Adobe Audition is a paid, professional-grade tool with a steep learning curve, making it better suited for experienced editors rather than beginners.'
     },
     {
       id: 4,
-      question: 'What frequency range should you typically cut to remove room rumble from voice recordings?',
+      question: 'Which tool would best suit a podcaster who wants fast, text-driven editing with automatic transcription?',
       options: [
-        '2-4 kHz',
-        '8-12 kHz',
-        '80-120 Hz',
-        '200-400 Hz'
+        'Audacity',
+        'Adobe Audition',
+        'Descript',
+        'GarageBand'
       ],
       correctAnswer: 2,
-      explanation: 'Room rumble typically occurs in the 80-120 Hz range. Using a high-pass filter in this range can effectively remove low-frequency noise while preserving voice clarity.'
+      explanation: 'Descript is the best choice for fast, text-driven editing with automatic transcription, as it allows editing audio by editing text and includes AI-powered transcription features.'
     },
     {
       id: 5,
-      question: 'Which of the following is the recommended loudness target for podcasts?',
+      question: 'In Audacity, which feature helps remove constant background noise?',
+      options: [
+        'Razor Tool',
+        'Studio Sound',
+        'Noise Profile + Noise Reduction',
+        'Ducking'
+      ],
+      correctAnswer: 2,
+      explanation: 'In Audacity, the Noise Profile + Noise Reduction feature helps remove constant background noise by first capturing a noise profile and then applying reduction to the entire track.'
+    },
+    {
+      id: 6,
+      question: 'Which feature is exclusive to Descript among the three tools?',
+      options: [
+        'Multitrack editing',
+        'Export to MP3',
+        'Spectral frequency editing',
+        'Overdub (AI voice cloning)'
+      ],
+      correctAnswer: 3,
+      explanation: 'Overdub (AI voice cloning) is exclusive to Descript among the three tools, allowing users to generate synthetic voiceovers to fix mistakes or add content.'
+    },
+    {
+      id: 7,
+      question: 'What is a major limitation of using Audacity for podcast editing?',
+      options: [
+        'No support for WAV files',
+        'No music support',
+        'Outdated interface and limited non-destructive editing',
+        'Cannot export MP3 files'
+      ],
+      correctAnswer: 2,
+      explanation: 'A major limitation of Audacity is its outdated interface and limited non-destructive editing capabilities, which can slow workflows for complex projects.'
+    },
+    {
+      id: 8,
+      question: 'Which of these is NOT a feature of Adobe Audition?',
+      options: [
+        'Auto-ducking',
+        'Essential Sound panel',
+        'Automatic transcription',
+        'Spectral frequency editing'
+      ],
+      correctAnswer: 2,
+      explanation: 'Automatic transcription is NOT a feature of Adobe Audition. This feature is available in Descript, while Audition focuses on advanced audio editing tools.'
+    },
+    {
+      id: 9,
+      question: 'What\'s the recommended LUFS level for podcast audio loudness?',
       options: [
         '-6 LUFS',
         '-16 LUFS',
-        '-26 LUFS',
-        '-36 LUFS'
+        '-30 LUFS',
+        '+3 LUFS'
       ],
       correctAnswer: 1,
       explanation: '-16 LUFS (Loudness Units Full Scale) is the recommended target for podcasts, providing competitive volume levels while maintaining good dynamic range.'
     },
     {
-      id: 6,
-      question: 'What is the purpose of a high-pass filter in podcast editing?',
+      id: 10,
+      question: 'Which of the following statements is TRUE about exporting audio for podcast distribution?',
       options: [
-        'To boost high frequencies',
-        'To remove low-frequency noise',
-        'To add reverb',
-        'To compress audio'
-      ],
-      correctAnswer: 1,
-      explanation: 'A high-pass filter removes frequencies below a certain point, effectively eliminating low-frequency noise like room rumble, air conditioning, and electrical hum.'
-    },
-    {
-      id: 7,
-      question: 'Which editing technique involves creating smooth transitions between audio segments?',
-      options: [
-        'Compression',
-        'Fade in/out',
-        'Noise reduction',
-        'Equalization'
-      ],
-      correctAnswer: 1,
-      explanation: 'Fade in/out creates smooth transitions between audio segments, preventing abrupt changes that can be jarring to listeners.'
-    },
-    {
-      id: 8,
-      question: 'What is the primary benefit of multi-track editing?',
-      options: [
-        'Faster processing',
-        'Working with multiple audio sources simultaneously',
-        'Smaller file sizes',
-        'Better compression'
-      ],
-      correctAnswer: 1,
-      explanation: 'Multi-track editing allows you to work with multiple audio sources (voice, music, effects) simultaneously, providing greater control and flexibility in creating complex audio productions.'
-    },
-    {
-      id: 9,
-      question: 'Which of the following is NOT a recommended backup strategy for podcast projects?',
-      options: [
-        'Cloud backup',
-        'Local external drive backup',
-        'Keeping only one copy on your computer',
-        'Multiple storage locations'
+        'Use 320 kbps stereo MP3 for all podcasts',
+        'Always export in WAV format for streaming',
+        'Add ID3 metadata to help with search and discoverability',
+        'You must export at 96 kHz for Spotify'
       ],
       correctAnswer: 2,
-      explanation: 'Keeping only one copy on your computer is not a recommended backup strategy. You should always have multiple backups in different locations to protect against data loss.'
-    },
-    {
-      id: 10,
-      question: 'What is the purpose of automation in podcast editing?',
-      options: [
-        'To automatically edit your podcast',
-        'To create dynamic changes in audio parameters over time',
-        'To compress audio automatically',
-        'To add effects automatically'
-      ],
-      correctAnswer: 1,
-      explanation: 'Automation allows you to create dynamic changes in audio parameters (volume, pan, effects) over time, enabling precise control and creating engaging, professional-sounding podcasts.'
+      explanation: 'Adding ID3 metadata to help with search and discoverability is TRUE. Metadata and ID3 tags make podcasts searchable and organized on platforms like Apple Podcasts.'
     }
   ]
 };
@@ -151,48 +149,34 @@ const generateLesson = (config: LessonConfig): Lesson => {
     title: config.title,
     duration: config.duration,
     type: config.type,
-    content: {
-      videoUrl: '',
-      textContent: `
-# ${config.title}
+    content: [
+      {
+        id: 'quiz-intro',
+        type: 'text' as const,
+        title: 'Module 4 Quiz: Audio Editing Essentials',
+        textContent: `This quiz will test your understanding of the audio editing concepts covered in Module 4. You'll need to answer ${config.questions.length} questions about editing tools, techniques, and best practices.
 
-## Quiz Instructions
+**Topics Covered:**
+- Introduction to editing tools (Audacity, Adobe Audition, Descript)
+- Basic editing techniques (cutting, noise removal, levels)
+- Adding intros, outros, and music
+- Exporting files for distribution
 
-This quiz will test your understanding of the audio editing concepts covered in Module 4. You'll need to answer ${config.questions.length} questions about editing tools, techniques, and best practices.
+**Instructions:**
+- Read each question carefully
+- Select the best answer from the options provided
+- Review the explanation after answering to understand the correct response
+- You must answer all questions to complete the quiz
 
-**Time Limit**: ${config.duration}
-**Passing Score**: 80% (${Math.ceil(config.questions.length * 0.8)} out of ${config.questions.length} questions)
-
----
-
-${config.questions.map((question, index) => `
-### Question ${index + 1}
-
-**${question.question}**
-
-${question.options.map((option, optionIndex) => `${optionIndex + 1}. ${option}`).join('\n')}
-
-**Correct Answer**: ${question.correctAnswer}
-
-**Explanation**: ${question.explanation}
-
----
-`).join('\n')}
-
-## Quiz Results
-
-**Your Score**: [Calculated based on answers]
-
-**Performance Analysis**:
-- **Excellent (90-100%)**: You have mastered the audio editing concepts!
-- **Good (80-89%)**: You have a solid understanding of the material.
-- **Needs Improvement (Below 80%)**: Review the module content and retake the quiz.
-
-## Next Steps
-
-After completing this quiz, you'll be ready to move on to Module 5: Hosting & Distribution, where you'll learn how to publish and distribute your podcast effectively.
-      `
-    }
+Good luck!`
+      },
+      {
+        id: 'quiz-questions',
+        type: 'quiz' as const,
+        title: 'Quiz Questions',
+        questions: config.questions
+      }
+    ]
   };
 };
 

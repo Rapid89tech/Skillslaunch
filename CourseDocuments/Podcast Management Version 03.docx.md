@@ -68,7 +68,7 @@ This course is designed for beginners to intermediate learners, including aspiri
 
 ### **1\. Introduction to Podcasting**
 
-[videoUrl: 'https://youtu.be/oyplEP4y6Fg']
+**YOUTUBE LINK** [https://youtu.be/oyplEP4y6Fg](https://youtu.be/oyplEP4y6Fg) 
 
 Podcasting has transformed audio storytelling, offering a dynamic, on-demand medium that blends education, entertainment, and connection. This lecture traces podcasting’s journey from radio-inspired roots to a global industry with over 5 million shows and 460 million listeners (2024 estimate). By exploring its history, innovations, and features, learners will gain insights to create and manage impactful podcasts in today’s competitive digital landscape.
 

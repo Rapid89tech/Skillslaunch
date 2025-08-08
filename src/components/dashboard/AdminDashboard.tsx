@@ -125,7 +125,7 @@ function PendingEnrollmentApprovals() {
   );
 }
 
-const AdminDashboard = ({ profile }: any) => (
+const AdminDashboardComponent = ({ profile }: any) => (
   <div className="flex min-h-screen bg-gray-50">
     {/* Sidebar */}
     <aside className="w-64 bg-white shadow-lg flex flex-col py-8 px-4 animate-slide-in-left">
@@ -211,4 +211,4 @@ const AdminDashboard = ({ profile }: any) => (
   </div>
 );
 
-export default AdminDashboard; 
+export default AdminDashboardComponent; 

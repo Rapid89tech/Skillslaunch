@@ -36,7 +36,7 @@ With a smart AI voice tutor available 24/7, virtual labs, and a supportive commu
   price: 1299,
   currency: 'ZAR',
   is_free: false,
-  thumbnail: 'https://images.unsplash.com/photo-1581092335878-c4d7f76f3c8f?w=400&h=300&fit=crop',
+  thumbnail: '/images/generation-223f5d12-39ae-4748-84af-466e0078c55d.png',
   category: 'Technology',
   learningObjectives: [
     'Identify and describe the function of key hardware components (e.g., CPU, RAM, motherboard, SSD).',

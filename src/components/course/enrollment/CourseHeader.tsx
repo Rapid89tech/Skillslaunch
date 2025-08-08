@@ -19,7 +19,9 @@ const courseHeroImages: Record<string, string> = {
   'Professional Plumbing Training Program': 'https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?w=1600&q=80', // Black plumber
   'Professional Tiling Certification': 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=1600&q=80', // Black tiler
   'Professional Roofing Certification': 'https://images.unsplash.com/photo-1464983953574-0892a716854b?w=1600&q=80', // Black roofer
+  'Roofing Mastery: Design, Installation, and Maintenance': 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1600&q=80', // Black roofer
   'Entrepreneurship Fundamentals': 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80', // Black entrepreneur
+  'Entrepreneurship: Building Your Business': 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1600&q=80', // Black entrepreneur
   'AI and Human Relations': 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1600&q=80', // Black person with tech
   'Mastering Podcast Management': 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=1600&q=80', // Black podcaster
   'Computer & Laptop Repairs': 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=1600&q=80', // Black IT professional

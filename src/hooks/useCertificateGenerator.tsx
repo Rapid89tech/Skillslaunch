@@ -1,6 +1,6 @@
 import { useAuth } from '@/hooks/AuthContext';
-import type { Course } from '@/types/course';
 import { generateCertificateHTML } from '@/utils/certificateTemplate';
+import type { Course } from '@/types/course';
 
 interface UseCertificateGeneratorProps {
   course: Course;
@@ -33,9 +33,19 @@ export const useCertificateGenerator = ({ course, onDownload }: UseCertificateGe
     onDownload();
   };
 
+  const getCertificateHTML = () => {
+    return generateCertificateHTML({
+      studentName: `${profile?.first_name || 'Student'} ${profile?.last_name || ''}`,
+      courseTitle: course.title,
+      courseCategory: course.category,
+      completionDate: currentDate
+    });
+  };
+
   return {
     profile,
     currentDate,
-    generateCertificatePDF
+    generateCertificatePDF,
+    getCertificateHTML
   };
 };

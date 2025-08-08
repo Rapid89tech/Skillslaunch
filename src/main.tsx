@@ -9,31 +9,34 @@ import { BrowserRouter } from 'react-router-dom';
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 5,
-      gcTime: 1000 * 60 * 10,
+      staleTime: 1000 * 60 * 5, // 5 minutes
+      gcTime: 1000 * 60 * 10, // 10 minutes
       refetchOnWindowFocus: false,
       retry: 1,
       networkMode: 'offlineFirst',
+      refetchOnMount: false,
+      refetchOnReconnect: false,
+    },
+    mutations: {
+      retry: 1,
     },
   },
 });
 
-// Use requestIdleCallback or setTimeout to defer non-critical initialization
-window.addEventListener('load', () => {
-  // This helps with hydration and initial render performance
-  const rootElement = document.getElementById("root");
-  if (!rootElement) throw new Error('Root element not found');
-  
-  const root = createRoot(rootElement);
-  root.render(
-    <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <AuthProvider>
-          <TooltipProvider>
-            <App />
-          </TooltipProvider>
-        </AuthProvider>
-      </QueryClientProvider>
-    </BrowserRouter>
-  );
-});
+// Stable initialization without window.addEventListener
+const rootElement = document.getElementById("root");
+if (!rootElement) throw new Error('Root element not found');
+
+const root = createRoot(rootElement);
+
+root.render(
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <TooltipProvider>
+          <App />
+        </TooltipProvider>
+      </AuthProvider>
+    </QueryClientProvider>
+  </BrowserRouter>
+);

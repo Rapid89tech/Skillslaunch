@@ -10,15 +10,24 @@ export const useUsers = () => {
   const fetchUsers = useCallback(async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
+      // Add timeout to prevent infinite loading
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Request timeout')), 10000)
+      );
+      
+      const fetchPromise = supabase
         .from('profiles')
         .select('*, approved, approval_status')
         .order('created_at', { ascending: false });
+
+      const { data, error } = await Promise.race([fetchPromise, timeoutPromise]) as any;
 
       if (error) throw error;
       setUsers((data as Profile[]) || []);
     } catch (error) {
       console.error('Error fetching users:', error);
+      // Set empty array on error to prevent infinite loading
+      setUsers([]);
     } finally {
       setLoading(false);
     }
@@ -149,10 +158,7 @@ export const useUsers = () => {
     }
   }, [fetchUsers]);
 
-  useEffect(() => {
-    setUsers(users);
-    // eslint-disable-next-line
-  }, []); // Only run once on mount
+  // Remove this problematic useEffect that was causing infinite loops
 
   return {
     users,

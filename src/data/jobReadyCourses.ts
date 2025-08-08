@@ -1,12 +1,8 @@
 
-import { computerRepairsCourse } from './computerRepairsCourse';
-import { soundEngineeringCourse } from './soundEngineeringCourse';
-import { entrepreneurshipCourse } from './entrepreneurship/index';
-import { podcastManagementCourse } from './podcastManagementCourse';
+import { soundEngineering102Course } from './soundEngineering102Course';
 
 export const jobReadyCourses = [
-  computerRepairsCourse,
-  soundEngineeringCourse,
-  entrepreneurshipCourse,
-  podcastManagementCourse
+  soundEngineering102Course
 ];
+
+export default jobReadyCourses;

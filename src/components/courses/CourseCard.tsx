@@ -30,11 +30,13 @@ const courseImages: Record<string, string> = {
   'b8c7d6e5-f4a3-9281-b0c9-d8e7f6a5b4c3': dieselMechanicNew,
   'a7b6c5d4-e3f2-8391-a2b3-c4d5e6f7a8b9': motorMechanicNew,
   'computer-repairs': computerRepairsNew,
+  'cellphone-repairs': cellphoneRepairsNew,
   'cellphone-repairs-course': cellphoneRepairsNew,
   'hair-dressing-course': hairDressingNew,
   'nail-technician-course': nailTechnicianNew,
   'plumbing-course': plumbingNew,
   'tiling-course': tilingNew,
+  'roofing101': roofingNew,
   'roofing-course': roofingNew,
 };
 

@@ -1,8 +1,157 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import './styles/courseDesignRules.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Stable performance optimizations - NO FLASHING */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Stable hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+body {
+  /* Stable hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Prevent layout shifts */
+  overflow-x: hidden;
+  /* Stable font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Prevent flashing */
+  background-color: #ffffff;
+}
+
+/* Stable animations - REDUCED INTENSITY */
+.animate-fade-in,
+.animate-slide-in-left,
+.animate-slide-in-right,
+.animate-scale-in,
+.animate-pulse-glow,
+.animate-podcast-float,
+.animate-wave,
+.animate-glow,
+.animate-bounce-slow,
+.animate-pulse-slow,
+.animate-gradient-x,
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-fade-in-card {
+  /* Stable hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Stable rendering */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /* Prevent flashing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Stable transitions - SLOWER AND SMOOTHER */
+button,
+a,
+input,
+select,
+textarea,
+[role="button"] {
+  transition: all 0.2s ease-out;
+  /* Stable hardware acceleration */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Prevent flashing */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Stable images and media */
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+  /* Stable rendering */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Stable scroll performance */
+.scroll-container {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* REDUCED MOTION - PREVENT FLASHING */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* FORCE REDUCED MOTION FOR STABILITY */
+* {
+  animation-duration: 0.3s !important;
+  transition-duration: 0.2s !important;
+}
+
+/* Stabilize pulse animations */
+.animate-pulse-glow {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.animate-bounce-slow {
+  animation: bounceSlow 3s ease-in-out infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 4s ease-in-out infinite;
+}
+
+/* Stabilize hover effects */
+.hover-lift:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+}
+
+/* Stabilize gradient animations */
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradientX 6s ease-in-out infinite;
+}
+
+/* Stabilize text rendering */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Stabilize containers */
+.container, .section, .card {
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
 
 @layer base {
   :root {
@@ -664,4 +813,183 @@
     opacity: 1;
     transform: translateY(0) scale(1);
   }
+}
+
+/* Prevent layout shifts and flashing */
+@layer utilities {
+  /* Stable rendering */
+  .stable-render {
+    contain: layout style paint;
+  }
+  
+  /* Prevent content jumping */
+  .no-layout-shift {
+    min-height: 100vh;
+    contain: layout;
+  }
+  
+  /* Smooth transitions */
+  .smooth-transition {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Prevent flash of unstyled content */
+  .no-fouc {
+    visibility: hidden;
+  }
+  
+  .no-fouc.loaded {
+    visibility: visible;
+  }
+  
+  /* Stable loading states */
+  .loading-stable {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Prevent animation flashing */
+  .no-flash {
+    will-change: auto;
+  }
+  
+  /* Stable card rendering */
+  .card-stable {
+    contain: layout style;
+    min-height: 100px;
+  }
+  
+  /* Prevent text jumping */
+  .text-stable {
+    line-height: 1.5;
+    min-height: 1.5em;
+  }
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Glassmorphism effects */
+.glassmorphism-card {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.dark .glassmorphism-card {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Prevent scrollbar jumping */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Stable button states */
+button {
+  transition: all 0.15s ease-in-out;
+}
+
+button:focus {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}
+
+/* Prevent image layout shifts */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Stable form elements */
+input, textarea, select {
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Prevent table layout shifts */
+table {
+  table-layout: fixed;
+  width: 100%;
+}
+
+/* Stable modal rendering */
+.modal-stable {
+  contain: layout style paint;
+  will-change: transform, opacity;
+}
+
+/* Prevent navigation flashing */
+.nav-stable {
+  contain: layout style;
+  min-height: 60px;
+}
+
+/* Stable sidebar */
+.sidebar-stable {
+  contain: layout style;
+  min-width: 250px;
+}
+
+/* Prevent course content jumping */
+.course-content-stable {
+  min-height: 400px;
+  contain: layout;
+}
+
+/* Stable progress indicators */
+.progress-stable {
+  contain: layout style;
+  min-height: 20px;
+}
+
+/* Prevent score display flashing */
+.score-display-stable {
+  contain: layout style;
+  min-height: 100px;
 }

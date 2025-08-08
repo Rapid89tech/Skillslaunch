@@ -24,167 +24,145 @@ const getEmbedUrl = (url: string) => {
 
 const lessonConfig: LessonConfig = {
   id: 14,
-  title: 'Advanced Editing Techniques',
+  title: 'Basic Editing: Cutting, Noise Removal, Levels',
   duration: '90 min',
   type: 'video',
   sections: [
     {
-      id: 'multi-track-editing',
-      title: 'Multi-Track Editing Fundamentals',
+      id: 'why-basic-editing-matters',
+      title: 'Why Basic Editing Matters',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Complex Audio Projects',
-      description: `**Multi-track editing** allows you to work with multiple audio sources simultaneously, creating rich, layered podcast episodes.
+      keyFeatures: 'Professional Audio Quality',
+      description: `Even the best content can lose impact if the **audio is distracting or unpleasant**. Basic editing helps:
 
-**Key Concepts:**
-- **Track organization**: Separate voice, music, and effects
-- **Synchronization**: Align multiple audio sources
-- **Volume automation**: Dynamic level control
-- **Panning**: Spatial audio positioning
-- **Grouping**: Manage related tracks together
-
-**Benefits:**
-- **Professional sound**: Layered audio creates depth
-- **Flexibility**: Easy to adjust individual elements
-- **Efficiency**: Work on multiple elements simultaneously
-- **Quality control**: Isolate and fix specific issues
-
-Multi-track editing is essential for professional podcast production.`
+- Improve clarity
+- Reduce distractions
+- Maintain listener engagement`
     },
     {
-      id: 'compression-and-dynamics',
-      title: 'Compression and Dynamics Processing',
+      id: 'cutting-audio-purpose',
+      title: 'Purpose of Podcast Editing',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Professional Audio Control',
-      description: `**Compression** is a powerful tool for controlling audio dynamics and achieving consistent, professional-sounding podcasts.
-
-**Compression Parameters:**
-- **Threshold**: Level at which compression begins
-- **Ratio**: Amount of compression applied
-- **Attack**: How quickly compression responds
-- **Release**: How quickly compression stops
-- **Knee**: Transition between compressed and uncompressed
-
-**Applications:**
-- **Voice leveling**: Even out speaking volume
-- **Music control**: Tame dynamic music elements
-- **Overall mix**: Glue different elements together
-- **Loudness**: Achieve competitive volume levels
-
-Proper compression creates polished, broadcast-ready audio.`
+      keyFeatures: 'Remove mistakes, pauses, filler words, and tangents',
+      description: `Podcast editing aims to polish raw audio by removing mistakes, retakes, long pauses, filler words ("ums," "uhs"), and off-topic tangents, ensuring a professional, engaging episode. Mistakes, like misspoken lines, can disrupt listener flow, while long pauses or filler words reduce polish, especially in interviews recorded via Riverside.fm. Cutting off-topic tangents keeps content focused, crucial for narrative or solo podcasts. For example, editing a 30-minute Zencastr recording might involve trimming 5 seconds of silence or removing a 2-minute irrelevant discussion. This process enhances clarity and pacing, maintaining listener attention across platforms like Spotify. Effective editing, whether using Audacity or Adobe Audition, transforms raw recordings into cohesive episodes, balancing natural speech with professional quality to meet audience expectations and elevate your podcast's impact.`
     },
     {
-      id: 'equalization-techniques',
-      title: 'Equalization (EQ) Techniques',
+      id: 'cutting-audacity',
+      title: 'Tools & Methods: Audacity',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Frequency Shaping',
-      description: `**Equalization** shapes the frequency content of your audio, enhancing clarity and creating space in your mix.
-
-**EQ Types:**
-- **High-pass filter**: Remove low-frequency rumble
-- **Low-pass filter**: Remove high-frequency noise
-- **Parametric EQ**: Precise frequency control
-- **Graphic EQ**: Broad frequency adjustments
-- **Shelf EQ**: Boost or cut frequency ranges
-
-**Voice EQ Guidelines:**
-- **80-120 Hz**: Remove room rumble
-- **200-400 Hz**: Reduce muddiness
-- **2-4 kHz**: Enhance presence and clarity
-- **8-12 kHz**: Add air and brightness
-
-**Music EQ:**
-- **Cut conflicting frequencies** with voice
-- **Enhance musical character**
-- **Create space** for voice clarity
-
-EQ is crucial for professional-sounding podcasts.`
+      keyFeatures: 'Selection, deletion, and non-destructive splitting',
+      description: `Audacity, a free, open-source editor, is ideal for podcast editing with simple, effective tools. Use the Selection Tool to highlight mistakes, pauses, or filler words (e.g., "ums" in a SquadCast recording), then press Delete or use Edit > Delete to remove them. For non-destructive edits, use Split (Ctrl+I) to divide clips without altering the original, allowing rearrangement or selective deletion. For example, split a track to isolate a cough at 3:45, then delete it without affecting surrounding audio. This method preserves raw files, ideal for beginners using a Rode PodMic setup. Audacity's straightforward interface suits basic cleanup, such as trimming long pauses or cutting tangents in solo episodes. While limited in advanced features compared to Adobe Audition, its accessibility makes it perfect for budget-conscious podcasters aiming to produce clean, professional audio with minimal cost.`
     },
     {
-      id: 'reverb-and-effects',
-      title: 'Reverb and Audio Effects',
+      id: 'cutting-adobe-audition',
+      title: 'Tools & Methods: Adobe Audition',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Spatial Audio Enhancement',
-      description: `**Reverb and effects** add depth and character to your podcast, creating immersive listening experiences.
-
-**Reverb Types:**
-- **Room reverb**: Natural acoustic spaces
-- **Hall reverb**: Large venue simulation
-- **Plate reverb**: Classic studio sound
-- **Spring reverb**: Vintage character
-- **Convolution reverb**: Real space simulation
-
-**Effect Applications:**
-- **Subtle reverb**: Add natural space to voice
-- **Delay**: Create echo effects for emphasis
-- **Chorus**: Thicken and enhance sounds
-- **Distortion**: Add character and warmth
-- **Pitch shifting**: Create unique effects
-
-**Best Practices:**
-- **Use sparingly**: Effects should enhance, not distract
-- **Match context**: Choose effects that fit your content
-- **Test on different systems**: Ensure compatibility
-- **Save presets**: For consistent application
-
-Effects add professional polish when used tastefully.`
+      keyFeatures: 'Razor Tool, multitrack editing, and markers',
+      description: `Adobe Audition, a professional DAW, offers advanced tools for podcast editing. Use the Razor Tool to cut specific sections, like mistakes or pauses, in Waveform or Multitrack View, enabling precise removal or rearrangement of clips. For example, slice a 2-second "uh" from a Zencastr interview track. Move or delete clips in Multitrack View for seamless transitions, ideal for multi-guest podcasts. Use Markers (M key) to plan edits, marking errors or tangents (e.g., an off-topic rant at 10:20) for quick navigation. Audition's non-destructive multitrack mode preserves original audio, unlike Audacity's limited undo options. Its advanced features, like spectral editing, allow pinpoint removal of clicks or hums, making it ideal for producers seeking pro-level polish on narrative or interview shows recorded with a Shure SM7B. Audition's power suits complex edits but requires a $20.99/month subscription.`
     },
     {
-      id: 'automation-techniques',
-      title: 'Automation and Dynamic Control',
+      id: 'cutting-descript',
+      title: 'Tools & Methods: Descript',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Precise Audio Control',
-      description: `**Automation** allows you to create dynamic, engaging podcasts with precise control over audio elements over time.
-
-**Automation Types:**
-- **Volume automation**: Dynamic level changes
-- **Pan automation**: Moving audio in stereo field
-- **Effect automation**: Changing effect parameters
-- **Mute automation**: Precise audio cutting
-- **Filter automation**: Dynamic frequency changes
-
-**Applications:**
-- **Fade music**: Smooth transitions between segments
-- **Emphasize moments**: Volume boosts for impact
-- **Create movement**: Panning for spatial interest
-- **Dynamic effects**: Changing reverb or delay
-- **Precise editing**: Automated muting of mistakes
-
-**Workflow Tips:**
-- **Plan automation**: Know what you want to achieve
-- **Use keyframes**: For precise control points
-- **Test thoroughly**: Ensure smooth playback
-- **Save versions**: Before major automation changes
-
-Automation creates professional, dynamic podcasts.`
+      keyFeatures: 'Text-based editing and filler word removal',
+      description: `Descript's AI-powered, text-based editing simplifies podcast cleanup. It auto-transcribes audio (e.g., from Riverside.fm) into editable text, allowing you to highlight and delete words like "ums" or tangents, instantly removing corresponding audio. For example, deleting "uh" from a transcript cuts it from the WAV file. The "Remove Filler Words" tool automatically detects and removes "uh," "like," or "you know" in bulk, streamlining editing for interviews or solo episodes. Multitrack support aligns guest tracks, making it easy to trim pauses or mistakes. Descript's intuitive interface suits beginners without waveform editing skills, unlike Audacity or Audition. For instance, you can edit a 30-minute podcast in minutes by cutting text, ideal for fast turnarounds or repurposing clips for social media. While less precise for mixing, its $12/month subscription offers efficiency for podcasters prioritizing speed and simplicity.`
     },
     {
-      id: 'mastering-basics',
-      title: 'Mastering Basics for Podcasts',
+      id: 'cutting-best-practices',
+      title: 'Best Practices for Cutting',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Final Audio Polish',
-      description: `**Mastering** is the final step in podcast production, ensuring your audio sounds great across all platforms and devices.
-
-**Mastering Goals:**
-- **Consistent loudness**: Competitive volume levels
-- **Frequency balance**: Optimized frequency response
-- **Stereo enhancement**: Improved stereo image
-- **Dynamic range**: Appropriate compression
-- **Format optimization**: Platform-specific settings
-
-**Mastering Tools:**
-- **Limiter**: Prevent clipping and control peaks
-- **Multiband compressor**: Frequency-specific dynamics
-- **Stereo enhancer**: Improve stereo width
-- **EQ**: Final frequency adjustments
-- **Loudness meter**: Monitor perceived loudness
-
-**Target Standards:**
-- **Loudness**: -16 LUFS (Loudness Units Full Scale)
-- **True Peak**: -1 dB maximum
-- **Dynamic Range**: 8-12 dB for podcasts
-- **Format**: MP3 128-320 kbps
-
-Proper mastering ensures professional quality across all platforms.`
+      keyFeatures: 'Backups, natural flow, and headphone monitoring',
+      description: `Follow these best practices for effective podcast editing. Always keep a backup of your original audio on cloud storage (e.g., Google Drive) or an external drive before editing to prevent data loss, especially for Audacity's destructive edits. Avoid over-editing to maintain natural flow; for example, preserve intentional pauses in narrative podcasts for dramatic effect, but trim excessive silences (e.g., >2 seconds) in interviews. Listen with headphones (e.g., Sony MDR-7506) to catch subtle issues like faint hums or clicks, ensuring clean audio in tools like Descript or Audition. For instance, monitor a SquadCast recording to detect a low-level fan noise missed in speakers. These practices apply across all platforms, balancing polish with authenticity. They minimize errors, streamline workflows, and ensure professional results, making your podcast engaging and enjoyable for listeners on platforms like Spotify or Apple Podcasts.`
+    },
+    {
+      id: 'noise-removal-purpose',
+      title: 'Purpose of Noise Reduction',
+      videoUrl: 'https://youtu.be/JdFsOUxUh0I',
+      keyFeatures: 'Eliminate room hums, fan noise, and background chatter',
+      description: `Noise reduction in podcasting aims to eliminate distracting sounds like room hums, static, fan or air conditioning noise, and background chatter or buzz, creating a clean, professional listening experience. These noises, often picked up by sensitive mics like the Audio-Technica AT2020 during recordings (e.g., via Riverside.fm), can detract from vocal clarity and listener engagement. For instance, a low hum from an air conditioner or chatter from a nearby room can disrupt an interview podcast. Removing these ensures polished audio for platforms like Spotify, enhancing focus on content. Effective noise reduction, whether using Audacity's free tools or Adobe Audition's advanced features, transforms raw recordings into professional episodes, maintaining quality for solo, interview, or narrative formats, and meeting audience expectations for clear, distraction-free sound.`
+    },
+    {
+      id: 'noise-removal-audacity',
+      title: 'Tools & Techniques: Audacity',
+      videoUrl: 'https://youtu.be/JdFsOUxUh0I',
+      keyFeatures: 'Noise profile-based reduction',
+      description: `Audacity, a free, open-source editor, offers effective noise reduction for podcasters on a budget. To remove room hums or fan noise, select a small portion of audio with only the noise (no talking) using the Selection Tool. Go to Effect > Noise Reduction > Get Noise Profile to capture the noise's characteristics. Then, select the entire track, return to Effect > Noise Reduction, and apply settings (e.g., 24-30 dB reduction) to remove the noise. For example, this can eliminate a low hum from a Zencastr recording made with a Rode PodMic. The process is straightforward, ideal for beginners, but requires careful selection to avoid affecting vocal quality. Audacity's accessibility makes it perfect for cleaning up solo or interview podcasts, ensuring professional audio without costly software, though it lacks the precision of advanced tools like Adobe Audition.`
+    },
+    {
+      id: 'noise-removal-adobe-audition',
+      title: 'Tools & Techniques: Adobe Audition',
+      videoUrl: 'https://youtu.be/qNmLomSwIcY',
+      keyFeatures: 'Spectral editing and advanced noise reduction',
+      description: `Adobe Audition, a professional DAW, provides powerful noise reduction tools. Use the Spectral Frequency Display to visually identify noise (e.g., hums or buzz) as distinct patterns, then select and remove them with precision. Apply Noise Reduction (Process) for static noise or Adaptive Noise Reduction for dynamic sounds like fans, adjusting thresholds to preserve vocal clarity. The Essential Sound Panel offers DeReverb and DeNoise presets to quickly clean up echo or hiss in multi-guest recordings (e.g., from SquadCast). For instance, DeNoise can remove air conditioning hum from a Shure SM7B recording. Audition's non-destructive multitrack mode ensures safe experimentation, ideal for narrative or sound-rich podcasts. While its $20.99/month subscription is costly, its advanced features deliver broadcast-quality results, making it a top choice for professionals seeking precise control over noise in complex audio projects.`
+    },
+    {
+      id: 'noise-removal-descript',
+      title: 'Tools & Techniques: Descript',
+      videoUrl: 'https://youtu.be/Os0QbipfI9M',
+      keyFeatures: 'AI-driven Studio Sound for noise removal',
+      description: `Descript's AI-powered Studio Sound feature enhances vocals and removes background noise, simplifying podcast cleanup. Accessible under the "Effects" sidebar, toggle Studio Sound to automatically reduce room hums, fan noise, or chatter in recordings (e.g., from Riverside.fm). The tool analyzes audio and boosts vocal clarity while suppressing noise, ideal for beginners without waveform editing skills. For example, applying Studio Sound to a USB mic recording can eliminate static in seconds. Descript's text-based interface complements this by allowing manual edits via transcriptions, streamlining removal of remaining issues. While less precise than Audition for mixing, its $12/month subscription offers fast, user-friendly noise reduction, perfect for interview or solo podcasts needing quick turnarounds or social media clips. Studio Sound's automation makes Descript a go-to for podcasters prioritizing efficiency over granular control.`
+    },
+    {
+      id: 'noise-removal-best-practices',
+      title: 'Best Practices for Noise Reduction',
+      videoUrl: 'https://youtu.be/Os0QbipfI9M',
+      keyFeatures: 'Balanced reduction, source control, and room treatment',
+      description: `Follow these best practices for effective noise reduction. Don't overuse noise reduction tools, as excessive processing (e.g., >30 dB in Audacity) can make voices sound robotic or unnatural; aim for subtle adjustments to preserve vocal quality. Reduce noise at the source first by recording in a quiet room with a good mic (e.g., Rode PodMic) and using pop filters to minimize plosives. Treat echoey spaces with foam panels, blankets, or carpets to absorb reflections, preventing hums or reverb in recordings. For example, a carpeted closet setup reduces noise before editing in Descript or Audition. These practices, applicable across tools, ensure clean audio with minimal processing, maintaining natural sound for listeners on platforms like Apple Podcasts. They streamline workflows and enhance professionalism, especially for budget-conscious podcasters or those using remote platforms like Zencastr.`
+    },
+    {
+      id: 'adjusting-levels-purpose',
+      title: 'Purpose of Adjusting Levels',
+      videoUrl: 'https://youtu.be/tDHgUOiuB34',
+      keyFeatures: 'Ensure clear voices, balanced music, and consistent loudness',
+      description: `Adjusting levels in podcasting ensures clear voice levels, prevents music or sound effects (SFX) from overpowering dialogue, and maintains consistent loudness throughout an episode. Clear voices, typically targeting -16 LUFS, keep speech intelligible on platforms like Spotify, while balanced music and SFX (e.g., intros or transitions) enhance engagement without drowning out vocals. Consistent loudness avoids jarring volume shifts, crucial for listener comfort in interviews or narrative podcasts recorded via Riverside.fm. For example, a loud intro track can be lowered to complement a Shure SM7B-recorded voice. Proper leveling, whether using Audacity or Adobe Audition, creates a polished, professional sound, meeting industry standards and ensuring a pleasant listening experience across devices like earbuds or car speakers.`
+    },
+    {
+      id: 'key-concepts',
+      title: 'Key Concepts',
+      videoUrl: 'https://youtu.be/tDHgUOiuB34',
+      keyFeatures: 'Understanding gain, volume, normalization, compression, LUFS',
+      description: `Understanding key audio concepts is essential for effective level adjustment. **Gain** controls input volume before effects, set via an interface like Focusrite Scarlett 2i2 to avoid clipping. **Volume** is the final output level after processing, adjusted in software like Descript. **Normalization** sets audio to a consistent peak (e.g., -1 dB), ensuring uniform amplitude. **Compression** evens out loud and soft parts, smoothing dynamic voices in interviews. **LUFS** (Loudness Units Full Scale) is the podcasting loudness standard, targeting -16 LUFS for stereo or -19 LUFS for mono to match platforms like Apple Podcasts. For example, normalizing a Zencastr recording to -16 LUFS ensures consistent playback. These concepts guide precise leveling, balancing clarity and dynamics across solo or multi-guest podcasts, ensuring professional audio quality regardless of the editing tool used.`
+    },
+    {
+      id: 'adjusting-levels-audacity',
+      title: 'Tools & Methods: Audacity',
+      videoUrl: 'https://youtu.be/tDHgUOiuB34',
+      keyFeatures: 'Normalize and compress for consistent levels',
+      description: `Audacity, a free editor, offers accessible tools for adjusting podcast levels. Use Effect > Normalize to set a consistent peak volume (e.g., -1 dB) for tracks, ensuring voices (recorded via Rode PodMic) are clear without clipping. Apply the Compressor effect to smooth dynamic ranges, reducing loud peaks and boosting quieter parts (e.g., ratio 2:1, threshold -12 dB) for even vocal delivery in interviews. For example, normalize a SquadCast guest track to -1 dB, then compress to balance a soft-spoken voice. While Audacity doesn't directly measure LUFS, normalizing to -1 dB approximates -16 LUFS for stereo podcasts. Its simplicity suits beginners on a budget, though it lacks advanced automation compared to Adobe Audition. These tools ensure consistent, professional levels for solo or multi-track episodes with minimal cost.`
+    },
+    {
+      id: 'adjusting-levels-adobe-audition',
+      title: 'Tools & Methods: Adobe Audition',
+      videoUrl: 'https://youtu.be/YL-8J-MLgSk',
+      keyFeatures: 'Advanced normalization and loudness matching',
+      description: `Adobe Audition, a professional DAW, provides precise level adjustment tools. Use Amplitude and Compression > Normalize to target -16 LUFS, ensuring industry-standard loudness for platforms like Spotify. Apply the Hard Limiter to prevent clipping, setting a ceiling at -0.1 dB for clean peaks. The Essential Sound Panel's Dialogue > Loudness > Auto-Match feature automatically adjusts tracks to -16 LUFS, ideal for multi-guest recordings from Zencastr. For example, Auto-Match balances a host's Shure SM7B track with a guest's USB mic. Audition's non-destructive multitrack mode allows safe adjustments, and its spectral tools ensure music or SFX don't overpower vocals. While its $20.99/month subscription is costly, Audition's automation and precision make it ideal for professionals crafting polished, dynamic audio for narrative or interview podcasts with complex soundscapes.`
+    },
+    {
+      id: 'adjusting-levels-descript',
+      title: 'Tools & Methods: Descript',
+      videoUrl: 'https://youtu.be/caGP-Ps4kn4',
+      keyFeatures: 'AI-driven and manual level adjustments',
+      description: `Descript's AI-powered Studio Sound automatically levels audio, enhancing voices and balancing tracks (e.g., from Riverside.fm) to approximate -16 LUFS, ideal for quick turnarounds. Manual volume sliders on each track allow fine-tuning, such as lowering a loud music intro to complement a vocal track recorded with an Audio-Technica ATR2100x. For example, slide a guest's track down to balance with the host in a multi-track interview. Studio Sound simplifies leveling for beginners, reducing the need for waveform expertise compared to Audacity. Descript's text-based interface complements manual adjustments, enabling simultaneous content and level edits. While less precise for advanced mixing than Audition, its $12/month subscription offers efficiency for podcasters prioritizing speed, especially for solo or interview formats needing consistent, professional audio with minimal effort.`
+    },
+    {
+      id: 'adjusting-levels-best-practices',
+      title: 'Best Practices for Level Adjustment',
+      videoUrl: 'https://youtu.be/caGP-Ps4kn4',
+      keyFeatures: 'Headphone monitoring, LUFS standards, and device testing',
+      description: `Follow these best practices for effective level adjustment. Always monitor with headphones (e.g., Sony MDR-7506) to catch subtle volume imbalances, like overpowering SFX or faint voices, during editing in Audacity or Descript. Target -16 LUFS for stereo or -19 LUFS for mono podcasts to ensure consistent loudness across platforms like Apple Podcasts, preventing listener adjustments. Test the final mix on multiple devices (phone, laptop, car speakers) to confirm clarity and balance; for instance, car playback may reveal bass-heavy music overpowering vocals. These practices, applicable across tools, ensure professional, listener-friendly audio. For example, testing a Zencastr episode on earbuds ensures dialogue clarity. They streamline workflows, maintain natural dynamics, and meet industry standards, enhancing engagement for all podcast formats.`
+    },
+    {
+      id: 'summary-checklist',
+      title: 'Summary Checklist',
+      videoUrl: 'https://youtu.be/vlzOb4OLj94',
+      keyFeatures: 'Essential Editing Tasks',
+      description: `| Task | Done? |
+| ----- | ----- |
+| Trimmed silence, mistakes, and filler words | ✅ / ❌ |
+| Applied noise removal (subtle, not harsh) | ✅ / ❌ |
+| Normalized voice levels | ✅ / ❌ |
+| Exported at correct volume (around -16 LUFS) | ✅ / ❌ |
+| Listened to final cut on headphones | ✅ / ❌ |`
     }
   ]
 };
@@ -195,28 +173,14 @@ const generateLesson = (config: LessonConfig): Lesson => {
     title: config.title,
     duration: config.duration,
     type: config.type,
-    content: {
-      videoUrl: config.sections[0]?.videoUrl || '',
-      textContent: config.sections.map(section => `
-## ${section.title}
-
-**YOUTUBE LINK**: ${section.videoUrl}
-
-**Key Features**: ${section.keyFeatures}
-
-${section.description}
-
-<iframe 
-  width="100%" 
-  height="315" 
-  src="${getEmbedUrl(section.videoUrl)}" 
-  title="${section.title}"
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
-      `).join('\n\n')
-    }
+    content: config.sections.map(section => ({
+      id: section.id,
+      type: 'video' as const,
+      title: section.title,
+      videoUrl: getEmbedUrl(section.videoUrl),
+      keyFeatures: section.keyFeatures,
+      textContent: section.description
+    }))
   };
 };
 

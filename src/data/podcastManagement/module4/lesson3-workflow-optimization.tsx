@@ -24,189 +24,169 @@ const getEmbedUrl = (url: string) => {
 
 const lessonConfig: LessonConfig = {
   id: 15,
-  title: 'Workflow Optimization',
+  title: 'Adding Intros, Outros, and Music',
   duration: '60 min',
   type: 'video',
   sections: [
     {
-      id: 'efficient-workflow',
-      title: 'Building Efficient Editing Workflows',
+      id: 'why-add-music',
+      title: 'Why Add Intros, Outros, and Music?',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Time-Saving Techniques',
-      description: `**Efficient workflows** are the key to consistent, high-quality podcast production without burning out.
-
-**Workflow Components:**
-- **Project templates**: Standardized starting points
-- **Track presets**: Pre-configured audio settings
-- **Effect chains**: Saved processing combinations
-- **Keyboard shortcuts**: Speed up common tasks
-- **File organization**: Logical project structure
-
-**Workflow Stages:**
-1. **Preparation**: Organize files and set up project
-2. **Rough edit**: Remove major mistakes and organize content
-3. **Fine edit**: Refine timing and flow
-4. **Processing**: Apply effects and enhancements
-5. **Mastering**: Final polish and export
-
-**Time-Saving Tips:**
-- **Batch processing**: Apply effects to multiple files
-- **Macros**: Automate repetitive tasks
-- **Presets**: Save and reuse settings
-- **Parallel processing**: Work on multiple elements
-
-Efficient workflows save time and improve quality.`
+      keyFeatures: 'Brand Identity and Listener Experience',
+      description: `- 🎯 **Establishes your brand identity**
+- 🎧 **Improves listener experience**
+- 🧠 **Increases memorability**
+- 📍 **Sets mood and tone** for the episode`
     },
     {
-      id: 'quality-control',
-      title: 'Quality Control and Standards',
+      id: 'podcast-structure',
+      title: 'Understanding Podcast Structure',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Professional Standards',
-      description: `**Quality control** ensures your podcast meets professional standards and provides the best listener experience.
+      keyFeatures: 'Typical Episode Flow',
+      description: `A typical podcast structure:
 
-**Quality Checklist:**
-- [ ] **Audio levels**: Consistent volume throughout
-- [ ] **Noise floor**: Clean background audio
-- [ ] **Frequency balance**: Natural voice reproduction
-- [ ] **Dynamic range**: Appropriate compression
-- [ ] **Stereo image**: Proper spatial positioning
-- [ ] **Transitions**: Smooth segment changes
-- [ ] **Content flow**: Logical episode structure
+🎵 Intro Music → 🎙️ Host Intro → 📚 Main Content → 🔚 Outro Message → 🎵 Outro Music
 
-**Technical Standards:**
-- **Loudness**: -16 LUFS target
-- **Peak levels**: -1 dB maximum
-- **Noise floor**: Below -60 dB
-- **Frequency response**: 80 Hz - 15 kHz for voice
-- **Format**: MP3 128-320 kbps
+### **✅ Components:**
 
-**Listening Tests:**
-- **Multiple devices**: Test on various speakers/headphones
-- **Different environments**: Car, office, home
-- **Volume levels**: Low, medium, and high playback
-- **Platform testing**: Verify on major podcast platforms
-
-Quality control ensures professional results.`
+| Part | Purpose | Typical Length |
+| ----- | ----- | ----- |
+| Intro | Grab attention, state purpose | 15–30 seconds |
+| Outro | Wrap-up, CTA, thank you | 15–30 seconds |
+| Music Beds | Fill gaps, transitions, background | Varies |`
     },
     {
-      id: 'collaboration-tools',
-      title: 'Collaboration and File Sharing',
+      id: 'sourcing-music-purpose',
+      title: 'Purpose of Sourcing Music Legally',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Team Workflow',
-      description: `**Collaboration tools** enable seamless teamwork when multiple people are involved in podcast production.
-
-**File Sharing Platforms:**
-- **Google Drive**: Cloud storage and sharing
-- **Dropbox**: Professional file synchronization
-- **WeTransfer**: Large file transfers
-- **Slack**: Team communication and file sharing
-- **Trello**: Project management and task tracking
-
-**Collaboration Workflows:**
-- **Remote recording**: Coordinate with remote guests
-- **File exchange**: Share audio files securely
-- **Feedback loops**: Collect and implement changes
-- **Version control**: Track project versions
-- **Approval processes**: Get sign-off on final versions
-
-**Best Practices:**
-- **Clear naming**: Use descriptive file names
-- **Version tracking**: Include version numbers
-- **Backup systems**: Multiple storage locations
-- **Access control**: Manage who can edit files
-- **Communication**: Regular status updates
-
-Effective collaboration improves podcast quality and efficiency.`
+      keyFeatures: 'Enhance podcasts while complying with copyright laws',
+      description: `Sourcing music legally for podcasts ensures you enhance episodes with intros, outros, or background tracks while adhering to copyright laws, avoiding legal issues or platform takedowns. Legally sourced music, such as royalty-free tracks from YouTube Audio Library, adds professionalism to solo, interview, or narrative podcasts recorded via Riverside.fm, without risking penalties on platforms like Spotify. For example, a royalty-free intro can set the tone for a true crime podcast. Legal sourcing protects your content, supports artists, and ensures uninterrupted distribution. Using tools like Epidemic Sound or Creative Commons licenses, podcasters can access high-quality music affordably, maintaining ethical standards and enhancing listener engagement with polished audio.`
     },
     {
-      id: 'backup-strategies',
-      title: 'Backup and Recovery Strategies',
+      id: 'free-music-sources',
+      title: 'Free/Low-Cost Music Sources',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Data Protection',
-      description: `**Backup strategies** protect your work from data loss and ensure you can recover from technical issues.
-
-**Backup Types:**
-- **Local backup**: External hard drives and NAS
-- **Cloud backup**: Online storage services
-- **Project backup**: Complete project file copies
-- **Audio backup**: Raw and processed audio files
-- **Settings backup**: Software configurations
-
-**Backup Schedule:**
-- **Real-time**: Continuous cloud synchronization
-- **Daily**: Complete project backups
-- **Weekly**: Full system backups
-- **Monthly**: Archive important projects
-- **Before major changes**: Pre-edit backups
-
-**Recovery Planning:**
-- **Test restores**: Verify backup integrity
-- **Multiple locations**: Geographic redundancy
-- **Access documentation**: Recovery procedures
-- **Software licenses**: Backup activation keys
-- **Contact information**: Technical support details
-
-Proper backup strategies prevent catastrophic data loss.`
+      keyFeatures: 'YouTube Audio Library, Incompetech, Free Music Archive, and more',
+      description: `Several platforms provide free or low-cost music for podcasts, ideal for budget-conscious creators. **YouTube Audio Library** offers royalty-free tracks and sound effects, downloadable for free, with most requiring no attribution, perfect for intros or transitions. **Incompetech**, by Kevin MacLeod, provides royalty-free tracks under Creative Commons (CC-BY) licenses, requiring artist credit, suitable for narrative podcasts. **Free Music Archive** hosts diverse, free tracks, often under Creative Commons, ideal for unique vibes. **Epidemic Sound** ($15/month) and **Artlist** or **Soundstripe** (~$10-$20/month subscriptions) offer premium royalty-free libraries for professional productions, like interviews recorded with a Rode PodMic. These sources ensure legal, high-quality music, balancing cost and professionalism for seamless integration into episodes, enhancing listener experience across formats.`
     },
     {
-      id: 'performance-optimization',
-      title: 'Performance Optimization',
+      id: 'licensing-tips',
+      title: 'Licensing Tips',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'System Efficiency',
-      description: `**Performance optimization** ensures your editing software runs smoothly and efficiently.
-
-**System Requirements:**
-- **CPU**: Multi-core processor for real-time processing
-- **RAM**: 16GB+ for large projects
-- **Storage**: SSD for project files and scratch disks
-- **Graphics**: Dedicated GPU for video editing
-- **Audio interface**: Low-latency audio hardware
-
-**Software Optimization:**
-- **Buffer settings**: Adjust for your system
-- **Scratch disk**: Use fast storage for temporary files
-- **Plugin management**: Disable unused plugins
-- **Project cleanup**: Remove unused files and tracks
-- **Regular updates**: Keep software current
-
-**Workflow Optimization:**
-- **Freeze tracks**: Reduce CPU load
-- **Bounce in place**: Create audio files from MIDI
-- **Use proxies**: Lower-resolution files for editing
-- **Close other applications**: Free up system resources
-- **Restart regularly**: Clear memory and cache
-
-Optimized performance improves workflow efficiency.`
+      keyFeatures: 'Royalty-free and Creative Commons (CC-BY) licenses',
+      description: `Prioritize **royalty-free** or **Creative Commons (CC-BY)** licenses to ensure legal music use in podcasts. Royalty-free music, like that from Epidemic Sound, requires a one-time or subscription fee but allows unlimited use without ongoing royalties, ideal for commercial podcasts on Apple Podcasts. CC-BY licenses, common on Incompetech or Free Music Archive, permit use with proper artist credit (e.g., "Music by Kevin MacLeod" in show notes). Always verify license terms, as some require attribution or restrict commercial use. For example, a CC-BY track in a Zencastr episode needs credits in the description. Keep license records to avoid copyright strikes. These practices ensure compliance, support artists, and protect your podcast, making them essential for professional, hassle-free production.`
     },
     {
-      id: 'future-proofing',
-      title: 'Future-Proofing Your Workflow',
+      id: 'integrating-music-audacity',
+      title: 'Integrating Music in Audacity',
       videoUrl: 'https://youtu.be/vlzOb4OLj94',
-      keyFeatures: 'Long-term Planning',
-      description: `**Future-proofing** ensures your workflow remains effective as technology and requirements evolve.
+      keyFeatures: 'Simple multitrack editing and effects',
+      description: `Audacity's multitrack interface makes music integration straightforward for podcasters. Import music files (e.g., from YouTube Audio Library) via File > Import > Audio, placing them on separate tracks from voice recordings. Use the Time Shift Tool to align music with vocals, adjusting timing for intros or outros. Apply Fade In/Out effects (Effect > Fade In/Out) for smooth transitions, preventing abrupt starts or stops. Adjust track volumes using the gain slider to balance music and voice levels, ensuring vocals remain clear. For example, lower music to -20 dB while keeping voice at -16 LUFS. Export the final mix via File > Export > Export as MP3, selecting 128-320 kbps for quality and compatibility with platforms like Spotify. Audacity's free, accessible tools suit beginners using USB mics like the Audio-Technica ATR2100x, though it lacks advanced automation compared to premium software.`
+    },
+    {
+      id: 'integrating-music-adobe-audition',
+      title: 'Integrating Music in Adobe Audition',
+      videoUrl: 'https://youtu.be/iPrFV71EjnA',
+      keyFeatures: 'Multitrack editing, ducking, and precise adjustments',
+      description: `Adobe Audition's Multitrack Editor streamlines music integration for podcasts. Create a new session (File > New > Multitrack Session), then drag music (e.g., from Artlist) to Track 1 and voice clips (e.g., from a Shure SM7B) to Track 2. Adjust volume using Clip Gain or the Mixer Panel to balance music and vocals, targeting -16 LUFS for voices. Apply Essential Sound > Ducking to automatically lower music behind dialogue, ensuring clarity. Use Fade Handles or Fade Effects for smooth intro/outro transitions, and the Razor Tool to trim or arrange clips, like cutting a long music bed. Export the final episode via File > Export > Multitrack Mixdown as a WAV or MP3. Audition's non-destructive editing ensures flexibility, ideal for narrative or interview podcasts needing professional polish, though its $20.99/month cost suits experienced users seeking precision.`
+    },
+    {
+      id: 'integrating-music-descript',
+      title: 'Integrating Music in Descript',
+      videoUrl: 'https://youtu.be/t86rG7hJJoU',
+      keyFeatures: 'Simple drag-and-drop and AI-enhanced balancing',
+      description: `Descript simplifies music integration with its intuitive, text-based interface. Drag and drop music files (e.g., from YouTube Audio Library) into the project for intros/outros. Align audio segments in the transcript timeline, moving clips to sync music with vocals from a Riverside.fm recording. Adjust volume using per-clip sliders to balance tracks, ensuring voices (e.g., recorded with an Audio-Technica ATR2100x) remain clear. Apply Studio Sound under "Effects" for AI-driven volume leveling and vocal enhancement, approximating -16 LUFS. Right-click clips to add Fade In/Out for smooth transitions. Export via File > Export > Audio (MP3/WAV) for platforms like Spotify. Descript's $12/month subscription and ease of use suit beginners or podcasters needing quick turnarounds, though it offers less mixing precision than Audition. Ideal for solo or interview formats with minimal editing expertise.`
+    },
+    {
+      id: 'best-practices',
+      title: 'Best Practices',
+      videoUrl: 'https://youtu.be/vlzOb4OLj94',
+      keyFeatures: 'Professional Music Integration',
+      description: `| Tip | Why It Matters |
+| ----- | ----- |
+| Keep intros short (15–30s) | Listeners want to get to the content fast |
+| Fade music under voice | Ensures clarity of spoken words |
+| Use the same intro/outro every episode | Builds familiarity and brand identity |
+| Normalize audio levels | Avoids abrupt volume changes |
+| Credit music creators | Avoid copyright issues |`
+    },
+    {
+      id: 'exporting-files-purpose',
+      title: 'Why Exporting Properly Matters',
+      videoUrl: 'https://youtu.be/wfA1vW_XXzc',
+      keyFeatures: 'Quality, compatibility, and discoverability',
+      description: `- 🎧 **Audio quality consistency** across platforms
+- ⚙️ **Compatibility** with distribution services
+- 🔍 **SEO and discoverability** (via metadata and ID3 tags)
+- ⏳ **Faster uploads** with smaller file sizes`
+    },
+    {
+      id: 'export-formats',
+      title: 'Choosing the Right Export Format',
+      videoUrl: 'https://youtu.be/wfA1vW_XXzc',
+      keyFeatures: 'MP3, WAV, and AAC options',
+      description: `| Format | When to Use | Notes |
+| ----- | ----- | ----- |
+| **MP3** | ✅ Most common | Universal, small size, supported everywhere |
+| **WAV** | For mastering or archiving | High quality but large file size |
+| **AAC (M4A)** | Optional, for Apple | High-quality alternative, not universal |
 
-**Technology Trends:**
-- **AI-powered editing**: Automated audio enhancement
-- **Cloud collaboration**: Real-time remote editing
-- **Mobile editing**: On-the-go podcast production
-- **Spatial audio**: Immersive 3D audio experiences
-- **Live streaming**: Real-time podcast broadcasting
+### **🎯 Recommended Settings for Podcasts:**
 
-**Adaptation Strategies:**
-- **Modular workflows**: Easy to update individual components
-- **Standard formats**: Use widely-supported file types
-- **Skill development**: Continuous learning and training
-- **Equipment planning**: Gradual technology upgrades
-- **Industry networking**: Stay informed about trends
+- **Format:** MP3
+- **Bitrate:** 128 kbps (CBR or ABR preferred)
+- **Sample Rate:** 44.1 kHz
+- **Channels:** Stereo or Mono (Mono preferred for voice-only shows)`
+    },
+    {
+      id: 'exporting-audacity',
+      title: 'Exporting in Audacity',
+      videoUrl: 'https://youtu.be/wfA1vW_XXzc',
+      keyFeatures: 'Simple MP3 export with metadata',
+      description: `Audacity, a free, open-source editor, offers straightforward exporting for podcast episodes. After finalizing edits—removing silences, adjusting levels to -16 LUFS, and adding music (e.g., from YouTube Audio Library)—export via File > Export > Export as MP3. Set the bitrate to 128 kbps or 160 kbps with Constant Bitrate (CBR) for consistent quality, ideal for platforms like Spotify. Use the Metadata Editor to add tags: Title (e.g., "Episode 01: Podcast Basics"), Artist (your name), Album (show title), Year (2025), Genre (Podcast), and Comments (e.g., "Subscribe on Apple Podcasts"). Save the file with a clear name, like *Ep01_IntroToPodcasting.mp3*. This ensures compatibility and searchability for uploads to hosts like Buzzsprout. Audacity's simplicity suits beginners using a Rode PodMic setup, delivering professional audio on a budget, though it lacks advanced automation compared to Adobe Audition.`
+    },
+    {
+      id: 'exporting-adobe-audition',
+      title: 'Exporting in Adobe Audition',
+      videoUrl: 'https://youtu.be/MmWIkh8wiB0',
+      keyFeatures: 'Advanced mixdown with precise settings',
+      description: `Adobe Audition, a professional DAW, provides robust exporting options for podcasts. After editing (e.g., balancing vocals from a Shure SM7B and music from Epidemic Sound), export via File > Export > Multitrack Mixdown > Entire Session. Choose MP3 format, set Sample Rate to 44100 Hz, and Bitrate to 128 kbps CBR for compatibility with hosts like Podbean. Select Mono or Stereo based on your podcast (mono for voice-heavy, stereo for music-rich). Add metadata via "ID3 Tags" in the export window, including Title (e.g., "Episode 02: Storytelling"), Author, Episode number, and more. Save with a clear filename, like *Ep02_Storytelling.mp3*. Audition's non-destructive multitrack editing and precise settings ensure broadcast-quality files, ideal for complex narrative or interview podcasts. Its $20.99/month cost suits professionals seeking precision over Audacity's free but basic export tools.`
+    },
+    {
+      id: 'exporting-descript',
+      title: 'Exporting in Descript',
+      videoUrl: 'https://youtu.be/q_7aVF9TCjI',
+      keyFeatures: 'AI-enhanced, user-friendly export',
+      description: `Descript's intuitive interface simplifies podcast exporting. After editing—aligning vocals (e.g., from Riverside.fm) and music (e.g., from Free Music Archive) with Studio Sound for -16 LUFS—click Publish > Export > Audio. Choose MP3 format with Medium (128 kbps) or High (192 kbps) bitrate for quality and compatibility with hosts like Anchor. Add metadata in the export panel, including Title, Artist, and Comments, or edit later with external tools like MP3Tag. Save with a clear name, like *Ep01_PodcastBasics.mp3*. Descript's AI-driven leveling and text-based editing streamline the process, ideal for beginners or podcasters needing quick turnarounds for solo or interview episodes. While its $12/month subscription offers less mixing control than Audition, it excels in efficiency for modern workflows, especially for repurposing content into social clips.`
+    },
+    {
+      id: 'metadata-id3-tags',
+      title: 'Metadata and ID3 Tags',
+      videoUrl: 'https://youtu.be/ZL9fo_Fg-mE',
+      keyFeatures: 'Enhance searchability and organization',
+      description: `Metadata and ID3 tags make podcasts searchable and organized on platforms like Apple Podcasts. Recommended tags include: Title (e.g., "Episode 01: Introduction to Editing"), Artist (your name or podcast name), Album (show title), Year (2025), Genre (Podcast, Education, etc.), and Comment (e.g., "Subscribe on Spotify & Apple"). Use Audacity's Metadata Editor during export, Adobe Audition's ID3 Tag Editor in the mixdown window, or Descript's export panel (with limited options, supplemented by MP3Tag). For bulk editing, MP3Tag, a free tool, allows tagging multiple episodes efficiently. For example, tag a Zencastr-recorded episode to ensure proper display on Spotify. Accurate metadata enhances discoverability, organizes your catalog, and aligns with professional standards, ensuring listeners find and engage with your content easily.`
+    },
+    {
+      id: 'preparing-distribution',
+      title: 'Preparing for Hosting/Distribution',
+      videoUrl: 'https://youtu.be/Z2pNVt4s_Fo',
+      keyFeatures: 'Optimize files for upload and playback',
+      description: `After exporting, prepare your podcast for hosting and distribution. Ensure file size is under 100MB (e.g., a 30-minute MP3 at 128 kbps is ~30MB) for faster uploads to hosts like Anchor, Buzzsprout, or Podbean. Play-test the full episode with headphones (e.g., Sony MDR-7506) to confirm clarity, checking for issues like unbalanced music or clipping. Verify ID3 tags using MP3Tag or host platforms to ensure proper display. Use clear filenames (e.g., *Ep01_IntroToPodcasting.mp3*) for organization. Upload to your host, ensuring compatibility with platforms like Spotify. For example, test a Riverside.fm episode on multiple devices before uploading to Buzzsprout. These steps ensure seamless distribution, professional presentation, and listener satisfaction, minimizing technical issues and maximizing reach across podcast platforms.`
+    },
+    {
+      id: 'final-checklist',
+      title: 'Final Checklist',
+      videoUrl: 'https://youtu.be/Z2pNVt4s_Fo',
+      keyFeatures: 'Ensure export quality and readiness',
+      description: `**Before distribution, use this checklist:**
 
-**Scalability Planning:**
-- **Growth preparation**: Plan for increased production
-- **Team expansion**: Prepare for additional collaborators
-- **Platform diversification**: Multiple distribution channels
-- **Monetization integration**: Revenue-generating features
-- **Quality improvement**: Continuous enhancement processes
+- **Exported in MP3 format**: Ensure the file is MP3 for compatibility. ✅ / ❌
+- **Bitrate set to 128 kbps**: Balances quality and file size. ✅ / ❌
+- **Metadata (ID3 tags) completed**: Include Title, Artist, Album, etc. ✅ / ❌
+- **File size under 100MB**: Keeps uploads efficient. ✅ / ❌
+- **Episode tested for clarity**: Play-test with headphones on multiple devices. ✅ / ❌
 
-Future-proofing ensures long-term success in podcast production.`
+This checklist ensures your episode, whether edited in Audacity or Descript, is optimized for hosting and listener enjoyment, maintaining professional standards for platforms like Apple Podcasts.`
     }
   ]
 };
@@ -217,28 +197,14 @@ const generateLesson = (config: LessonConfig): Lesson => {
     title: config.title,
     duration: config.duration,
     type: config.type,
-    content: {
-      videoUrl: config.sections[0]?.videoUrl || '',
-      textContent: config.sections.map(section => `
-## ${section.title}
-
-**YOUTUBE LINK**: ${section.videoUrl}
-
-**Key Features**: ${section.keyFeatures}
-
-${section.description}
-
-<iframe 
-  width="100%" 
-  height="315" 
-  src="${getEmbedUrl(section.videoUrl)}" 
-  title="${section.title}"
-  frameborder="0" 
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-  allowfullscreen>
-</iframe>
-      `).join('\n\n')
-    }
+    content: config.sections.map(section => ({
+      id: section.id,
+      type: 'video' as const,
+      title: section.title,
+      videoUrl: getEmbedUrl(section.videoUrl),
+      keyFeatures: section.keyFeatures,
+      textContent: section.description
+    }))
   };
 };
 

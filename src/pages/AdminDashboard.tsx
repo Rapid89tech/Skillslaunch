@@ -1,22 +1,23 @@
 import React from 'react';
 import { useAuth } from '@/hooks/AuthContext';
-import { useEnrollments } from '@/hooks/useEnrollments';
-import { useCourses } from '@/hooks/useCourses';
 import AdminDashboard from '@/components/admin/AdminDashboard';
 import DashboardSkeleton from '@/components/skeletons/DashboardSkeleton';
 
 const AdminDashboardPage = () => {
+  console.log('AdminDashboardPage rendering');
   const { user, profile, loading: authLoading } = useAuth();
-  const { enrollments, loading: enrollmentsLoading } = useEnrollments();
-  const { courses, loading: coursesLoading } = useCourses();
 
+  console.log('AdminDashboardPage state:', { authLoading, user: !!user, profile: !!profile });
+  
   // Show loading while auth is loading
   if (authLoading) {
+    console.log('AdminDashboardPage: Showing loading skeleton');
     return <DashboardSkeleton />;
   }
 
   // If no user, return null (ProtectedRoute should handle this)
   if (!user) {
+    console.log('AdminDashboardPage: No user, returning null');
     return null;
   }
 
@@ -31,19 +32,9 @@ const AdminDashboardPage = () => {
     approval_status: 'approved'
   };
 
-  // Wait for enrollments/courses to load before showing content
-  if (enrollmentsLoading || coursesLoading) {
-    return <DashboardSkeleton />;
-  }
+  // Admin dashboard doesn't need enrollments/courses data, so don't wait for them
 
-  return (
-    <AdminDashboard 
-      profile={defaultProfile}
-      enrollments={enrollments || []}
-      courses={courses || []}
-      userId={user.id}
-    />
-  );
+  return <AdminDashboard />;
 };
 
 export default AdminDashboardPage;

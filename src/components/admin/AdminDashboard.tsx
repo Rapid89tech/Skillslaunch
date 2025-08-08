@@ -60,7 +60,28 @@ const UserDetailsModal = ({ user, onClose }: { user: Profile | null; onClose: ()
 const PAGE_SIZE = 10;
 
 const AdminDashboard = () => {
+  console.log('AdminDashboard component rendering');
   const { users: fetchedUsers, loading: usersLoading, fetchUsers, updateUser, deleteUser, approveUser } = useUsers();
+  
+  // Add error handling for fetchUsers with fallback
+  const safeFetchUsers = async () => {
+    try {
+      console.log('Attempting to fetch users...');
+      await fetchUsers();
+      console.log('Users fetched successfully');
+    } catch (error) {
+      console.error('Failed to fetch users:', error);
+      // Set empty users array to prevent infinite loading
+      setUsers([]);
+      // Force loading to stop
+      setTimeout(() => {
+        if (usersLoading) {
+          console.log('Forcing loading to stop due to error');
+          // This will trigger the timeout state
+        }
+      }, 1000);
+    }
+  };
   const { toast } = useToast();
   const [searchTerm, setSearchTerm] = useState('');
   const [users, setUsers] = useState<Profile[]>([]);
@@ -70,13 +91,15 @@ const AdminDashboard = () => {
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('desc');
   const [page, setPage] = useState(1);
 
-  useEffect(() => { fetchUsers(); }, [fetchUsers]);
+  useEffect(() => { 
+    console.log('AdminDashboard: Calling safeFetchUsers');
+    safeFetchUsers(); 
+  }, []); // Remove fetchUsers from dependencies to prevent infinite loop
 
-  // Only set users from fetchedUsers on initial load
+  // Update users when fetchedUsers changes
   useEffect(() => {
     setUsers(fetchedUsers);
-    // eslint-disable-next-line
-  }, []);
+  }, [fetchedUsers]);
 
   // Filtering
   const filteredUsers = users.filter(user => {
@@ -180,6 +203,84 @@ const AdminDashboard = () => {
     fetchUsers();
     setUsers(fetchedUsers);
   };
+
+  // Show loading state if still loading (with timeout)
+  const [loadingTimeout, setLoadingTimeout] = useState(false);
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (usersLoading && users.length === 0) {
+        console.log('Loading timeout reached, showing timeout message');
+        setLoadingTimeout(true);
+      }
+    }, 5000); // 5 second timeout for faster feedback
+    
+    return () => clearTimeout(timer);
+  }, [usersLoading, users.length]);
+  
+  if (usersLoading && users.length === 0 && !loadingTimeout) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-red-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading users...</p>
+        </div>
+      </div>
+    );
+  }
+  
+  if (loadingTimeout) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 mb-2">Admin Dashboard</h1>
+            <p className="text-gray-600">User management temporarily unavailable</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-bold mb-4">Quick Actions</h3>
+              <div className="space-y-3">
+                <Button onClick={safeFetchUsers} className="w-full bg-red-600 hover:bg-red-700">
+                  Retry User Loading
+                </Button>
+                <Button variant="outline" className="w-full">
+                  View Courses
+                </Button>
+                <Button variant="outline" className="w-full">
+                  System Settings
+                </Button>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-bold mb-4">System Status</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between">
+                  <span>Database Connection:</span>
+                  <span className="text-red-600">⚠️ Issue</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>User Management:</span>
+                  <span className="text-red-600">⚠️ Unavailable</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Course Management:</span>
+                  <span className="text-green-600">✅ Available</span>
+                </div>
+              </div>
+            </div>
+            
+            <div className="bg-white rounded-xl p-6 shadow">
+              <h3 className="text-lg font-bold mb-4">Recent Activity</h3>
+              <p className="text-gray-600 text-sm">Activity monitoring temporarily unavailable due to connection issues.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto px-2 py-8 animate-fade-in">

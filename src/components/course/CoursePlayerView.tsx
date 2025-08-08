@@ -9,12 +9,15 @@ import { Menu, BookOpen } from 'lucide-react';
 import type { Course, Lesson } from '@/types/course';
 import { getLessonPosition } from '@/utils/lessonMapping';
 import { useModuleScores } from '@/hooks/useModuleScores';
+import { useCourseCompletion } from '@/hooks/useCourseCompletion';
+import { useNavigate } from 'react-router-dom';
+import { Trophy, Download } from 'lucide-react';
 // Import markdown exports for each course
 import { hairDressingMarkdown } from '@/data/hairDressing';
 import { computerRepairsMarkdown } from '@/data/computerRepairs';
 import { cellphoneRepairsMarkdown } from '@/data/cellphoneRepairs';
-import { plumbingMarkdown } from '@/data/plumbing';
-import { roofingMarkdown } from '@/data/roofing';
+import plumbing101 from '@/data/plumbing101';
+import roofing101 from '@/data/roofing101';
 import { tilingMarkdown } from '@/data/tiling';
 
 interface CoursePlayerViewProps {
@@ -72,12 +75,34 @@ const CoursePlayerView = ({
   prevLesson,
   markComplete
 }: CoursePlayerViewProps) => {
+  const navigate = useNavigate();
   const isCurrentLessonCompleted = completedLessons.includes(currentLesson);
-  const { scores, courseSummary, getGradeColor } = useModuleScores(course.id);
+  const { scores, courseSummary, getGradeColor, dbAvailable, lastError } = useModuleScores(course.id);
+  const { isCompleted, certificateGenerated } = useCourseCompletion(course);
   const lessonPosition = getLessonPosition(course, currentLesson);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+      {/* Course Completion Notification */}
+      {isCompleted && (
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-4">
+            <Trophy className="w-6 h-6 text-yellow-300" />
+            <div>
+              <div className="font-bold text-lg">🎉 Course Completed!</div>
+              <div className="text-sm opacity-90">Congratulations! You've successfully completed {course.title}</div>
+            </div>
+            <button
+              onClick={() => navigate(`/course/${course.id}/certificate`)}
+              className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2"
+            >
+              <Download className="w-4 h-4" />
+              Get Certificate
+            </button>
+          </div>
+        </div>
+      )}
+      
       {/* Sidebar - Animated slide in/out */}
       <AnimatePresence initial={false}>
         {sidebarOpen && (
@@ -189,6 +214,8 @@ const CoursePlayerView = ({
               moduleScores={scores}
               getGradeColor={getGradeColor}
               courseTitle={course.title}
+              dbAvailable={dbAvailable}
+              lastError={lastError}
             />
           </motion.div>
         </div>

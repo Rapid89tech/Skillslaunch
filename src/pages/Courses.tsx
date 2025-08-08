@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useCourses } from '@/hooks/useCourses';
 import { useCourseFiltering } from '@/hooks/useCourseFiltering';
 import Footer from '@/components/Footer';
@@ -7,19 +7,69 @@ import CoursesGrid from '@/components/courses/CoursesGrid';
 import EmptyCoursesState from '@/components/courses/EmptyCoursesState';
 import CoursesPageHeader from '@/components/courses/CoursesPageHeader';
 import CoursesLoadingState from '@/components/courses/CoursesLoadingState';
+import CourseFilter from '@/components/CourseFilter';
 import bgImage from '../../Videos/generation-fe264dfe-3951-43ef-8551-b98c8d6229fa.png';
 import { Filter } from 'lucide-react';
 
 const Courses = () => {
   const { courses, loading } = useCourses();
   const [filterOpen, setFilterOpen] = useState(false);
+  const [horizontalFilters, setHorizontalFilters] = useState({
+    keyword: '',
+    category: '',
+    availability: ''
+  });
+
+  // Define all possible categories, including the new ones
+  const allStaticCategories = [
+    "Audio Technology",
+    "Beauty and Health",
+    "Business & Entrepreneurship",
+    "Construction",
+    "Information Communication and technology",
+    "Mechanical Repairs",
+    "Media & Content Creation",
+    "Religion",
+    "Hospitality and Culinary",
+    "Office and Admin",
+    "Construction and Civil",
+    "Motor Vehicles",
+    "Appliances",
+    "Professional Services",
+    "Film & Broadcasting"
+  ];
+
+  // Get unique categories from courses and combine with static categories
+  const categories = useMemo(() => {
+    const dynamicCategories = courses.map(course => course.category);
+    const combinedCategories = [...new Set([...allStaticCategories, ...dynamicCategories])];
+    return combinedCategories.sort();
+  }, [courses]);
+
+  // Filter courses based on horizontal filters
+  const horizontallyFilteredCourses = useMemo(() => {
+    return courses.filter(course => {
+      const matchesKeyword = !horizontalFilters.keyword || 
+        course.title.toLowerCase().includes(horizontalFilters.keyword.toLowerCase()) ||
+        course.description.toLowerCase().includes(horizontalFilters.keyword.toLowerCase());
+      
+      const matchesCategory = !horizontalFilters.category || course.category === horizontalFilters.category;
+      
+      const matchesAvailability = !horizontalFilters.availability || 
+        (horizontalFilters.availability === 'available' && course.available) ||
+        (horizontalFilters.availability === 'coming-soon' && !course.available) ||
+        (horizontalFilters.availability === 'enrolled' && course.status === 'enrolled');
+      
+      return matchesKeyword && matchesCategory && matchesAvailability;
+    });
+  }, [courses, horizontalFilters]);
 
   const {
     searchFilters,
     setSearchFilters,
     filteredCourses,
     handleClearFilters
-  } = useCourseFiltering(courses);
+  } = useCourseFiltering(horizontallyFilteredCourses);
 
   if (loading && courses.length === 0) {
     return <CoursesLoadingState />;
@@ -92,6 +142,15 @@ const Courses = () => {
       <div className="pt-8 pb-16">
         <div className="container mx-auto px-6 py-8">
           <CoursesPageHeader />
+          
+          {/* Horizontal Course Filter */}
+          <div className="mb-8">
+            <CourseFilter 
+              onFilterChange={setHorizontalFilters}
+              categories={categories}
+            />
+          </div>
+          
           {filteredCourses.length === 0 ? (
             <div className="animate-fade-in">
               <EmptyCoursesState onClearFilters={handleClearFilters} />

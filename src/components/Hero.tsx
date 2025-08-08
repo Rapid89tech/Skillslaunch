@@ -6,15 +6,15 @@ import heroImg1 from '../../images/generation-cffafbac-d91b-446a-9e9b-ca3bf39816
 import heroImg2 from '../../images/generation-00555fea-3c4a-4d7f-b3e6-3b5f5c7489e2.png';
 import heroImg3 from '../../images/generation-969f65e7-199f-413b-9dd0-f1cc327594ae.png';
 import heroImg4 from '../../images/generation-1c94cbdf-290c-4cce-88ce-73966ec946ba.png';
-import video1 from '../../Videos/dreamina-2025-07-23-4631-Open with a wide shot of a high-tech fac....mp4';
-import video2 from '../../Videos/dreamina-2025-07-23-6991-Open with a wide shot of a dimly lit off....mp4';
-import video3 from '../../Videos/dreamina-2025-07-23-7258-zooming in toward a focused nail technic....mp4';
-import video4 from '../../Videos/dreamina-2025-07-23-9513-Open with a wide shot of a dimly lit off....mp4';
+// import video1 from '../../Videos/dreamina-2025-07-23-4631-Open with a wide shot of a high-tech fac....mp4';
+// import video2 from '../../Videos/dreamina-2025-07-23-6991-Open with a wide shot of a dimly lit off....mp4';
+// import video3 from '../../Videos/dreamina-2025-07-23-7258-zooming in toward a focused nail technic....mp4';
+// import video4 from '../../Videos/dreamina-2025-07-23-9513-Open with a wide shot of a dimly lit off....mp4';
 
 // Randomize the order of hero images
 const heroImages = [heroImg2, heroImg4, heroImg1, heroImg3];
 
-const heroVideos = [video1, video2, video3, video4];
+// const heroVideos = [video1, video2, video3, video4];
 
 const Hero = () => {
   const [bgIndex, setBgIndex] = useState(0);
@@ -23,26 +23,26 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % heroImages.length);
-    }, 4000);
+    }, 8000); // Slower transition
     return () => clearInterval(interval);
   }, []);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVideoIndex((prev) => (prev + 1) % heroVideos.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     setVideoIndex((prev) => (prev + 1) % heroVideos.length);
+  //   }, 10000); // Much slower transition
+  //   return () => clearInterval(interval);
+  // }, []);
 
   return (
     <>
       {/* Main Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
-        {/* Video Background Slider */}
-        {heroVideos.map((src, idx) => (
+        {/* Video Background Slider - STABILIZED */}
+        {/* {heroVideos.map((src, idx) => (
           <video
             key={src}
-            className={`absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-1000 ${videoIndex === idx ? 'opacity-100' : 'opacity-0'}`}
+            className={`absolute inset-0 w-full h-full object-cover object-center z-0 transition-opacity duration-2000 ${videoIndex === idx ? 'opacity-100' : 'opacity-0'}`}
             src={src}
             autoPlay
             loop
@@ -51,13 +51,13 @@ const Hero = () => {
             poster="/lovable-uploads/c890d50b-9e2b-4f34-8958-e006a579ccea.png"
             style={{ pointerEvents: 'none' }}
           />
-        ))}
+        ))} */}
         <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-gray-900/85 to-black/90"></div>
         <div className="container mx-auto px-6 relative z-10">
           <div className="text-center max-w-4xl mx-auto flex flex-col items-center justify-center">
-            {/* Logo above the main title, centered */}
+            {/* Logo above the main title, centered - STABILIZED */}
             <div className="flex items-center justify-center mb-4 animate-scale-in" style={{ animationDelay: '0.2s' }}>
-              <div className="bg-white rounded-full p-4 shadow-2xl animate-pulse-glow">
+              <div className="bg-white rounded-full p-4 shadow-2xl">
                 <img 
                   src="/lovable-uploads/c890d50b-9e2b-4f34-8958-e006a579ccea.png" 
                   alt="Beta Skill Logo" 
@@ -65,17 +65,16 @@ const Hero = () => {
                 />
               </div>
             </div>
-            {/* Main Title with Enhanced Animation */}
+            {/* Main Title with STABILIZED Animation */}
             <h1 className="hero-title mb-6">
               <span className="hero-title-beta">BETA</span>
               <span className="hero-title-skill ml-4">SKILL TRAINING</span>
-              <span className="hero-title-shimmer" />
             </h1>
             {/* Main Message */}
             <h2 className="text-lg lg:text-xl font-bold text-white mb-6 leading-tight animate-hero-text delay-200">
               FREE TRAINING TO START YOUR OWN BUSINESS
             </h2>
-            {/* Warning Messages with Flashing Animation */}
+            {/* Warning Messages - NO FLASHING */}
             <div className="space-y-3 mb-8 animate-fade-in" style={{ animationDelay: '0.6s' }}>
               <div className="block">
                 <div className="bg-gradient-to-r from-red-700 to-red-800 text-white px-6 py-2 rounded-full shadow-xl inline-block transform hover:scale-105 transition-transform duration-300">
@@ -83,7 +82,7 @@ const Hero = () => {
                 </div>
               </div>
               <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-2 rounded-full shadow-2xl inline-block transform hover:scale-105 transition-transform duration-300">
-                <div className="text-lg lg:text-xl font-black animate-flash-strong">
+                <div className="text-lg lg:text-xl font-black">
                   JOBS ARE AT RISK!
                 </div>
               </div>
@@ -101,47 +100,41 @@ const Hero = () => {
                 </Button>
               </Link>
             </div>
-            {/* Course Start Date - Added to bottom of hero with animations */}
-            <div className="mt-8 animate-fade-in" style={{ animationDelay: '1.0s' }}>
-              <div className="bg-gradient-to-r from-red-600/90 to-red-800/90 backdrop-blur-sm text-white px-6 py-4 rounded-2xl shadow-2xl inline-block animate-pulse-glow hover:scale-105 transition-all duration-500 border border-red-400/30">
-                <div className="flex items-center justify-center mb-2 animate-bounce" style={{ animationDelay: '1.5s' }}>
-                  <Calendar className="h-6 w-6 mr-2 text-red-200 animate-pulse" />
-                  <span className="text-sm font-bold text-red-100">COURSE START DATE</span>
-                </div>
-                <div className="text-2xl lg:text-3xl font-black mb-1 text-white drop-shadow-lg animate-pulse-glow">
-                  15 AUGUST 2025
-                </div>
-                <div className="text-xs text-red-100 font-medium animate-fade-in" style={{ animationDelay: '1.8s' }}>
-                  All courses begin on this date - Don't miss out!
-                </div>
-              </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section - STABILIZED */}
+      <section className="bg-white dark:bg-gray-900 py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
+              <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">15+</div>
+              <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Professional Courses</div>
+            </div>
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
+              <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">1000+</div>
+              <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Students Enrolled</div>
+            </div>
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
+              <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">24/7</div>
+              <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Support Available</div>
+            </div>
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
+              <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">100%</div>
+              <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Free Training</div>
             </div>
           </div>
         </div>
       </section>
-      {/* Animated keyframes for hero text and flash */}
+
       <style>{`
         @keyframes hero-text {
-          0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-          60% { opacity: 1; transform: translateY(-8px) scale(1.04); }
-          100% { opacity: 1; transform: translateY(0) scale(1); }
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         .animate-hero-text {
-          animation: hero-text 1.2s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-        @keyframes flash {
-          0% { opacity: 1; }
-          100% { opacity: 0.5; }
-        }
-        .animate-flash {
-          animation: flash 1.5s infinite alternate;
-        }
-        @keyframes flash-strong {
-          0%, 100% { opacity: 1; filter: drop-shadow(0 0 16px #ff0000cc); }
-          50% { opacity: 0.3; filter: drop-shadow(0 0 32px #ff0000ff); }
-        }
-        .animate-flash-strong {
-          animation: flash-strong 1s infinite alternate;
+          animation: hero-text 1s ease-out both;
         }
         .hero-title {
           position: relative;
@@ -161,7 +154,7 @@ const Hero = () => {
           position: relative;
           z-index: 2;
           text-shadow: 0 2px 12px #ff3c3c55, 0 0 0 #fff;
-          animation: hero-beta-pop 1.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+          animation: hero-beta-pop 1s ease-out both;
         }
         .hero-title-skill {
           background: linear-gradient(90deg, #fff, #7f5fff 60%, #ff3c3c 100%);
@@ -175,37 +168,15 @@ const Hero = () => {
           letter-spacing: 1px;
           position: relative;
           z-index: 2;
-          animation: hero-skill-slide 1.4s cubic-bezier(0.23, 1, 0.32, 1) both;
-        }
-        .hero-title-shimmer {
-          content: '';
-          position: absolute;
-          left: 0; top: 0; right: 0; bottom: 0;
-          background: linear-gradient(120deg, transparent 0%, #fff8 50%, transparent 100%);
-          opacity: 0.7;
-          pointer-events: none;
-          z-index: 3;
-          animation: hero-shimmer 2.5s linear infinite;
-        }
-        @keyframes hero-gradient-move {
-          0% { background-position: 0% 50%; }
-          100% { background-position: 100% 50%; }
-        }
-        @keyframes hero-shimmer {
-          0% { transform: translateX(-100%); opacity: 0.2; }
-          40% { opacity: 0.7; }
-          60% { opacity: 0.7; }
-          100% { transform: translateX(100%); opacity: 0.2; }
+          animation: hero-skill-slide 1.2s ease-out both;
         }
         @keyframes hero-beta-pop {
-          0% { opacity: 0; transform: scale(0.8) translateY(40px); }
-          60% { opacity: 1; transform: scale(1.1) translateY(-8px); }
+          0% { opacity: 0; transform: scale(0.9) translateY(20px); }
           100% { opacity: 1; transform: scale(1) translateY(0); }
         }
         @keyframes hero-skill-slide {
-          0% { opacity: 0; transform: translateX(60px) scale(0.95); }
-          60% { opacity: 1; transform: translateX(-8px) scale(1.04); }
-          100% { opacity: 1; transform: translateX(0) scale(1); }
+          0% { opacity: 0; transform: translateX(30px); }
+          100% { opacity: 1; transform: translateX(0); }
         }
       `}</style>
     </>

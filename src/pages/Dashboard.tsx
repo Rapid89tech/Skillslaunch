@@ -8,7 +8,7 @@ import DashboardSkeleton from '@/components/skeletons/DashboardSkeleton';
 import StudentDashboard from '@/components/dashboard/StudentDashboard';
 import AdminInstructorDashboard from '@/components/dashboard/AdminInstructorDashboard';
 import TutorDashboard from '@/components/dashboard/TutorDashboard';
-import AdminDashboard from '@/components/dashboard/AdminDashboard';
+import AdminDashboardComponent from '@/components/dashboard/AdminDashboard';
 
 const Dashboard = () => {
   const { user, loading: authLoading, profile } = useAuth();
@@ -68,7 +68,7 @@ const Dashboard = () => {
   
   if (defaultProfile.role === 'admin') {
     return (
-      <AdminDashboard
+      <AdminDashboardComponent
         profile={defaultProfile}
         enrollments={enrollments || []}
         courses={courses || []}

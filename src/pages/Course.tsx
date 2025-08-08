@@ -5,6 +5,8 @@ import CourseSkeleton from '@/components/skeletons/CourseSkeleton';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '@/hooks/AuthContext';
+import EnrollNowPopup from '@/components/course/EnrollNowPopup';
 
 // Lazy load heavy components
 const CourseEnrollmentView = lazy(() => import('@/components/course/CourseEnrollmentView'));
@@ -26,15 +28,19 @@ const Course = () => {
     sidebarOpen,
     setSidebarOpen,
     enrolling,
+    showPaymentPopup,
     isLoading,
     canAccessLesson,
     handleEnroll,
+    handlePaymentPopupClose,
+    handleEnrollmentSuccess,
     handleSetCurrentLesson,
     nextLesson,
     prevLesson,
     markComplete
   } = useCourseLogic();
 
+  const { user } = useAuth();
   const navigate = useNavigate();
 
   console.log("Course Page: Loading state:", isLoading, "Course exists:", !!course, "Is enrolled:", isEnrolled);
@@ -78,13 +84,27 @@ const Course = () => {
   if (!isEnrolled) {
     console.log("Course Page: User not enrolled, showing enrollment view");
     return (
-      <Suspense fallback={<CourseSkeleton />}>
-        <CourseEnrollmentView
-          course={course}
-          handleEnroll={handleEnroll}
-          enrolling={enrolling}
-        />
-      </Suspense>
+      <>
+        <Suspense fallback={<CourseSkeleton />}>
+          <CourseEnrollmentView
+            course={course}
+            handleEnroll={handleEnroll}
+            enrolling={enrolling}
+          />
+        </Suspense>
+        
+        {/* Payment Popup */}
+        {showPaymentPopup && user && (
+          <EnrollNowPopup
+            open={showPaymentPopup}
+            onClose={handlePaymentPopupClose}
+            course={course}
+            userId={user.id}
+            userEmail={user.email || ''}
+            onEnrollmentSuccess={handleEnrollmentSuccess}
+          />
+        )}
+      </>
     );
   }
 
@@ -100,11 +120,11 @@ const Course = () => {
         currentLessonData={currentLessonData}
         completedLessons={completedLessons}
         quizAttempts={quizAttempts}
-        canAccessLesson={canAccessLesson}
         isPlaying={isPlaying}
         setIsPlaying={setIsPlaying}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
+        canAccessLesson={canAccessLesson}
         setCurrentLesson={handleSetCurrentLesson}
         nextLesson={nextLesson}
         prevLesson={prevLesson}

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { Trophy, Target, BarChart3 } from 'lucide-react';
+import { Trophy, Target, BarChart3, Database, HardDrive } from 'lucide-react';
 import { CourseScoreSummary, ModuleScore } from '@/hooks/useModuleScores';
 import { useCourseData } from '@/hooks/useCourseData';
 
@@ -11,9 +11,18 @@ interface ScoreDisplayProps {
   moduleScores: ModuleScore[];
   getGradeColor: (grade: string) => string;
   courseTitle: string;
+  dbAvailable?: boolean;
+  lastError?: string | null;
 }
 
-const ScoreDisplay = ({ courseSummary, moduleScores, getGradeColor, courseTitle }: ScoreDisplayProps) => {
+const ScoreDisplay = ({ 
+  courseSummary, 
+  moduleScores, 
+  getGradeColor, 
+  courseTitle,
+  dbAvailable = true,
+  lastError = null
+}: ScoreDisplayProps) => {
   // Group scores by module
   const scoresByModule = moduleScores.reduce((acc, score) => {
     const moduleId = score.module_id;
@@ -65,10 +74,44 @@ const ScoreDisplay = ({ courseSummary, moduleScores, getGradeColor, courseTitle 
   }
 
   return (
-    <div className="space-y-6 animate-fade-in">
+    <div className="space-y-6 score-display-stable">
+      {/* Database Status Indicator */}
+      {!dbAvailable && (
+        <Card className="border-amber-200 bg-amber-50 dark:bg-amber-950/20 dark:border-amber-800 card-stable">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center gap-2 text-amber-700 dark:text-amber-300 text-sm">
+              <HardDrive className="w-4 h-4" />
+              Offline Mode
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <p className="text-amber-600 dark:text-amber-400 text-sm">
+              Scores are being saved locally. They will sync when the database connection is restored.
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Error Message */}
+      {lastError && (
+        <Card className="border-red-200 bg-red-50 dark:bg-red-950/20 dark:border-red-800 card-stable">
+          <CardHeader className="pb-2">
+            <CardTitle className="flex items-center gap-2 text-red-700 dark:text-red-300 text-sm">
+              <Database className="w-4 h-4" />
+              Database Error
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="pt-0">
+            <p className="text-red-600 dark:text-red-400 text-sm">
+              {lastError}. Using local storage as fallback.
+            </p>
+          </CardContent>
+        </Card>
+      )}
+
       {/* Modern Course Completion Tracker */}
       {courseSummary && (
-        <Card className="border-2 border-primary/20 shadow-lg">
+        <Card className="border-2 border-primary/20 shadow-lg card-stable">
           <CardHeader className="pb-4">
             <CardTitle className="flex items-center gap-2 text-xl">
               <Trophy className="h-6 w-6 text-yellow-600" />
@@ -103,7 +146,7 @@ const ScoreDisplay = ({ courseSummary, moduleScores, getGradeColor, courseTitle 
                   <span className="text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-500 animate-pulse">
                     {Math.round(courseSummary.average_percentage)}%
                   </span>
-                  <span className="text-base font-semibold text-gray-700 dark:text-gray-200 mt-1 animate-fade-in">Avg. Score</span>
+                  <span className="text-base font-semibold text-gray-700 dark:text-gray-200 mt-1 text-stable">Avg. Score</span>
                 </div>
               </div>
               {/* Stats */}
@@ -117,7 +160,7 @@ const ScoreDisplay = ({ courseSummary, moduleScores, getGradeColor, courseTitle 
                 <div className="flex items-center gap-2 mt-2">
                   <Badge 
                     variant="outline" 
-                    className={`text-xl py-1 px-4 font-bold ${getGradeColor(courseSummary.overall_grade)}`}
+                    className={`text-xl py-1 px-4 font-bold transition-transform duration-200 group-hover:scale-110 group-hover:shadow-lg ${getGradeColor(courseSummary.overall_grade)}`}
                   >
                     {courseSummary.overall_grade}
                   </Badge>
@@ -131,7 +174,7 @@ const ScoreDisplay = ({ courseSummary, moduleScores, getGradeColor, courseTitle 
 
       {/* Module Scores Summary */}
       {moduleAverages.length > 0 && (
-        <Card>
+        <Card className="card-stable">
           <CardHeader>
             <CardTitle>Module Scores</CardTitle>
           </CardHeader>
@@ -140,18 +183,18 @@ const ScoreDisplay = ({ courseSummary, moduleScores, getGradeColor, courseTitle 
               {moduleAverages.map((mod, idx) => (
                 <div
                   key={mod.moduleId}
-                  className="flex items-center justify-between p-5 rounded-2xl bg-white/70 dark:bg-gray-800/80 shadow-xl border border-blue-200/40 dark:border-blue-900/40 glassmorphism-card transition-all duration-300 animate-fade-in-up hover:scale-[1.015] hover:shadow-2xl group relative overflow-hidden"
+                  className="flex items-center justify-between p-5 rounded-2xl bg-white/70 dark:bg-gray-800/80 shadow-xl border border-blue-200/40 dark:border-blue-900/40 glassmorphism-card transition-all duration-300 hover:scale-[1.015] hover:shadow-2xl group relative overflow-hidden card-stable"
                   style={{ animationDelay: `${idx * 80}ms` }}
                 >
                   {/* Shine effect on hover */}
                   <span className="pointer-events-none absolute left-0 top-0 h-full w-full opacity-0 group-hover:opacity-60 transition-opacity duration-300 bg-gradient-to-r from-white/60 via-blue-100/30 to-transparent blur-sm" />
                   <div className="flex-1">
-                    <div className="font-medium text-lg">
+                    <div className="font-medium text-lg text-stable">
                       Module {mod.moduleId}{course && course.modules[mod.moduleId-1] ? `: ${course.modules[mod.moduleId-1].title}` : ''}
                     </div>
                   </div>
                   <div className="text-right space-y-1">
-                    <div className="font-semibold text-xl">
+                    <div className="font-semibold text-xl text-stable">
                       {mod.score}/{mod.totalPoints} ({mod.percentage}%)
                     </div>
                     <Badge 
