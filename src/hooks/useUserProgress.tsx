@@ -279,18 +279,15 @@ export const useUserProgress = (courseId?: string) => {
     }
   }, [user, courseId, loadProgress]);
 
-  // Auto-save progress every 30 seconds
-  useEffect(() => {
-    if (!user || !courseId || !progress) return;
-
-    const interval = setInterval(() => {
-      saveProgress({
-        last_visited: new Date().toISOString()
-      });
-    }, 30000); // 30 seconds
-
-    return () => clearInterval(interval);
-  }, [user, courseId, progress, saveProgress]);
+  // Disabled auto-save interval to prevent excessive re-renders and flashing
+  // Progress is now saved on specific events only (lesson completion, navigation, etc.)
+  // useEffect(() => {
+  //   if (!user || !courseId || !progress) return;
+  //   const interval = setInterval(() => {
+  //     saveProgress({ last_visited: new Date().toISOString() });
+  //   }, 30000);
+  //   return () => clearInterval(interval);
+  // }, [user, courseId, progress, saveProgress]);
 
   return {
     progress,

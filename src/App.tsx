@@ -10,6 +10,8 @@ import useScrollToTop from "@/hooks/useScrollToTop";
 import CourseEnrollmentView from "@/components/course/CourseEnrollmentView";
 import CourseOverviewPage from "@/pages/CourseOverviewPage";
 import { CertificatePage } from "@/components/course/CertificatePage";
+import { useUserStateSync } from "@/hooks/useUserStateSync";
+import "@/utils/emergencyStateRestore"; // Auto-restore lost enrollments
 
 // Lazy load all pages for better performance
 const Index = lazy(() => import("./pages/Index"));
@@ -24,6 +26,7 @@ const InstructorDashboardPage = lazy(() => import("./pages/InstructorDashboard")
 
 const ScrollToTopWrapper = ({ children }: { children: React.ReactNode }) => {
   useScrollToTop();
+  useUserStateSync(); // Initialize comprehensive user state sync
   return <>{children}</>;
 };
 

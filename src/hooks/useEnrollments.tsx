@@ -61,8 +61,56 @@ export const useEnrollments = () => {
 
   // Check if user is enrolled in a specific course
   const isEnrolled = (courseId: string) => {
-    const enrolled = enrollments.some(enrollment => enrollment.course_id === courseId);
-    console.log(`useEnrollments: Checking enrollment for ${courseId}:`, enrolled, "Total enrollments:", enrollments.length);
+    // BULLETPROOF enrollment check - check multiple sources
+    if (!user || !courseId) return false;
+    
+    // Check 1: Current enrollments array
+    const enrollmentMatch = enrollments.some(enrollment => {
+      const enrollmentCourseId = enrollment.course_id || enrollment.courseId;
+      return enrollmentCourseId === courseId;
+    });
+    
+    // Check 2: Direct localStorage check
+    const localEnrollments = JSON.parse(localStorage.getItem('enrollments') || '[]');
+    const localMatch = localEnrollments.some((e: any) => {
+      const userMatches = e.user_id === user.id || e.userId === user.id;
+      const courseMatches = e.course_id === courseId || e.courseId === courseId;
+      const isApproved = e.status === 'approved';
+      return userMatches && courseMatches && isApproved;
+    });
+    
+    // Check 3: User-specific cache
+    const userCache = localStorage.getItem(`user-enrollments-${user.id}`);
+    let cacheMatch = false;
+    if (userCache) {
+      try {
+        const cached = JSON.parse(userCache);
+        cacheMatch = cached.some((e: any) => {
+          const courseMatches = e.course_id === courseId || e.courseId === courseId;
+          return courseMatches;
+        });
+      } catch (error) {
+        console.warn('Error parsing user cache:', error);
+      }
+    }
+    
+    const enrolled = enrollmentMatch || localMatch || cacheMatch;
+    
+    console.log(`🔍 BULLETPROOF enrollment check for "${courseId}":`, {
+      enrollmentMatch,
+      localMatch,
+      cacheMatch,
+      finalResult: enrolled,
+      totalEnrollments: enrollments.length
+    });
+    
+    if (enrolled) {
+      console.log(`✅ CONFIRMED: User is enrolled in ${courseId}`);
+    } else {
+      console.log(`❌ NOT ENROLLED: User not enrolled in ${courseId}`);
+      console.log(`📋 Available course IDs:`, enrollments.map(e => e.course_id || e.courseId));
+    }
+    
     return enrolled;
   };
 
@@ -94,8 +142,11 @@ export const useEnrollments = () => {
 
   // Get enrollment details for a specific course
   const getEnrollment = (courseId: string) => {
-    const enrollment = enrollments.find(enrollment => enrollment.course_id === courseId);
-    console.log(`useEnrollments: Getting enrollment for ${courseId}:`, enrollment);
+    const enrollment = enrollments.find(enrollment => {
+      const enrollmentCourseId = enrollment.course_id || enrollment.courseId;
+      return enrollmentCourseId === courseId;
+    });
+    console.log(`🔍 useEnrollments: Getting enrollment for "${courseId}":`, enrollment);
     return enrollment;
   };
 

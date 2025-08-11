@@ -240,29 +240,66 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const signOut = async () => {
-    try {
-      setError(null);
-      const { error } = await supabase.auth.signOut();
-      if (error) {
-        setError(error.message);
-        throw error;
+    console.log('🚪 Starting bulletproof logout process...');
+    
+    // Clear user state IMMEDIATELY for responsive UI
+    setUser(null);
+    setProfile(null);
+    setError(null);
+    
+    // Force logout with timeout protection
+    const forceLogout = () => {
+      console.log('🚪 Executing force logout...');
+      
+      // Clear ALL user-specific data
+      try {
+        const keys = Object.keys(localStorage);
+        keys.forEach(key => {
+          if (key.startsWith('user-profile-') || 
+              key.startsWith('user-enrollments-') ||
+              key.startsWith('SupabaseAuth')) {
+            localStorage.removeItem(key);
+          }
+        });
+        
+        // Clear session storage too
+        sessionStorage.clear();
+        
+        console.log('🗑️ Cleared all user data on logout');
+      } catch (cleanupError) {
+        console.warn('Error during cleanup (continuing anyway):', cleanupError);
       }
       
-      setUser(null);
-      setProfile(null);
+      // Force redirect to auth page
+      console.log('🔄 Redirecting to auth page...');
+      window.location.replace('/auth');
+    };
+    
+    // Set up timeout protection (3 seconds max)
+    const timeoutId = setTimeout(() => {
+      console.warn('⏰ Logout timeout reached, forcing logout...');
+      forceLogout();
+    }, 3000);
+    
+    try {
+      // Try to sign out from Supabase with timeout
+      const supabaseSignoutPromise = supabase.auth.signOut();
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Supabase signout timeout')), 2000);
+      });
       
-             // Clear only user profile data on logout, keep course progress and enrollments
-       const keys = Object.keys(localStorage);
-       keys.forEach(key => {
-         if (key.startsWith('user-profile-')) {
-           localStorage.removeItem(key);
-         }
-       });
-       console.log('🗑️ Cleared user profile data on logout, kept course progress');
-    } catch (err: any) {
-      setError(err.message || 'Signout failed');
-      throw err;
+      await Promise.race([supabaseSignoutPromise, timeoutPromise]);
+      console.log('✅ Supabase signout completed');
+      
+    } catch (supabaseError) {
+      console.warn('Supabase signout failed (continuing anyway):', supabaseError);
     }
+    
+    // Clear the timeout since we completed successfully
+    clearTimeout(timeoutId);
+    
+    // Execute logout
+    forceLogout();
   };
 
   const value = {

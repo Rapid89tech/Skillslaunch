@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CourseSidebar from './CourseSidebar';
 import CourseHeader from './CourseHeader';
@@ -12,13 +12,9 @@ import { useModuleScores } from '@/hooks/useModuleScores';
 import { useCourseCompletion } from '@/hooks/useCourseCompletion';
 import { useNavigate } from 'react-router-dom';
 import { Trophy, Download } from 'lucide-react';
-// Import markdown exports for each course
-import { hairDressingMarkdown } from '@/data/hairDressing';
+// Import markdown exports for legacy courses that still use markdown content
 import { computerRepairsMarkdown } from '@/data/computerRepairs';
 import { cellphoneRepairsMarkdown } from '@/data/cellphoneRepairs';
-import plumbing101 from '@/data/plumbing101';
-import roofing101 from '@/data/roofing101';
-import { tilingMarkdown } from '@/data/tiling';
 
 interface CoursePlayerViewProps {
   course: Course;
@@ -190,12 +186,8 @@ const CoursePlayerView = ({
                 moduleId={lessonPosition?.moduleId || 1}
                 lessonId={lessonPosition?.lessonId || 1}
                 markdownContent={
-                  course.id === 'hair-dressing-course' ? hairDressingMarkdown :
-                  course.id === 'computer-repairs-course' ? computerRepairsMarkdown :
-                  course.id === 'cellphone-repairs-course' ? cellphoneRepairsMarkdown :
-                  course.id === 'plumbing-course' ? plumbingMarkdown :
-                  course.id === 'roofing-course' ? roofingMarkdown :
-                  course.id === 'tiling-course' ? tilingMarkdown :
+                  course.id === 'computer-repairs' ? computerRepairsMarkdown :
+                  course.id === 'cellphone-repairs' ? cellphoneRepairsMarkdown :
                   undefined
                 }
               />
@@ -241,4 +233,15 @@ const CoursePlayerView = ({
   );
 };
 
-export default CoursePlayerView;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(CoursePlayerView, (prevProps, nextProps) => {
+  // Only re-render if essential props change
+  return (
+    prevProps.course?.id === nextProps.course?.id &&
+    prevProps.currentLesson === nextProps.currentLesson &&
+    prevProps.progress === nextProps.progress &&
+    prevProps.completedLessons.length === nextProps.completedLessons.length &&
+    prevProps.isPlaying === nextProps.isPlaying &&
+    prevProps.sidebarOpen === nextProps.sidebarOpen
+  );
+});

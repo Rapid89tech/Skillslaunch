@@ -11,14 +11,13 @@ export const CertificatePage: React.FC = () => {
   const { id: courseId } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { user, profile } = useAuth();
+  const { course } = useCourseData(courseId);
   
   // PERSISTENT CERTIFICATE DATA - Survives page refresh
   const getCertificateData = () => {
-    // Check for stored certificate data first
-    const storedData = localStorage.getItem(`certificate-data-${courseId}`);
-    if (storedData) {
-      return JSON.parse(storedData);
-    }
+    // Always regenerate with fresh course data to avoid stale placeholder text
+    // Clear any old stored data that might have placeholder text
+    localStorage.removeItem(`certificate-data-${courseId}`);
     
     // Get user name from profile or user metadata
     let studentName = 'Student';
@@ -32,16 +31,12 @@ export const CertificatePage: React.FC = () => {
       studentName = user.email.split('@')[0]; // Use email prefix as name
     }
     
-    // Create default certificate data
+    // Create default certificate data using actual course information
     const defaultData = {
-      courseTitle: courseId === 'business' ? 'Business: Creating Your Business' : 
-                   courseId === 'entrepreneurship-final' ? 'Entrepreneurship Final Course' :
-                   courseId === 'sound-engineering' ? 'Sound Engineering' :
-                   courseId === 'podcast-management' ? 'Podcast Management' :
-                   'Course Completion',
+      courseTitle: course?.title || courseId || 'Course',
       studentName,
       completionDate: new Date().toISOString().split('T')[0],
-      instructorName: 'Course Instructor',
+      instructorName: course?.instructor?.name || 'Expert Instructor',
       courseId: courseId || 'test-course',
       grade: 'A'
     };
@@ -73,6 +68,13 @@ export const CertificatePage: React.FC = () => {
     profile: profile?.first_name
   });
 
+  // Clear any cached certificate data on mount to ensure fresh data
+  useEffect(() => {
+    if (courseId) {
+      localStorage.removeItem(`certificate-data-${courseId}`);
+    }
+  }, [courseId]);
+
   // ALWAYS SHOW CERTIFICATE - No more loading states!
 
   return (
@@ -91,8 +93,8 @@ export const CertificatePage: React.FC = () => {
                 Back to Course
               </Button>
                              <div>
-                 <h1 className="text-2xl font-bold">Course Completion</h1>
-                 <p className="text-blue-100">{certificateData.courseTitle}</p>
+                 <h1 className="text-2xl font-bold">{certificateData.courseTitle}</h1>
+                 <p className="text-blue-100">Certificate of Completion</p>
                </div>
             </div>
             <div className="flex items-center gap-4">

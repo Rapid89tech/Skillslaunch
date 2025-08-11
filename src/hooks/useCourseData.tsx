@@ -8,12 +8,14 @@ import plumbing101 from '@/data/plumbing101';
 import { podcastManagement101Course } from '@/data/podcastManagement101Course';
 import { motorMechanicPetrolCourse } from '@/data/motorMechanicPetrol/index';
 import { dieselMechanicCourse } from '@/data/dieselMechanic/index';
+import { motorMechanicDieselCourse } from '@/data/motorMechanicDiesel/index';
 import { cellphoneRepairsCourse } from '@/data/cellphoneRepairs/index';
 import { computerRepairsCourse } from '@/data/computerRepairsCourse';
 import { aiHumanRelationsCourse } from '@/data/aiHumanRelations/index';
 import { hairDressingCourse } from '@/data/hairDressing/index';
 import { nailTechnicianCourse } from '@/data/nailTechnician/index';
 import { entrepreneurshipFinalCourse } from '@/data/entrepreneurshipFinalCourse';
+import { tiling101Course } from '@/data/tiling101';
 
 export const useCourseData = (courseId?: string) => {
   const params = useParams<{ id: string; courseId: string }>();
@@ -37,12 +39,14 @@ export const useCourseData = (courseId?: string) => {
           'podcast-management-101': podcastManagement101Course,
           'motor-mechanic-petrol': motorMechanicPetrolCourse,
           'diesel-mechanic': dieselMechanicCourse,
+          'motor-mechanic-diesel': motorMechanicDieselCourse,
           'cellphone-repairs': cellphoneRepairsCourse,
           'computer-repairs': computerRepairsCourse,
           'ai-human-relations': aiHumanRelationsCourse,
           'hair-dressing': hairDressingCourse,
           'nail-technician': nailTechnicianCourse,
-          'entrepreneurship-final': entrepreneurshipFinalCourse
+          'entrepreneurship-final': entrepreneurshipFinalCourse,
+          'tiling-101': tiling101Course
         };
 
         if (idFromParams && courseMap[idFromParams]) {
@@ -52,7 +56,32 @@ export const useCourseData = (courseId?: string) => {
           console.log("useCourseData: Course not found for ID:", idFromParams);
         }
 
-        setCourse(foundCourse);
+        // Normalize course: ensure module quizzes are rendered as lessons
+        if (foundCourse) {
+          const normalizedModules = foundCourse.modules.map((mod) => {
+            const hasQuizLesson = Array.isArray(mod.lessons) && mod.lessons.some(l => l.type === 'quiz');
+            if (!mod.quiz || hasQuizLesson) {
+              return mod;
+            }
+            // Convert module.quiz into a quiz lesson appended to lessons
+            const quiz = (mod as any).quiz;
+            const quizLesson = {
+              id: quiz.id,
+              title: quiz.title,
+              duration: '0:00',
+              type: 'quiz' as const,
+              content: { questions: quiz.questions }
+            };
+            return {
+              ...mod,
+              lessons: [...mod.lessons, quizLesson]
+            };
+          });
+          const normalizedCourse = { ...foundCourse, modules: normalizedModules } as Course;
+          setCourse(normalizedCourse);
+        } else {
+          setCourse(foundCourse);
+        }
       } catch (error) {
         console.error('Error loading course:', error);
         setCourse(null);

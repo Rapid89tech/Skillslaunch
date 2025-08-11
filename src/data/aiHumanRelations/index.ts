@@ -1,77 +1,48 @@
 
-import type { Course } from '@/types/course';
-import { module1FoundationsOfAI } from './module1-foundationsOfAI';
-import { module2CommunicationEmotionalIntelligence } from './module2-communicationEmotionalIntelligence';
-import { module3AIInWorkplace } from './module3-aiInWorkplace';
-import { module4EthicsEmpathy } from './module4-ethicsEmpathy';
-import { module5EducationLearningAI } from './module5/index';
-import { module6LegalPsychological } from './module6-legalPsychological';
-import { module7DesigningHumanCenteredAI } from './module7-designingHumanCenteredAI';
+import { Course, Module } from '@/types/course';
+import { module1 } from './module1';
+import { module2 } from './module2';
+import { module3 } from './module3';
+import { module4 } from './module4';
+import { module5 } from './module5';
+import { module6 } from './module6';
+import { module7 } from './module7';
 
 export const aiHumanRelationsCourse: Course = {
   id: 'ai-human-relations',
-  title: 'AI and Human Relations',
-  description: 'Explore the intersection of artificial intelligence and human interaction. Learn about AI fundamentals, human-AI collaboration, ethical implications, legal considerations, and the transformative impact of AI on education and society.',
+  title: 'AI & Human Relations 101',
+  description: 'This comprehensive online course delves into the intricate interplay between Artificial Intelligence (AI) and Human Relations, exploring how AI shapes communication, emotional intelligence, workplace dynamics, ethical considerations, and societal structures.',
   instructor: {
-    name: 'Dr. Elena Rodriguez',
-    title: 'AI Ethics Researcher & Human-Computer Interaction Specialist',
-    bio: 'Dr. Elena Rodriguez is a leading expert in AI ethics and human-computer interaction with over 10 years of experience in research and industry. She holds a PhD in Computer Science with a focus on AI ethics and has published extensively on human-AI collaboration.',
-    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b332c63c?w=150&h=150&fit=crop&crop=face'
+    name: 'Dr. Sarah Chen',
+    title: 'AI Ethics Researcher & Human-Computer Interaction Expert',
+    bio: 'With over 15 years of experience in AI research and human-computer interaction, Dr. Chen has published extensively on AI ethics, emotional intelligence in technology, and the future of human-AI collaboration.',
+    avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
   },
-  level: 'Beginner to Intermediate',
-  duration: '16 weeks',
-  students: 1847,
-  rating: 4.8,
-  price: 899,
-  currency: 'ZAR',
+  duration: '36 weeks',
+  level: 'Beginner',
+  category: 'Technology & Society',
   is_free: false,
+  price: 2800,
+  currency: 'ZAR',
+  students: 1247,
+  rating: 4.8,
   thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop',
-  category: 'Technology',
   learningObjectives: [
-    'Understand the fundamentals of artificial intelligence and its types',
-    'Analyze the evolution of human-AI interaction throughout history',
-    'Compare and contrast human intelligence with machine intelligence',
-    'Explore real-world applications of AI in human relations',
-    'Evaluate ethical considerations in AI development and deployment',
-    'Develop skills for effective human-AI collaboration',
-    'Assess the impact of AI on society and workplace dynamics',
-    'Understand AI in conversational interfaces and emotional intelligence',
-    'Analyze limitations and risks of AI in emotional contexts',
-    'Explore AI applications in therapy and mental health',
-    'Master AI implementation in HR processes and recruitment',
-    'Learn strategies for managing human-AI teams effectively',
-    'Understand emotional labor and automation in the workplace',
-    'Develop skills for productive human-AI collaboration',
-    'Examine bias, fairness, and transparency in AI systems',
-    'Navigate ethical dilemmas in AI decision-making',
-    'Understand the possibilities and limitations of empathetic AI',
-    'Learn to design AI systems that align with human values',
-    'Explore cultural perspectives on AI across different societies',
-    'Anticipate future social norms in an AI-driven world',
-    'Analyze the role of AI tutors and adaptive learning systems in education',
-    'Understand the impact of AI on teacher-student relationships',
-    'Learn strategies for humanizing digital education environments',
-    'Evaluate ethical considerations in AI-enhanced learning',
-    'Explore the future of AI in educational contexts',
-    'Understand legal frameworks for AI responsibility and accountability',
-    'Analyze trust dynamics and over-reliance risks in human-AI interaction',
-    'Examine the psychological impact of AI on human identity and behavior',
-    'Evaluate emerging legal approaches to AI liability',
-    'Explore the ethical implications of AI companionship and emotional attachment',
-    'Master UX/UI design principles for AI applications',
-    'Apply human-centered design approaches to AI systems',
-    'Understand how AI can enhance human well-being and social connection',
-    'Explore the future co-evolution of humans and machines',
-    'Analyze philosophical perspectives on consciousness and artificial intelligence',
-    'Design effective human-AI collaboration scenarios'
+    'Analyze the impact of AI on human communication, including virtual assistants, chatbots, and social media algorithms',
+    'Evaluate ethical dilemmas in AI applications, such as bias in decision-making systems and privacy concerns',
+    'Apply frameworks for designing human-centered AI systems that prioritize empathy, inclusivity, and fairness',
+    'Assess the role of AI in workplace dynamics, including automation, collaboration tools, and emotional intelligence augmentation',
+    'Develop strategies for fostering ethical AI integration in organizations, communities, and personal interactions',
+    'Critically interpret societal shifts driven by AI, such as changes in trust, relationships, and cultural norms',
+    'Utilize online tools to simulate AI-driven interactions and analyze their impact on human behavior'
   ],
   modules: [
-    module1FoundationsOfAI,
-    module2CommunicationEmotionalIntelligence,
-    module3AIInWorkplace,
-    module4EthicsEmpathy,
-    module5EducationLearningAI,
-    module6LegalPsychological,
-    module7DesigningHumanCenteredAI
+    module1,
+    module2,
+    module3,
+    module4,
+    module5,
+    module6,
+    module7
   ]
 };

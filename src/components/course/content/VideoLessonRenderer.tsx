@@ -48,6 +48,14 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
 
   // Always preserve original content - DO NOT generate fallback for existing content
   const lessonContent = lesson.content?.textContent || generateFallbackContent(lesson);
+  
+  // Debug logging
+  // Reduced logging to prevent excessive re-renders
+  React.useEffect(() => {
+    if (lesson.content?.textContent?.length === 0) {
+      console.warn('VideoLessonRenderer: Empty content for lesson', lesson.id);
+    }
+  }, [lesson.id]);
 
   const handleContentComplete = () => {
     setContentCompleted(true);

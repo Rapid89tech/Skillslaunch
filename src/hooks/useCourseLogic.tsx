@@ -4,28 +4,47 @@ import { useLessonNavigation } from '@/hooks/useLessonNavigation';
 import { useQuizState } from '@/hooks/useQuizState';
 import { useLessonCompletion } from '@/hooks/useLessonCompletion';
 import { useCourseEnrollment } from '@/hooks/useCourseEnrollment';
-import { useUserProgress } from '@/hooks/useUserProgress';
+import { useStableProgress } from '@/hooks/useStableProgress';
 
 export const useCourseLogic = () => {
   const { enrollments, enrollInCourse, updateProgress, isEnrolled, getEnrollment } = useEnrollments();
   const { course, allLessons, isLoading } = useCourseData();
-  const { progress: userProgress, updateCurrentPosition, markLessonCompleted } = useUserProgress(course?.id);
+  
+  // Use stable progress to prevent flashing/glitching
+  const { progress: stableProgress, completedLessons: stableCompletedLessons, saveProgress: saveStableProgress } = useStableProgress(course?.id);
   
   // Use the new helper functions
   const enrolled = course ? isEnrolled(course.id) : false;
   const enrollment = course ? getEnrollment(course.id) : null;
-  // Always calculate progress based on completed lessons for live updates
-  const { completedLessons, lessonContentCompleted, markComplete, markLessonContentComplete } = useLessonCompletion(
+  
+  // Use stable progress as single source of truth
+  const progress = stableProgress;
+  const completedLessons = stableCompletedLessons;
+
+  // Simplified lesson completion without multiple progress sources
+  const { lessonContentCompleted, markComplete, markLessonContentComplete } = useLessonCompletion(
     allLessons,
     course,
     enrolled,
-    enrollment?.progress || 0,
-    updateProgress
+    progress,
+    async (courseId: string, newProgress: number) => {
+      // Calculate completed lessons from progress
+      const newCompletedCount = Math.floor((newProgress / 100) * allLessons.length);
+      const newCompletedLessons = Array.from({ length: newCompletedCount }, (_, i) => i);
+      
+      // Save to stable progress (localStorage)
+      saveStableProgress(newProgress, newCompletedLessons);
+      
+      // Also update enrollment progress (non-blocking)
+      try {
+        await updateProgress(courseId, newProgress);
+      } catch (error) {
+        console.warn('Failed to update enrollment progress (non-critical):', error);
+      }
+      
+      return true;
+    }
   );
-  // Calculate progress live - use user progress if available, otherwise fallback to enrollment progress
-  const progress = userProgress?.progress_percentage || (allLessons.length > 0 ? (completedLessons.length / allLessons.length) * 100 : 0);
-
-  console.log("useCourseLogic: Course:", course?.id, "Enrolled:", enrolled, "Progress:", progress);
 
   const {
     currentLesson,
@@ -58,25 +77,6 @@ export const useCourseLogic = () => {
       saveQuizAttempts,
       setCurrentLesson
     );
-    
-    // Also save to permanent user progress
-    if (course && currentLessonData) {
-      // Find the module and lesson IDs by searching through the course structure
-      let moduleId = 1;
-      let lessonId = currentLessonData.id;
-      
-      for (const module of course.modules) {
-        const lessonIndex = module.lessons.findIndex(lesson => lesson.id === currentLessonData.id);
-        if (lessonIndex !== -1) {
-          moduleId = module.id;
-          lessonId = module.lessons[lessonIndex].id;
-          break;
-        }
-      }
-      
-      await markLessonCompleted(moduleId, lessonId);
-      await updateCurrentPosition(moduleId, lessonId);
-    }
   };
 
   return {

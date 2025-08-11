@@ -52,8 +52,8 @@ export const useCourseCompletion = (course: Course | null) => {
       completedModuleIds.includes(moduleId)
     );
     
-    // Also check if we have at least as many completed modules as total modules
-    let isCompleted = allModulesCompleted && completedModules >= totalModules;
+    // Course is only completed when ALL modules are finished AND we have exactly the right number
+    let isCompleted = allModulesCompleted && completedModules === totalModules;
     
     // Special handling for specific courses that might have completion issues
     if (course.id === 'c9d8e7f6-a5b4-9483-d2e3-f4a5b6c7d8e9' && completedModules > 0) {

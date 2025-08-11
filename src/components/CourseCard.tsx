@@ -8,6 +8,8 @@ import { useAuth } from '@/hooks/AuthContext';
 import { useEnrollments } from '@/hooks/useEnrollments';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import RealTimeEnrollmentButton from '@/components/course/RealTimeEnrollmentButton';
+import CourseCardProgress from '@/components/courses/CourseCardProgress';
 
 // Import course images
 import entrepreneurshipImage from '@/assets/entrepreneurship-course.jpg';
@@ -23,6 +25,7 @@ import nailTechnicianImage from '@/assets/nail-technician-course.jpg';
 import plumbingImage from '@/assets/plumbing-course.jpg';
 import tilingImage from '@/assets/tiling-course.jpg';
 import roofingImage from '@/assets/roofing-course.jpg';
+import dieselMechanicCourseImage from '@/assets/diesel-mechanic-course.jpg';
 
 const courseImages: Record<string, string> = {
   'c9d8e7f6-a5b4-9483-d2e3-f4a5b6c7d8e9': entrepreneurshipImage,
@@ -46,8 +49,26 @@ const courseImages: Record<string, string> = {
   'plumbing101': plumbingImage,
   'plumbing-course': plumbingImage,
   'tiling-course': tilingImage,
+  'tiling-101': tilingImage,
+  'motor-mechanic-diesel': dieselMechanicCourseImage,
   'roofing101': roofingImage,
   'roofing-course': roofingImage,
+};
+
+const courseAvailability: Record<string, 'Available' | 'Coming Soon'> = {
+  'entrepreneurship-final': 'Available',
+  'ai-human-relations': 'Available',
+  'roofing101': 'Available',
+  'plumbing101': 'Available',
+  'tiling-101': 'Available',
+  'hair-dressing': 'Available',
+  'nail-technician': 'Available',
+  'podcast-management-101': 'Available',
+  'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5': 'Coming Soon', // Sound Engineering
+  'computer-repairs': 'Coming Soon',
+  'cellphone-repairs': 'Coming Soon',
+  'motor-mechanic-petrol': 'Coming Soon',
+  'motor-mechanic-diesel': 'Available',
 };
 
 interface CourseCardProps {
@@ -69,6 +90,7 @@ const CourseCard = ({
   const { enrollInCourse, hasPendingEnrollment } = useEnrollments();
   const navigate = useNavigate();
   const courseImage = courseImages[course.id] || '/placeholder.svg';
+  const availability = courseAvailability[course.id] || 'Available';
 
   const handleEnroll = async () => {
     if (onEnroll) {
@@ -110,6 +132,14 @@ const CourseCard = ({
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Availability Badge */}
+        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg ${
+          availability === 'Available' 
+            ? 'bg-green-500 text-white' 
+            : 'bg-orange-500 text-white'
+        }`}>
+          {availability}
+        </div>
       </div>
       
       <CardHeader className="pb-1 px-3 pt-2">
@@ -158,53 +188,29 @@ const CourseCard = ({
           </div>
         </div>
 
-        {enrollment && (
-          <div className="space-y-2">
-            <div className="flex items-center justify-between text-sm">
-              <span>Progress</span>
-              <span className="font-medium">{Math.round(enrollment.progress)}%</span>
-            </div>
-            <Progress value={enrollment.progress} className="h-2" />
-          </div>
-        )}
+        <CourseCardProgress 
+          courseId={course.id}
+          enrolled={!!enrollment}
+        />
 
         <div className="flex flex-col gap-1">
-          {/* Enroll Now button for logged in users only */}
-                     {user && profile?.role === 'student' && !enrollment && !hasPendingEnrollment(course.id) && (
-             <Button 
-               onClick={handleEnroll}
-               className="flex-1 bg-gradient-primary hover:opacity-90 text-white text-xs py-1 h-7"
-             >
-               Enroll Now
-             </Button>
-           )}
+          {/* Real-time enrollment button for logged in students */}
+          {user && profile?.role === 'student' && (
+            <RealTimeEnrollmentButton 
+              courseId={course.id}
+              onEnrollClick={handleEnroll}
+              className="flex-1 text-xs py-1 h-7"
+            />
+          )}
           
-          {/* Pending button for users with pending enrollment */}
-                     {user && profile?.role === 'student' && !enrollment && hasPendingEnrollment(course.id) && (
+          {/* Pending button for users with pending enrollment - keep as fallback */}
+          {user && profile?.role === 'student' && !enrollment && hasPendingEnrollment(course.id) && (
              <Button 
                disabled
                className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white cursor-not-allowed text-xs py-1 h-7"
              >
                Pending
              </Button>
-           )}
-          
-                     {profile?.role === 'student' && enrollment && (
-             <Link to={`/course/${course.id}`}>
-               {course.available ? (
-                 <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white border-0 shadow-lg transform transition-all duration-300 hover:scale-105 text-xs py-1 h-7">
-                   Continue Learning
-                 </Button>
-               ) : (
-                 <Button 
-                   variant="outline" 
-                   className="border-orange-500 text-orange-600 hover:bg-orange-50 transform transition-all duration-300 hover:scale-105 text-xs py-1 h-7"
-                 >
-                   <Eye className="w-3 h-3 mr-1" />
-                   View Details
-                 </Button>
-               )}
-             </Link>
            )}
 
           {/* Register To Enroll button for logged out users */}

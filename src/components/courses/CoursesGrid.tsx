@@ -2,10 +2,13 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Progress } from '@/components/ui/progress';
+import CourseProgressBar from './CourseProgressBar';
 import { BookOpen, Clock, Star, Users, Play, Award } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/AuthContext';
 import { useEnrollments } from '@/hooks/useEnrollments';
+import { useStableProgress } from '@/hooks/useStableProgress';
 import { useToast } from '@/hooks/use-toast';
 import { Course } from '@/hooks/useCourses';
 import entrepreneurshipImage from '@/assets/entrepreneurship-course.jpg';
@@ -21,6 +24,7 @@ import nailTechnicianImage from '@/assets/nail-technician-course.jpg';
 import plumbingImage from '@/assets/plumbing-course.jpg';
 import tilingImage from '@/assets/tiling-course.jpg';
 import roofingImage from '@/assets/roofing-course.jpg';
+import dieselMechanicCourseImage from '@/assets/diesel-mechanic-course.jpg';
 import aiHumanNew from '../../../images/generation-7f218044-3139-41b5-8dc7-afedae829ae7.png';
 import soundEngineeringNew from '../../../images/generation-9c9ad650-aa25-4df1-9236-b137241521c0.png';
 import podcastNew from '../../../images/generation-8d3c5693-9f7f-4360-8c0b-533dc0da09bd.png';
@@ -35,7 +39,6 @@ import plumbingNew from '../../../images/generation-704ccdce-48ca-411f-b5de-3adb
 import tilingNew from '../../../images/generation-25c77381-c00b-4f6f-a660-5de57dbf0cc5.png';
 import roofingNew from '../../../images/generation-8dea647f-b6de-42c7-8708-d6e68a0fe5d1.png';
 import { triggerConfetti } from '@/utils/confetti';
-import { Progress } from '@/components/ui/progress';
 import EnrollNowPopup from '../course/EnrollNowPopup';
 
 interface CoursesGridProps {
@@ -71,9 +74,29 @@ const courseImages: Record<string, string> = {
   'plumbing101': plumbingNew,
   'Professional Tiling': tilingNew,
   'tiling-course': tilingNew,
+  'Tiling 101': tilingImage,
+  'tiling-101': tilingImage,
   'Roofing': roofingNew,
   'Professional Roofing': roofingNew,
   'roofing101': roofingNew,
+  'Motor Mechanic (Diesel)': dieselMechanicCourseImage,
+  'motor-mechanic-diesel': dieselMechanicCourseImage,
+};
+
+const courseAvailability: Record<string, 'Available' | 'Coming Soon'> = {
+  'entrepreneurship-final': 'Available',
+  'ai-human-relations': 'Available',
+  'roofing101': 'Available',
+  'plumbing101': 'Available',
+  'tiling-101': 'Available',
+  'hair-dressing': 'Available',
+  'nail-technician': 'Available',
+  'podcast-management-101': 'Available',
+  'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5': 'Coming Soon', // Sound Engineering
+  'computer-repairs': 'Coming Soon',
+  'cellphone-repairs': 'Coming Soon',
+  'motor-mechanic-petrol': 'Coming Soon',
+  'motor-mechanic-diesel': 'Available',
 };
 
 const CoursesGrid = ({ courses }: CoursesGridProps) => {
@@ -201,9 +224,8 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
         const enrolled = isEnrolled(course.id);
         const enrolling = isEnrolling(course.id);
         const courseImage = courseImages[course.id] || '/public/placeholder.svg';
-        // Find enrollment for progress (if enrolled)
-        const enrollment = enrollments?.find(e => e.course_id === course.id);
-        const progress = enrolled && enrollment ? Math.round((enrollment.progress || 0) * 100) : 0;
+        const availability = courseAvailability[course.id] || 'Available';
+        // Progress is now handled by CourseProgressBar component
         return (
           <div
             key={course.id}
@@ -219,6 +241,14 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 loading="lazy"
                 onError={e => { e.currentTarget.src = '/placeholder.svg'; }}
               />
+              {/* Availability Badge */}
+              <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg ${
+                availability === 'Available' 
+                  ? 'bg-green-500 text-white' 
+                  : 'bg-orange-500 text-white'
+              }`}>
+                {availability}
+              </div>
             </div>
             {/* Card Content */}
             <div className="flex-1 flex flex-col px-4 pt-4 pb-6">
@@ -236,12 +266,10 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                   <Award className="w-4 h-4 text-yellow-400" />
                   <span>Certificate</span>
                 </div>
-                {enrolled && (
-                  <div className="flex-1 flex flex-col gap-1">
-                    <Progress value={progress} className="h-2 bg-neutral-700" />
-                    <span className="text-[10px] text-gray-400 mt-1">Progress: {progress}%</span>
-                  </div>
-                )}
+                <CourseProgressBar 
+                  courseId={course.id}
+                  enrolled={enrolled}
+                />
               </div>
               <div className="mt-auto flex flex-col gap-2">
                 <Link to={`/course/${course.id}/overview`} className="block">

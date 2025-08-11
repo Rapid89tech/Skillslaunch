@@ -1,64 +1,45 @@
-
 import type { Course } from '@/types/course';
-import { module1Introduction } from './module1-introduction';
-import { module2ToolsAndEquipment } from './module2-toolsAndEquipment';
-import { module3HardwareComponents } from './module3-hardwareComponents';
-import { module4CommonRepairs } from './module4-commonRepairs';
-import { module5AdvancedDiagnostics } from './module5-advancedDiagnostics';
-import { module6MaintenancePreventiveCare } from './module6-maintenancePreventiveCare';
-import { module7BusinessSetup } from './module7-businessSetup';
-import { lesson8Certificate } from './module8-certificate';
+
+// Import all modules
+import { module1 } from './module1';
+import { module2 } from './module2';
+import { module3 } from './module3';
+
+export const cellphoneRepairsCourse: Course = {
+  id: 'cellphone-repairs-maintenance-101',
+  title: 'Cellphone Repairs and Maintenance 101',
+  description: 'The Cell Phone Repairs and Maintenance course is an in-depth, fully online program designed to provide learners with practical, hands-on skills to diagnose, repair, and maintain modern smartphones. Covering essential topics such as hardware component identification, troubleshooting common issues (e.g., cracked screens, battery failures), software recovery, and preventive maintenance, this course equips participants with the expertise needed to address real-world cellphone challenges. Delivered through engaging digital content, it emphasizes step-by-step guidance and accessibility, enabling learners to master repair techniques at their own pace.',
+  instructor: {
+    name: "Expert Mobile Repair Team",
+    title: "Professional Smartphone Technicians",
+    bio: "Expert team of mobile repair specialists with over 15 years of combined experience in smartphone diagnostics, hardware repair, and software troubleshooting across all major brands and models.",
+    avatar: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=150&h=150&fit=crop&crop=face"
+  },
+  level: 'beginner',
+  duration: '8 weeks (12 hours/week)',
+  students: 1892,
+  rating: 4.8,
+  price: 1999,
+  currency: 'ZAR',
+  is_free: false,
+  thumbnail: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop',
+  category: 'Technology',
+  learningObjectives: [
+    'Recognize and explain the functions of key smartphone components, including processors, batteries, displays, and circuit boards',
+    'Diagnose common smartphone issues, such as hardware malfunctions, software glitches, or connectivity problems, using online diagnostic tools',
+    'Perform hardware repairs, including screen replacements, battery swaps, camera repairs, and charging port fixes, with precision and safety',
+    'Troubleshoot and resolve software issues, including operating system crashes, app malfunctions, and data recovery, using free or open-source tools',
+    'Implement preventive maintenance techniques, such as cleaning connectors, optimizing software, and protecting devices, to enhance longevity',
+    'Estimate repair costs and timelines accurately using digital resources and industry-standard pricing guides',
+    'Apply professional repair practices, including safe handling of electronic components, customer communication, and documentation of repair processes'
+  ],
+  modules: [
+    module1,
+    module2,
+    module3
+  ]
+};
 
 export const cellphoneRepairsMarkdown = `
 <full markdown content from CourseDocuments/Cellphone Repairs and Maintenance Version 3.md>
 `;
-
-export const cellphoneRepairsCourse: Course = {
-  id: 'cellphone-repairs-course',
-  title: 'Cellphone Repairs and Maintenance',
-  description: `Cellphone Repairs and Maintenance is a comprehensive online course designed to equip learners with the skills and knowledge needed to diagnose, repair, and maintain smartphones and mobile devices. This course covers essential repair techniques, hardware diagnostics, software troubleshooting, and business management for mobile device repair services.
-
-Through detailed video tutorials, hands-on demonstrations, and practical exercises, students will learn to repair common issues including screen replacements, battery servicing, charging port repairs, and software problems. The course emphasizes safety procedures, proper tool usage, and professional service delivery while preparing learners for real-world repair scenarios.
-
-Whether you're looking to start a mobile repair business, enhance your technical skills, or pursue a career in mobile device servicing, this course provides the foundation for professional excellence in the growing mobile repair industry.`,
-  instructor: {
-    name: 'David Chen',
-    title: 'Mobile Device Repair Specialist',
-    bio: 'Certified mobile device technician with 12+ years of experience in smartphone and tablet repair, specializing in hardware diagnostics and business development.',
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
-  },
-  level: 'beginner',
-  duration: '10 weeks (5-6 hours/week)',
-  students: 1568,
-  rating: 4.7,
-  price: 1299,
-  currency: 'ZAR',
-  is_free: false,
-  thumbnail: '/images/generation-f3a5d1c2-fed5-4324-be4b-7b9c526b3455.png',
-  category: 'Information Communication and technology',
-  learningObjectives: [
-    'Master mobile device hardware components and their functions',
-    'Develop proficiency in smartphone disassembly and reassembly',
-    'Learn to diagnose and repair common mobile device issues',
-    'Understand software troubleshooting and system recovery',
-    'Acquire skills in screen replacement and component repair',
-    'Gain knowledge of battery servicing and charging systems',
-    'Learn business management and customer service skills',
-    'Prepare for professional mobile device repair certification'
-  ],
-  modules: [
-    module1Introduction,
-    module2ToolsAndEquipment,
-    module3HardwareComponents,
-    module4CommonRepairs,
-    module5AdvancedDiagnostics,
-    module6MaintenancePreventiveCare,
-    module7BusinessSetup,
-    {
-      id: 8,
-      title: 'Course Completion',
-      description: 'Complete your cellphone repairs certification',
-      lessons: [lesson8Certificate]
-    }
-  ]
-};

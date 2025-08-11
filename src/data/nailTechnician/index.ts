@@ -1,15 +1,15 @@
 
 import { Course, Module } from '@/types/course';
-import { module1IntroductionToNailCare } from './module1-introductionToNailCare';
-import { module2ManicuresAndPedicures } from './module2-manicuresAndPedicures';
-import { module3NailEnhancements } from './module3-nailEnhancements';
-import { module4NailArtTechniques } from './module4-nailArtTechniques';
-import { module5SanitationSafetyConsultation } from './module5-sanitationSafetyConsultation';
-import { module6CareerBuilding } from './module6-careerBuilding';
-import { lesson4Certificate } from './module4-certificate';
+import { module1 } from './module1';
+import { module2 } from './module2';
+import { module3 } from './module3';
+import { module4 } from './module4';
+import { module5 } from './module5';
+import { module6 } from './module6';
+import { nailTechnicianCertificate } from './certificate';
 
 export const nailTechnicianCourse: Course = {
-  id: 'nail-technician-course',
+  id: 'nail-technician',
   title: 'Professional Nail Technician Certification',
   description: 'Master professional nail care, design techniques, manicures, pedicures, nail enhancements, salon business skills, and career development',
   instructor: {
@@ -40,17 +40,12 @@ export const nailTechnicianCourse: Course = {
     'Develop professionalism and customer service skills'
   ],
   modules: [
-    module1IntroductionToNailCare,
-    module2ManicuresAndPedicures,
-    module3NailEnhancements,
-    module4NailArtTechniques,
-    module5SanitationSafetyConsultation,
-    module6CareerBuilding,
-    {
-      id: 7,
-      title: 'Course Completion',
-      description: 'Complete your nail technician certification',
-      lessons: [lesson4Certificate]
-    } as Module
+    module1,
+    module2,
+    module3,
+    module4,
+    module5,
+    module6,
+    nailTechnicianCertificate
   ]
 };

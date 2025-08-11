@@ -21,6 +21,8 @@ import nailTechnicianNew from '../../../images/generation-ca8e153c-3951-4b5e-b64
 import plumbingNew from '../../../images/generation-704ccdce-48ca-411f-b5de-3adbe0ef98c1.png';
 import tilingNew from '../../../images/generation-25c77381-c00b-4f6f-a660-5de57dbf0cc5.png';
 import roofingNew from '../../../images/generation-8dea647f-b6de-42c7-8708-d6e68a0fe5d1.png';
+import tilingCourseImage from '@/assets/tiling-course.jpg';
+import dieselMechanicCourseImage from '@/assets/diesel-mechanic-course.jpg';
 
 const courseImages: Record<string, string> = {
   'c9d8e7f6-a5b4-9483-d2e3-f4a5b6c7d8e9': entrepreneurshipNew,
@@ -36,8 +38,26 @@ const courseImages: Record<string, string> = {
   'nail-technician-course': nailTechnicianNew,
   'plumbing-course': plumbingNew,
   'tiling-course': tilingNew,
+  'tiling-101': tilingCourseImage,
+  'motor-mechanic-diesel': dieselMechanicCourseImage,
   'roofing101': roofingNew,
   'roofing-course': roofingNew,
+};
+
+const courseAvailability: Record<string, 'Available' | 'Coming Soon'> = {
+  'entrepreneurship-final': 'Available',
+  'ai-human-relations': 'Available',
+  'roofing101': 'Available',
+  'plumbing101': 'Available',
+  'tiling-101': 'Available',
+  'hair-dressing': 'Available',
+  'nail-technician': 'Available',
+  'podcast-management-101': 'Available',
+  'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5': 'Coming Soon', // Sound Engineering
+  'computer-repairs': 'Coming Soon',
+  'cellphone-repairs': 'Coming Soon',
+  'motor-mechanic-petrol': 'Coming Soon',
+  'motor-mechanic-diesel': 'Available',
 };
 
 interface CourseCardProps {
@@ -46,6 +66,7 @@ interface CourseCardProps {
 
 const CourseCard = ({ course }: CourseCardProps) => {
   const courseImage = courseImages[course.id] || '/placeholder.svg';
+  const availability = courseAvailability[course.id] || 'Available';
 
   return (
     <Card className="group h-full overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white dark:bg-gray-800 border-0 shadow-lg">
@@ -60,11 +81,12 @@ const CourseCard = ({ course }: CourseCardProps) => {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           
           {/* Availability Badge */}
-          <div className="absolute top-3 right-3">
-            <CourseAvailabilityBadge 
-              available={course.available} 
-              availableDate={course.available_date} 
-            />
+          <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg ${
+            availability === 'Available' 
+              ? 'bg-green-500 text-white' 
+              : 'bg-orange-500 text-white'
+          }`}>
+            {availability}
           </div>
           
           {/* Continue Learning Badge (if enrolled and available) */}

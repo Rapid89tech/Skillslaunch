@@ -16,28 +16,33 @@ export const useLessonCompletion = (
   const { toast } = useToast();
   const { saveProgress, getProgress } = useProgressPersistence();
 
-  // Load persisted progress on mount
+  // Load persisted progress on mount (memoized to prevent excessive loads)
   useEffect(() => {
-    if (isEnrolled && course) {
+    if (isEnrolled && course && allLessons.length > 0) {
       const persistedProgress = getProgress(course.id);
       if (persistedProgress.completedLessons.length > 0) {
         setCompletedLessons(persistedProgress.completedLessons);
       } else {
         // Fallback to calculating from progress percentage
         const completedCount = Math.floor((progress / 100) * allLessons.length);
-        setCompletedLessons(Array.from({ length: completedCount }, (_, i) => i));
+        const newCompletedLessons = Array.from({ length: completedCount }, (_, i) => i);
+        setCompletedLessons(newCompletedLessons);
       }
     }
-  }, [isEnrolled, course, progress, allLessons.length, getProgress]);
+  }, [isEnrolled, course?.id, allLessons.length]); // Removed progress dependency to prevent loops
 
-  // Recalculate and persist progress if completedLessons changes (for all courses)
+  // Only recalculate when completedLessons actually changes (debounced)
   useEffect(() => {
-    if (isEnrolled && course && allLessons.length > 0) {
-      const newProgress = Math.min(100, (completedLessons.length / allLessons.length) * 100);
-      saveProgress(course.id, newProgress, completedLessons);
-      updateProgress(course.id, newProgress);
+    if (isEnrolled && course && allLessons.length > 0 && completedLessons.length > 0) {
+      const timeoutId = setTimeout(() => {
+        const newProgress = Math.min(100, (completedLessons.length / allLessons.length) * 100);
+        saveProgress(course.id, newProgress, completedLessons);
+        updateProgress(course.id, newProgress);
+      }, 200); // 200ms debounce
+      
+      return () => clearTimeout(timeoutId);
     }
-  }, [completedLessons, isEnrolled, course, allLessons.length, saveProgress, updateProgress]);
+  }, [completedLessons, isEnrolled, course?.id, allLessons.length]);
 
   const markLessonContentComplete = (lessonIndex: number) => {
     setLessonContentCompleted(prev => ({

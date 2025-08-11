@@ -5,6 +5,11 @@ import { Button } from '@/components/ui/button';
 import { Award, BookOpen, Calendar, CheckCircle, Clock, Inbox, MessageCircle, PieChart, Settings, Star, Users, Pencil } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { supabase } from '@/integrations/supabase/client';
+import { useStableProgress } from '@/hooks/useStableProgress';
+import { useEnrollments } from '@/hooks/useEnrollments';
+import EnrolledCoursesList from './EnrolledCoursesList';
+import RecentActivities from './RecentActivities';
+import DashboardEnrollmentLoader from './DashboardEnrollmentLoader';
 
 // Helper for animated confetti
 // REMOVE Confetti component definition and all references to <Confetti />
@@ -50,22 +55,72 @@ const StudentDashboard = ({ profile, enrollments = [], courses = [], userId }: a
   });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
+  
+  // Use real enrollments hook to get latest data
+  const { enrollments: realEnrollments, isEnrolled } = useEnrollments();
+  
+  // Debug logging to see what data we have
+  React.useEffect(() => {
+    console.log('📊 Dashboard enrollment data:', {
+      realEnrollments: realEnrollments?.length || 0,
+      passedEnrollments: enrollments?.length || 0,
+      userId,
+      profile: profile?.email
+    });
+    
+    // Check localStorage for enrollment data
+    const localEnrollments = localStorage.getItem('enrollments');
+    if (localEnrollments) {
+      try {
+        const parsed = JSON.parse(localEnrollments);
+        console.log('📦 localStorage enrollments:', parsed);
+      } catch (error) {
+        console.warn('Error parsing localStorage enrollments:', error);
+      }
+    }
+    
+    // Check user-specific cache
+    if (userId) {
+      const userCache = localStorage.getItem(`user-enrollments-${userId}`);
+      if (userCache) {
+        try {
+          const parsed = JSON.parse(userCache);
+          console.log('👤 User-specific enrollments:', parsed);
+        } catch (error) {
+          console.warn('Error parsing user enrollments:', error);
+        }
+      }
+    }
+  }, [realEnrollments, enrollments, userId, profile]);
+  
+  // Use real enrollments if available, otherwise fallback to passed enrollments
+  const activeEnrollments = realEnrollments && realEnrollments.length > 0 ? realEnrollments : enrollments;
 
-  // Get actual student name
-  const studentName = profile?.first_name && profile?.last_name 
-    ? `${profile.first_name} ${profile.last_name}`
-    : profile?.first_name 
-    ? profile.first_name 
-    : profile?.email?.split('@')[0] || 'Student';
+  // Get actual student name with better fallbacks
+  const studentName = React.useMemo(() => {
+    if (profile?.first_name && profile?.last_name) {
+      return `${profile.first_name} ${profile.last_name}`;
+    }
+    if (profile?.first_name) {
+      return profile.first_name;
+    }
+    if (profile?.email) {
+      const emailName = profile.email.split('@')[0];
+      // Capitalize first letter and replace dots/underscores with spaces
+      return emailName.charAt(0).toUpperCase() + emailName.slice(1).replace(/[._]/g, ' ');
+    }
+    return 'Student';
+  }, [profile]);
 
-  // Map enrollments to course progress and completion
-  const enrolledCourses = enrollments.map((enrollment: any) => {
+  // Map enrollments to course progress and completion using active enrollments
+  const enrolledCourses = activeEnrollments.map((enrollment: any) => {
     const course = courses.find((c: any) => c.id === enrollment.course_id);
+    const progress = Math.round((enrollment.progress || 0) * 100); // Convert to percentage
     return {
       id: course?.id || enrollment.course_id,
       title: course?.title || enrollment.course_title || 'Untitled Course',
-      progress: Math.round(enrollment.progress || 0),
-      completed: Math.round(enrollment.progress || 0) === 100,
+      progress: progress,
+      completed: progress >= 100,
       certificateUrl: enrollment.certificateUrl || '#',
     };
   });
@@ -275,42 +330,7 @@ const StudentDashboard = ({ profile, enrollments = [], courses = [], userId }: a
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeIn}
           >
-            <div>
-              <h3 className="font-bold text-lg mb-4">Enrolled Courses</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {enrolledCourses.length === 0 && (
-                  <div className="col-span-full text-center py-8 text-gray-500 bg-white rounded-xl shadow">
-                    <BookOpen className="w-12 h-12 mx-auto mb-3 text-gray-300" />
-                    <p>No enrollments yet.</p>
-                    <p className="text-sm">Enroll in a course to get started!</p>
-                  </div>
-                )}
-                {enrolledCourses.map((course: any, i: number) => (
-                  <div key={course.id} className="bg-white rounded-xl p-6 flex flex-col gap-3 shadow-lg hover:shadow-xl transition-shadow animate-fade-in-up" style={{ animationDelay: `${i * 100}ms` }}>
-                    <div className="flex justify-between items-start">
-                      <div className="font-semibold text-gray-800 text-lg">{course.title}</div>
-                      {course.completed && (
-                        <a href={course.certificateUrl} target="_blank" rel="noopener noreferrer">
-                          <Button size="sm" className="bg-green-500 hover:bg-green-600 text-white">
-                            <Award className="w-4 h-4 mr-1" />
-                            Certificate
-                          </Button>
-                        </a>
-                      )}
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3">
-                      <div className="bg-gradient-to-r from-purple-500 to-purple-600 h-3 rounded-full transition-all duration-500" style={{ width: `${course.progress}%` }}></div>
-                    </div>
-                    <div className="flex justify-between items-center text-sm">
-                      <span className="text-gray-600">Progress: {course.progress}%</span>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${course.progress === 100 ? 'bg-green-100 text-green-700' : 'bg-blue-100 text-blue-700'}`}>
-                        {course.progress === 100 ? 'Completed' : 'In Progress'}
-                      </span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <DashboardEnrollmentLoader courses={courses} />
             
             {/* Goals for the Week */}
             <div>
@@ -348,29 +368,7 @@ const StudentDashboard = ({ profile, enrollments = [], courses = [], userId }: a
             viewport={{ once: true, amount: 0.2 }}
             variants={fadeIn}
           >
-            {/* Recent Activities */}
-            <div>
-              <h3 className="font-bold text-lg mb-4">Recent Activities</h3>
-              <div className="space-y-3">
-                {recentActivities.length === 0 && (
-                  <div className="text-center py-6 text-gray-500 bg-white rounded-xl shadow">
-                    <Clock className="w-10 h-10 mx-auto mb-2 text-gray-300" />
-                    <p>No recent activities.</p>
-                  </div>
-                )}
-                {recentActivities.map((activity, i) => (
-                  <div key={i} className="flex items-center gap-3 bg-white rounded-lg px-4 py-3 shadow animate-fade-in-up" style={{ animationDelay: `${i * 80}ms` }}>
-                    <div className="flex-shrink-0">
-                      <span className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-500"></span>
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm text-gray-700 truncate">{activity.activity}</div>
-                    </div>
-                    <span className="text-xs text-gray-400 font-medium">{activity.date}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
+            {/* Recent Activities now handled by DashboardEnrollmentLoader */}
 
             {/* Upcoming Tasks */}
             <div>

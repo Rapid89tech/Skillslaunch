@@ -27,12 +27,12 @@ const Dashboard = () => {
     return null;
   }
 
-  // Create a default profile if none exists
+  // Create a more meaningful default profile if none exists
   const defaultProfile = profile || {
     id: user.id,
     email: user.email,
-    first_name: 'Student',
-    last_name: 'User',
+    first_name: user.user_metadata?.first_name || user.email?.split('@')[0] || 'Student',
+    last_name: user.user_metadata?.last_name || '',
     role: 'student',
     approved: true,
     approval_status: 'approved'
