@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext, useContext, ReactNode } from 'react';
 import { supabase } from '../integrations/supabase/client';
 import { User } from '@supabase/supabase-js';
+import { initializeBulletproofSystem, performEmergencyDataRecovery, restoreCommonCourses } from '@/utils/initializeBulletproofSystem';
 
 interface Profile {
   id: string;
@@ -128,6 +129,25 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             
             // Cache the profile
             localStorage.setItem(`user-profile-${session.user.id}`, JSON.stringify(profileData));
+            
+            // 🛡️ BULLETPROOF DATA RECOVERY SYSTEM
+            console.log('🛡️ Initializing bulletproof data persistence...');
+            try {
+              // Initialize the bulletproof system
+              await initializeBulletproofSystem();
+              
+              // Perform emergency data recovery
+              await performEmergencyDataRecovery(session.user.id);
+              
+              // Restore common courses as fallback
+              restoreCommonCourses(session.user.id);
+              
+              console.log('✅ Bulletproof data recovery completed');
+            } catch (recoveryError) {
+              console.error('❌ Bulletproof recovery failed:', recoveryError);
+              // Still try basic restoration
+              restoreCommonCourses(session.user.id);
+            }
           }
         } else {
           console.log('🚨 No session found');

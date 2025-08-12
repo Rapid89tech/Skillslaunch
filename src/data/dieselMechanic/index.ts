@@ -23,7 +23,7 @@ export const dieselMechanicCourse: Course = {
   duration: '16 weeks',
   students: 1247,
   rating: 4.8,
-  price: 2400,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop',

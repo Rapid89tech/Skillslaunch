@@ -25,7 +25,7 @@ export const podcastManagementCourse: Course = {
   duration: '40 hours',
   students: 1250,
   rating: 4.8,
-  price: 299,
+  price: 500,
   currency: 'USD',
   is_free: false,
   thumbnail: '/thumbnails/podcast-management.jpg',

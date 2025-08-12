@@ -21,60 +21,12 @@ By the end of this course, participants will be able to:
 * Create a professional portfolio documenting maintenance logs, diagnostic reports, and repair projects to showcase expertise to employers or clients.  
 * Collaborate effectively in virtual teams, using online platforms to share diagnostic insights and discuss repair strategies with peers.
 
-## **Target Audience**
-
-This course is designed for:
-
-* Beginners with no prior automotive experience, seeking an accessible entry into petrol engine mechanics through online learning.  
-* Aspiring motor mechanics aiming to build careers in automotive repair shops, dealerships, or fleet maintenance operations.  
-* Current mechanics looking to specialize in petrol engines or update their skills with modern technologies like hybrid systems or electronic diagnostics.  
-* Automotive enthusiasts eager to master petrol engine repair for personal projects, such as restoring classic cars or modifying vehicles.  
-* Professionals in related fields, such as auto body repair or motorsport technicians, seeking to expand their expertise into petrol engine mechanics. The online format requires only a computer, reliable internet, and a basic mechanic’s toolkit, making it accessible to learners worldwide across all skill levels.
-
-## **Learning Materials/Resources**
-
-Participants will have access to an extensive array of digital resources optimized for online learning:
-
-* **Video Lectures**: Over 70 hours of high-definition video content, including theoretical lessons, repair demonstrations, and case studies, available on-demand via the course platform.  
-* **Interactive Simulations**: Virtual petrol engine models and diagnostic scenarios for practicing tasks like fuel injector testing, timing alignment, or ECU diagnostics.  
-* **Downloadable PDFs**: Detailed guides on engine components, diagnostic procedures, maintenance schedules, wiring schematics, and automotive terminology glossaries.  
-* **Online Quizzes and Exercises**: Interactive quizzes to assess theoretical knowledge (e.g., identifying fuel system components) and practical exercises (e.g., analyzing a diagnostic report) to reinforce skills.  
-* **Sample Technical Documentation**: Digital service manuals, parts catalogs, and DTC libraries for vehicles like Toyota Corolla, Ford Focus, and Honda Accord.  
-* **Discussion Forums**: Moderated forums for peer collaboration, sharing repair case studies, and discussing trends like hybrid engine maintenance.  
-* **Case Studies**: Real-world scenarios, such as diagnosing a turbocharged engine misfire or rebuilding a high-mileage fuel system, to connect theory with practice.  
-* **Recommended Tools**: Access to free or trial versions of diagnostic software (e.g., Torque Pro, OBD Auto Doctor) and virtual toolkits. Learners need a computer (Mac/Windows), a basic mechanic’s toolkit (wrenches, sockets, screwdrivers), and optional tools like an OBD-II scanner or multimeter.  
-* **Supplementary Resources**: Links to industry resources like *Automotive News*, YouTube channels (e.g., *ChrisFix*, *South Main Auto*), and podcasts like *The Auto Repair Podcast* for continuous learning.  
-* **AI Voice Tutor**: A 24/7 smart AI voice tutor to answer queries, provide feedback, and guide learners through tasks like timing belt replacement or sensor diagnostics.
-
-## **Assessment/Evaluation Methods**
-
-Progress is evaluated through diverse online assessments to solidify knowledge and skills:
-
-* **Online Quizzes**: Bi-weekly quizzes testing theoretical concepts, such as the four-stroke cycle or torque specifications, with instant feedback and explanations.  
-* **Practical Assignments**: Hands-on projects, including virtual oil changes, fault diagnoses using simulated OBD-II scanners, or timing chain replacements, submitted for instructor review.  
-* **Peer Reviews**: Collaborative tasks where learners critique each other’s diagnostic reports or repair plans in forums, promoting critical thinking and feedback.  
-* **Final Project**: A capstone project requiring participants to diagnose and repair a simulated complex engine issue (e.g., a misfire due to a faulty injector and ignition coil), document the process, and propose a maintenance plan, evaluated for accuracy and professionalism.  
-* **Progress Tracking**: A personalized dashboard tracks quiz scores, assignment submissions, and project milestones, providing real-time progress insights.  
-* **Feedback Mechanisms**: Detailed instructor feedback on assignments, AI voice tutor responses to queries (e.g., “How do I test a fuel pressure regulator?”), and bi-weekly live Q\&A sessions for personalized guidance.
-
-## **Support & Interaction**
-
-The course offers robust support and interactive opportunities for an engaging online experience:
-
-* **AI Voice Tutor**: A 24/7 smart AI tutor provides instant answers on topics like diagnostic procedures or tool usage, offering tailored guidance (e.g., explaining how to use a compression tester for a cylinder leak).  
-* **Email Helpdesk**: A dedicated support team responds to technical or course-related queries within 24 hours, ensuring uninterrupted access to materials.  
-* **Live Q\&A Sessions**: Weekly Zoom sessions with instructors for real-time discussions, feedback on assignments, and clarification of topics like hybrid system diagnostics.  
-* **Discussion Forums**: Vibrant forums for peer interaction, where learners share diagnostic case studies, critique repair plans, and discuss trends like emissions compliance.  
-* **Group Projects**: Collaborative assignments, such as troubleshooting a simulated engine failure in teams, simulate workshop dynamics and are facilitated via virtual breakout rooms.  
-* **Community Engagement**: Monthly virtual “diagnostic challenges” or repair competitions, with top submissions showcased on the platform, fostering networking and camaraderie.  
-* **Office Hours**: Bi-weekly virtual office hours with instructors for one-on-one support on complex topics like direct injection servicing or emissions optimization.
-
 
 # **Module 1: Introduction to Petrol Engines** 
 
 ## **Overview**
 
-https://youtu.be/9KKfIYch1FE?si=02ky8wwGrdsPlAqAhttps://youtu.be/9KKfIYch1FE?si=02ky8wwGrdsPlAqA
+https://youtu.be/9KKfIYch1FE?si=02ky8wwGrdsPlAqA
 
 This module lays the groundwork for mastering petrol engine mechanics by exploring the four-stroke engine cycle, critical engine components, and key differences between petrol and diesel engines. Through engaging video lectures, interactive virtual simulations, and hands-on exercises, learners will develop a deep understanding of engine operation, preparing them for advanced diagnostics and repair techniques in later modules. Designed for online accessibility, all resources are available on-demand, allowing flexibility for global learners with varied schedules. The smart AI voice tutor provides 24/7 support, answering questions and guiding learners through complex concepts like valve timing or combustion dynamics.
 

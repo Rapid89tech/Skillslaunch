@@ -21,7 +21,7 @@ export const entrepreneurshipFinalCourse: Course = {
   duration: '6 weeks',
   students: 1247,
   rating: 4.8,
-  price: 2800,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: '/placeholder.svg',

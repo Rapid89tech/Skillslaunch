@@ -86,6 +86,11 @@ export const useEnrollmentOperations = (): UseEnrollmentOperationsResult => {
               oldValue: JSON.stringify(currentEnrollments)
             }));
             
+            // 🛡️ Trigger bulletproof backup
+            window.dispatchEvent(new CustomEvent('enrollment-success', {
+              detail: { courseId, enrollment: newEnrollment }
+            }));
+            
             setIsLoading(false);
             resolve(true);
           } else {

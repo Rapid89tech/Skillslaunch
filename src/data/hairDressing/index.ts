@@ -31,7 +31,7 @@ export const hairDressingCourse: Course = {
   duration: '12 weeks (8 hours/week)',
   students: 3247,
   rating: 4.9,
-  price: 2499,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&h=300&fit=crop',

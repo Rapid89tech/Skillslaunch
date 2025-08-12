@@ -10,6 +10,7 @@ import { useEnrollments } from '@/hooks/useEnrollments';
 import EnrolledCoursesList from './EnrolledCoursesList';
 import RecentActivities from './RecentActivities';
 import DashboardEnrollmentLoader from './DashboardEnrollmentLoader';
+import BulletproofDataRecovery from '@/components/BulletproofDataRecovery';
 
 // Helper for animated confetti
 // REMOVE Confetti component definition and all references to <Confetti />
@@ -391,6 +392,17 @@ const StudentDashboard = ({ profile, enrollments = [], courses = [], userId }: a
                 ))}
               </div>
             </div>
+          </motion.div>
+
+          {/* 🛡️ Bulletproof Data Recovery Section */}
+          <motion.div
+            className="mt-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={fadeIn}
+          >
+            <BulletproofDataRecovery />
           </motion.div>
         </div>
       </motion.main>

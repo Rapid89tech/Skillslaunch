@@ -24,7 +24,7 @@ const plumbing101: Course = {
   level: 'Beginner to Intermediate',
   students: 1250,
   rating: 4.7,
-  price: 0,
+  price: 500,
   currency: 'ZAR',
   is_free: true,
   category: 'Construction and Trades',

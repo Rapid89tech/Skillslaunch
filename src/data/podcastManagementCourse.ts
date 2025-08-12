@@ -19,7 +19,7 @@ Whether you're a beginner looking to launch your first podcast or an experienced
   duration: '10 weeks',
   students: 892,
   rating: 4.8,
-  price: 1200,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&h=600&fit=crop',

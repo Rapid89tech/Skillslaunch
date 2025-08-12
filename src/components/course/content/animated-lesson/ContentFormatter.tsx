@@ -244,37 +244,246 @@ const components = {
 const ContentFormatter = ({ content }: ContentFormatterProps) => {
   // Check if content contains HTML and use HTML processor instead
   if (hasHtmlContent(content)) {
+    console.log('ContentFormatter: Using HTML processor for content');
     return (
       <div className="max-w-none animate-fade-in">
         <div className="lesson-content-modern-card">
           {processHtmlContent(content)}
         </div>
         <style>{`
-          .lesson-content-modern-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
-            box-shadow: 
-              0 20px 25px -5px rgba(0, 0, 0, 0.1),
-              0 10px 10px -5px rgba(0, 0, 0, 0.04),
-              inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            border-radius: 1.5rem;
-            padding: 3rem 2.5rem;
-            margin-bottom: 2rem;
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: slideInCard 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-            position: relative;
-            overflow: hidden;
-          }
-          
-          .lesson-content-modern-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
-          }
+                  .lesson-content-modern-card {
+          background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,250,252,0.95) 100%);
+          box-shadow: 
+            0 20px 25px -5px rgba(0, 0, 0, 0.1),
+            0 10px 10px -5px rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+          border-radius: 1.5rem;
+          padding: 3rem 2.5rem;
+          margin-bottom: 2rem;
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255,255,255,0.2);
+          animation: slideInCard 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          position: relative;
+          overflow: hidden;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.7;
+          color: #374151;
+        }
+        
+        .lesson-content-modern-card h1, .lesson-content-modern-card h2 {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #1f2937;
+          margin: 1.5rem 0 1rem 0;
+          padding: 0.75rem 0;
+          border-left: 3px solid #ef4444;
+          padding-left: 1rem;
+          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+          border-radius: 0 8px 8px 0;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .lesson-content-modern-card h1::before, .lesson-content-modern-card h2::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+          animation: shimmer 2s infinite;
+        }
+        
+        .lesson-content-modern-card h3 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #dc2626;
+          margin: 2rem 0 1rem 0;
+          padding: 0.75rem 1rem;
+          background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+          border-radius: 12px;
+          border-left: 3px solid #ef4444;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        
+        .lesson-content-modern-card h3::before {
+          content: '🔧';
+          font-size: 1.25rem;
+        }
+        
+        .lesson-content-modern-card p {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          margin: 1.5rem 0;
+          padding: 1.25rem;
+          background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+          border-radius: 16px;
+          border: 1px solid #e5e7eb;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .lesson-content-modern-card p::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(180deg, #ef4444, #dc2626);
+          border-radius: 0 2px 2px 0;
+        }
+        
+        .lesson-content-modern-card p:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          border-color: #ef4444;
+        }
+        
+        .lesson-content-modern-card ul {
+          margin: 1.5rem 0;
+          padding: 1.5rem;
+          background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+          border-radius: 16px;
+          border: 1px solid #e9d5ff;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card li {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          margin: 0.75rem 0;
+          padding: 0.75rem 1rem;
+          background: rgba(255, 255, 255, 0.7);
+          border-radius: 8px;
+          border-left: 3px solid #a855f7;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+        
+        .lesson-content-modern-card li::before {
+          content: '⚡';
+          position: absolute;
+          left: -0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          background: white;
+          border-radius: 50%;
+          padding: 0.25rem;
+          font-size: 0.75rem;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card li:hover {
+          background: rgba(255, 255, 255, 0.9);
+          transform: translateX(4px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card strong {
+          color: #dc2626;
+          font-weight: 700;
+          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+          padding: 0.25rem 0.5rem;
+          border-radius: 6px;
+          border: 1px solid #fecaca;
+        }
+        
+        .lesson-content-modern-card em {
+          color: #7c3aed;
+          font-style: italic;
+          font-weight: 600;
+        }
+        
+        .lesson-content-modern-card blockquote {
+          margin: 2rem 0;
+          padding: 1.5rem;
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+          border-left: 4px solid #0ea5e9;
+          border-radius: 12px;
+          position: relative;
+          font-style: italic;
+          color: #0c4a6e;
+        }
+        
+        .lesson-content-modern-card blockquote::before {
+          content: '💡';
+          position: absolute;
+          top: -0.5rem;
+          left: 1rem;
+          background: white;
+          padding: 0.5rem;
+          border-radius: 50%;
+          font-size: 1.25rem;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card code {
+          background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+          padding: 0.25rem 0.5rem;
+          border-radius: 6px;
+          font-family: 'Fira Code', monospace;
+          color: #dc2626;
+          border: 1px solid #cbd5e1;
+        }
+        
+        .lesson-content-modern-card pre {
+          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+          color: #e2e8f0;
+          padding: 1.5rem;
+          border-radius: 12px;
+          overflow-x: auto;
+          border: 1px solid #475569;
+          box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card pre code {
+          background: transparent;
+          color: inherit;
+          border: none;
+          padding: 0;
+        }
+        
+        .lesson-content-modern-card table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 2rem 0;
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card th {
+          background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+          color: white;
+          padding: 1rem;
+          text-align: left;
+          font-weight: 600;
+        }
+        
+        .lesson-content-modern-card td {
+          padding: 1rem;
+          border-bottom: 1px solid #e5e7eb;
+          transition: background-color 0.3s ease;
+        }
+        
+        .lesson-content-modern-card tr:hover td {
+          background-color: #f9fafb;
+        }
+        
+        .lesson-content-modern-card hr {
+          border: none;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #ef4444, transparent);
+          margin: 3rem 0;
+          border-radius: 1px;
+        }
           
           @keyframes slideInCard {
             from {
@@ -306,6 +515,7 @@ const ContentFormatter = ({ content }: ContentFormatterProps) => {
     );
   }
 
+  console.log('ContentFormatter: Using markdown processor for content');
   // Preprocess for YouTube custom formats
   let processedContent = preprocessYouTubeEmbeds(content);
   // Replace table markdown with custom table renderer if needed
@@ -321,7 +531,7 @@ const ContentFormatter = ({ content }: ContentFormatterProps) => {
   });
   
   return (
-    <div className="max-w-none animate-fade-in">
+    <div className="animate-fade-in">
       <div className="lesson-content-modern-card">
         <ReactMarkdown
           children={processedContent}
@@ -345,6 +555,9 @@ const ContentFormatter = ({ content }: ContentFormatterProps) => {
           animation: slideInCard 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
           position: relative;
           overflow: hidden;
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.7;
+          color: #374151;
         }
         
         .lesson-content-modern-card::before {
@@ -354,7 +567,247 @@ const ContentFormatter = ({ content }: ContentFormatterProps) => {
           left: 0;
           right: 0;
           height: 1px;
-          background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent);
+          background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.3), transparent);
+        }
+        
+        .lesson-content-modern-card h1 {
+          font-size: 2.5rem;
+          font-weight: 800;
+          color: #1f2937;
+          margin: 2rem 0 1.5rem 0;
+          padding: 1rem 0;
+          border-left: 4px solid #ef4444;
+          padding-left: 1.5rem;
+          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+          border-radius: 0 12px 12px 0;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .lesson-content-modern-card h1::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+          animation: shimmer 2s infinite;
+        }
+        
+        .lesson-content-modern-card h2 {
+          font-size: 2.25rem;
+          font-weight: 800;
+          color: #1f2937;
+          margin: 2rem 0 1.5rem 0;
+          padding: 1rem 0;
+          border-left: 4px solid #ef4444;
+          padding-left: 1.5rem;
+          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+          border-radius: 0 12px 12px 0;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .lesson-content-modern-card h2::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+          animation: shimmer 2s infinite;
+        }
+        
+        .lesson-content-modern-card h3 {
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #dc2626;
+          margin: 2rem 0 1rem 0;
+          padding: 0.75rem 1rem;
+          background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+          border-radius: 12px;
+          border-left: 3px solid #ef4444;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        
+        .lesson-content-modern-card h3::before {
+          content: '🔧';
+          font-size: 1.25rem;
+        }
+        
+        .lesson-content-modern-card p {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          margin: 1.5rem 0;
+          padding: 1.25rem;
+          background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+          border-radius: 16px;
+          border: 1px solid #e5e7eb;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .lesson-content-modern-card p::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(180deg, #ef4444, #dc2626);
+          border-radius: 0 2px 2px 0;
+        }
+        
+        .lesson-content-modern-card p:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          border-color: #ef4444;
+        }
+        
+        .lesson-content-modern-card ul {
+          margin: 1.5rem 0;
+          padding: 1.5rem;
+          background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+          border-radius: 16px;
+          border: 1px solid #e9d5ff;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card li {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          margin: 0.75rem 0;
+          padding: 0.75rem 1rem;
+          background: rgba(255, 255, 255, 0.7);
+          border-radius: 8px;
+          border-left: 3px solid #a855f7;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+        
+        .lesson-content-modern-card li::before {
+          content: '⚡';
+          position: absolute;
+          left: -0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          background: white;
+          border-radius: 50%;
+          padding: 0.25rem;
+          font-size: 0.75rem;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card li:hover {
+          background: rgba(255, 255, 255, 0.9);
+          transform: translateX(4px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card strong {
+          color: #dc2626;
+          font-weight: 700;
+          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+          padding: 0.25rem 0.5rem;
+          border-radius: 6px;
+          border: 1px solid #fecaca;
+        }
+        
+        .lesson-content-modern-card em {
+          color: #7c3aed;
+          font-style: italic;
+          font-weight: 600;
+        }
+        
+        .lesson-content-modern-card blockquote {
+          margin: 2rem 0;
+          padding: 1.5rem;
+          background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+          border-left: 4px solid #0ea5e9;
+          border-radius: 12px;
+          position: relative;
+          font-style: italic;
+          color: #0c4a6e;
+        }
+        
+        .lesson-content-modern-card blockquote::before {
+          content: '💡';
+          position: absolute;
+          top: -0.5rem;
+          left: 1rem;
+          background: white;
+          padding: 0.5rem;
+          border-radius: 50%;
+          font-size: 1.25rem;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card code {
+          background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+          padding: 0.25rem 0.5rem;
+          border-radius: 6px;
+          font-family: 'Fira Code', monospace;
+          color: #dc2626;
+          border: 1px solid #cbd5e1;
+        }
+        
+        .lesson-content-modern-card pre {
+          background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+          color: #e2e8f0;
+          padding: 1.5rem;
+          border-radius: 12px;
+          overflow-x: auto;
+          border: 1px solid #475569;
+          box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card pre code {
+          background: transparent;
+          color: inherit;
+          border: none;
+          padding: 0;
+        }
+        
+        .lesson-content-modern-card table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 2rem 0;
+          background: white;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .lesson-content-modern-card th {
+          background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+          color: white;
+          padding: 1rem;
+          text-align: left;
+          font-weight: 600;
+        }
+        
+        .lesson-content-modern-card td {
+          padding: 1rem;
+          border-bottom: 1px solid #e5e7eb;
+          transition: background-color 0.3s ease;
+        }
+        
+        .lesson-content-modern-card tr:hover td {
+          background-color: #f9fafb;
+        }
+        
+        .lesson-content-modern-card hr {
+          border: none;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #ef4444, transparent);
+          margin: 3rem 0;
+          border-radius: 1px;
         }
         
         @keyframes slideInCard {
@@ -379,20 +832,25 @@ const ContentFormatter = ({ content }: ContentFormatterProps) => {
           }
         }
         
-        .animate-fade-in-up {
-          animation: fade-in-up 0.6s ease-out forwards;
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
         }
         
         /* Enhanced video styling */
         iframe {
-          border-radius: 1rem;
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+          border-radius: 16px;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
           transition: all 0.3s ease;
         }
         
         iframe:hover {
           transform: scale(1.02);
-          box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.3);
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
       `}</style>
     </div>

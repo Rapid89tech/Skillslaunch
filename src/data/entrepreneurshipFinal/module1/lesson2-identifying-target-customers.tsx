@@ -10,8 +10,6 @@ export const lesson2IdentifyingTargetCustomers: Lesson = {
     textContent: `
 # Who Are Your Target Customers?
 
-https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa
-
 ### **Demographic Factors**
 
 Understanding Demographics in Market Research  

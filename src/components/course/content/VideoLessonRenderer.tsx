@@ -49,13 +49,22 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
   // Always preserve original content - DO NOT generate fallback for existing content
   const lessonContent = lesson.content?.textContent || generateFallbackContent(lesson);
   
-  // Debug logging
-  // Reduced logging to prevent excessive re-renders
+  // Add video URL to the content if it exists - this ensures videos show as actual players
+  const enhancedContent = lesson.content?.videoUrl 
+    ? `📺 YOUTUBE: ${lesson.title} - ${lesson.content.videoUrl}\n\n${lessonContent}`
+    : lessonContent;
+  
+  // Debug logging - minimal to avoid performance issues
   React.useEffect(() => {
     if (lesson.content?.textContent?.length === 0) {
       console.warn('VideoLessonRenderer: Empty content for lesson', lesson.id);
     }
-  }, [lesson.id]);
+    if (lesson.content?.videoUrl) {
+      console.log(`VideoLessonRenderer: Processing video for lesson "${lesson.title}"`);
+      console.log(`VideoLessonRenderer: Video URL: ${lesson.content.videoUrl}`);
+      console.log(`VideoLessonRenderer: Enhanced content starts with: ${enhancedContent.substring(0, 100)}...`);
+    }
+  }, [lesson.id, lesson.content?.videoUrl, lesson.title, enhancedContent]);
 
   const handleContentComplete = () => {
     setContentCompleted(true);
@@ -65,11 +74,6 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
     onMarkComplete();
   };
 
-  // Remove enhancedContent logic
-  // const enhancedContent = lesson.content?.videoUrl 
-  //   ? `\n<YouTubeVideoRenderer videoId="${lesson.content.videoUrl}" title="${lesson.title}" />\n\n${lessonContent}`
-  //   : lessonContent;
-
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
@@ -78,7 +82,7 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
       {/* Content */}
       {useAnimatedContent ? (
         <AnimatedLessonContent
-          content={lessonContent}
+          content={enhancedContent}
           lessonTitle={lesson.title}
           onComplete={handleContentComplete}
         />
@@ -102,7 +106,7 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
         </div>
       ) : (
         <AnimatedLessonContent
-          content={lessonContent}
+          content={enhancedContent}
           lessonTitle={lesson.title}
           onComplete={handleContentComplete}
         />

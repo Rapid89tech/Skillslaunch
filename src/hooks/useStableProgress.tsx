@@ -106,6 +106,11 @@ export const useStableProgress = (courseId?: string) => {
       localStorage.setItem(progressKey, newProgress.toString());
       localStorage.setItem(completedKey, JSON.stringify(newCompletedLessons));
       
+      // 🛡️ Trigger bulletproof backup for progress
+      window.dispatchEvent(new CustomEvent('progress-updated', {
+        detail: { courseId, progress: newProgress, completedLessons: newCompletedLessons }
+      }));
+      
       debouncedUpdate(newProgress, newCompletedLessons);
     } catch (error) {
       console.error('Error saving stable progress:', error);

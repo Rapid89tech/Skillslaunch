@@ -22,7 +22,7 @@ export const nailTechnicianCourse: Course = {
   level: 'Beginner',
   category: 'Beauty & Wellness',
   is_free: false,
-  price: 2500,
+  price: 500,
   currency: 'ZAR',
   students: 987,
   rating: 4.6,

@@ -22,7 +22,7 @@ export const aiHumanRelationsCourse: Course = {
   level: 'Beginner',
   category: 'Technology & Society',
   is_free: false,
-  price: 2800,
+  price: 500,
   currency: 'ZAR',
   students: 1247,
   rating: 4.8,

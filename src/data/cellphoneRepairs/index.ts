@@ -19,7 +19,7 @@ export const cellphoneRepairsCourse: Course = {
   duration: '8 weeks (12 hours/week)',
   students: 1892,
   rating: 4.8,
-  price: 1999,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop',

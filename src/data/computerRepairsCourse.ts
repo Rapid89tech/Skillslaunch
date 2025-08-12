@@ -27,7 +27,7 @@ export const computerRepairsCourse: Course = {
   duration: '8 weeks (4-5 hours/week)',
   students: 892,
   rating: 4.7,
-  price: 1299,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: '/images/generation-223f5d12-39ae-4748-84af-466e0078c55d.png',

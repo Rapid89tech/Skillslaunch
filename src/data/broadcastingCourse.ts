@@ -22,7 +22,7 @@ const broadcastingCourse: Course = {
   duration: '8 weeks',
   students: 0,
   rating: 4.9,
-  price: 450,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=300&fit=crop',

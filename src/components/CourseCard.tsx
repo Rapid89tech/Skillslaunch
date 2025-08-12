@@ -123,125 +123,135 @@ const CourseCard = ({
   };
 
   return (
-    <Card className="hover-lift animate-fade-in group overflow-hidden h-full max-h-80">
-      <div className="aspect-[4/3] relative overflow-hidden h-32">
+    <Card className="hover-lift animate-fade-in group overflow-hidden h-64 relative">
+      <div className="relative h-full w-full">
         <img
           src={courseImage}
           alt={course.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        
+        {/* Black overlay with 90% opacity */}
+        <div className="absolute inset-0 bg-black/90" />
+        
         {/* Availability Badge */}
-        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg ${
+        <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg z-10 ${
           availability === 'Available' 
             ? 'bg-green-500 text-white' 
             : 'bg-orange-500 text-white'
         }`}>
           {availability}
         </div>
-      </div>
-      
-      <CardHeader className="pb-1 px-3 pt-2">
-        <div className="flex items-start justify-between">
-          <CardTitle className="text-xs line-clamp-1 group-hover:text-primary transition-colors">
-            {course.title}
-          </CardTitle>
-          <div className="flex flex-col gap-1">
-            <Badge className={`${getLevelColor(course.level)} text-xs px-1 py-0`}>
-              {course.level}
-            </Badge>
-            {showAdminControls && (
-              <Badge className={`${getStatusColor(course.status)} text-xs px-1 py-0`}>
-                {course.status}
-              </Badge>
+
+        {/* Content overlay */}
+        <div className="absolute inset-0 p-3 flex flex-col justify-between z-10">
+          {/* Header section */}
+          <div className="space-y-2">
+            <div className="flex items-start justify-between">
+              <h3 className="text-sm font-semibold text-white line-clamp-2 group-hover:text-primary transition-colors">
+                {course.title}
+              </h3>
+              <div className="flex flex-col gap-1 ml-2">
+                <Badge className={`${getLevelColor(course.level)} text-xs px-1 py-0`}>
+                  {course.level}
+                </Badge>
+                {showAdminControls && (
+                  <Badge className={`${getStatusColor(course.status)} text-xs px-1 py-0`}>
+                    {course.status}
+                  </Badge>
+                )}
+              </div>
+            </div>
+            
+            <p className="text-xs text-gray-300 line-clamp-2">
+              {course.description}
+            </p>
+            
+            {course.instructor && (
+              <p className="text-xs text-gray-400">
+                by {course.instructor.first_name} {course.instructor.last_name}
+              </p>
             )}
-          </div>
-        </div>
-        
-        <p className="text-xs text-gray-600 line-clamp-1 mt-1">
-          {course.description}
-        </p>
-        
-        {course.instructor && (
-          <p className="text-xs text-gray-500 mt-1">
-            by {course.instructor.first_name} {course.instructor.last_name}
-          </p>
-        )}
-      </CardHeader>
 
-      <CardContent className="space-y-1 px-3 pb-3">
-        <div className="flex items-center justify-between text-xs text-gray-600">
-          <div className="flex items-center gap-2">
-            <span className="flex items-center gap-1">
-              <Clock className="h-2 w-2" />
-              Self-paced
-            </span>
-            <span className="flex items-center gap-1">
-              <Star className="h-2 w-2 text-yellow-500" />
-              4.8
-            </span>
+            <div className="flex items-center justify-between text-xs text-gray-400">
+              <div className="flex items-center gap-2">
+                <span className="flex items-center gap-1">
+                  <Clock className="h-3 w-3" />
+                  Self-paced
+                </span>
+                <span className="flex items-center gap-1">
+                  <Star className="h-3 w-3 text-yellow-500" />
+                  4.8
+                </span>
+              </div>
+              
+              <div className="text-right">
+                <Badge variant="secondary" className="text-xs px-1 py-0 bg-white/20 text-white border-white/30">
+                  R500
+                </Badge>
+              </div>
+            </div>
           </div>
-          
-          <div className="text-right">
-            <Badge variant="secondary" className="text-xs px-1 py-0">Course</Badge>
-          </div>
-        </div>
 
-        <CourseCardProgress 
-          courseId={course.id}
-          enrolled={!!enrollment}
-        />
-
-        <div className="flex flex-col gap-1">
-          {/* Real-time enrollment button for logged in students */}
-          {user && profile?.role === 'student' && (
-            <RealTimeEnrollmentButton 
+          {/* Progress and buttons section */}
+          <div className="space-y-2">
+            <CourseCardProgress 
               courseId={course.id}
-              onEnrollClick={handleEnroll}
-              className="flex-1 text-xs py-1 h-7"
+              enrolled={!!enrollment}
             />
-          )}
-          
-          {/* Pending button for users with pending enrollment - keep as fallback */}
-          {user && profile?.role === 'student' && !enrollment && hasPendingEnrollment(course.id) && (
-             <Button 
-               disabled
-               className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white cursor-not-allowed text-xs py-1 h-7"
-             >
-               Pending
-             </Button>
-           )}
 
-          {/* Register To Enroll button for logged out users */}
-                     {!user && (
-             <Button
-               className="w-full mt-1 py-1 rounded-full bg-gradient-to-r from-gray-400 to-gray-600 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-gray-500 hover:to-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400/60 animate-ripple h-7"
-               onClick={() => navigate('/auth')}
-             >
-               Register To Enroll
-             </Button>
-           )}
+            <div className="flex flex-col gap-1">
+              {/* Real-time enrollment button for logged in students */}
+              {user && profile?.role === 'student' && (
+                <RealTimeEnrollmentButton 
+                  courseId={course.id}
+                  onEnrollClick={handleEnroll}
+                  className="flex-1 text-xs py-2 h-8"
+                />
+              )}
+              
+              {/* Pending button for users with pending enrollment - keep as fallback */}
+              {user && profile?.role === 'student' && !enrollment && hasPendingEnrollment(course.id) && (
+                 <Button 
+                   disabled
+                   className="flex-1 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white cursor-not-allowed text-xs py-2 h-8"
+                 >
+                   Pending
+                 </Button>
+               )}
 
-                     {showAdminControls && course.status === 'pending' && (
-             <>
-               <Button 
-                 onClick={() => onStatusChange?.(course.id, 'approved')}
-                 className="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs py-1 h-7"
-               >
-                 Approve
-               </Button>
-               <Button 
-                 onClick={() => onStatusChange?.(course.id, 'rejected')}
-                 variant="destructive"
-                 className="flex-1 text-xs py-1 h-7"
-               >
-                 Reject
-               </Button>
-             </>
-           )}
+              {/* Register To Enroll button for logged out users */}
+              {!user && (
+                 <Button
+                   className="w-full py-2 rounded-full bg-gradient-to-r from-gray-400 to-gray-600 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-gray-500 hover:to-gray-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-400/60 animate-ripple h-8"
+                   onClick={() => navigate('/auth')}
+                 >
+                   Register To Enroll
+                 </Button>
+               )}
+
+              {showAdminControls && course.status === 'pending' && (
+                 <div className="flex gap-1">
+                   <Button 
+                     onClick={() => onStatusChange?.(course.id, 'approved')}
+                     className="flex-1 bg-green-600 hover:bg-green-700 text-white text-xs py-2 h-8"
+                   >
+                     Approve
+                   </Button>
+                   <Button 
+                     onClick={() => onStatusChange?.(course.id, 'rejected')}
+                     variant="destructive"
+                     className="flex-1 text-xs py-2 h-8"
+                   >
+                     Reject
+                   </Button>
+                 </div>
+               )}
+            </div>
+          </div>
         </div>
-      </CardContent>
+      </div>
     </Card>
   );
 };

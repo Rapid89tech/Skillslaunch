@@ -28,7 +28,7 @@ Whether you're beginning a career in tiling, enhancing existing skills, or pursu
   duration: '10 weeks (5-6 hours/week)',
   students: 634,
   rating: 4.4,
-  price: 1399,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=300&fit=crop',

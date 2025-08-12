@@ -16,6 +16,7 @@ import { hairDressingCourse } from '@/data/hairDressing/index';
 import { nailTechnicianCourse } from '@/data/nailTechnician/index';
 import { entrepreneurshipFinalCourse } from '@/data/entrepreneurshipFinalCourse';
 import { tiling101Course } from '@/data/tiling101';
+import { motorMechanicPetrol02Course } from '@/data/motorMechanicPetrol02';
 
 export const useCourseData = (courseId?: string) => {
   const params = useParams<{ id: string; courseId: string }>();
@@ -46,7 +47,8 @@ export const useCourseData = (courseId?: string) => {
           'hair-dressing': hairDressingCourse,
           'nail-technician': nailTechnicianCourse,
           'entrepreneurship-final': entrepreneurshipFinalCourse,
-          'tiling-101': tiling101Course
+          'tiling-101': tiling101Course,
+          'motor-mechanic-petrol-02': motorMechanicPetrol02Course
         };
 
         if (idFromParams && courseMap[idFromParams]) {

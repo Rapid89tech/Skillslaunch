@@ -21,7 +21,7 @@ export const processHtmlContent = (text: string) => {
     return url;
   };
 
-  // First, extract and replace YouTube links with placeholders - handle multiple formats
+  // Extract and replace YouTube links with placeholders - handle multiple formats
   const youtubeRegex = /📺\s*YOUTUBE:\s*([^-\n]+?)\s*-\s*(https?:\/\/[^\s<\n]+)/gi;
   const youtubeMatches: YouTubeMatch[] = [];
   let processedHtml = text;
@@ -37,17 +37,38 @@ export const processHtmlContent = (text: string) => {
     index++;
   }
   
+  // Also check for any remaining YouTube URLs that might not have been caught
+  const fallbackYoutubeRegex = /(https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)[^\s<\n]+)/gi;
+  let fallbackMatch;
+  while ((fallbackMatch = fallbackYoutubeRegex.exec(text)) !== null) {
+    const url = fallbackMatch[1].trim();
+    // Check if this URL is already in our matches
+    const alreadyMatched = youtubeMatches.some(match => match.url === url);
+    if (!alreadyMatched) {
+      const placeholder = `__YOUTUBE_PLACEHOLDER_${index}__`;
+      youtubeMatches.push({ placeholder, title: 'YouTube Video', url });
+      processedHtml = processedHtml.replace(fallbackMatch[0], placeholder);
+      index++;
+    }
+  }
+  
+  // Minimal debug logging
+  if (youtubeMatches.length > 0) {
+    console.log(`HtmlContentProcessor: Found ${youtubeMatches.length} YouTube video(s)`);
+    youtubeMatches.forEach((match, i) => {
+      console.log(`HtmlContentProcessor: Video ${i + 1}: "${match.title}" - ${match.url}`);
+    });
+  }
   
   return (
-    <div className="lesson-html-content">
+    <div className="lesson-html-content-modern">
       {(() => {
-        console.log('Processing HTML content:', text.substring(0, 200) + '...');
-        console.log('YouTube matches found:', youtubeMatches.length);
         return processedHtml.split(/(__YOUTUBE_PLACEHOLDER_\d+__)/).map((part, partIndex) => {
           const youtubeMatch = youtubeMatches.find(yt => yt.placeholder === part);
           if (youtubeMatch) {
             // Extract video ID and render YouTube component
             const videoId = extractVideoId(youtubeMatch.url);
+            console.log(`HtmlContentProcessor: Extracted video ID: ${videoId} from URL: ${youtubeMatch.url}`);
             
             if (videoId) {
               return (
@@ -71,15 +92,188 @@ export const processHtmlContent = (text: string) => {
             }
           }
           
-          // Render regular HTML content
+          // Render regular HTML content with modern styling
           return (
             <div 
               key={`html-${partIndex}`}
+              className="modern-content-renderer"
               dangerouslySetInnerHTML={{ __html: part }}
             />
           );
         });
       })()}
+      <style>{`
+        .lesson-html-content-modern {
+          font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          line-height: 1.7;
+          color: #374151;
+        }
+        
+        .modern-content-renderer {
+          animation: fadeInUp 0.8s ease-out forwards;
+        }
+        
+        .modern-content-renderer h2 {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #1f2937;
+          margin: 1.5rem 0 1rem 0;
+          padding: 0.75rem 0;
+          border-left: 3px solid #ef4444;
+          padding-left: 1rem;
+          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+          border-radius: 0 8px 8px 0;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .modern-content-renderer h2::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.1), transparent);
+          animation: shimmer 2s infinite;
+        }
+        
+        .modern-content-renderer h3 {
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #dc2626;
+          margin: 1.5rem 0 0.75rem 0;
+          padding: 0.5rem 0.75rem;
+          background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+          border-radius: 8px;
+          border-left: 2px solid #ef4444;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+        
+        .modern-content-renderer h3::before {
+          content: '🔧';
+          font-size: 1rem;
+        }
+        
+        .modern-content-renderer p {
+          font-size: 1.1rem;
+          line-height: 1.8;
+          margin: 1.5rem 0;
+          padding: 1.25rem;
+          background: linear-gradient(135deg, #ffffff 0%, #f9fafb 100%);
+          border-radius: 16px;
+          border: 1px solid #e5e7eb;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .modern-content-renderer p::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 4px;
+          height: 100%;
+          background: linear-gradient(180deg, #ef4444, #dc2626);
+          border-radius: 0 2px 2px 0;
+        }
+        
+        .modern-content-renderer p:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+          border-color: #ef4444;
+        }
+        
+        .modern-content-renderer ul {
+          margin: 1.5rem 0;
+          padding: 1.5rem;
+          background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+          border-radius: 16px;
+          border: 1px solid #e9d5ff;
+          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modern-content-renderer li {
+          font-size: 1.05rem;
+          line-height: 1.7;
+          margin: 0.75rem 0;
+          padding: 0.75rem 1rem;
+          background: rgba(255, 255, 255, 0.7);
+          border-radius: 8px;
+          border-left: 3px solid #a855f7;
+          position: relative;
+          transition: all 0.3s ease;
+        }
+        
+        .modern-content-renderer li::before {
+          content: '⚡';
+          position: absolute;
+          left: -0.5rem;
+          top: 50%;
+          transform: translateY(-50%);
+          background: white;
+          border-radius: 50%;
+          padding: 0.25rem;
+          font-size: 0.75rem;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modern-content-renderer li:hover {
+          background: rgba(255, 255, 255, 0.9);
+          transform: translateX(4px);
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .modern-content-renderer strong {
+          color: #dc2626;
+          font-weight: 700;
+          background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
+          padding: 0.25rem 0.5rem;
+          border-radius: 6px;
+          border: 1px solid #fecaca;
+        }
+        
+        .modern-content-renderer em {
+          color: #7c3aed;
+          font-style: italic;
+          font-weight: 600;
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        
+        @keyframes slideUp {
+          from {
+            opacity: 0;
+            transform: translateY(40px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };

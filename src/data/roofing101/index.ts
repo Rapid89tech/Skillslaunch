@@ -27,7 +27,7 @@ const roofing101: Course = {
   level: 'Beginner to Intermediate',
   students: 980,
   rating: 4.8,
-  price: 0,
+  price: 500,
   currency: 'ZAR',
   is_free: true,
   category: 'Construction and Trades',

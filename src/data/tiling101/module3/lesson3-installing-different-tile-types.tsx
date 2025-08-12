@@ -6,7 +6,7 @@ const lesson3InstallingDifferentTileTypes: Lesson = {
   duration: '150 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/installing-different-tiles',
+    videoUrl: 'https://youtu.be/dQw4w9WgXcQ',
     textContent: `# 🏗️ Installing Different Tile Types
 
 ## **Section 3.3: Installing Different Tile Types**

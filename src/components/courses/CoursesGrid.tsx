@@ -229,11 +229,11 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
         return (
           <div
             key={course.id}
-            className="bg-[#18181b] rounded-3xl shadow-xl border-0 overflow-hidden flex flex-col h-full group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.03]"
+            className="rounded-3xl shadow-xl border-0 overflow-hidden flex flex-col h-64 group transition-all duration-500 hover:shadow-2xl hover:-translate-y-1.5 hover:scale-[1.03] relative"
             style={{ animationDelay: `${index * 80 + 200}ms` }}
           >
-            {/* Illustration/Image */}
-            <div className="relative aspect-[4/3] min-h-[120px] w-full flex items-center justify-center bg-neutral-800">
+            {/* Background Image */}
+            <div className="absolute inset-0">
               <img
                 src={courseImage}
                 alt={course.title}
@@ -241,45 +241,57 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 loading="lazy"
                 onError={e => { e.currentTarget.src = '/placeholder.svg'; }}
               />
-              {/* Availability Badge */}
-              <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg ${
-                availability === 'Available' 
-                  ? 'bg-green-500 text-white' 
-                  : 'bg-orange-500 text-white'
-              }`}>
-                {availability}
-              </div>
             </div>
-            {/* Card Content */}
-            <div className="flex-1 flex flex-col px-4 pt-4 pb-6">
-              <h3 className="text-xs font-bold text-white mb-1 line-clamp-1 rounded-lg px-2 py-1 bg-gradient-to-r from-red-600 to-red-800 inline-block w-fit shadow-md animate-title-gradient">
-                {course.title}
-              </h3>
-              <p className="text-xs text-gray-200 line-clamp-2 mb-3">{course.description}</p>
-              {/* Dynamic Info Row */}
-              <div className="flex items-center gap-4 text-xs text-gray-300 mb-4">
+
+            {/* Black overlay with 90% opacity */}
+            <div className="absolute inset-0 bg-black/90" />
+
+            {/* Availability Badge */}
+            <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg z-10 ${
+              availability === 'Available' 
+                ? 'bg-green-500 text-white' 
+                : 'bg-orange-500 text-white'
+            }`}>
+              {availability}
+            </div>
+
+            {/* Content overlay */}
+            <div className="absolute inset-0 p-4 flex flex-col justify-between z-10">
+              {/* Header section */}
+              <div className="space-y-2">
+                <h3 className="text-sm font-bold text-white line-clamp-2 rounded-lg px-2 py-1 bg-gradient-to-r from-red-600 to-red-800 inline-block w-fit shadow-md animate-title-gradient">
+                  {course.title}
+                </h3>
+                                <p className="text-xs text-gray-300 line-clamp-2">{course.description}</p>
+                
+                {/* Course Stats Badges */}
                 <div className="flex items-center gap-2">
-                  <Users className="w-4 h-4 text-red-400" />
-                  <span>{course.students || 0}</span>
+                  <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs">
+                    <Clock className="w-3 h-3" />
+                    <span>{course.duration || '6 weeks'}</span>
+                  </div>
+                  <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs">
+                    <BookOpen className="w-3 h-3" />
+                    <span>35 lessons</span>
+                  </div>
                 </div>
-                <div className="flex items-center gap-2">
-                  <Award className="w-4 h-4 text-yellow-400" />
-                  <span>Certificate</span>
-                </div>
-                <CourseProgressBar 
+
+                <CourseProgressBar  
                   courseId={course.id}
                   enrolled={enrolled}
                 />
               </div>
-              <div className="mt-auto flex flex-col gap-2">
+
+              {/* Buttons section */}
+              <div className="flex flex-col gap-2">
                 <Link to={`/course/${course.id}/overview`} className="block">
-                  <button className="w-full py-1 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
+                  <button className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
                     View Course
                   </button>
                 </Link>
                 {user && enrolled && (
                   <Button
-                    className="w-full py-1 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 animate-ripple"
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 animate-ripple"
                     onClick={() => handleContinueLearning(course.id, course.title)}
                   >
                     Continue
@@ -288,7 +300,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 {!enrolled && user && pendingEnrollments.has(course.id) && (
                   <Button
                     disabled
-                    className="w-full py-1 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold text-xs shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400/60 cursor-not-allowed"
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold text-xs shadow-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-yellow-400/60 cursor-not-allowed"
                   >
                     Pending
                   </Button>
@@ -301,14 +313,14 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                       setShowEnrollPopup(true);
                       console.log('showEnrollPopup set to true');
                     }}
-                    className="w-full py-1 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
                   >
                     Enroll Now
                   </Button>
                 )}
                 {!user && (
                   <button
-                    className="w-full py-1 rounded-full bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-600 hover:to-pink-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-600 hover:to-pink-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
                     onClick={() => navigate('/auth')}
                   >
                     Register To Enroll

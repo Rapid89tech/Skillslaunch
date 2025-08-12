@@ -22,7 +22,7 @@ const certifiedComputerRepairCourse: Course = {
   duration: '8 weeks',
   students: 0,
   rating: 4.9,
-  price: 1200,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop',

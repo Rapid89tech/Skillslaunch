@@ -6,7 +6,7 @@ const lesson2CuttingDrillingTiles: Lesson = {
   duration: '135 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/cutting-tiles-beginners',
+    videoUrl: 'https://youtu.be/dQw4w9WgXcQ',
     textContent: `# 🔧 Cutting and Drilling Tiles
 
 ## **Section 3.2: Cutting and Drilling Tiles**

@@ -15,7 +15,7 @@ export const aiProgrammingCourse: Course = {
   duration: "6 weeks (3-4 hours/week)",
   students: 1247,
   rating: 4.8,
-  price: 299,
+  price: 500,
   currency: "ZAR",
   is_free: false,
   thumbnail: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&h=300&fit=crop",

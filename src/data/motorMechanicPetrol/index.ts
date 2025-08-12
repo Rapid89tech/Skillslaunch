@@ -30,7 +30,7 @@ export const motorMechanicPetrolCourse: Course = {
   duration: '14 weeks (10 hours/week)',
   students: 2847,
   rating: 4.9,
-  price: 2999,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=400&h=300&fit=crop',

@@ -10,8 +10,6 @@ export const lesson11GatheringFeedback: Lesson = {
     textContent: `
 # Gathering Feedback from Potential Customers
 
-https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa
-
 How to Gather Customer Feedback for Your Startup  
 Gathering feedback involves using interviews, surveys, user testing, and social listening to understand customer preferences and pain points. For example, a survey might reveal users want simpler software interfaces. This process confirms whether your product meets needs, identifies areas for improvement, and builds early customer relationships. Tools like Typeform, Hotjar, or Reddit provide scalable insights. Feedback ensures your offering aligns with real demands, reduces risks, and enhances satisfaction, positioning your business for success by addressing customer priorities early.
 

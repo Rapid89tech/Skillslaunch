@@ -11,6 +11,7 @@ import CourseEnrollmentView from "@/components/course/CourseEnrollmentView";
 import CourseOverviewPage from "@/pages/CourseOverviewPage";
 import { CertificatePage } from "@/components/course/CertificatePage";
 import { useUserStateSync } from "@/hooks/useUserStateSync";
+import { useBulletproofPersistence } from "@/hooks/useBulletproofPersistence";
 import "@/utils/emergencyStateRestore"; // Auto-restore lost enrollments
 
 // Lazy load all pages for better performance
@@ -27,6 +28,7 @@ const InstructorDashboardPage = lazy(() => import("./pages/InstructorDashboard")
 const ScrollToTopWrapper = ({ children }: { children: React.ReactNode }) => {
   useScrollToTop();
   useUserStateSync(); // Initialize comprehensive user state sync
+  useBulletproofPersistence(); // Initialize bulletproof data persistence
   return <>{children}</>;
 };
 

@@ -25,7 +25,7 @@ export const podcastManagement101Course: Course = {
   duration: '10 weeks',
   students: 892,
   rating: 4.9,
-  price: 3200,
+  price: 500,
   currency: 'ZAR',
   is_free: false,
   thumbnail: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=400&h=300&fit=crop',
