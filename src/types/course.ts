@@ -96,3 +96,31 @@ export interface Course {
   learningObjectives: string[];
   modules: Module[];
 }
+
+export interface SimplifiedCourse {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  level: string;
+  duration: string;
+  is_free: boolean;
+  price: number;
+  currency: string;
+  students: number;
+  rating: number;
+  instructor: {
+    id: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+  };
+  status: string;
+  created_at: string;
+  updated_at: string;
+  available: boolean;
+  available_date?: string;
+  isComingSoon?: boolean;
+  overview?: string;
+  thumbnail?: string;
+}

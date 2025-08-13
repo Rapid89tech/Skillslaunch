@@ -386,7 +386,7 @@ const BasicSoundPropertiesContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/wEL87lznGrg" 
+                  src="https://www.youtube.com/embed/wEL87lznGrg?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Key Properties of Sound Waves" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -514,7 +514,7 @@ const BasicSoundPropertiesContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/PVObtPN_UFw" 
+                  src="https://www.youtube.com/embed/PVObtPN_UFw?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Amplitude" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -530,7 +530,7 @@ const BasicSoundPropertiesContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/E-SPpUhzYZY" 
+                  src="https://www.youtube.com/embed/E-SPpUhzYZY?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Wavelength" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -546,7 +546,7 @@ const BasicSoundPropertiesContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/q9ezMbDpIHI" 
+                  src="https://www.youtube.com/embed/q9ezMbDpIHI?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Mediums for Sound Transmission" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -562,7 +562,7 @@ const BasicSoundPropertiesContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/xc34n-l4vd4" 
+                  src="https://www.youtube.com/embed/xc34n-l4vd4?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Human Perception of Sound" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -578,7 +578,7 @@ const BasicSoundPropertiesContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/L3cIo8G65m4" 
+                  src="https://www.youtube.com/embed/L3cIo8G65m4?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Reflection, Absorption, Diffusion" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -594,7 +594,7 @@ const BasicSoundPropertiesContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/xI_gXxA7GaM" 
+                  src="https://www.youtube.com/embed/xI_gXxA7GaM?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Sound Environments" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -650,7 +650,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/YyUcAoj-BVM" 
+                  src="https://www.youtube.com/embed/YyUcAoj-BVM?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Entertainment & Media" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -666,7 +666,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/_iUdNak3a7c" 
+                  src="https://www.youtube.com/embed/_iUdNak3a7c?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Film & Television" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -682,7 +682,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/S84Dp880C8Q" 
+                  src="https://www.youtube.com/embed/S84Dp880C8Q?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Video Games" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -698,7 +698,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/Wgeg_TnndnY" 
+                  src="https://www.youtube.com/embed/Wgeg_TnndnY?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Podcasting & Broadcasting" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -723,7 +723,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/Go1tF9E3XEg" 
+                  src="https://www.youtube.com/embed/Go1tF9E3XEg?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Telecommunications" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -739,7 +739,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/MWvsgal_SGY" 
+                  src="https://www.youtube.com/embed/MWvsgal_SGY?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Consumer Audio" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -764,7 +764,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/C1b2TpwwUKA" 
+                  src="https://www.youtube.com/embed/C1b2TpwwUKA?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Acoustic Monitoring" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -780,7 +780,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/-rTtiAr1ct0" 
+                  src="https://www.youtube.com/embed/-rTtiAr1ct0?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Alarm Systems" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -805,7 +805,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/yFh6Fh7FVow" 
+                  src="https://www.youtube.com/embed/yFh6Fh7FVow?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Vehicle Acoustics" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -821,7 +821,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/qT3UHI7eT9w" 
+                  src="https://www.youtube.com/embed/qT3UHI7eT9w?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Aerospace" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -845,7 +845,7 @@ const IndustryApplicationsContent = () => {
               <iframe 
                 width="100%" 
                 height="100%" 
-                src="https://www.youtube.com/embed/9Ur1GAkmoF0" 
+                src="https://www.youtube.com/embed/9Ur1GAkmoF0?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                 title="Performance Spaces" 
                 frameBorder="0" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -869,7 +869,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/QnXed5fI8Gk" 
+                  src="https://www.youtube.com/embed/QnXed5fI8Gk?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Sonic Branding" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -885,7 +885,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/IpMBIlpBgAM" 
+                  src="https://www.youtube.com/embed/IpMBIlpBgAM?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="Retail Environments" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -901,7 +901,7 @@ const IndustryApplicationsContent = () => {
                 <iframe 
                   width="100%" 
                   height="100%" 
-                  src="https://www.youtube.com/embed/zZJ8-n0Om4I" 
+                  src="https://www.youtube.com/embed/zZJ8-n0Om4I?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}" 
                   title="E-learning & Instructional Design" 
                   frameBorder="0" 
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -975,7 +975,7 @@ const IndustryApplicationsContent = () => {
             applications: [
               { name: '🏥 Medical Imaging', desc: 'Ultrasound technology' },
               { name: '🦻 Audiology', desc: 'Hearing tests, hearing aids' },
-              { name: '�� Therapeutic Uses', desc: 'Sound therapy, neuroscience' }
+              { name: '💊 Therapeutic Uses', desc: 'Sound therapy, neuroscience' }
             ]
           },
           {

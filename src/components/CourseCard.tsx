@@ -152,46 +152,11 @@ const CourseCard = ({
               <h3 className="text-sm font-semibold text-white line-clamp-2 group-hover:text-primary transition-colors">
                 {course.title}
               </h3>
-              <div className="flex flex-col gap-1 ml-2">
-                <Badge className={`${getLevelColor(course.level)} text-xs px-1 py-0`}>
-                  {course.level}
-                </Badge>
-                {showAdminControls && (
-                  <Badge className={`${getStatusColor(course.status)} text-xs px-1 py-0`}>
-                    {course.status}
-                  </Badge>
-                )}
-              </div>
             </div>
             
             <p className="text-xs text-gray-300 line-clamp-2">
               {course.description}
             </p>
-            
-            {course.instructor && (
-              <p className="text-xs text-gray-400">
-                by {course.instructor.first_name} {course.instructor.last_name}
-              </p>
-            )}
-
-            <div className="flex items-center justify-between text-xs text-gray-400">
-              <div className="flex items-center gap-2">
-                <span className="flex items-center gap-1">
-                  <Clock className="h-3 w-3" />
-                  Self-paced
-                </span>
-                <span className="flex items-center gap-1">
-                  <Star className="h-3 w-3 text-yellow-500" />
-                  4.8
-                </span>
-              </div>
-              
-              <div className="text-right">
-                <Badge variant="secondary" className="text-xs px-1 py-0 bg-white/20 text-white border-white/30">
-                  R500
-                </Badge>
-              </div>
-            </div>
           </div>
 
           {/* Progress and buttons section */}

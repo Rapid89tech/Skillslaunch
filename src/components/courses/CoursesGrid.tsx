@@ -40,6 +40,8 @@ import tilingNew from '../../../images/generation-25c77381-c00b-4f6f-a660-5de57d
 import roofingNew from '../../../images/generation-8dea647f-b6de-42c7-8708-d6e68a0fe5d1.png';
 import { triggerConfetti } from '@/utils/confetti';
 import EnrollNowPopup from '../course/EnrollNowPopup';
+import ComingSoonCoursePopup from '../ComingSoonCoursePopup';
+import { getLessonCount, formatLessonCount } from '@/utils/courseUtils';
 
 interface CoursesGridProps {
   courses: Course[];
@@ -108,6 +110,8 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
   const [showEnrollPopup, setShowEnrollPopup] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [pendingEnrollments, setPendingEnrollments] = useState<Set<string>>(new Set());
+  const [showComingSoonPopup, setShowComingSoonPopup] = useState(false);
+  const [selectedComingSoonCourse, setSelectedComingSoonCourse] = useState<Course | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   // Dynamic page transition
@@ -243,16 +247,18 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
               />
             </div>
 
-            {/* Black overlay with 90% opacity */}
+                        {/* Black overlay with 90% opacity */}
             <div className="absolute inset-0 bg-black/90" />
 
             {/* Availability Badge */}
             <div className={`absolute top-2 right-2 px-2 py-1 rounded-full text-xs font-semibold shadow-lg z-10 ${
-              availability === 'Available' 
+              course.isComingSoon
+                ? 'bg-yellow-500 text-black' 
+                : availability === 'Available' 
                 ? 'bg-green-500 text-white' 
                 : 'bg-orange-500 text-white'
             }`}>
-              {availability}
+              {course.isComingSoon ? 'Coming Soon' : availability}
             </div>
 
             {/* Content overlay */}
@@ -264,7 +270,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 </h3>
                                 <p className="text-xs text-gray-300 line-clamp-2">{course.description}</p>
                 
-                {/* Course Stats Badges */}
+                {/* Course Stats Badges - Only Lessons and Duration */}
                 <div className="flex items-center gap-2">
                   <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs">
                     <Clock className="w-3 h-3" />
@@ -272,7 +278,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                   </div>
                   <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs">
                     <BookOpen className="w-3 h-3" />
-                    <span>35 lessons</span>
+                    <span>{formatLessonCount(getLessonCount(course.id))}</span>
                   </div>
                 </div>
 
@@ -284,11 +290,23 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
 
               {/* Buttons section */}
               <div className="flex flex-col gap-2">
-                <Link to={`/course/${course.id}/overview`} className="block">
-                  <button className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
+                {course.isComingSoon ? (
+                  <button 
+                    onClick={() => {
+                      setSelectedComingSoonCourse(course);
+                      setShowComingSoonPopup(true);
+                    }}
+                    className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
+                  >
                     View Course
                   </button>
-                </Link>
+                ) : (
+                  <Link to={`/course/${course.id}/overview`} className="block">
+                    <button className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
+                      View Course
+                    </button>
+                  </Link>
+                )}
                 {user && enrolled && (
                   <Button
                     className="w-full py-2 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-green-600 hover:to-green-800 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 animate-ripple"
@@ -305,7 +323,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                     Pending
                   </Button>
                 )}
-                {!enrolled && user && !pendingEnrollments.has(course.id) && (
+                {!enrolled && user && !pendingEnrollments.has(course.id) && !course.isComingSoon && (
                   <Button
                     onClick={() => {
                       console.log('Enroll Now clicked for course:', course.title, course.id);
@@ -318,7 +336,15 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                     Enroll Now
                   </Button>
                 )}
-                {!user && (
+                {course.isComingSoon && (
+                  <Button
+                    disabled
+                    className="w-full py-2 rounded-full bg-gray-500 text-gray-300 font-bold text-xs shadow-lg cursor-not-allowed transition-all duration-300"
+                  >
+                    Coming Soon
+                  </Button>
+                )}
+                {!user && !course.isComingSoon && (
                   <button
                     className="w-full py-2 rounded-full bg-gradient-to-r from-red-500 to-pink-600 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-600 hover:to-pink-700 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
                     onClick={() => navigate('/auth')}
@@ -349,6 +375,16 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
             }}
           />
         </>
+      )}
+      {showComingSoonPopup && selectedComingSoonCourse && (
+        <ComingSoonCoursePopup
+          course={selectedComingSoonCourse}
+          isOpen={showComingSoonPopup}
+          onClose={() => {
+            setShowComingSoonPopup(false);
+            setSelectedComingSoonCourse(null);
+          }}
+        />
       )}
       <style>{`
         .animate-fade-in-card {

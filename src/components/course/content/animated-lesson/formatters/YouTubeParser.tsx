@@ -27,7 +27,7 @@ export const parseYouTubeRenderer = (text: string) => {
         <div className="relative w-full bg-black rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl group">
           <div className="relative w-full h-0 pb-[56.25%]">
             <iframe
-              src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1`}
+              src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}`}
               title={title}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -104,7 +104,7 @@ export const parseYouTubeLink = (text: string) => {
           <div className="relative w-full bg-black rounded-lg overflow-hidden shadow-lg">
             <div className="relative w-full h-0 pb-[56.25%]">
               <iframe
-                src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1`}
+                src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}`}
                 title="Educational Video"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

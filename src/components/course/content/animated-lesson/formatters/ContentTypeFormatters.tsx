@@ -11,9 +11,9 @@ export const formatHeaders = (line: string, lineIndex: number) => {
   if (line.startsWith('### ')) {
     const emoji = getRandomEmoji();
     return (
-      <h3 key={`h3-${lineIndex}`} className="group relative text-base md:text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-600 to-indigo-700 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 mt-5 mb-3 transform transition-all duration-300 hover:scale-105 animate-fade-in">
+      <h3 key={`h3-${lineIndex}`} className="group relative text-sm md:text-base font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-purple-600 to-indigo-700 dark:from-blue-400 dark:via-purple-400 dark:to-indigo-400 mt-4 mb-2 transform transition-all duration-300 hover:scale-105 animate-fade-in">
         <span className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-indigo-500/10 rounded-lg -z-10 transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-        <span className="inline-block mr-2 text-2xl animate-bounce group-hover:animate-spin transition-all duration-300">{emoji}</span>
+        <span className="inline-block mr-2 text-lg animate-bounce group-hover:animate-spin transition-all duration-300">{emoji}</span>
         {line.replace('### ', '')}
       </h3>
     );
@@ -21,9 +21,9 @@ export const formatHeaders = (line: string, lineIndex: number) => {
   if (line.startsWith('## ')) {
     const emoji = getRandomEmoji();
     return (
-      <h2 key={`h2-${lineIndex}`} className="group relative text-lg md:text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-purple-700 to-indigo-800 dark:from-blue-300 dark:via-purple-300 dark:to-indigo-300 mt-6 mb-4 transform transition-all duration-300 hover:scale-105 animate-fade-in">
+      <h2 key={`h2-${lineIndex}`} className="group relative text-base md:text-lg font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-800 via-purple-700 to-indigo-800 dark:from-blue-300 dark:via-purple-300 dark:to-indigo-300 mt-5 mb-3 transform transition-all duration-300 hover:scale-105 animate-fade-in">
         <span className="absolute inset-0 bg-gradient-to-r from-blue-500/15 via-purple-500/15 to-indigo-500/15 rounded-xl -z-10 transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-        <span className="inline-block mr-2 text-2xl animate-pulse group-hover:animate-bounce transition-all duration-300">{emoji}</span>
+        <span className="inline-block mr-2 text-xl animate-pulse group-hover:animate-bounce transition-all duration-300">{emoji}</span>
         {line.replace('## ', '')}
       </h2>
     );
@@ -31,9 +31,9 @@ export const formatHeaders = (line: string, lineIndex: number) => {
   if (line.startsWith('# ')) {
     const emoji = getRandomEmoji();
     return (
-      <h1 key={`h1-${lineIndex}`} className="group relative text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-purple-800 to-indigo-900 dark:from-blue-200 dark:via-purple-200 dark:to-indigo-200 mb-6 transform transition-all duration-300 hover:scale-105 animate-fade-in">
+      <h1 key={`h1-${lineIndex}`} className="group relative text-lg md:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-900 via-purple-800 to-indigo-900 dark:from-blue-200 dark:via-purple-200 dark:to-indigo-200 mb-5 transform transition-all duration-300 hover:scale-105 animate-fade-in">
         <span className="absolute inset-0 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 rounded-2xl -z-10 transform scale-0 group-hover:scale-100 transition-transform duration-300"></span>
-        <span className="inline-block mr-2 text-3xl animate-pulse group-hover:animate-spin transition-all duration-500">{emoji}</span>
+        <span className="inline-block mr-2 text-2xl animate-pulse group-hover:animate-spin transition-all duration-500">{emoji}</span>
         {line.replace('# ', '')}
       </h1>
     );

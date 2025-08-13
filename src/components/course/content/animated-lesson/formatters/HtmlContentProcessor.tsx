@@ -71,19 +71,23 @@ export const processHtmlContent = (text: string) => {
             console.log(`HtmlContentProcessor: Extracted video ID: ${videoId} from URL: ${youtubeMatch.url}`);
             
             if (videoId) {
+              // EMERGENCY FIX: Use YouTube nocookie domain + extreme parameters
+              const iframeSrc = `https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=0&iv_load_policy=3&showinfo=0&controls=1&disablekb=1&playsinline=1&origin=${window.location.origin}&widget_referrer=${window.location.origin}&enablejsapi=0&color=white&theme=dark&end=99999999&playlist=${videoId}&loop=1`;
+
+              
               return (
                 <div key={`youtube-${partIndex}`} className="my-8 transform translate-y-4 opacity-0 animate-[slideUp_0.6s_ease-out_forwards]" style={{ animationDelay: '200ms' }}>
                   <div className="relative w-full bg-black rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-3xl group">
                     <div className="relative w-full h-0 pb-[56.25%]">
                       <iframe
-                        src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&fs=1&cc_load_policy=1&iv_load_policy=3&showinfo=0&controls=1`}
-                        title={youtubeMatch.title}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        className="absolute top-0 left-0 w-full h-full transition-all duration-300"
-                        style={{ minHeight: '400px' }}
-                      />
+                         src={iframeSrc}
+                         title={youtubeMatch.title}
+                         frameBorder="0"
+                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                         allowFullScreen
+                         className="absolute top-0 left-0 w-full h-full transition-all duration-300"
+                         style={{ minHeight: '400px' }}
+                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
@@ -114,15 +118,15 @@ export const processHtmlContent = (text: string) => {
         }
         
         .modern-content-renderer h2 {
-          font-size: 1.75rem;
-          font-weight: 700;
+          font-size: 1.25rem;
+          font-weight: 600;
           color: #1f2937;
-          margin: 1.5rem 0 1rem 0;
-          padding: 0.75rem 0;
-          border-left: 3px solid #ef4444;
-          padding-left: 1rem;
+          margin: 1rem 0 0.75rem 0;
+          padding: 0.5rem 0;
+          border-left: 2px solid #ef4444;
+          padding-left: 0.75rem;
           background: linear-gradient(135deg, #fef2f2 0%, #fecaca 100%);
-          border-radius: 0 8px 8px 0;
+          border-radius: 0 6px 6px 0;
           position: relative;
           overflow: hidden;
         }
@@ -139,17 +143,17 @@ export const processHtmlContent = (text: string) => {
         }
         
         .modern-content-renderer h3 {
-          font-size: 1.25rem;
+          font-size: 1rem;
           font-weight: 600;
           color: #dc2626;
-          margin: 1.5rem 0 0.75rem 0;
-          padding: 0.5rem 0.75rem;
+          margin: 1rem 0 0.5rem 0;
+          padding: 0.4rem 0.6rem;
           background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
-          border-radius: 8px;
+          border-radius: 6px;
           border-left: 2px solid #ef4444;
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.4rem;
         }
         
         .modern-content-renderer h3::before {

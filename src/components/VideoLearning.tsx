@@ -75,7 +75,7 @@ const VideoLearning = () => {
                 <iframe
                   width="100%"
                   height="100%"
-                  src={`https://www.youtube.com/embed/${videos[activeVideo].videoId}?autoplay=0&rel=0&modestbranding=1`}
+                  src={`https://www.youtube.com/embed/${videos[activeVideo].videoId}?autoplay=0&rel=0&modestbranding=1&disablekb=1&playsinline=1&origin=${window.location.origin}`}
                   title={videos[activeVideo].title}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Course } from '@/types/course';
 import { soundEngineering102Course } from '@/data/soundEngineering102Course';
 import { motorMechanicPetrol02Course } from '@/data/motorMechanicPetrol02';
+import { comingSoonCourses } from '@/data/comingSoonCourses';
 
 // Define a simplified Course type for the hook's return value
 export interface SimplifiedCourse {
@@ -27,6 +28,9 @@ export interface SimplifiedCourse {
   updated_at: string;
   available: boolean;
   available_date?: string;
+  isComingSoon?: boolean;
+  overview?: string;
+  thumbnail?: string;
 }
 
 // Utility to generate a slug from a string (e.g., 'AI Human Relations' -> 'ai-human-relations')
@@ -63,7 +67,7 @@ export const useCourses = () => {
             id: 'entrepreneurship-final',
             title: 'Entrepreneurship',
             description: '"Entrepreneurship: Creating Your Business" is a comprehensive online course designed to empower aspiring entrepreneurs with the skills, mindset, and strategies needed to launch and sustain a successful business. This course covers the entrepreneurial journey from ideation to execution, exploring critical topics such as identifying market opportunities, conducting effective market research, crafting business models, and implementing targeted marketing strategies. Learners will gain practical insights into the planning and development processes, understand the business ecosystem, and discover how to create a unique value proposition that resonates with customers. Delivered entirely online, this course is accessible globally and combines engaging content with actionable tools to help you turn your business ideas into reality, whether you\'re starting a local service or a scalable tech venture.',
-            category: 'Business & Entrepreneurship',
+            category: 'Business',
             level: 'intermediate',
             duration: '6 weeks',
             is_free: false,
@@ -79,7 +83,7 @@ export const useCourses = () => {
             id: 'ai-human-relations',
             title: 'AI and Human Relations',
             description: 'Explore the intersection of artificial intelligence and human interaction, covering AI fundamentals, ethics, and workplace applications.',
-            category: 'Information Communication and technology',
+            category: 'ICT',
             level: 'intermediate',
             duration: '8 weeks',
             is_free: false,
@@ -95,7 +99,7 @@ export const useCourses = () => {
             id: 'roofing101',
             title: 'Roofing',
             description: 'Comprehensive online course covering roofing design, installation, maintenance, and modern sustainable practices',
-            category: 'Construction',
+            category: 'Construction and Civil',
             level: 'beginner',
             duration: '8-10 weeks',
             is_free: false,
@@ -111,7 +115,7 @@ export const useCourses = () => {
             id: 'plumbing101',
             title: 'Plumbing',
             description: 'Comprehensive online course covering plumbing fundamentals, tools, systems, installation, and professional practices',
-            category: 'Construction',
+            category: 'Construction and Civil',
             level: 'beginner',
             duration: '8-10 weeks',
             is_free: false,
@@ -127,7 +131,7 @@ export const useCourses = () => {
             id: 'tiling-101',
             title: 'Tiling 101',
             description: 'Mastering the Art & Science of Tiling is a comprehensive online course designed to equip learners with the knowledge, skills, and techniques needed to excel in professional and DIY tiling projects. From foundational principles to advanced installation methods, this course covers tile selection, surface preparation, layout planning, cutting techniques, grouting, and maintenance, with a focus on both aesthetic and technical excellence.',
-            category: 'Construction',
+            category: 'Construction and Civil',
             level: 'beginner',
             duration: '6 weeks',
             is_free: false,
@@ -143,7 +147,7 @@ export const useCourses = () => {
             id: 'hair-dressing',
             title: 'Hair Dressing',
             description: 'Professional hair styling, cutting, coloring, and salon management training for beauty industry careers.',
-            category: 'Beauty and Health',
+            category: 'Health and Beauty',
             level: 'beginner',
             duration: '12 weeks',
             is_free: false,
@@ -159,7 +163,7 @@ export const useCourses = () => {
             id: 'nail-technician',
             title: 'Nail Technician',
             description: 'Learn nail care, art, and extension techniques to become a certified nail technician.',
-            category: 'Beauty and Health',
+            category: 'Health and Beauty',
             level: 'beginner',
             duration: '6 weeks',
             is_free: false,
@@ -175,7 +179,7 @@ export const useCourses = () => {
             id: 'podcast-management-101',
             title: 'Podcast Management',
             description: 'Unlock the secrets to creating, managing, and growing a successful podcast with this comprehensive online course, designed to guide you from concept to chart-topping production. Covering ideation, recording, editing, publishing, and marketing, this course equips you with the tools and strategies to build a professional podcast that captivates audiences.',
-            category: 'Media & Content Creation',
+            category: 'Film & Broadcasting',
             level: 'beginner',
             duration: '10 weeks',
             is_free: false,
@@ -191,7 +195,7 @@ export const useCourses = () => {
             id: 'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5',
             title: 'Sound Engineering',
             description: 'Master the art of sound engineering and audio production with comprehensive training in recording, mixing, and mastering techniques.',
-            category: 'Audio Technology',
+            category: 'Film & Broadcasting',
             level: 'intermediate',
             duration: '12 weeks',
             is_free: false,
@@ -207,7 +211,7 @@ export const useCourses = () => {
             id: 'computer-repairs',
             title: 'Computer Repairs',
             description: 'Master computer hardware and software troubleshooting for IT support and repair careers.',
-            category: 'Information Communication and technology',
+            category: 'Electronics',
             level: 'intermediate',
             duration: '10 weeks',
             is_free: false,
@@ -223,7 +227,7 @@ export const useCourses = () => {
             id: 'cellphone-repairs',
             title: 'Cellphone Repairs',
             description: 'Learn smartphone diagnostics, repairs, and maintenance for a career in mobile device repair.',
-            category: 'Information Communication and technology',
+            category: 'Electronics',
             level: 'beginner',
             duration: '8 weeks',
             is_free: false,
@@ -283,16 +287,32 @@ export const useCourses = () => {
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           }
         ];
-        // Set instructor for all courses to Beta Skill Tutor
-        staticCourses.forEach(course => {
+
+        // Add coming soon courses
+        const allCourses = [...staticCourses, ...comingSoonCourses as SimplifiedCourse[]];
+        
+        // Set instructor and missing properties for all courses
+        allCourses.forEach(course => {
           course.instructor = {
             id: 'betaskilltutor',
-            first_name: 'Beta Skill',
-            last_name: 'Tutor',
+            first_name: 'Dr. Russon',
+            last_name: 'Nkuna',
             email: 'betaskilltraining@gmail.com'
           };
+          
+          // Ensure coming soon courses have proper properties
+          if (course.isComingSoon) {
+            course.available = false;
+            course.status = 'approved';
+            course.created_at = course.created_at || new Date().toISOString();
+            course.updated_at = course.updated_at || new Date().toISOString();
+            course.is_free = false;
+            course.currency = 'ZAR';
+            course.students = 0;
+            course.rating = 5.0;
+          }
         });
-        setCourses(staticCourses);
+        setCourses(allCourses);
         setLoading(false);
       } catch (err) {
         console.error('Error loading courses:', err);

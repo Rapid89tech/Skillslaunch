@@ -20,23 +20,19 @@ const Courses = () => {
     availability: ''
   });
 
-  // Define all possible categories, including the new ones
+  // Define the main categories we want to show
   const allStaticCategories = [
-    "Audio Technology",
-    "Beauty and Health",
-    "Business & Entrepreneurship",
-    "Construction",
-    "Information Communication and technology",
-    "Mechanical Repairs",
-    "Media & Content Creation",
+    "Business",
+    "ICT", 
+    "Electronics",
+    "Construction and Civil",
+    "Health and Beauty",
+    "Film & Broadcasting",
     "Religion",
     "Hospitality and Culinary",
-    "Office and Admin",
-    "Construction and Civil",
-    "Motor Vehicles",
+    "Motor Vehicles", 
     "Appliances",
-    "Professional Services",
-    "Film & Broadcasting"
+    "Professional Services"
   ];
 
   // Get unique categories from courses and combine with static categories
