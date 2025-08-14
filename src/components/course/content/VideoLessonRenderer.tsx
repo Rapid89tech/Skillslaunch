@@ -6,6 +6,7 @@ import AnimatedLessonContent from './AnimatedLessonContent';
 import ContentFormatter from './animated-lesson/ContentFormatter';
 import Module1HardwareContent from './lessons/Module1HardwareContent';
 import SoundEngineeringContent from './lessons/SoundEngineeringContent';
+import MinimalIconProcessor from './MinimalIconProcessor';
 import { generateFallbackContent } from './video-lesson/ContentGenerator';
 import type { VideoLesson } from '@/types/course';
 
@@ -51,7 +52,7 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
   
   // Add video URL to the content if it exists - this ensures videos show as actual players
   const enhancedContent = lesson.content?.videoUrl 
-    ? `📺 YOUTUBE: ${lesson.title} - ${lesson.content.videoUrl}\n\n${lessonContent}`
+    ? `• YOUTUBE: ${lesson.title} - ${lesson.content.videoUrl}\n\n${lessonContent}`
     : lessonContent;
   
   // Debug logging - minimal to avoid performance issues

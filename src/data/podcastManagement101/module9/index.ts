@@ -7,7 +7,7 @@ import { module9Quiz } from './quiz';
 
 const module9: Module = {
   id: 9,
-  title: '📋 Module 9: Project and Team Management',
+  title: '• Module 9: Project and Team Management',
   description: 'Master project management tools, workflow automation, guest management, and SOPs for professional podcast production',
   lessons: [
     lesson1ProjectManagementTools,

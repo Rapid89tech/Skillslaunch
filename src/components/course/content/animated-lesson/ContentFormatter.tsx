@@ -5,6 +5,7 @@ import rehypeRaw from 'rehype-raw';
 import { parseYouTubeRenderer, parseYouTubeLink } from './formatters/YouTubeParser';
 import { VisualTableRenderer, parseTableContent } from './formatters/VisualTableRenderer';
 import { processHtmlContent } from './formatters/HtmlContentProcessor';
+import { replaceEmojiIcons } from '@/utils/courseIcons';
 
 interface ContentFormatterProps {
   content: string;
@@ -297,8 +298,8 @@ const ContentFormatter = ({ content }: ContentFormatterProps) => {
   }
 
 
-  // Preprocess for YouTube custom formats
-  let processedContent = preprocessYouTubeEmbeds(content);
+  // Preprocess for YouTube custom formats and replace emoji icons with minimal dots
+  let processedContent = replaceEmojiIcons(preprocessYouTubeEmbeds(content));
   // Replace table markdown with custom table renderer if needed
   const tables = parseTableContent(processedContent);
   tables.forEach(table => {

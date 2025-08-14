@@ -3,6 +3,7 @@ import AnimationControls from './animated-lesson/AnimationControls';
 import ContentFormatter from './animated-lesson/ContentFormatter';
 import ProgressIndicator from './animated-lesson/ProgressIndicator';
 import EmptyState from './animated-lesson/EmptyState';
+import MinimalIconProcessor from './MinimalIconProcessor';
 import { parseContent } from './animated-lesson/ContentParser';
 
 interface AnimatedLessonContentProps {
@@ -221,7 +222,9 @@ const AnimatedLessonContent = ({ content, onComplete, lessonTitle }: AnimatedLes
         {/* Content Container */}
         <div ref={containerRef} className="relative z-10 p-8 md:p-12 min-h-[300px]">
           {displayedContent ? (
-            <ContentFormatter content={displayedContent} />
+            <MinimalIconProcessor content={displayedContent}>
+              <ContentFormatter content={displayedContent} />
+            </MinimalIconProcessor>
           ) : (
             <EmptyState />
           )}
