@@ -2,142 +2,164 @@ import type { Quiz } from '@/types/course';
 
 export const module5Quiz: Quiz = {
   id: 3,
-  title: 'Module 5 Quiz: Funding and Financial Management',
+  title: 'Module 5 Quiz: Branding and Marketing Strategies',
   duration: '20 min',
   type: 'quiz',
   content: {
     questions: [
       {
-        question: 'What is bootstrapping in business funding?',
+        question: 'What is the primary purpose of establishing a brand voice?',
         options: [
-          'Raising money from investors',
-          'Using personal savings and resources to fund your business',
-          'Applying for a government grant',
-          'Taking out a business loan'
+          'To create a visually appealing logo',
+          'To maintain a consistent personality and tone in communication',
+          'To increase product prices',
+          'To write technical manuals'
         ],
         correct: 1,
-        explanation: 'Bootstrapping uses personal funds to start and grow a business, preserving control without external debt or equity dilution.'
+        explanation: 'Brand voice ensures consistent communication, reflecting the brand\'s personality and building customer recognition and trust.'
       },
       {
-        question: 'Which type of investor typically invests their own money and offers mentorship?',
+        question: 'Which of the following is NOT a key component of brand messaging?',
         options: [
-          'Venture Capitalists',
-          'Angel Investors',
-          'Bank Loan Officers',
-          'Crowdfunding Platforms'
+          'Core message',
+          'Tagline or slogan',
+          'Product pricing',
+          'Value statements'
+        ],
+        correct: 2,
+        explanation: 'Brand messaging includes core messages, taglines, and value statements, but pricing is part of marketing strategy, not messaging.'
+      },
+      {
+        question: 'Which social media marketing strategy helps increase direct engagement with customers?',
+        options: [
+          'Ignoring comments',
+          'Posting randomly without a schedule',
+          'Responding to comments and messages promptly',
+          'Avoiding paid ads'
+        ],
+        correct: 2,
+        explanation: 'Prompt responses on social media foster direct engagement, building relationships and trust with customers.'
+      },
+      {
+        question: 'What is one major benefit of digital marketing over traditional marketing?',
+        options: [
+          'It is less measurable',
+          'It can reach a global audience quickly and affordably',
+          'It requires no planning',
+          'It is only useful for large companies'
         ],
         correct: 1,
-        explanation: 'Angel investors provide personal funds and mentorship to early-stage startups, supporting growth with industry insights.'
+        explanation: 'Digital marketing offers global reach, cost-effectiveness, and measurable results, unlike traditional marketing\'s limited scope.'
       },
       {
-        question: 'What is a key disadvantage of business loans?',
+        question: 'Networking helps businesses by:',
         options: [
-          'You must give up equity in your business',
-          'You have to repay the loan with interest regardless of business success',
-          'There is no need to repay the money',
-          'They always come with free mentorship'
+          'Increasing costs',
+          'Providing access to resources and opportunities',
+          'Limiting business growth',
+          'Reducing customer engagement'
         ],
         correct: 1,
-        explanation: 'Loans require repayment with interest, creating a financial obligation that can strain cash flow if revenue falls short.'
+        explanation: 'Networking connects businesses to suppliers, partners, and customers, fostering growth through valuable relationships.'
       },
       {
-        question: 'What is the primary benefit of grants for small businesses?',
+        question: 'Which of the following is a type of business partnership?',
         options: [
-          'They do not have to be repaid',
-          'They offer unlimited funding',
-          'They are easy to get with no application process',
-          'They come with no restrictions'
+          'Solo venture',
+          'Strategic alliance',
+          'Individual freelancing',
+          'Monopoly'
+        ],
+        correct: 1,
+        explanation: 'Strategic alliances are partnerships that leverage mutual strengths, unlike solo ventures or freelancing.'
+      },
+      {
+        question: 'Customer loyalty programs primarily aim to:',
+        options: [
+          'Attract new customers only',
+          'Reward repeat customers and encourage ongoing purchases',
+          'Increase product prices',
+          'Limit customer access to services'
+        ],
+        correct: 1,
+        explanation: 'Loyalty programs incentivize repeat purchases, increasing retention and customer lifetime value.'
+      },
+      {
+        question: 'Which of these is a common type of loyalty program?',
+        options: [
+          'Points-based system',
+          'Random giveaways without tracking',
+          'Unlimited free products without purchase',
+          'One-time discounts only'
         ],
         correct: 0,
-        explanation: 'Grants provide non-repayable funds, supporting growth without debt, though they require competitive applications and compliance.'
+        explanation: 'Points-based systems reward purchases with redeemable points, a common and effective loyalty program structure.'
       },
       {
-        question: 'Why is managing cash flow important for a business?',
+        question: 'Why is personalized communication important in customer engagement?',
         options: [
-          'To avoid paying taxes',
-          'To ensure the business has enough cash to cover expenses and invest in growth',
-          'To increase employee salaries',
-          'To avoid having a business plan'
+          'It makes communication more relevant and builds stronger relationships',
+          'It increases marketing costs unnecessarily',
+          'It annoys customers',
+          'It limits the audience'
+        ],
+        correct: 0,
+        explanation: 'Personalized communication tailors messages to customer needs, fostering stronger connections and loyalty.'
+      },
+      {
+        question: 'To ensure a successful partnership, it is important to:',
+        options: [
+          'Avoid communication after signing an agreement',
+          'Define clear roles and responsibilities',
+          'Ignore conflicts',
+          'Avoid legal agreements'
         ],
         correct: 1,
-        explanation: 'Cash flow management ensures liquidity for operations, prevents debt, and enables investments in marketing or inventory.'
+        explanation: 'Clear roles in partnerships prevent conflicts and ensure mutual benefits, supporting successful collaborations.'
       },
       {
-        question: 'Which of the following is NOT a common pricing strategy?',
+        question: 'What is the main goal of content marketing?',
         options: [
-          'Cost-plus pricing',
-          'Penetration pricing',
-          'Value-based pricing',
-          'Random pricing'
-        ],
-        correct: 3,
-        explanation: 'Random pricing is not a recognized strategy; valid options include cost-plus, penetration, and value-based pricing.'
-      },
-      {
-        question: 'What is one major advantage of using accounting software?',
-        options: [
-          'It eliminates the need to keep any financial records',
-          'It automates invoicing and tracks revenue and expenses accurately',
-          'It guarantees business success',
-          'It reduces the need for employees'
+          'To sell products directly',
+          'To educate and attract audiences with valuable content',
+          'To replace social media marketing',
+          'To reduce website traffic'
         ],
         correct: 1,
-        explanation: 'Accounting software streamlines financial tracking, reduces errors, and provides real-time insights for decision-making.'
+        explanation: 'Content marketing builds authority and engagement by providing valuable information, not direct sales.'
       },
       {
-        question: 'What does \'profitability\' indicate in business?',
+        question: 'What is a key benefit of influencer marketing?',
         options: [
-          'The total amount of sales made',
-          'The amount of money left after all expenses are paid',
-          'The amount of money spent on advertising',
-          'The total number of customers'
+          'It requires no budget',
+          'It amplifies brand visibility through trusted voices',
+          'It guarantees immediate sales',
+          'It avoids audience targeting'
         ],
         correct: 1,
-        explanation: 'Profitability measures net profit, indicating financial health after deducting costs, guiding sustainable business decisions.'
+        explanation: 'Influencer marketing leverages trusted figures to expand reach and build credibility with targeted audiences.'
       },
       {
-        question: 'What is a key benefit of crowdfunding for startups?',
+        question: 'What is a primary advantage of email marketing?',
         options: [
-          'It requires no marketing effort',
-          'It validates market demand and engages customers',
-          'It guarantees large-scale funding',
-          'It involves giving up full ownership'
+          'It is expensive and time-consuming',
+          'It delivers personalized messages at low cost',
+          'It requires no customer data',
+          'It replaces all other marketing strategies'
         ],
         correct: 1,
-        explanation: 'Crowdfunding tests market interest, engages backers, and raises funds without equity loss, though it requires marketing effort.'
+        explanation: 'Email marketing offers cost-effective, personalized communication, driving engagement and conversions efficiently.'
       },
       {
-        question: 'What is the purpose of financial forecasting?',
+        question: 'What does event marketing achieve for a business?',
         options: [
-          'To eliminate the need for accounting software',
-          'To predict future revenue, expenses, and cash flow for planning',
-          'To replace a business plan',
-          'To avoid tax compliance'
+          'It reduces customer interaction',
+          'It creates buzz and engages audiences directly',
+          'It eliminates the need for digital marketing',
+          'It focuses only on existing customers'
         ],
         correct: 1,
-        explanation: 'Financial forecasting projects financial performance, guiding budgeting, funding needs, and strategic decisions for growth.'
-      },
-      {
-        question: 'What is a key feature of equity crowdfunding?',
-        options: [
-          'It provides funds without any investor involvement',
-          'It involves selling small equity stakes to many investors',
-          'It requires no regulatory compliance',
-          'It focuses only on debt financing'
-        ],
-        correct: 1,
-        explanation: 'Equity crowdfunding raises funds by offering equity to multiple investors, engaging a broad base while requiring regulatory compliance.'
-      },
-      {
-        question: 'Why is budgeting important for business growth?',
-        options: [
-          'It eliminates the need for revenue tracking',
-          'It allocates funds to prioritize revenue-generating activities',
-          'It replaces the need for pricing strategies',
-          'It ensures unlimited funding'
-        ],
-        correct: 1,
-        explanation: 'Budgeting ensures resources are directed to key areas like marketing, supporting profitability and sustainable growth.'
+        explanation: 'Event marketing generates excitement and fosters direct interaction, building community and driving sales.'
       }
     ]
   }

@@ -2,164 +2,142 @@ import type { Quiz } from '@/types/course';
 
 export const module6Quiz: Quiz = {
   id: 3,
-  title: 'Module 6 Quiz: Branding and Marketing Strategies',
+  title: 'Module 6 Quiz: Launching and Scaling the Business',
   duration: '20 min',
   type: 'quiz',
   content: {
     questions: [
       {
-        question: 'What is the primary purpose of establishing a brand voice?',
+        question: 'What is a soft launch?',
         options: [
-          'To create a visually appealing logo',
-          'To maintain a consistent personality and tone in communication',
-          'To increase product prices',
-          'To write technical manuals'
+          'Launching with full marketing and operations',
+          'Testing the business with a limited audience before full launch',
+          'Closing the business temporarily',
+          'Offering free services permanently'
         ],
         correct: 1,
-        explanation: 'Brand voice ensures consistent communication, reflecting the brand\'s personality and building customer recognition and trust.'
+        explanation: 'A soft launch tests operations on a small scale to refine processes before a full market rollout.'
       },
       {
-        question: 'Which of the following is NOT a key component of brand messaging?',
+        question: 'Why is customer feedback important before scaling?',
         options: [
-          'Core message',
-          'Tagline or slogan',
-          'Product pricing',
-          'Value statements'
+          'It boosts social media followers',
+          'It ensures products meet market needs and reduces risks',
+          'It guarantees 100% profit',
+          'It avoids operational planning'
+        ],
+        correct: 1,
+        explanation: 'Feedback identifies issues, aligns offerings with demand, and prevents costly errors during scaling.'
+      },
+      {
+        question: 'What is a benefit of testing operations with a limited audience?',
+        options: [
+          'Increases large-scale failures',
+          'Identifies issues early, saving costs',
+          'Eliminates customer feedback',
+          'Slows business growth'
+        ],
+        correct: 1,
+        explanation: 'Testing with a limited audience catches operational flaws, reducing financial and reputational risks.'
+      },
+      {
+        question: 'What is a good reason to expand product lines?',
+        options: [
+          'To increase costs',
+          'To meet customer needs and increase sales',
+          'To complicate logistics',
+          'To reduce product offerings'
+        ],
+        correct: 1,
+        explanation: 'Expanding product lines diversifies offerings, attracts new customers, and boosts revenue streams.'
+      },
+      {
+        question: 'What is one risk of expanding too quickly?',
+        options: [
+          'Gaining brand awareness',
+          'Overstretching resources and reducing quality',
+          'Improving operations too fast',
+          'Attracting too many customers'
+        ],
+        correct: 1,
+        explanation: 'Rapid expansion can strain finances and operations, compromising quality and customer satisfaction.'
+      },
+      {
+        question: 'What should be the first step before entering a new market?',
+        options: [
+          'Hire new staff',
+          'Conduct market research',
+          'Open a new office immediately',
+          'Change your business name'
+        ],
+        correct: 1,
+        explanation: 'Research ensures market fit, identifies competitors, and aligns offerings with local preferences.'
+      },
+      {
+        question: 'Why is localization important when entering a new geographic market?',
+        options: [
+          'To confuse customers',
+          'To fit cultural, language, and buying preferences',
+          'To reduce product quality',
+          'To increase marketing complexity'
+        ],
+        correct: 1,
+        explanation: 'Localization tailors products and messaging to resonate with new markets, building trust and relevance.'
+      },
+      {
+        question: 'Which tool can help automate social media marketing?',
+        options: [
+          'QuickBooks',
+          'Canva',
+          'Mailchimp or Buffer',
+          'Excel only'
         ],
         correct: 2,
-        explanation: 'Brand messaging includes core messages, taglines, and value statements, but pricing is part of marketing strategy, not messaging.'
+        explanation: 'These tools automate social media scheduling and analytics, streamlining marketing efforts.'
       },
       {
-        question: 'Which social media marketing strategy helps increase direct engagement with customers?',
+        question: 'What is the benefit of using a CRM tool?',
         options: [
-          'Ignoring comments',
-          'Posting randomly without a schedule',
-          'Responding to comments and messages promptly',
-          'Avoiding paid ads'
-        ],
-        correct: 2,
-        explanation: 'Prompt responses on social media foster direct engagement, building relationships and trust with customers.'
-      },
-      {
-        question: 'What is one major benefit of digital marketing over traditional marketing?',
-        options: [
-          'It is less measurable',
-          'It can reach a global audience quickly and affordably',
-          'It requires no planning',
-          'It is only useful for large companies'
+          'It helps clean your office',
+          'It tracks customer interactions and manages sales',
+          'It manages staff salaries',
+          'It pays taxes'
         ],
         correct: 1,
-        explanation: 'Digital marketing offers global reach, cost-effectiveness, and measurable results, unlike traditional marketing\'s limited scope.'
+        explanation: 'CRM tools automate lead tracking and communication, enhancing sales and customer relationships.'
       },
       {
-        question: 'Networking helps businesses by:',
+        question: 'What does streamlining operations mean?',
         options: [
-          'Increasing costs',
-          'Providing access to resources and opportunities',
-          'Limiting business growth',
-          'Reducing customer engagement'
+          'Adding more manual steps',
+          'Making processes simpler and more efficient',
+          'Complicating workflows',
+          'Reducing business size'
         ],
         correct: 1,
-        explanation: 'Networking connects businesses to suppliers, partners, and customers, fostering growth through valuable relationships.'
+        explanation: 'Streamlining optimizes workflows, reducing costs and supporting scalable growth.'
       },
       {
-        question: 'Which of the following is a type of business partnership?',
+        question: 'What is a key benefit of strategic partnerships?',
         options: [
-          'Solo venture',
-          'Strategic alliance',
-          'Individual freelancing',
-          'Monopoly'
+          'Increasing operational costs',
+          'Sharing resources and expanding market reach',
+          'Limiting customer access',
+          'Reducing product quality'
         ],
         correct: 1,
-        explanation: 'Strategic alliances are partnerships that leverage mutual strengths, unlike solo ventures or freelancing.'
+        explanation: 'Partnerships leverage mutual strengths, reducing costs and accessing new audiences for growth.'
       },
       {
-        question: 'Customer loyalty programs primarily aim to:',
+        question: 'How does data analytics support scaling?',
         options: [
-          'Attract new customers only',
-          'Reward repeat customers and encourage ongoing purchases',
-          'Increase product prices',
-          'Limit customer access to services'
+          'It eliminates the need for customer feedback',
+          'It provides insights to optimize strategies and predict trends',
+          'It increases operational complexity',
+          'It reduces marketing efforts'
         ],
         correct: 1,
-        explanation: 'Loyalty programs incentivize repeat purchases, increasing retention and customer lifetime value.'
-      },
-      {
-        question: 'Which of these is a common type of loyalty program?',
-        options: [
-          'Points-based system',
-          'Random giveaways without tracking',
-          'Unlimited free products without purchase',
-          'One-time discounts only'
-        ],
-        correct: 0,
-        explanation: 'Points-based systems reward purchases with redeemable points, a common and effective loyalty program structure.'
-      },
-      {
-        question: 'Why is personalized communication important in customer engagement?',
-        options: [
-          'It makes communication more relevant and builds stronger relationships',
-          'It increases marketing costs unnecessarily',
-          'It annoys customers',
-          'It limits the audience'
-        ],
-        correct: 0,
-        explanation: 'Personalized communication tailors messages to customer needs, fostering stronger connections and loyalty.'
-      },
-      {
-        question: 'To ensure a successful partnership, it is important to:',
-        options: [
-          'Avoid communication after signing an agreement',
-          'Define clear roles and responsibilities',
-          'Ignore conflicts',
-          'Avoid legal agreements'
-        ],
-        correct: 1,
-        explanation: 'Clear roles in partnerships prevent conflicts and ensure mutual benefits, supporting successful collaborations.'
-      },
-      {
-        question: 'What is the main goal of content marketing?',
-        options: [
-          'To sell products directly',
-          'To educate and attract audiences with valuable content',
-          'To replace social media marketing',
-          'To reduce website traffic'
-        ],
-        correct: 1,
-        explanation: 'Content marketing builds authority and engagement by providing valuable information, not direct sales.'
-      },
-      {
-        question: 'What is a key benefit of influencer marketing?',
-        options: [
-          'It requires no budget',
-          'It amplifies brand visibility through trusted voices',
-          'It guarantees immediate sales',
-          'It avoids audience targeting'
-        ],
-        correct: 1,
-        explanation: 'Influencer marketing leverages trusted figures to expand reach and build credibility with targeted audiences.'
-      },
-      {
-        question: 'What is a primary advantage of email marketing?',
-        options: [
-          'It is expensive and time-consuming',
-          'It delivers personalized messages at low cost',
-          'It requires no customer data',
-          'It replaces all other marketing strategies'
-        ],
-        correct: 1,
-        explanation: 'Email marketing offers cost-effective, personalized communication, driving engagement and conversions efficiently.'
-      },
-      {
-        question: 'What does event marketing achieve for a business?',
-        options: [
-          'It reduces customer interaction',
-          'It creates buzz and engages audiences directly',
-          'It eliminates the need for digital marketing',
-          'It focuses only on existing customers'
-        ],
-        correct: 1,
-        explanation: 'Event marketing generates excitement and fosters direct interaction, building community and driving sales.'
+        explanation: 'Data analytics tracks performance and customer behavior, guiding informed scaling decisions.'
       }
     ]
   }

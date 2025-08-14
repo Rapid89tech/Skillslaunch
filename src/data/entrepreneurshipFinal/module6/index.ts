@@ -1,15 +1,15 @@
 import type { Module } from '@/types/course';
-import { lesson1BrandIdentity } from './lesson1-brand-identity';
-import { lesson2MarketingStrategies } from './lesson2-marketing-strategies';
+import { lesson1LaunchingStrategies } from './lesson1-launching-strategies';
+import { lesson2ScalingStrategies } from './lesson2-scaling-strategies';
 import { module6Quiz } from './quiz';
 
 const module6: Module = {
   id: 6,
-  title: 'Branding and Marketing Strategies',
-  description: 'Creating a strong brand and effective marketing plan is essential for attracting customers, building loyalty, and driving sales in competitive markets. This module explores the foundations of branding—crafting a unique value proposition, designing a compelling visual identity, establishing a consistent brand voice, and developing a memorable tagline. It also covers marketing strategies, including social media and digital marketing, networking and partnerships, customer engagement, loyalty programs, content marketing, and influencer marketing. These strategies ensure startups stand out, connect with audiences, and achieve sustainable growth.',
+  title: 'Launching and Scaling the Business',
+  description: 'Launching and scaling a business marks the transition from planning to execution and growth. This module covers the critical steps of launching—through soft launches and full launches—and scaling strategies, including expanding product lines, entering new markets, automating operations, building strategic partnerships, and leveraging data analytics. These approaches ensure startups validate operations, optimize processes, and grow sustainably while maintaining quality, profitability, and customer satisfaction in competitive markets.',
   lessons: [
-    lesson1BrandIdentity,
-    lesson2MarketingStrategies,
+    lesson1LaunchingStrategies,
+    lesson2ScalingStrategies,
     module6Quiz
   ]
 };

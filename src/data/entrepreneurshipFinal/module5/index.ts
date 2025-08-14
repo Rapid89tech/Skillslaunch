@@ -1,15 +1,15 @@
 import type { Module } from '@/types/course';
-import { lesson1FundingSources } from './lesson1-funding-sources';
-import { lesson2FinancialPlanning } from './lesson2-financial-planning';
+import { lesson1BrandIdentity } from './lesson1-brand-identity';
+import { lesson2MarketingStrategies } from './lesson2-marketing-strategies';
 import { module5Quiz } from './quiz';
 
 const module5: Module = {
   id: 5,
-  title: 'Funding and Financial Management',
-  description: 'Securing capital and managing finances effectively are pivotal for entrepreneurial success. This module explores diverse funding sources—bootstrapping, investors, loans, grants, crowdfunding, government-backed financing, and equity crowdfunding—and comprehensive financial management practices, including cash flow management, pricing strategies, profitability tracking, financial forecasting, and budgeting. These elements ensure liquidity, competitiveness, and stakeholder confidence, enabling startups to navigate market challenges, maintain financial health, and achieve sustainable growth in dynamic environments.',
+  title: 'Branding and Marketing Strategies',
+  description: 'Creating a strong brand and effective marketing plan is essential for attracting customers, building loyalty, and driving sales in competitive markets. This module explores the foundations of branding—crafting a unique value proposition, designing a compelling visual identity, establishing a consistent brand voice, and developing a memorable tagline. It also covers marketing strategies, including social media and digital marketing, networking and partnerships, customer engagement, loyalty programs, content marketing, and influencer marketing. These strategies ensure startups stand out, connect with audiences, and achieve sustainable growth.',
   lessons: [
-    lesson1FundingSources,
-    lesson2FinancialPlanning,
+    lesson1BrandIdentity,
+    lesson2MarketingStrategies,
     module5Quiz
   ]
 };

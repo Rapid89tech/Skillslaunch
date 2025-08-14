@@ -5,7 +5,6 @@ import module3 from './entrepreneurshipFinal/module3';
 import module4 from './entrepreneurshipFinal/module4';
 import module5 from './entrepreneurshipFinal/module5';
 import module6 from './entrepreneurshipFinal/module6';
-import module7 from './entrepreneurshipFinal/module7';
 
 export const entrepreneurshipFinalCourse: Course = {
   id: 'entrepreneurship-final',
@@ -41,8 +40,7 @@ export const entrepreneurshipFinalCourse: Course = {
     module3,
     module4,
     module5,
-    module6,
-    module7
+    module6
   ]
 };
 

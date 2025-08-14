@@ -1,33 +1,25 @@
 import type { Module } from '@/types/course';
-import { lesson1MarketResearchOverview } from './lesson1-market-research-overview';
-import { lesson2IdentifyingTargetCustomers } from './lesson2-identifying-target-customers';
-import { lesson3UnderstandingCustomerNeeds } from './lesson3-understanding-customer-needs';
-import { lesson4MethodsToIdentifyCustomers } from './lesson4-methods-to-identify-customers';
-import { lesson5CreatingCustomerPersonas } from './lesson5-creating-customer-personas';
-import { lesson6UsingNeedsToShapeBusiness } from './lesson6-using-needs-to-shape-business';
-import { lesson7AnalyzingCompetitors } from './lesson7-analyzing-competitors';
-import { lesson8AssessingDemand } from './lesson8-assessing-demand';
-import { lesson9IdeaValidation } from './lesson9-idea-validation';
-import { lesson10CreatingMvp } from './lesson10-creating-mvp';
-import { lesson11GatheringFeedback } from './lesson11-gathering-feedback';
+import { lesson1BusinessPlanComponents } from './lesson1-business-plan-components';
+import { lesson2ExecutiveSummary } from './lesson2-executive-summary';
+import { lesson3BusinessDescription } from './lesson3-business-description';
+import { lesson4MarketAnalysis } from './lesson4-market-analysis';
+import { lesson5OperationalPlan } from './lesson5-operational-plan';
+import { lesson6FinancialPlan } from './lesson6-financial-plan';
+import { lesson7SmartGoals } from './lesson7-smart-goals';
 import { module2Quiz } from './quiz';
 
 const module2: Module = {
   id: 2,
-  title: 'Market Research',
-  description: 'Market research is the foundation of any successful entrepreneurial venture, enabling you to identify your target customers, understand their needs, and validate your business idea. This module explores the critical steps of defining your audience, assessing demand, analyzing competitors, and gathering feedback to ensure your product or service aligns with market realities.',
+  title: 'Developing a Business Plan',
+  description: 'A business plan is a strategic roadmap that outlines your startup\'s goals, operations, and financial projections. It serves as a blueprint for launching and growing your business, providing clarity for you and credibility for investors or partners. This module covers the key components of a business plan—Executive Summary, Business Description, Market Analysis, Operational Plan, and Financial Plan—along with the importance of setting SMART goals to ensure your objectives are clear, trackable, and aligned with your vision.',
   lessons: [
-    lesson1MarketResearchOverview,
-    lesson2IdentifyingTargetCustomers,
-    lesson3UnderstandingCustomerNeeds,
-    lesson4MethodsToIdentifyCustomers,
-    lesson5CreatingCustomerPersonas,
-    lesson6UsingNeedsToShapeBusiness,
-    lesson7AnalyzingCompetitors,
-    lesson8AssessingDemand,
-    lesson9IdeaValidation,
-    lesson10CreatingMvp,
-    lesson11GatheringFeedback,
+    lesson1BusinessPlanComponents,
+    lesson2ExecutiveSummary,
+    lesson3BusinessDescription,
+    lesson4MarketAnalysis,
+    lesson5OperationalPlan,
+    lesson6FinancialPlan,
+    lesson7SmartGoals,
     module2Quiz
   ]
 };
