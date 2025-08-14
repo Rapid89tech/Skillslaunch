@@ -238,7 +238,23 @@ export const useCourses = () => {
             instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           },
-          // 12. Motor Mechanic (Petrol)
+          // 12. Cellphone Repairs and Maintenance 101
+          {
+            id: 'cellphone-repairs-101',
+            title: 'Cellphone Repairs and Maintenance 101',
+            description: 'The Cell Phone Repairs and Maintenance course is an in-depth, fully online program designed to provide learners with practical, hands-on skills to diagnose, repair, and maintain modern smartphones. Covering essential topics such as hardware component identification, troubleshooting common issues (e.g., cracked screens, battery failures), software recovery, and preventive maintenance, this course equips participants with the expertise needed to address real-world cellphone challenges.',
+            category: 'Technology',
+            level: 'intermediate',
+            duration: '7 weeks',
+            is_free: false,
+            price: 299,
+            currency: 'ZAR',
+            students: 1250,
+            rating: 4.8,
+            instructor: { id: 'betaskilltutor', first_name: 'Professional Repair', last_name: 'Technician', email: 'betaskilltraining@gmail.com' },
+            status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
+          },
+          // 13. Motor Mechanic (Petrol)
           {
             id: 'motor-mechanic-petrol',
             title: 'Motor Mechanic (Petrol)',
@@ -254,7 +270,7 @@ export const useCourses = () => {
             instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           },
-          // 13. Motor Mechanic (Petrol Engine) 02
+          // 14. Motor Mechanic (Petrol Engine) 02
           {
             id: 'motor-mechanic-petrol-02',
             title: 'Motor Mechanic (Petrol Engine) 02',
@@ -270,7 +286,7 @@ export const useCourses = () => {
             instructor: { id: 'betaskilltutor', first_name: 'Beta Skill', last_name: 'Tutor', email: 'betaskilltraining@gmail.com' },
             status: 'approved', created_at: new Date().toISOString(), updated_at: new Date().toISOString(), available: true
           },
-          // 14. Motor Mechanic (Diesel) - keeping this one, removing "Diesel Mechanic"
+          // 15. Motor Mechanic (Diesel) - keeping this one, removing "Diesel Mechanic"
           {
             id: 'motor-mechanic-diesel',
             title: 'Motor Mechanic (Diesel)',

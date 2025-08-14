@@ -18,48 +18,6 @@ By the end of this course, learners will be able to:
 * Estimate repair costs and timelines accurately using digital resources and industry-standard pricing guides.  
 * Apply professional repair practices, including safe handling of electronic components, customer communication, and documentation of repair processes.
 
-# **Target Audience:**
-
-This course is tailored for:
-
-* Aspiring cell phone repair technicians seeking to build a career in the mobile repair industry.  
-* Hobbyists and DIY enthusiasts interested in learning smartphone repair for personal use or as a side project.  
-* Small business owners or entrepreneurs looking to offer phone repair services as part of their business model.  
-* Individuals with a basic understanding of electronic devices and familiarity with simple hand tools (e.g., screwdrivers, tweezers).  
-* Learners comfortable with hands-on practice and eager to develop technical skills through online learning. No advanced technical knowledge is required, making this course accessible to beginners with a willingness to engage in practical, self-paced learning.
-
-# **Learning Materials/Resources:**
-
-The course provides a robust set of digital resources to support learning:
-
-* **Video Tutorials**: High-definition, step-by-step videos demonstrating repair techniques, from disassembling devices to replacing components.  
-* **Downloadable PDFs**: Guides on smartphone anatomy, troubleshooting checklists, and safety protocols for repairs.  
-* **Interactive Quizzes**: Online quizzes to test knowledge of components, diagnostic methods, and repair procedures.  
-* **Virtual Repair Simulations**: Browser-based tools allowing learners to practice repairs in a risk-free digital environment.  
-* **Discussion Forums**: Online platforms for learners to ask questions, share case studies, and collaborate with peers.  
-* **Tool and Software Guides**: Curated lists of recommended repair tools (e.g., precision screwdrivers, spudgers, multimeters) and free software (e.g., iTunes, Odin) with setup instructions.  
-* **Resource Links**: Access to online suppliers for affordable tools and replacement parts, ensuring cost-effective learning. Required: A computer or tablet with internet access; optional basic repair tools for hands-on practice. No proprietary software or platforms are needed, ensuring affordability and ease of access.
-
-# **Assessment/Evaluation Methods:**
-
-Learner progress is evaluated through diverse, online-based assessments:
-
-* **Online Quizzes**: Scenario-based and multiple-choice quizzes to assess understanding of hardware, software, and troubleshooting concepts, with immediate feedback.  
-* **Practical Assignments**: Tasks requiring learners to document a repair process (e.g., via written reports or short videos) using virtual tools or personal devices.  
-* **Peer Reviews**: Collaborative evaluations where learners provide feedback on peers’ submitted assignments, fostering community learning.  
-* **Final Project**: A capstone task where learners diagnose and propose a repair plan for a complex smartphone issue, submitting a detailed report or video demonstration.  
-* **Progress Dashboard**: A personalized online portal tracks quiz scores, assignment submissions, and project completion, with detailed feedback delivered via email or the platform. Certificates of completion are awarded to learners achieving a minimum of 70% across assessments, with constructive feedback to support skill development.
-
-# **Support & Interaction:**
-
-Learners benefit from extensive support and interactive opportunities:
-
-* **Smart AI Voice Tutor**: A 24/7 voice-activated AI tutor that answers questions, clarifies concepts, and provides real-time guidance on repair techniques.  
-* **Email Helpdesk**: Responsive support for technical or course-related inquiries, with replies within 24 hours.  
-* **Live Q\&A Webinars**: Biweekly sessions with instructors to address common issues, demonstrate advanced repairs, and engage with learners.  
-* **Community Forums**: Active online discussion boards for sharing repair experiences, troubleshooting tips, and peer collaboration.  
-* **Group Projects**: Optional team-based assignments where learners work virtually to solve complex repair scenarios, enhancing teamwork and problem-solving skills. The course fosters a supportive, interactive online environment, ensuring learners feel connected and empowered throughout their training.
-
 # 
 
 # 
