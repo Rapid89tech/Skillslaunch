@@ -1,33 +1,15 @@
 import type { Module } from '@/types/course';
-import { lesson1MarketResearchOverview } from './lesson1-market-research-overview';
-import { lesson2IdentifyingTargetCustomers } from './lesson2-identifying-target-customers';
-import { lesson3UnderstandingCustomerNeeds } from './lesson3-understanding-customer-needs';
-import { lesson4MethodsToIdentifyCustomers } from './lesson4-methods-to-identify-customers';
-import { lesson5CreatingCustomerPersonas } from './lesson5-creating-customer-personas';
-import { lesson6UsingNeedsToShapeBusiness } from './lesson6-using-needs-to-shape-business';
-import { lesson7AnalyzingCompetitors } from './lesson7-analyzing-competitors';
-import { lesson8AssessingDemand } from './lesson8-assessing-demand';
-import { lesson9IdeaValidation } from './lesson9-idea-validation';
-import { lesson10CreatingMvp } from './lesson10-creating-mvp';
-import { lesson11GatheringFeedback } from './lesson11-gathering-feedback';
+import { lesson1BrandIdentity } from './lesson1-brand-identity';
+import { lesson2MarketingStrategies } from './lesson2-marketing-strategies';
 import { module1Quiz } from './quiz';
 
 const module1: Module = {
   id: 1,
-  title: 'Market Research',
-  description: 'Market research is the foundation of any successful entrepreneurial venture, enabling you to identify your target customers, understand their needs, and validate your business idea. This module explores the critical steps of defining your audience, assessing demand, analyzing competitors, and gathering feedback to ensure your product or service aligns with market realities.',
+  title: 'Branding and Marketing Strategies',
+  description: 'Creating a strong brand and effective marketing plan is essential for attracting customers, building loyalty, and driving sales in competitive markets. This module explores the foundations of branding—crafting a unique value proposition, designing a compelling visual identity, establishing a consistent brand voice, and developing a memorable tagline. It also covers marketing strategies, including social media and digital marketing, networking and partnerships, customer engagement, loyalty programs, content marketing, and influencer marketing. These strategies ensure startups stand out, connect with audiences, and achieve sustainable growth.',
   lessons: [
-    lesson1MarketResearchOverview,
-    lesson2IdentifyingTargetCustomers,
-    lesson3UnderstandingCustomerNeeds,
-    lesson4MethodsToIdentifyCustomers,
-    lesson5CreatingCustomerPersonas,
-    lesson6UsingNeedsToShapeBusiness,
-    lesson7AnalyzingCompetitors,
-    lesson8AssessingDemand,
-    lesson9IdeaValidation,
-    lesson10CreatingMvp,
-    lesson11GatheringFeedback,
+    lesson1BrandIdentity,
+    lesson2MarketingStrategies,
     module1Quiz
   ]
 };

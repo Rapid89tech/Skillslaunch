@@ -6,7 +6,7 @@ export const lesson1EssentialTools: VideoLesson = {
   duration: '60 minutes',
   type: 'video',
   content: {
-    videoUrl: '_7xtqBH7-M0',
+    videoUrl: 'https://www.youtube.com/watch?v=tH-6cchzL5k&t=12s',
     textContent: `## Essential Repair Tools
 
 ### Screwdrivers
@@ -23,6 +23,6 @@ Tweezers are critical for handling small, delicate components in smartphone repa
 
 ### Heat Guns
 
-Heat guns are vital for softening adhesives that secure smartphone screens, back covers, batteries, and other components, particularly in modern waterproof devices like iPhones or Samsung Galaxy models. Operating at **100°C–300°C**, heat guns require adjustable temperature and airflow settings to suit different repair tasks. For example, a low setting (around 150°C) is ideal for loosening screen adhesive, while higher settings (up to 250°C) may be needed for stubborn battery glue. Proper technique involves holding the heat gun 3–5 inches from the surface and moving it in circular or sweeping motions to distribute heat evenly, preventing damage like warped plastic, discolored displays, or melted cables. Overheating is a common mistake—technicians must monitor component responses and limit exposure to 20–30 seconds per area. A **hot plate** can be an alternative for precise, localized heating. Safety precautions include wearing heat-resistant gloves, working in a ventilated area, and never leaving the heat gun unattended. Regular maintenance, such as cleaning the nozzle and storing it after cooling, ensures longevity. Mastering heat gun use allows technicians to perform clean, damage-free component removals, improving repair outcomes and maintaining device functionality for customers.`
+Heat guns are vital for softening adhesives that secure smartphone screens, back covers, batteries, and other components, particularly in modern waterproof devices like iPhones or Samsung Galaxy models. Operating at **100°C–300°C**, heat guns require adjustable temperature and airflow settings to suit different repair tasks. For example, a low setting (around 150°C) is ideal for loosening screen adhesive, while higher settings (up to 250°C) may be needed for stubborn battery glue. Proper technique involves holding the heat gun 3–5 inches from the surface and moving it in circular or sweeping motions to distribute heat evenly, preventing damage like warped plastic, discolored displays, or melted cables. Overheating is a common mistake—technicians must monitor component responses and limit exposure to 20–30 seconds per area. A can be an alternative for precise, localized heating. Safety precautions include wearing heat-resistant gloves, working in a ventilated area, and never leaving the heat gun unattended. Regular maintenance, such as cleaning the nozzle and storing it after cooling, ensures longevity. Mastering heat gun use allows technicians to perform clean, damage-free component removals, improving repair outcomes and maintaining device functionality for customers.`
   }
 };

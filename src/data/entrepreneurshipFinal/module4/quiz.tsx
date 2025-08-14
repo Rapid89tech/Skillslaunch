@@ -1,143 +1,121 @@
 import type { Quiz } from '@/types/course';
 
 export const module4Quiz: Quiz = {
-  id: 3,
-  title: 'Module 4 Quiz: Funding and Financial Management',
+  id: 6,
+  title: 'Module 4 Quiz: Legal Considerations and Business Structure',
   duration: '20 min',
   type: 'quiz',
   content: {
     questions: [
       {
-        question: 'What is bootstrapping in business funding?',
+        question: 'What is the main purpose of registering your business name?',
         options: [
-          'Raising money from investors',
-          'Using personal savings and resources to fund your business',
-          'Applying for a government grant',
-          'Taking out a business loan'
+          'To pay taxes',
+          'To legally protect your brand and name',
+          'To hire employees',
+          'To increase sales'
         ],
         correct: 1,
-        explanation: 'Bootstrapping uses personal funds to start and grow a business, preserving control without external debt or equity dilution.'
+        explanation: 'Registering your business name with the CIPC ensures legal protection, builds brand identity, and supports professional operations like banking.'
       },
       {
-        question: 'Which type of investor typically invests their own money and offers mentorship?',
+        question: 'Which government body is commonly responsible for business registration in South Africa?',
         options: [
-          'Venture Capitalists',
-          'Angel Investors',
-          'Bank Loan Officers',
-          'Crowdfunding Platforms'
+          'SARS',
+          'CIPC',
+          'UIF',
+          'BBBEE Commission'
         ],
         correct: 1,
-        explanation: 'Angel investors provide personal funds and mentorship to early-stage startups, supporting growth with industry insights.'
+        explanation: 'The Companies and Intellectual Property Commission (CIPC) oversees business registration in South Africa, issuing certificates for legal recognition.'
       },
       {
-        question: 'What is a key disadvantage of business loans?',
+        question: 'What does VAT stand for?',
         options: [
-          'You must give up equity in your business',
-          'You have to repay the loan with interest regardless of business success',
-          'There is no need to repay the money',
-          'They always come with free mentorship'
-        ],
-        correct: 1,
-        explanation: 'Loans require repayment with interest, creating a financial obligation that can strain cash flow if revenue falls short.'
-      },
-      {
-        question: 'What is the primary benefit of grants for small businesses?',
-        options: [
-          'They do not have to be repaid',
-          'They offer unlimited funding',
-          'They are easy to get with no application process',
-          'They come with no restrictions'
+          'Value Added Tax',
+          'Variable Asset Tax',
+          'Value Allocation Tax',
+          'Verified Annual Tax'
         ],
         correct: 0,
-        explanation: 'Grants provide non-repayable funds, supporting growth without debt, though they require competitive applications and compliance.'
+        explanation: 'VAT is a consumption tax on goods and services, mandatory for businesses exceeding a turnover threshold like R1 million in South Africa.'
       },
       {
-        question: 'Why is managing cash flow important for a business?',
+        question: 'When is a business required to register for VAT?',
         options: [
-          'To avoid paying taxes',
-          'To ensure the business has enough cash to cover expenses and invest in growth',
-          'To increase employee salaries',
-          'To avoid having a business plan'
+          'When the business hires employees',
+          'When the business turnover exceeds a specific threshold',
+          'When the business opens a bank account',
+          'When the business is a sole proprietorship'
         ],
         correct: 1,
-        explanation: 'Cash flow management ensures liquidity for operations, prevents debt, and enables investments in marketing or inventory.'
+        explanation: 'Businesses must register for VAT with SARS when annual turnover exceeds R1 million, ensuring compliance with tax regulations.'
       },
       {
-        question: 'Which of the following is NOT a common pricing strategy?',
+        question: 'Which of the following is NOT a common type of business structure?',
         options: [
-          'Cost-plus pricing',
-          'Penetration pricing',
-          'Value-based pricing',
-          'Random pricing'
+          'Sole Proprietorship',
+          'Partnership',
+          'Corporation',
+          'Monopoly'
         ],
         correct: 3,
-        explanation: 'Random pricing is not a recognized strategy; valid options include cost-plus, penetration, and value-based pricing.'
+        explanation: 'A monopoly is a market condition, not a business structure; valid structures include Sole Proprietorship, Partnership, and Corporation.'
       },
       {
-        question: 'What is one major advantage of using accounting software?',
+        question: 'What is the purpose of a business license?',
         options: [
-          'It eliminates the need to keep any financial records',
-          'It automates invoicing and tracks revenue and expenses accurately',
-          'It guarantees business success',
-          'It reduces the need for employees'
+          'To increase the business\'s revenue',
+          'To legally authorize certain business activities',
+          'To protect the business name',
+          'To reduce taxes'
         ],
         correct: 1,
-        explanation: 'Accounting software streamlines financial tracking, reduces errors, and provides real-time insights for decision-making.'
+        explanation: 'Licenses, like trading or health permits, ensure compliance with regulations, protecting public safety and enabling legal operations.'
       },
       {
-        question: 'What does \'profitability\' indicate in business?',
+        question: 'Which document do you need to open a business bank account?',
         options: [
-          'The total amount of sales made',
-          'The amount of money left after all expenses are paid',
-          'The amount of money spent on advertising',
-          'The total number of customers'
+          'Business registration certificate',
+          'Employee contract',
+          'VAT invoice',
+          'Trade license'
         ],
-        correct: 1,
-        explanation: 'Profitability measures net profit, indicating financial health after deducting costs, guiding sustainable business decisions.'
+        correct: 0,
+        explanation: 'A CIPC-issued registration certificate is required to open a business bank account, proving legal establishment.'
       },
       {
-        question: 'What is a key benefit of crowdfunding for startups?',
+        question: 'What is PAYE?',
         options: [
-          'It requires no marketing effort',
-          'It validates market demand and engages customers',
-          'It guarantees large-scale funding',
-          'It involves giving up full ownership'
+          'A tax on imported goods',
+          'A tax withheld from employee salaries',
+          'A tax on company profits',
+          'A license fee'
         ],
         correct: 1,
-        explanation: 'Crowdfunding tests market interest, engages backers, and raises funds without equity loss, though it requires marketing effort.'
+        explanation: 'PAYE (Pay-As-You-Earn) is deducted from employee salaries and remitted to SARS, ensuring tax compliance for employers.'
       },
       {
-        question: 'What is the purpose of financial forecasting?',
+        question: 'Which intellectual property protects your company\'s logo?',
         options: [
-          'To eliminate the need for accounting software',
-          'To predict future revenue, expenses, and cash flow for planning',
-          'To replace a business plan',
-          'To avoid tax compliance'
+          'Patent',
+          'Trademark',
+          'Copyright',
+          'Trade secret'
         ],
         correct: 1,
-        explanation: 'Financial forecasting projects financial performance, guiding budgeting, funding needs, and strategic decisions for growth.'
+        explanation: 'A trademark protects a company\'s logo, ensuring exclusive brand identity and preventing competitor misuse.'
       },
       {
-        question: 'What is a key feature of equity crowdfunding?',
+        question: 'What can happen if a business fails to comply with legal and tax obligations?',
         options: [
-          'It provides funds without any investor involvement',
-          'It involves selling small equity stakes to many investors',
-          'It requires no regulatory compliance',
-          'It focuses only on debt financing'
+          'Increased profits',
+          'Fines, penalties, or closure',
+          'Government grants',
+          'Free marketing'
         ],
         correct: 1,
-        explanation: 'Equity crowdfunding raises funds by offering equity to multiple investors, engaging a broad base while requiring regulatory compliance.'
-      },
-      {
-        question: 'Why is budgeting important for business growth?',
-        options: [
-          'It eliminates the need for revenue tracking',
-          'It allocates funds to prioritize revenue-generating activities',
-          'It replaces the need for pricing strategies',
-          'It ensures unlimited funding'
-        ],
-        correct: 1,
-        explanation: 'Budgeting ensures resources are directed to key areas like marketing, supporting profitability and sustainable growth.'
+        explanation: 'Non-compliance with legal and tax obligations risks financial penalties, legal action, or business closure, harming reputation.'
       }
     ]
   }

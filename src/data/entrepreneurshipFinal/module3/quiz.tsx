@@ -1,121 +1,143 @@
 import type { Quiz } from '@/types/course';
 
 export const module3Quiz: Quiz = {
-  id: 6,
-  title: 'Module 3 Quiz: Legal Considerations and Business Structure',
+  id: 8,
+  title: 'Module 3 Quiz: Developing a Business Plan',
   duration: '20 min',
   type: 'quiz',
   content: {
     questions: [
       {
-        question: 'What is the main purpose of registering your business name?',
+        question: 'What is the primary purpose of an Executive Summary in a business plan?',
         options: [
-          'To pay taxes',
-          'To legally protect your brand and name',
-          'To hire employees',
-          'To increase sales'
+          'To list all expenses in detail',
+          'To provide a quick, compelling overview of the business idea',
+          'To describe the production process',
+          'To outline competitor weaknesses'
         ],
         correct: 1,
-        explanation: 'Registering your business name with the CIPC ensures legal protection, builds brand identity, and supports professional operations like banking.'
+        explanation: 'The Executive Summary summarizes the business plan, enticing stakeholders to read further.'
       },
       {
-        question: 'Which government body is commonly responsible for business registration in South Africa?',
+        question: 'Which of the following is a key component of the Business Description?',
         options: [
-          'SARS',
-          'CIPC',
-          'UIF',
-          'BBBEE Commission'
+          'Revenue forecasts',
+          'Mission statement',
+          'Break-even analysis',
+          'Customer feedback'
         ],
         correct: 1,
-        explanation: 'The Companies and Intellectual Property Commission (CIPC) oversees business registration in South Africa, issuing certificates for legal recognition.'
+        explanation: 'The Business Description includes the mission statement to define purpose and values.'
       },
       {
-        question: 'What does VAT stand for?',
+        question: 'What does the Market Analysis section aim to demonstrate?',
         options: [
-          'Value Added Tax',
-          'Variable Asset Tax',
-          'Value Allocation Tax',
-          'Verified Annual Tax'
+          'How products are delivered to customers',
+          'The demand and competitive landscape for your business',
+          'The legal structure of the business',
+          'The team\'s qualifications'
+        ],
+        correct: 1,
+        explanation: 'Market Analysis proves demand and positions your business within the market.'
+      },
+      {
+        question: 'What is included in an Operational Plan?',
+        options: [
+          'Financial projections',
+          'Business structure, location, and logistics',
+          'Competitor strengths and weaknesses',
+          'Marketing strategies'
+        ],
+        correct: 1,
+        explanation: 'The Operational Plan details how the business functions and delivers value.'
+      },
+      {
+        question: 'What does a Break-Even Analysis in the Financial Plan show?',
+        options: [
+          'How much funding is needed',
+          'When revenue equals expenses',
+          'The target market\'s demographics',
+          'The business\'s mission statement'
+        ],
+        correct: 1,
+        explanation: 'Break-even analysis shows when the business becomes profitable.'
+      },
+      {
+        question: 'What does the "Specific" aspect of a SMART goal mean?',
+        options: [
+          'Goals should be vague to allow flexibility',
+          'Goals should clearly define what, who, where, and why',
+          'Goals should focus only on financial outcomes',
+          'Goals should have no timeline'
+        ],
+        correct: 1,
+        explanation: 'Specific goals provide clarity and direction for actionable outcomes.'
+      },
+      {
+        question: 'Why are Measurable goals important in a business plan?',
+        options: [
+          'They allow you to track progress with KPIs',
+          'They ensure goals are overly ambitious',
+          'They focus on unrelated business activities',
+          'They eliminate the need for timelines'
         ],
         correct: 0,
-        explanation: 'VAT is a consumption tax on goods and services, mandatory for businesses exceeding a turnover threshold like R1 million in South Africa.'
+        explanation: 'Measurable goals use KPIs to monitor success and adjust strategies.'
       },
       {
-        question: 'When is a business required to register for VAT?',
+        question: 'What makes a goal Achievable?',
         options: [
-          'When the business hires employees',
-          'When the business turnover exceeds a specific threshold',
-          'When the business opens a bank account',
-          'When the business is a sole proprietorship'
+          'It is based on hope rather than resources',
+          'It is realistic given your skills, time, and budget',
+          'It ignores market conditions',
+          'It focuses only on long-term vision'
         ],
         correct: 1,
-        explanation: 'Businesses must register for VAT with SARS when annual turnover exceeds R1 million, ensuring compliance with tax regulations.'
+        explanation: 'Achievable goals are doable based on available resources.'
       },
       {
-        question: 'Which of the following is NOT a common type of business structure?',
+        question: 'What does the "Relevant" aspect of a SMART goal ensure?',
         options: [
-          'Sole Proprietorship',
-          'Partnership',
-          'Corporation',
-          'Monopoly'
-        ],
-        correct: 3,
-        explanation: 'A monopoly is a market condition, not a business structure; valid structures include Sole Proprietorship, Partnership, and Corporation.'
-      },
-      {
-        question: 'What is the purpose of a business license?',
-        options: [
-          'To increase the business\'s revenue',
-          'To legally authorize certain business activities',
-          'To protect the business name',
-          'To reduce taxes'
+          'Goals are unrelated to the business vision',
+          'Goals align with the business\'s mission and priorities',
+          'Goals are set without deadlines',
+          'Goals focus only on financial results'
         ],
         correct: 1,
-        explanation: 'Licenses, like trading or health permits, ensure compliance with regulations, protecting public safety and enabling legal operations.'
+        explanation: 'Relevant goals support the business\'s long-term vision and focus.'
       },
       {
-        question: 'Which document do you need to open a business bank account?',
+        question: 'What is the importance of setting a Time-bound goal?',
         options: [
-          'Business registration certificate',
-          'Employee contract',
-          'VAT invoice',
-          'Trade license'
+          'To create urgency and help track progress with deadlines',
+          'To make goals easier to ignore',
+          'To allow indefinite time for completion',
+          'To focus only on financial results'
         ],
         correct: 0,
-        explanation: 'A CIPC-issued registration certificate is required to open a business bank account, proving legal establishment.'
+        explanation: 'Time-bound goals ensure focus and accountability with clear deadlines.'
       },
       {
-        question: 'What is PAYE?',
+        question: 'Explain two key elements that should be included in an Executive Summary.',
         options: [
-          'A tax on imported goods',
-          'A tax withheld from employee salaries',
-          'A tax on company profits',
-          'A license fee'
+          'Business concept and competitive advantage',
+          'Financial projections and market analysis',
+          'Operational plan and team structure',
+          'Legal requirements and tax obligations'
         ],
-        correct: 1,
-        explanation: 'PAYE (Pay-As-You-Earn) is deducted from employee salaries and remitted to SARS, ensuring tax compliance for employers.'
+        correct: 0,
+        explanation: 'Two key elements of an Executive Summary are the business concept and competitive advantage. The business concept clarifies what the business offers and the problem it solves, like eco-friendly gardening kits for urban dwellers. The competitive advantage highlights what sets the business apart, such as unique features or pricing, ensuring it stands out to stakeholders.'
       },
       {
-        question: 'Which intellectual property protects your company\'s logo?',
+        question: 'Describe why it\'s important to include a Market Analysis in your business plan.',
         options: [
-          'Patent',
-          'Trademark',
-          'Copyright',
-          'Trade secret'
+          'To demonstrate demand and competitive landscape',
+          'To outline operational procedures',
+          'To detail financial projections',
+          'To list team qualifications'
         ],
-        correct: 1,
-        explanation: 'A trademark protects a company\'s logo, ensuring exclusive brand identity and preventing competitor misuse.'
-      },
-      {
-        question: 'What can happen if a business fails to comply with legal and tax obligations?',
-        options: [
-          'Increased profits',
-          'Fines, penalties, or closure',
-          'Government grants',
-          'Free marketing'
-        ],
-        correct: 1,
-        explanation: 'Non-compliance with legal and tax obligations risks financial penalties, legal action, or business closure, harming reputation.'
+        correct: 0,
+        explanation: 'Market Analysis is crucial because it demonstrates demand for your product and your understanding of the competitive landscape. It identifies target customers, their needs, and market trends, ensuring your business meets real demands. It also analyzes competitors, highlighting gaps you can fill, which builds investor confidence and ensures your plan is grounded in market realities.'
       }
     ]
   }
