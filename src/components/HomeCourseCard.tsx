@@ -71,7 +71,7 @@ const HomeCourseCard = ({ course }: HomeCourseCardProps) => {
   return (
     <Card className="group h-full overflow-hidden transform transition-all duration-300 hover:scale-[1.02] hover:shadow-xl bg-white dark:bg-gray-800 border-0 shadow-lg">
       <div className="relative overflow-hidden">
-        <div className="aspect-video relative">
+        <div className="aspect-[4/3] relative">
           <img
             src={courseImage}
             alt={course.title}

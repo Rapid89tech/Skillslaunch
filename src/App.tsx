@@ -22,6 +22,7 @@ const Dashboard = lazy(() => import("./pages/Dashboard"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const Course = lazy(() => import("./pages/Course"));
 const Courses = lazy(() => import("./pages/Courses"));
+const ComingSoonCourse = lazy(() => import("./pages/ComingSoonCourse"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const InstructorDashboardPage = lazy(() => import("./pages/InstructorDashboard"));
 
@@ -57,6 +58,11 @@ const App = () => (
           <Route path="/courses" element={
             <Layout>
               <Courses />
+            </Layout>
+          } />
+          <Route path="/coming-soon/:courseId" element={
+            <Layout>
+              <ComingSoonCourse />
             </Layout>
           } />
           <Route 

@@ -72,9 +72,17 @@ const EnrolledCoursesList = ({ enrollments, courses }: EnrolledCoursesListProps)
     );
   }
 
+  // Sort enrollments by progress (highest first)
+  const sortedEnrollments = [...enrollments].sort((a, b) => {
+    const progressA = Math.round((a.progress || 0) * 100);
+    const progressB = Math.round((b.progress || 0) * 100);
+    
+    return progressB - progressA; // Sort by highest progress first
+  });
+
   return (
     <div className="space-y-4">
-      {enrollments.map((enrollment) => {
+      {sortedEnrollments.map((enrollment) => {
         const course = courses.find((c) => c.id === enrollment.course_id);
         return (
           <EnrolledCourseItem

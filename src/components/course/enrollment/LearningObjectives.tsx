@@ -16,10 +16,10 @@ const LearningObjectives = ({ objectives }: LearningObjectivesProps) => {
         </span>
       </CardHeader>
       <CardContent className="py-6 px-8 bg-white/80 dark:bg-gray-900/80">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+        <div className="space-y-3">
           {objectives?.map((objective: string, index: number) => (
             <div key={index} className="flex items-start gap-3 animate-fade-in-card" style={{ animationDelay: `${index * 60 + 200}ms` }}>
-              <CheckCircle className="h-5 w-5 text-green-500 mt-0.5 flex-shrink-0 animate-pulse-glow" />
+              <div className="w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mt-2 flex-shrink-0"></div>
               <span className="text-gray-700 text-base leading-relaxed">{objective}</span>
             </div>
           ))}

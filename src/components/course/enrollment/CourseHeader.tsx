@@ -1,7 +1,8 @@
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi } from '@/components/ui/carousel';
 import { Badge } from '@/components/ui/badge';
 import { Clock, BookOpen, Users, Star } from 'lucide-react';
 import mechanicHD from '@/assets/motor-mechanic-course.jpg';
+import { useEffect, useState } from 'react';
 
 interface CourseHeaderProps {
   course: any;
@@ -29,16 +30,35 @@ const courseHeroImages: Record<string, string> = {
 };
 
 const CourseHeader = ({ course, totalDuration, totalLessons }: CourseHeaderProps) => {
-  // Slides: first slide is the main course info, others can be added dynamically if needed
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 5000); // Change slide every 5 seconds
+
+    return () => clearInterval(interval);
+  }, [api]);
+
+  // Update current slide
+  useEffect(() => {
+    if (!api) return;
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
+  // Slides: multiple slides for auto-play carousel
   const slides = [
     {
       title: course.title,
       stats: (
         <div className="flex flex-wrap justify-center gap-4 mt-4 animate-fade-in-card">
-          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
-            <Clock className="h-4 w-4 text-white/90" />
-            <span>{totalDuration} total content</span>
-          </div>
           <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
             <BookOpen className="h-4 w-4 text-white/90" />
             <span>{totalLessons} lessons</span>
@@ -54,7 +74,44 @@ const CourseHeader = ({ course, totalDuration, totalLessons }: CourseHeaderProps
         </div>
       )
     },
-    // Add more slides here if needed, e.g. testimonials, highlights, etc.
+    {
+      title: "Learn at Your Own Pace",
+      stats: (
+        <div className="flex flex-wrap justify-center gap-4 mt-4 animate-fade-in-card">
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
+            <BookOpen className="h-4 w-4 text-white/90" />
+            <span>Self-paced learning</span>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
+            <Users className="h-4 w-4 text-white/90" />
+            <span>Expert instructors</span>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
+            <Star className="h-4 w-4 text-white/90" />
+            <span>Practical skills</span>
+          </div>
+        </div>
+      )
+    },
+    {
+      title: "Get Certified Today",
+      stats: (
+        <div className="flex flex-wrap justify-center gap-4 mt-4 animate-fade-in-card">
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-orange-600 via-red-600 to-pink-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
+            <BookOpen className="h-4 w-4 text-white/90" />
+            <span>Professional certification</span>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
+            <Users className="h-4 w-4 text-white/90" />
+            <span>Career advancement</span>
+          </div>
+          <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 shadow-lg text-white text-sm font-semibold backdrop-blur-md border border-white/10 transition-all duration-500 hover:scale-105 hover:shadow-xl animate-gradient-x">
+            <Star className="h-4 w-4 text-white/90" />
+            <span>Industry recognized</span>
+          </div>
+        </div>
+      )
+    }
   ];
 
   // Dynamically select a relevant HD Unsplash image for the course
@@ -76,7 +133,14 @@ const CourseHeader = ({ course, totalDuration, totalLessons }: CourseHeaderProps
         <Badge className="mb-4 bg-blue-100 text-blue-800 px-3 py-1">
           {course.category} • {course.level.charAt(0).toUpperCase() + course.level.slice(1)}
         </Badge>
-        <Carousel className="w-full max-w-3xl mx-auto">
+        <Carousel 
+          className="w-full max-w-3xl mx-auto"
+          setApi={setApi}
+          opts={{
+            loop: true,
+            align: "start",
+          }}
+        >
           <CarouselContent>
             {slides.map((slide, idx) => (
               <CarouselItem key={idx} className="flex flex-col items-center justify-center text-center min-h-[200px]">

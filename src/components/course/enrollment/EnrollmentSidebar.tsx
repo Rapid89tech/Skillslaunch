@@ -14,57 +14,37 @@ interface EnrollmentSidebarProps {
 const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSidebarProps) => {
   const { user } = useAuth();
   const navigate = useNavigate();
+  
+  // Only show enrollment sidebar for logged out users
+  if (user) {
+    return null;
+  }
+  
   return (
     <div className="space-y-6">
       {/* Enrollment Card */}
       <Card className="sticky top-6 glassmorphism-card border-0 shadow-lg rounded-3xl overflow-hidden animate-fade-in-card">
         <CardContent className="p-6 flex flex-col items-center bg-white/90 dark:bg-gray-900/90">
-          <div className="text-center mb-5">
-            {/* Show different headings based on user status */}
-            {!user ? (
-              <div className="text-2xl font-extrabold gradient-text mb-1 animate-fade-in-card">Register To Enroll</div>
-            ) : (
-              <div className="text-2xl font-extrabold gradient-text mb-1 animate-fade-in-card">Enroll Now</div>
-            )}
+                    <div className="text-center mb-5">
+            <div className="text-2xl font-extrabold gradient-text mb-1 animate-fade-in-card">Enroll Now</div>
           </div>
 
-          {/* Show Registration button if user is not logged in */}
-          {!user && (
-            <Button 
-              onClick={() => {
-                navigate('/auth');
-              }}
-              disabled={enrolling}
-              className="w-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:opacity-90 text-white font-semibold py-2.5 text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
-            >
-              {enrolling ? (
-                <div className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  Enrolling...
-                </div>
-              ) : (
-                'Registration'
-              )}
-            </Button>
-          )}
-
-          {/* Show Enroll button if user is logged in */}
-          {user && (
-            <Button 
-              onClick={handleEnroll}
-              disabled={enrolling}
-              className="w-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:opacity-90 text-white font-semibold py-2.5 text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
-            >
-              {enrolling ? (
-                <div className="flex items-center gap-2">
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                  Enrolling...
-                </div>
-              ) : (
-                'Enroll Now'
-              )}
-            </Button>
-          )}
+          <Button 
+            onClick={() => {
+              navigate('/auth');
+            }}
+            disabled={enrolling}
+            className="w-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:opacity-90 text-white font-semibold py-2.5 text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
+          >
+            {enrolling ? (
+              <div className="flex items-center gap-2">
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                Enrolling...
+              </div>
+            ) : (
+              'Enroll Now'
+            )}
+          </Button>
 
           {/* Course Features */}
           <div className="w-full space-y-3">

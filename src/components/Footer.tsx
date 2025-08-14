@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, Phone, Mail, ExternalLink, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react';
 
 const SOCIALS = [
-  { icon: <Facebook className="h-5 w-5" />, label: 'Facebook', url: 'https://facebook.com', color: 'hover:bg-blue-600' },
+  { icon: <Facebook className="h-5 w-5" />, label: 'Facebook', url: 'https://www.facebook.com/p/BETA-Skills-61572529561252/', color: 'hover:bg-blue-600' },
   { icon: <Instagram className="h-5 w-5" />, label: 'Instagram', url: 'https://instagram.com', color: 'hover:bg-pink-600' },
   { icon: <Twitter className="h-5 w-5" />, label: 'Twitter', url: 'https://twitter.com', color: 'hover:bg-blue-400' },
   { icon: <Linkedin className="h-5 w-5" />, label: 'LinkedIn', url: 'https://linkedin.com', color: 'hover:bg-blue-800' },
@@ -82,7 +82,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <div className="text-blue-100 font-semibold text-sm">Email</div>
-                  <div className="text-gray-300 text-sm">betaskill@icm-sa.org.za</div>
+                  <div className="text-gray-300 text-sm">registrar@betaskills.co.za</div>
                 </div>
               </div>
             </div>

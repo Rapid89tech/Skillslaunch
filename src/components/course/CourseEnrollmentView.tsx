@@ -28,20 +28,24 @@ const CourseEnrollmentView = ({ course, handleEnroll, enrolling }: CourseEnrollm
         />
 
         <div className="w-full max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
-              <CourseOverview courseId={course.id} />
-              <LearningObjectives objectives={course.learningObjectives} />
-              <CourseCurriculum 
-                modules={course.modules} 
-                totalLessons={totalLessons}
-                totalDuration={totalDuration}
-              />
+            <div className="lg:col-span-8 xl:col-span-9 space-y-8">
+              <CourseOverview course={course} />
+              <div id="learning-objectives">
+                <LearningObjectives objectives={course.learningObjectives} />
+              </div>
+              <div id="course-curriculum">
+                <CourseCurriculum 
+                  modules={course.modules} 
+                  totalLessons={totalLessons}
+                  totalDuration={totalDuration}
+                />
+              </div>
             </div>
             
             {/* Enrollment Sidebar */}
-            <div className="lg:col-span-1">
+            <div className="lg:col-span-4 xl:col-span-3">
               <EnrollmentSidebar 
                 course={course}
                 handleEnroll={handleEnroll}

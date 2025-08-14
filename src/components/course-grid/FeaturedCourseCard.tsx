@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
-import { BookOpen, Clock, Star, Users } from 'lucide-react';
+import { BookOpen, Star, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 interface FeaturedCourseCardProps {
@@ -55,10 +55,6 @@ const FeaturedCourseCard = ({ course, index }: FeaturedCourseCardProps) => {
           <div className="flex items-center">
             <Users className="h-4 w-4 mr-1" />
             <span>{course.students.toLocaleString()}</span>
-          </div>
-          <div className="flex items-center">
-            <Clock className="h-4 w-4 mr-1" />
-            <span>{course.duration}</span>
           </div>
         </div>
         

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { 
+import {
   BookOpen,
   ChevronDown,
   ChevronRight,
@@ -21,8 +21,8 @@ const CourseCurriculum = ({ modules, totalLessons, totalDuration }: CourseCurric
   const [expandedModules, setExpandedModules] = useState<number[]>([0]);
 
   const toggleModule = (moduleId: number) => {
-    setExpandedModules(prev => 
-      prev.includes(moduleId) 
+    setExpandedModules(prev =>
+      prev.includes(moduleId)
         ? prev.filter(id => id !== moduleId)
         : [...prev, moduleId]
     );
@@ -46,13 +46,13 @@ const CourseCurriculum = ({ modules, totalLessons, totalDuration }: CourseCurric
           Course Curriculum
         </span>
         <span className="ml-auto text-base font-semibold text-gray-700 bg-white/70 px-4 py-1 rounded-full shadow-sm">
-          {modules.length} modules • {totalLessons} lessons • {totalDuration} total content
+          {modules.length} modules • {totalLessons} lessons
         </span>
       </CardHeader>
       <CardContent className="space-y-6 py-6 px-4 md:px-8 bg-white/80 dark:bg-gray-900/80">
         {modules.map((module: any, moduleIndex: number) => (
           <Collapsible key={module.id} className="border-0 rounded-2xl bg-gradient-to-r from-blue-100/30 via-purple-100/20 to-pink-100/20 shadow-md animate-fade-in-card transition-all duration-300 hover:shadow-xl group" style={{ animationDelay: `${moduleIndex * 80 + 200}ms` }}>
-            <CollapsibleTrigger 
+            <CollapsibleTrigger
               onClick={() => toggleModule(moduleIndex)}
               className="w-full p-0 text-left rounded-2xl flex items-center justify-between gap-3 cursor-pointer focus:outline-none"
             >

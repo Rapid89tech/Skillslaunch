@@ -11,10 +11,23 @@ const Index = () => {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
 
+  const getDashboardLink = () => {
+    if (!user || !profile) return '/dashboard'; // Default to main dashboard
+    
+    switch (profile.role) {
+      case 'instructor':
+        return '/instructor-dashboard';
+      case 'admin':
+        return '/admin-dashboard';
+      default:
+        return '/dashboard';
+    }
+  };
+
   const handleDashboardClick = (e: React.MouseEvent) => {
     e.preventDefault();
     if (user && profile) {
-      navigate('/dashboard');
+      navigate(getDashboardLink());
     }
   };
 

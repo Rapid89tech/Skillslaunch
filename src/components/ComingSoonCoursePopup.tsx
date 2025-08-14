@@ -12,17 +12,23 @@ export default function ComingSoonCoursePopup({ course, isOpen, onClose }: Comin
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div 
+      className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" 
+      onClick={onClose}
+    >
+      <div 
+        className="bg-white rounded-lg max-w-2xl w-full max-h-[80vh] overflow-y-auto shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="relative">
-          {/* Header */}
-          <div className="bg-gradient-to-r from-red-600 to-red-800 text-white p-6 rounded-t-lg">
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-white hover:text-gray-200 transition-colors"
-            >
-              <X size={24} />
-            </button>
+                     {/* Header */}
+           <div className="bg-gradient-to-r from-red-600 to-red-800 text-white p-4 sm:p-6 rounded-t-lg sticky top-0 z-10">
+             <button
+               onClick={onClose}
+               className="absolute top-3 right-3 sm:top-4 sm:right-4 text-white hover:text-gray-200 transition-colors p-1 rounded-full hover:bg-white/10"
+             >
+               <X size={20} className="sm:w-6 sm:h-6" />
+             </button>
             
             <div className="pr-8">
               <div className="flex items-center gap-2 mb-2">
@@ -47,7 +53,7 @@ export default function ComingSoonCoursePopup({ course, isOpen, onClose }: Comin
                 </div>
                 <div className="flex items-center gap-1">
                   <User size={16} />
-                  <span>{course.instructor}</span>
+                  <span>{course.instructor?.first_name} {course.instructor?.last_name}</span>
                 </div>
               </div>
             </div>

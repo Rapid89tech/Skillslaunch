@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import CourseProgressBar from './CourseProgressBar';
-import { BookOpen, Clock, Star, Users, Play, Award } from 'lucide-react';
+import { BookOpen, Star, Users, Play, Award } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '@/hooks/AuthContext';
 import { useEnrollments } from '@/hooks/useEnrollments';
@@ -40,7 +40,6 @@ import tilingNew from '../../../images/generation-25c77381-c00b-4f6f-a660-5de57d
 import roofingNew from '../../../images/generation-8dea647f-b6de-42c7-8708-d6e68a0fe5d1.png';
 import { triggerConfetti } from '@/utils/confetti';
 import EnrollNowPopup from '../course/EnrollNowPopup';
-import ComingSoonCoursePopup from '../ComingSoonCoursePopup';
 import { getLessonCount, formatLessonCount } from '@/utils/courseUtils';
 
 interface CoursesGridProps {
@@ -110,8 +109,6 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
   const [showEnrollPopup, setShowEnrollPopup] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<Course | null>(null);
   const [pendingEnrollments, setPendingEnrollments] = useState<Set<string>>(new Set());
-  const [showComingSoonPopup, setShowComingSoonPopup] = useState(false);
-  const [selectedComingSoonCourse, setSelectedComingSoonCourse] = useState<Course | null>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   // Dynamic page transition
@@ -270,12 +267,8 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                 </h3>
                                 <p className="text-xs text-gray-300 line-clamp-2">{course.description}</p>
                 
-                {/* Course Stats Badges - Only Lessons and Duration */}
+                {/* Course Stats Badges - Only Lessons */}
                 <div className="flex items-center gap-2">
-                  <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs">
-                    <Clock className="w-3 h-3" />
-                    <span>{course.duration || '6 weeks'}</span>
-                  </div>
                   <div className="flex items-center gap-1 px-2 py-1 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs">
                     <BookOpen className="w-3 h-3" />
                     <span>{formatLessonCount(getLessonCount(course.id))}</span>
@@ -291,15 +284,13 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
               {/* Buttons section */}
               <div className="flex flex-col gap-2">
                 {course.isComingSoon ? (
-                  <button 
-                    onClick={() => {
-                      setSelectedComingSoonCourse(course);
-                      setShowComingSoonPopup(true);
-                    }}
-                    className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
-                  >
-                    View Course
-                  </button>
+                  <Link to={`/coming-soon/${course.id}`} className="block">
+                    <button 
+                      className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
+                    >
+                      View Course
+                    </button>
+                  </Link>
                 ) : (
                   <Link to={`/course/${course.id}/overview`} className="block">
                     <button className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple">
@@ -376,16 +367,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
           />
         </>
       )}
-      {showComingSoonPopup && selectedComingSoonCourse && (
-        <ComingSoonCoursePopup
-          course={selectedComingSoonCourse}
-          isOpen={showComingSoonPopup}
-          onClose={() => {
-            setShowComingSoonPopup(false);
-            setSelectedComingSoonCourse(null);
-          }}
-        />
-      )}
+
       <style>{`
         .animate-fade-in-card {
           opacity: 0;

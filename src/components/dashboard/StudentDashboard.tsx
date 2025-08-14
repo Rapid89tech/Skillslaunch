@@ -317,7 +317,6 @@ const StudentDashboard = ({ profile, enrollments = [], courses = [], userId }: a
           {/* Confetti removed */}
           <div className="relative z-10">
             <h2 className="text-white text-2xl font-bold mb-2">WELCOME BACK! {studentName}</h2>
-            <p className="text-white mb-4">You have completed {overallProgress}% of your goals this week!<br/>Start a new goal and improve your result</p>
             {/* Learn More button removed */}
           </div>
         </motion.div>

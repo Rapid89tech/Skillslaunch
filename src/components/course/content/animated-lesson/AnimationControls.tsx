@@ -71,16 +71,7 @@ const AnimationControls = ({
           )}
         </div>
         
-        {animationComplete && (
-          <Button
-            onClick={onComplete}
-            className="group relative overflow-hidden bg-gradient-to-r from-emerald-600 via-green-600 to-teal-600 hover:from-emerald-700 hover:via-green-700 hover:to-teal-700 text-white shadow-2xl hover:shadow-green-500/25 transform transition-all duration-300 hover:scale-105 rounded-xl px-6 py-3 font-semibold"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-transparent to-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-            <CheckCircle className="w-5 h-5 mr-3 animate-pulse" />
-            ✨ I've Mastered This Content
-          </Button>
-        )}
+
       </div>
     </div>
   );
