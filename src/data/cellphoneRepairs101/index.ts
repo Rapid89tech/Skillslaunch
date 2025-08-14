@@ -5,7 +5,7 @@ import module3 from './module3-hardware';
 import module4 from './module4-commonRepairs';
 import module5 from './module5-advancedDiagnostics';
 import module6 from './module6-maintenance';
-import module7 from './module7-businessSetup';
+import module7 from './module7-business';
 
 const cellphoneRepairs101: Course = {
   id: 'cellphone-repairs-101',
