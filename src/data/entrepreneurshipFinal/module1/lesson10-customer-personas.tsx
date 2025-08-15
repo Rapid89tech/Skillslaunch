@@ -222,9 +222,10 @@ export const lesson10CustomerPersonas: Lesson = {
 
 .lead-text {
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 1.5rem;
   text-align: center;
+  color: white;
 }
 
 .highlight-box {
@@ -243,6 +244,16 @@ export const lesson10CustomerPersonas: Lesson = {
   margin: 1.5rem 0;
 }
 
+.definition-card h3 {
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.definition-card p {
+  color: #1f2937;
+  margin: 0;
+}
+
 .benefits-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -257,6 +268,11 @@ export const lesson10CustomerPersonas: Lesson = {
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   text-align: center;
   border-top: 3px solid #10b981;
+}
+
+.benefit-item p {
+  color: #1f2937;
+  margin: 0;
 }
 
 .benefit-item h4 {
@@ -278,6 +294,7 @@ export const lesson10CustomerPersonas: Lesson = {
   border-radius: 8px;
   margin: 1rem 0;
   box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  color: #1f2937;
 }
 
 .persona-card {
@@ -298,6 +315,7 @@ export const lesson10CustomerPersonas: Lesson = {
   font-size: 1.1rem;
   margin: 0.5rem 0;
   opacity: 0.9;
+  color: white;
 }
 
 .persona-grid {
@@ -312,6 +330,7 @@ export const lesson10CustomerPersonas: Lesson = {
   padding: 1.5rem;
   border-radius: 12px;
   backdrop-filter: blur(10px);
+  color: white;
 }
 
 .persona-section h4 {
@@ -351,6 +370,7 @@ export const lesson10CustomerPersonas: Lesson = {
   box-shadow: 0 4px 15px rgba(0,0,0,0.1);
   border-top: 4px solid #8b5cf6;
   transition: transform 0.2s ease;
+  color: #1f2937;
 }
 
 .benefit-card:hover {
@@ -383,6 +403,7 @@ export const lesson10CustomerPersonas: Lesson = {
   padding: 1.5rem;
   border-radius: 8px;
   border-left: 4px solid #0ea5e9;
+  color: #1f2937;
 }
 
 .action-item h4 {
