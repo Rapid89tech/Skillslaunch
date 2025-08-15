@@ -73,16 +73,7 @@ const Courses = () => {
 
   return (
     <div className="min-h-screen relative overflow-x-hidden" style={{ scrollBehavior: 'smooth' }}>
-      {/* Floating Filter Button */}
-      <button
-        className="fixed top-1/2 left-6 z-40 bg-gradient-to-r from-red-600 to-red-800 text-white rounded-full px-3 py-2 shadow-xl hover:scale-110 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple flex items-center gap-2"
-        style={{ transform: 'translateY(-50%)' }}
-        onClick={() => setFilterOpen(true)}
-        aria-label="Open Filters"
-      >
-        <Filter className="w-4 h-4" />
-        <span className="text-xs font-semibold">Filter Courses</span>
-      </button>
+
       {/* Sliding Filter Panel */}
       <div
         className={`fixed top-0 left-0 h-full w-full max-w-xs z-50 flex items-center transition-transform duration-500 ease-in-out ${filterOpen ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'} animate-filter-slide`}

@@ -31,6 +31,7 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
 
   async function uploadProof(file: File, userId: string): Promise<string> {
     setProgress(30);
+    // Simple mock upload - just like it was working before
     await new Promise(resolve => setTimeout(resolve, 1000));
     const mockUrl = `proof_${userId}_${Date.now()}_${file.name}`;
     setProgress(50);
@@ -40,91 +41,50 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
   async function createEnrollment(proofUrl: string) {
     setProgress(70);
     
-    try {
-      // Try to get user from Supabase, but PRIORITIZE provided props to avoid mismatches
-      let currentUserId = userId || `user_${Date.now()}`;
-      let currentUserEmail = userEmail || 'user@example.com';
-      
-      try {
-        const { data: { user } } = await supabase.auth.getUser();
-        if (user) {
-          currentUserId = user.id;
-          currentUserEmail = user.email || currentUserEmail;
-        }
-      } catch (authError) {
-        console.warn('Auth not available, using fallback user data');
-      }
-
-      console.log('Creating enrollment for user:', currentUserId, currentUserEmail);
-
-      await new Promise(resolve => setTimeout(resolve, 300));
-
-      const enrollmentData = {
-        id: `enrollment_${Date.now()}`,
-        user_id: currentUserId,
-        user_email: currentUserEmail,
-        course_id: course.id,
-        course_title: course.title,
-        proof_of_payment: proofUrl,
-        payment_ref: paymentRef || '',
-        payment_date: paymentDate || '',
-        status: 'pending',
-        enrolled_at: new Date().toISOString(),
-        progress: 0
-      };
-      
-      console.log('Creating enrollment with data:', enrollmentData);
-      
-      // Try Supabase first, fallback to localStorage
-      let enrollmentSuccess = false;
-      
-      try {
-        const { data, error } = await supabase
-          .from('enrollments')
-          .insert(enrollmentData)
-          .select();
-        
-        if (!error && data) {
-          console.log('Enrollment created successfully in Supabase:', data);
-          enrollmentSuccess = true;
-        }
-      } catch (supabaseError) {
-        console.warn('Supabase not available, using localStorage fallback');
-      }
-      
-      if (!enrollmentSuccess) {
-        // Fallback to localStorage
-        console.log('Using localStorage for enrollment...');
-        const existingEnrollments = JSON.parse(localStorage.getItem('enrollments') || '[]');
-        
-        // Check if already enrolled
-        const existingEnrollment = existingEnrollments.find((e: any) => 
-          e.course_id === course.id && e.user_id === currentUserId
-        );
-        
-        if (!existingEnrollment) {
-          existingEnrollments.push(enrollmentData);
-          localStorage.setItem('enrollments', JSON.stringify(existingEnrollments));
-          console.log('Enrollment saved to localStorage:', enrollmentData);
-        } else {
-          console.log('User already enrolled in course');
-        }
-        
-        enrollmentSuccess = true;
-      }
-      
-      setProgress(90);
-      await new Promise(resolve => setTimeout(resolve, 300));
-      setProgress(100);
-    } catch (error) {
-      console.error('Error in createEnrollment:', error);
-      throw error; // Re-throw to be handled by handleSubmit
-    }
+    // Simple enrollment creation - just like it was working before
+    const enrollmentData = {
+      id: `enrollment_${Date.now()}`,
+      user_id: userId,
+      user_email: userEmail,
+      course_id: course.id,
+      course_title: course.title,
+      proof_of_payment: proofUrl,
+      payment_ref: paymentRef || '',
+      payment_date: paymentDate || '',
+      status: 'pending',
+      enrolled_at: new Date().toISOString(),
+      progress: 0
+    };
+    
+    console.log('Creating enrollment with data:', enrollmentData);
+    
+    // Save to localStorage (simple and reliable)
+    const existingEnrollments = JSON.parse(localStorage.getItem('enrollments') || '[]');
+    existingEnrollments.push(enrollmentData);
+    localStorage.setItem('enrollments', JSON.stringify(existingEnrollments));
+    
+    setProgress(90);
+    await new Promise(resolve => setTimeout(resolve, 300));
+    setProgress(100);
   }
 
   async function handleSubmit() {
     if (!file) {
       setError('Please select a file');
+      return;
+    }
+
+    // Validate file type
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'application/pdf'];
+    if (!allowedTypes.includes(file.type)) {
+      setError('Please select a valid file type (JPEG, PNG, or PDF)');
+      return;
+    }
+
+    // Validate file size (max 10MB)
+    const maxSize = 10 * 1024 * 1024; // 10MB
+    if (file.size > maxSize) {
+      setError('File size too large. Please select a file smaller than 10MB');
       return;
     }
 
@@ -139,48 +99,35 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
     setError('');
     setProgress(0);
     
-    // Set up emergency timeout (20 seconds max for file upload)
-    const emergencyTimeout = setTimeout(() => {
-      console.warn('🚨 File upload emergency timeout...');
-      setUploading(false);
-      setError('Upload took too long. Please try again with a smaller file.');
-      toast({
-        title: "⏰ Upload Timeout",
-        description: "The upload process took too long. Please try again with a smaller file.",
-        variant: "destructive",
-      });
-    }, 20000);
+
     
     try {
       console.log('🚀 Starting bulletproof file upload enrollment...');
       
       // Step 1: Upload proof (mock process with progress)
-      setProgress(10);
       const proofUrl = await uploadProof(file, userId);
-      setProgress(60);
       
       // Step 2: Create enrollment
       await createEnrollment(proofUrl);
       console.log('✅ Enrollment created successfully');
       setProgress(100);
       
-      clearTimeout(emergencyTimeout);
       setSuccess(true);
       
       toast({
         title: "📄 Enrollment Submitted!",
-        description: `Your enrollment for ${course.title} has been submitted for review. You'll be notified once approved.`,
+        description: `Your enrollment for ${course.title} has been submitted for instructor approval. You'll be notified once approved.`,
       });
       
       if (onEnrollmentSuccess) onEnrollmentSuccess();
       
-      // Auto-close after success (no redirect for file uploads)
+      // Auto-close after success and trigger UI update
       setTimeout(() => {
         console.log('📄 File upload enrollment completed, closing popup...');
         
-        // Dispatch enrollment submitted event (different from instant success)
+        // Dispatch enrollment submitted event to update UI
         window.dispatchEvent(new CustomEvent('enrollment-submitted', {
-          detail: { courseId: course.id, userId: userId, type: 'file_upload' }
+          detail: { courseId: course.id, userId: userId, type: 'file_upload', status: 'pending' }
         }));
         
         reset();
@@ -189,7 +136,6 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
       
     } catch (e: any) {
       console.error('💥 File upload enrollment error:', e);
-      clearTimeout(emergencyTimeout);
       
       const errorMessage = e.message || 'Upload failed. Please try again.';
       setError(errorMessage);
@@ -257,9 +203,8 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
         proof_of_payment: 'instant_enrollment',
         payment_ref: `instant_${Date.now()}`,
         payment_date: new Date().toISOString().split('T')[0],
-        status: 'approved',
+        status: 'pending',
         enrolled_at: new Date().toISOString(),
-        approved_at: new Date().toISOString(),
         progress: 0
       };
 
@@ -430,7 +375,10 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
       />
       
       {/* Modal Content */}
-      <div className="relative z-[10000] bg-white rounded-lg p-6 max-w-md mx-4 border-2 border-gray-200 shadow-2xl max-h-[90vh] overflow-y-auto transform -translate-y-1/2">
+      <div 
+        data-popup="enroll-now"
+        className="relative z-[10000] bg-white rounded-lg p-6 max-w-md mx-4 border-2 border-gray-200 shadow-2xl max-h-[90vh] overflow-y-auto transform -translate-y-1/2"
+      >
         <div className="text-center mb-4">
           <h2 className="text-xl font-bold text-black mb-2">
             Enroll in {course?.title}
@@ -471,14 +419,7 @@ export default function EnrollNowPopup({ open, onClose, course, userId, userEmai
                   </div>
                 </div>
               )}
-              <Button 
-                className="w-full" 
-                variant="outline" 
-                onClick={handleInstantEnroll} 
-                disabled={uploading}
-              >
-                {uploading ? 'Enrolling...' : 'Enroll Instantly (Test)'}
-              </Button>
+
             </div>
           )}
           

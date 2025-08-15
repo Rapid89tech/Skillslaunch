@@ -127,7 +127,7 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
   };
 
   const handleEnroll = async (courseId: string, courseName: string, onSuccess?: () => void) => {
-    console.log("Attempting to enroll in course:", courseId, courseName);
+    console.log("Redirecting to enrollment page for course:", courseId, courseName);
     
     if (!user) {
       toast({
@@ -139,45 +139,8 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
       return;
     }
     
-    setEnrollingCourses(prev => new Set(prev).add(courseId));
-    
-    try {
-      console.log("Calling enrollInCourse function...");
-      const success = await enrollInCourse(courseId, courseName);
-      console.log("Enrollment result:", success);
-      
-      if (success) {
-        toast({
-          title: "🎉 Enrollment Successful!",
-          description: `You're now enrolled in "${courseName}"! Redirecting to course...`,
-        });
-        if (onSuccess) onSuccess();
-        // Navigate immediately to the course
-        setTimeout(() => {
-          console.log("Navigating to course:", courseId);
-          navigate(`/course/${courseId}`);
-        }, 1500);
-      } else {
-        toast({
-          title: "Enrollment Failed",
-          description: "There was an issue enrolling in the course. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } catch (error) {
-      console.error("Enrollment error:", error);
-      toast({
-        title: "Enrollment Error",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setEnrollingCourses(prev => {
-        const newSet = new Set(prev);
-        newSet.delete(courseId);
-        return newSet;
-      });
-    }
+    // Redirect to the enrollment page instead of using popup
+    navigate(`/enrollment/${courseId}`);
   };
 
   const handleContinueLearning = (courseId: string, courseName: string) => {
@@ -200,6 +163,26 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
 
     return () => clearInterval(interval);
   }, [refetch]);
+
+  // Listen for enrollment submission events
+  useEffect(() => {
+    const handleEnrollmentSubmitted = (event: CustomEvent) => {
+      console.log('Enrollment submitted event received:', event.detail);
+      const { courseId, status } = event.detail;
+      
+      if (status === 'pending') {
+        // Add to pending enrollments immediately
+        setPendingEnrollments(prev => new Set([...prev, courseId]));
+        console.log('Added course to pending enrollments:', courseId);
+      }
+    };
+
+    window.addEventListener('enrollment-submitted', handleEnrollmentSubmitted as EventListener);
+    
+    return () => {
+      window.removeEventListener('enrollment-submitted', handleEnrollmentSubmitted as EventListener);
+    };
+  }, []);
 
   // Check for pending enrollments
   useEffect(() => {
@@ -321,6 +304,18 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
                       setSelectedCourse(course);
                       setShowEnrollPopup(true);
                       console.log('showEnrollPopup set to true');
+                      
+                      // Smooth scroll to the popup after a short delay to ensure it's rendered
+                      setTimeout(() => {
+                        const popup = document.querySelector('[data-popup="enroll-now"]');
+                        if (popup) {
+                          popup.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center',
+                            inline: 'center'
+                          });
+                        }
+                      }, 100);
                     }}
                     className="w-full py-2 rounded-full bg-gradient-to-r from-red-600 to-red-800 text-white font-bold text-xs shadow-lg hover:scale-105 hover:from-red-700 hover:to-red-900 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400/60 animate-ripple"
                   >
@@ -362,7 +357,9 @@ const CoursesGrid = ({ courses }: CoursesGridProps) => {
             userEmail={user?.email}
             onEnrollmentSuccess={() => {
               refetch();
-              // Optionally, update pendingEnrollments state if needed
+              // Add the course to pending enrollments immediately
+              setPendingEnrollments(prev => new Set([...prev, selectedCourse.id]));
+              setShowEnrollPopup(false);
             }}
           />
         </>

@@ -84,13 +84,51 @@ const Course = () => {
   if (!isEnrolled) {
     console.log("Course Page: User not enrolled, showing enrollment view");
     return (
-      <Suspense fallback={<CourseSkeleton />}>
-        <CourseEnrollmentView
-          course={course}
-          handleEnroll={handleEnroll}
-          enrolling={enrolling}
-        />
-      </Suspense>
+      <>
+        <Suspense fallback={<CourseSkeleton />}>
+          <CourseEnrollmentView
+            course={course}
+            handleEnroll={handleEnroll}
+            enrolling={enrolling}
+          />
+        </Suspense>
+        
+        {/* Payment Popup */}
+        {showPaymentPopup && user && (
+          <EnrollNowPopup
+            open={showPaymentPopup}
+            onClose={handlePaymentPopupClose}
+            course={{
+              id: course.id,
+              title: course.title,
+              description: course.description,
+              category: course.category,
+              level: course.level,
+              duration: course.duration,
+              is_free: course.is_free,
+              price: course.price,
+              currency: course.currency,
+              students: course.students,
+              rating: course.rating,
+              instructor: {
+                id: '1',
+                first_name: course.instructor.name.split(' ')[0] || '',
+                last_name: course.instructor.name.split(' ').slice(1).join(' ') || '',
+                email: 'instructor@example.com'
+              },
+              status: 'active',
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString(),
+              available: true,
+              isComingSoon: false,
+              thumbnail: course.thumbnail
+            }}
+            userId={user.id}
+            userEmail={user.email || ''}
+            onEnrollmentSuccess={handleEnrollmentSuccess}
+          />
+        )}
+      </>
     );
   }
 

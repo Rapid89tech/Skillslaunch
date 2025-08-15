@@ -34,8 +34,8 @@ export const useCourseEnrollment = (
       return;
     }
 
-    console.log("Redirecting to enrollment page for course:", course.id);
-    navigate(`/enrollment/${course.id}`);
+    console.log("Showing payment popup for course:", course.id);
+    setShowPaymentPopup(true);
   };
 
   const handlePaymentPopupClose = () => {
