@@ -147,7 +147,7 @@ export const generateCertificateHTML = ({
       <body>
         <div class="certificate">
           <div class="logo-section">
-            <img src="/lovable-uploads/98b05f63-1e25-4db0-a600-f40e3ca71b7c.png" alt="Beta Skill Logo" class="logo" />
+            <img src="/beta-skill-certificate-logo.jpg" alt="Beta Skill Logo" class="logo" />
             <div class="brand-name">Beta Skill</div>
           </div>
           
