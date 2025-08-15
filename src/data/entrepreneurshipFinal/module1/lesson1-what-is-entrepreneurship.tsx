@@ -19,8 +19,6 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
----
-
 ## 🎯 The Entrepreneurial Process
 
 <div class="definition-card">
@@ -43,13 +41,11 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
----
-
 ## 🧩 Key Components of Entrepreneurship
 
 <div class="components-section">
 
-### 🔍 Opportunity Recognition
+<h3>🔍 Opportunity Recognition</h3>
 <div class="component-card">
 <div class="component-icon">👁️</div>
 <div class="component-content">
@@ -62,7 +58,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-### 💡 Innovation
+<h3>💡 Innovation</h3>
 <div class="component-card">
 <div class="component-icon">⚡</div>
 <div class="component-content">
@@ -75,7 +71,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-### 🎯 Resource Management
+<h3>🎯 Resource Management</h3>
 <div class="component-card">
 <div class="component-icon">⚙️</div>
 <div class="component-content">
@@ -88,7 +84,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-### 💰 Value Creation
+<h3>💰 Value Creation</h3>
 <div class="component-card">
 <div class="component-icon">💎</div>
 <div class="component-content">
@@ -101,7 +97,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-### 🎲 Risk-Taking
+<h3>🎲 Risk-Taking</h3>
 <div class="component-card">
 <div class="component-icon">🎯</div>
 <div class="component-content">
@@ -115,8 +111,6 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 
 </div>
-
----
 
 ## 🌟 The Entrepreneurial Impact
 
@@ -141,8 +135,6 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 <p>Local businesses strengthen communities by addressing specific regional needs and challenges.</p>
 </div>
 </div>
-
----
 
 <div class="mindset-section">
 <h2>🧠 The Entrepreneurial Mindset</h2>
@@ -253,10 +245,10 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 }
 
 .component-icon {
-  font-size: 3rem;
+  font-size: 1.5rem;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   display: flex;
   align-items: center;

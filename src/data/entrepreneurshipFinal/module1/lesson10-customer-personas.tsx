@@ -19,8 +19,6 @@ export const lesson10CustomerPersonas: Lesson = {
 </div>
 </div>
 
----
-
 ## 🤔 What Are Customer Personas?
 
 <div class="definition-card">
@@ -43,51 +41,47 @@ export const lesson10CustomerPersonas: Lesson = {
 </div>
 </div>
 
----
-
 ## 🧩 Key Components of a Persona
 
 <div class="components-section">
 
-### 👥 Demographics
+<h3>👥 Demographics</h3>
 <div class="component-details">
 <strong>What to include:</strong> Age, gender, income, education, occupation, family status
 <br><strong>Why it matters:</strong> Helps determine purchasing power and lifestyle constraints
 </div>
 
-### 🌍 Geographics  
+<h3>🌍 Geographics</h3>  
 <div class="component-details">
 <strong>What to include:</strong> Location, urban/rural setting, climate, culture
 <br><strong>Why it matters:</strong> Influences accessibility, preferences, and local needs
 </div>
 
-### 🧠 Psychographics
+<h3>🧠 Psychographics</h3>
 <div class="component-details">
 <strong>What to include:</strong> Values, interests, lifestyle, personality traits, attitudes
 <br><strong>Why it matters:</strong> Drives emotional connections and brand loyalty
 </div>
 
-### 🛒 Behavioral Patterns
+<h3>🛒 Behavioral Patterns</h3>
 <div class="component-details">
 <strong>What to include:</strong> Buying habits, brand loyalty, usage patterns, decision-making style
 <br><strong>Why it matters:</strong> Predicts how they'll interact with your product
 </div>
 
-### 🎯 Goals & Motivations
+<h3>🎯 Goals & Motivations</h3>
 <div class="component-details">
 <strong>What to include:</strong> Personal and professional aspirations, desired outcomes
 <br><strong>Why it matters:</strong> Shows what value you need to deliver
 </div>
 
-### 😤 Challenges & Pain Points
+<h3>😤 Challenges & Pain Points</h3>
 <div class="component-details">
 <strong>What to include:</strong> Current problems, frustrations, obstacles they face
 <br><strong>Why it matters:</strong> Reveals opportunities for your solution
 </div>
 
 </div>
-
----
 
 ## 👩‍💼 Example Persona: Meet Sarah
 
@@ -145,8 +139,6 @@ export const lesson10CustomerPersonas: Lesson = {
 </div>
 </div>
 
----
-
 ## 🚀 Benefits of Well-Crafted Personas
 
 <div class="benefits-section">
@@ -182,8 +174,6 @@ export const lesson10CustomerPersonas: Lesson = {
 </div>
 
 </div>
-
----
 
 <div class="action-section">
 <h2>✅ Next Steps</h2>
