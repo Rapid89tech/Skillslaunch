@@ -41,7 +41,7 @@ const CourseCurriculum = ({ modules, totalLessons, totalDuration }: CourseCurric
   return (
     <Card className="glassmorphism-card border-0 shadow-xl rounded-3xl overflow-hidden animate-fade-in-card">
       <CardHeader className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 py-6 px-8 flex flex-row items-center gap-3 rounded-t-3xl border-b-0">
-        <span className="text-xl md:text-2xl font-bold gradient-text drop-shadow-lg flex items-center gap-2">
+        <span className="text-lg md:text-xl font-semibold gradient-text drop-shadow-lg flex items-center gap-2">
           <BookOpen className="h-5 w-5 text-blue-600" />
           Course Curriculum
         </span>

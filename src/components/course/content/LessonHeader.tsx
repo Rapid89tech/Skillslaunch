@@ -28,7 +28,7 @@ const LessonHeader = ({ lesson, isCompleted, hasAttempted = false }: LessonHeade
           {getLessonIcon(lesson.type)}
         </div>
         <div className="animate-slide-in-right" style={{ animationDelay: '0.1s' }}>
-          <h2 className="text-xl font-semibold story-link">{lesson.title}</h2>
+          <h2 className="text-lg font-medium story-link">{lesson.title}</h2>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <span className="flex items-center gap-1 hover-scale">
               <Clock className="h-4 w-4" />

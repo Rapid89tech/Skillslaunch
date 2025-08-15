@@ -8,6 +8,7 @@ import Module1HardwareContent from './lessons/Module1HardwareContent';
 import SoundEngineeringContent from './lessons/SoundEngineeringContent';
 import MinimalIconProcessor from './MinimalIconProcessor';
 import { generateFallbackContent } from './video-lesson/ContentGenerator';
+import YouTubeVideoRenderer from './YouTubeVideoRenderer';
 import type { VideoLesson } from '@/types/course';
 
 interface VideoLessonRendererProps {
@@ -19,6 +20,20 @@ interface VideoLessonRendererProps {
 
 const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: VideoLessonRendererProps) => {
   const [contentCompleted, setContentCompleted] = useState(false);
+
+  // Helper function to extract video ID from YouTube URL
+  const extractVideoId = (url: string): string => {
+    if (url.includes('youtube.com/watch?v=')) {
+      return url.split('v=')[1].split('&')[0];
+    } else if (url.includes('youtu.be/')) {
+      return url.split('youtu.be/')[1].split('?')[0];
+    } else if (url.includes('youtube.com/embed/')) {
+      return url.split('embed/')[1].split('?')[0];
+    } else if (url.includes('www.youtube.com/watch?')) {
+      return url.split('v=')[1].split('&')[0];
+    }
+    return url;
+  };
 
   // Scroll to top when lesson changes
   useEffect(() => {
@@ -50,10 +65,8 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
   // Always preserve original content - DO NOT generate fallback for existing content
   const lessonContent = lesson.content?.textContent || generateFallbackContent(lesson);
   
-  // Add video URL to the content if it exists - this ensures videos show as actual players
-  const enhancedContent = lesson.content?.videoUrl 
-    ? `• YOUTUBE: ${lesson.title} - ${lesson.content.videoUrl}\n\n${lessonContent}`
-    : lessonContent;
+  // Use original content without adding YouTube text - videos will be handled by the renderer
+  const enhancedContent = lessonContent;
   
   // Debug logging - minimal to avoid performance issues
   React.useEffect(() => {
@@ -79,6 +92,16 @@ const VideoLessonRenderer = ({ lesson, isCompleted, onMarkComplete, onNext }: Vi
     <div className="space-y-6 animate-fade-in">
       {/* Header */}
       <LessonHeader lesson={lesson} isCompleted={isCompleted} />
+
+      {/* Video Player - Add this back */}
+      {lesson.content?.videoUrl && (
+        <div className="mb-6">
+          <YouTubeVideoRenderer 
+            videoId={extractVideoId(lesson.content.videoUrl)} 
+            title={lesson.title}
+          />
+        </div>
+      )}
 
       {/* Content */}
       {useAnimatedContent ? (
