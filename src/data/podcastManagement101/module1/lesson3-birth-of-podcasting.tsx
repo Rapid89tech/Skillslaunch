@@ -10,7 +10,6 @@ export const lesson3BirthOfPodcasting: Lesson = {
     textContent: `
 # Birth of Podcasting (Early 2000s)
 
-https://youtu.be/fi6Y8d_qO9w
 
 The early 2000s marked the revolutionary birth of podcasting, when technological innovation met creative vision to create a new medium that would transform audio content delivery forever.
 

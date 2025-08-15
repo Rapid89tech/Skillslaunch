@@ -10,7 +10,6 @@ export const lesson5PodcastBoom: Lesson = {
     textContent: `
 # The Podcast Boom (2014–2018)
 
-https://youtu.be/jFWjiVfSHH8
 
 The 2014–2018 period saw explosive growth, driven by *Serial*, celebrity involvement, and platform expansion, making podcasting a cultural phenomenon. The podcast boom, fueled by *Serial* and platforms like Spotify, transformed podcasting into a mainstream medium. Managers craft engaging, high-quality content leveraging narrative storytelling and platform optimization to drive growth and retention.
 

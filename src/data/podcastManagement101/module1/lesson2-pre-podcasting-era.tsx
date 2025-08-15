@@ -10,7 +10,6 @@ export const lesson2PrePodcastingEra: Lesson = {
     textContent: `
 # Pre-Podcasting Era: Foundations
 
-https://youtu.be/J-WX-bRNtsE
 
 Understanding the historical foundations of podcasting helps us appreciate how this medium evolved from traditional radio broadcasting to the digital revolution. This lesson explores the key developments that shaped the audio landscape before podcasting emerged.
 

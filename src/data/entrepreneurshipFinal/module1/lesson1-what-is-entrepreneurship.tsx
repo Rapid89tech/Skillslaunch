@@ -6,7 +6,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
   duration: '15 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/uBV-UAkxDNQ?si=c5NVwNdXnuPiUQMW',
+    videoUrl: 'https://www.youtube.com/watch?v=pC5l5j2u9SQ',
     textContent: `<div class="lesson-content">
 
 <h1>What is Entrepreneurship?</h1>
