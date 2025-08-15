@@ -144,7 +144,7 @@ const CourseHeader = ({ course, totalDuration, totalLessons }: CourseHeaderProps
           <CarouselContent>
             {slides.map((slide, idx) => (
               <CarouselItem key={idx} className="flex flex-col items-center justify-center text-center min-h-[200px]">
-                <h1 className="text-2xl md:text-3xl font-extrabold mb-2 drop-shadow-lg animate-fade-in delay-100" style={{color: '#fff'}}>{slide.title}</h1>
+                <h1 className="text-xl md:text-2xl font-bold mb-2 drop-shadow-lg animate-fade-in delay-100" style={{color: '#fff'}}>{slide.title}</h1>
                 {slide.stats}
               </CarouselItem>
             ))}

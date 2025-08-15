@@ -36,7 +36,7 @@ const CoursesPageHeader = () => {
           <CarouselContent>
             {slides.map((slide, idx) => (
               <CarouselItem key={idx} className="flex flex-col items-center justify-center text-center min-h-[200px]">
-                <h1 className="text-4xl md:text-5xl font-extrabold gradient-text mb-4 drop-shadow-lg animate-fade-in delay-100 text-white">{slide.title}</h1>
+                <h1 className="text-2xl md:text-3xl font-bold gradient-text mb-4 drop-shadow-lg animate-fade-in delay-100 text-white">{slide.title}</h1>
                 <p className="text-lg md:text-xl text-white max-w-2xl mx-auto leading-relaxed animate-fade-in delay-200">
                   {slide.desc}
                 </p>

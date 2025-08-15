@@ -12,7 +12,7 @@ const CourseOverview = ({ course }: CourseOverviewProps) => {
       {/* Quick Navigation */}
       <Card className="glassmorphism-card border-0 shadow-xl rounded-3xl overflow-hidden animate-fade-in-card">
         <CardHeader className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 py-6 px-8 flex flex-row items-center gap-3 rounded-t-3xl border-b-0">
-          <span className="text-2xl md:text-3xl font-extrabold gradient-text drop-shadow-lg flex items-center gap-2">
+          <span className="text-xl md:text-2xl font-bold gradient-text drop-shadow-lg flex items-center gap-2">
             <Globe className="h-5 w-5 text-blue-600" />
             Quick Navigation
           </span>
@@ -53,7 +53,7 @@ const CourseOverview = ({ course }: CourseOverviewProps) => {
       {/* Course Overview */}
       <Card id="course-overview" className="glassmorphism-card border-0 shadow-xl rounded-3xl overflow-hidden animate-fade-in-card">
         <CardHeader className="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 py-6 px-8 flex flex-row items-center gap-3 rounded-t-3xl border-b-0">
-          <span className="text-2xl md:text-3xl font-extrabold gradient-text drop-shadow-lg flex items-center gap-2">
+          <span className="text-xl md:text-2xl font-bold gradient-text drop-shadow-lg flex items-center gap-2">
             <Globe className="h-5 w-5 text-green-600" />
             Course Overview
                   </span>

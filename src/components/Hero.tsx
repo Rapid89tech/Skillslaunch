@@ -234,15 +234,15 @@ const Hero = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.1s' }}>
-              <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">60+</div>
+                              <div className="text-2xl md:text-3xl font-bold text-red-600 mb-2">60+</div>
               <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Professional Courses</div>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
-              <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">1000+</div>
+                              <div className="text-2xl md:text-3xl font-bold text-red-600 mb-2">1000+</div>
               <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Students Enrolled</div>
             </div>
             <div className="text-center animate-fade-in" style={{ animationDelay: '0.3s' }}>
-              <div className="text-3xl md:text-4xl font-bold text-red-600 mb-2">100%</div>
+                              <div className="text-2xl md:text-3xl font-bold text-red-600 mb-2">100%</div>
               <div className="text-sm md:text-base text-gray-600 dark:text-gray-400">Free Training</div>
             </div>
           </div>

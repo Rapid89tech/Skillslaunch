@@ -84,7 +84,7 @@ const Index = () => {
                     <Users className="inline-block w-4 h-4 mr-1 -mt-1" />
                     Students
                   </span>
-                  <span className="text-4xl md:text-6xl font-black text-gray-900 drop-shadow animate-countup">5,056</span>
+                  <span className="text-2xl md:text-4xl font-black text-gray-900 drop-shadow animate-countup">5,056</span>
                   <TrendingUp className="h-7 w-7 text-green-500 ml-3 animate-bounce" />
                 </div>
                 <div className="text-base md:text-lg text-gray-700 font-bold tracking-wide animate-fade-in delay-200">Already Interested!</div>
