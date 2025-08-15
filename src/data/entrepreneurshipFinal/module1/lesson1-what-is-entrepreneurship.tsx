@@ -9,7 +9,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
     videoUrl: 'https://youtu.be/uBV-UAkxDNQ?si=c5NVwNdXnuPiUQMW',
     textContent: `<div class="lesson-content">
 
-# 🚀 What is Entrepreneurship?
+<h1>What is Entrepreneurship?</h1>
 
 <div class="intro-section">
 <p class="lead-text">Discover the art and science of creating value by solving real problems and building sustainable businesses.</p>
@@ -19,7 +19,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-## 🎯 The Entrepreneurial Process
+<h2>The Entrepreneurial Process</h2>
 
 <div class="definition-card">
 <h3>📋 Definition</h3>
@@ -41,11 +41,11 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-## 🧩 Key Components of Entrepreneurship
+<h2>Key Components of Entrepreneurship</h2>
 
 <div class="components-section">
 
-<h3>🔍 Opportunity Recognition</h3>
+<h3>Opportunity Recognition</h3>
 <div class="component-card">
 <div class="component-icon">👁️</div>
 <div class="component-content">
@@ -58,7 +58,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-<h3>💡 Innovation</h3>
+<h3>Innovation</h3>
 <div class="component-card">
 <div class="component-icon">⚡</div>
 <div class="component-content">
@@ -71,7 +71,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-<h3>🎯 Resource Management</h3>
+<h3>Resource Management</h3>
 <div class="component-card">
 <div class="component-icon">⚙️</div>
 <div class="component-content">
@@ -84,7 +84,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-<h3>💰 Value Creation</h3>
+<h3>Value Creation</h3>
 <div class="component-card">
 <div class="component-icon">💎</div>
 <div class="component-content">
@@ -97,7 +97,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 </div>
 </div>
 
-<h3>🎲 Risk-Taking</h3>
+<h3>Risk-Taking</h3>
 <div class="component-card">
 <div class="component-icon">🎯</div>
 <div class="component-content">
@@ -112,7 +112,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 
 </div>
 
-## 🌟 The Entrepreneurial Impact
+<h2>The Entrepreneurial Impact</h2>
 
 <div class="impact-section">
 <div class="impact-card">
@@ -171,21 +171,24 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   line-height: 1.6;
   color: #333;
+  padding: 0;
+  margin: 0;
 }
 
 .intro-section {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 12px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .lead-text {
   font-size: 1.25rem;
-  font-weight: 300;
+  font-weight: 400;
   margin-bottom: 1.5rem;
   text-align: center;
+  color: white;
 }
 
 .highlight-box {
@@ -201,7 +204,17 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
   padding: 1.5rem;
   border-radius: 12px;
   border-left: 5px solid #4f46e5;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
+}
+
+.definition-card h3 {
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.definition-card p {
+  color: #1f2937;
+  margin: 0;
 }
 
 .impact-grid {
@@ -228,19 +241,19 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
 
 .components-section {
   background: #fafafa;
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 12px;
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 }
 
 .component-card {
   background: white;
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: 12px;
-  margin: 1.5rem 0;
-  box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  margin: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   align-items: flex-start;
 }
 

@@ -9,7 +9,7 @@ export const lesson10CustomerPersonas: Lesson = {
     videoUrl: 'https://www.youtube.com/watch?v=v6EWN4EjHM0',
     textContent: `<div class="lesson-content">
 
-# 🎯 Creating Customer Personas
+<h1>Creating Customer Personas</h1>
 
 <div class="intro-section">
 <p class="lead-text">Transform abstract market data into relatable human profiles that drive smarter business decisions.</p>
@@ -19,7 +19,7 @@ export const lesson10CustomerPersonas: Lesson = {
 </div>
 </div>
 
-## 🤔 What Are Customer Personas?
+<h2>What Are Customer Personas?</h2>
 
 <div class="definition-card">
 <h3>📋 Definition</h3>
@@ -41,7 +41,7 @@ export const lesson10CustomerPersonas: Lesson = {
 </div>
 </div>
 
-## 🧩 Key Components of a Persona
+<h2>Key Components of a Persona</h2>
 
 <div class="components-section">
 
