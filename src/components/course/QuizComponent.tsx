@@ -12,7 +12,8 @@ import {
   ChevronRight,
   RotateCcw,
   Award,
-  Trophy
+  Trophy,
+  AlertTriangle
 } from 'lucide-react';
 import type { QuizLesson } from '@/types/course';
 import { useModuleScores } from '@/hooks/useModuleScores';
@@ -46,7 +47,15 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
   const [quizCompleted, setQuizCompleted] = useState(false);
   const [score, setScore] = useState(0);
 
-  const questions = lesson.content.questions;
+  // Entrepreneurship Final specific state
+  const [passedQuiz, setPassedQuiz] = useState(false);
+  const [randomizedQuestions, setRandomizedQuestions] = useState(lesson.content.questions);
+
+  // Check if this is Entrepreneurship Final course
+  const isEntrepreneurshipFinal = courseId === 'entrepreneurship-final';
+  const PASS_MARK = isEntrepreneurshipFinal ? 70 : 60; // 70% for Entrepreneurship Final, 60% for others
+
+  const questions = randomizedQuestions;
   const currentQ = questions[currentQuestion];
   const isLastQuestion = currentQuestion === questions.length - 1;
   const isFirstQuestion = currentQuestion === 0;
@@ -69,6 +78,12 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
     }
   };
 
+  // Function to randomize questions for retry
+  const randomizeQuestions = () => {
+    const shuffled = [...lesson.content.questions].sort(() => Math.random() - 0.5);
+    setRandomizedQuestions(shuffled);
+  };
+
   const submitQuiz = async () => {
     let correctCount = 0;
     questions.forEach((question, index) => {
@@ -78,156 +93,182 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
     });
     
     const percentage = (correctCount / questions.length) * 100;
-    const scorePoints = correctCount; // Use actual correct answers as score points
-    const totalPoints = questions.length; // Total possible points is number of questions
+    const scorePoints = correctCount;
+    const totalPoints = questions.length;
     
     setScore(percentage);
     setShowResults(true);
     setQuizCompleted(true);
     
-    // Save score to database and user progress
-    if (courseId && moduleId !== undefined && lessonId !== undefined) {
-      console.log('🎯 Submitting quiz score:', {
-        moduleId,
-        lessonId,
-        correctCount,
-        totalQuestions: questions.length,
-        scorePoints,
-        totalPoints,
-        percentage
-      });
-      
-      try {
-        // Submit score first (this updates local state immediately)
-        console.log('🔄 Submitting score...');
-        const scoreSubmitted = await submitScore(moduleId, lessonId, scorePoints, totalPoints);
-        
-        if (scoreSubmitted) {
-          console.log('✅ Score submitted successfully');
-          
-          // Save to permanent user progress
-          console.log('💾 Saving to permanent user progress...');
-          await saveQuizScore(moduleId, lessonId, percentage);
-          await markLessonCompleted(moduleId, lessonId);
-          
-          console.log('✅ Progress saved successfully');
-          
-          // Force refresh scores to ensure UI is updated
-          console.log('🔄 Refreshing scores...');
-          await fetchScores();
-          await fetchCourseSummary();
-          console.log('✅ Scores refreshed successfully');
-        } else {
-          console.error('❌ Failed to submit score');
+    // Entrepreneurship Final specific logic
+    if (isEntrepreneurshipFinal) {
+      if (percentage >= PASS_MARK) {
+        setPassedQuiz(true);
+        // Only mark as completed and allow progression if passed
+        if (courseId && moduleId !== undefined && lessonId !== undefined) {
+          try {
+            const scoreSubmitted = await submitScore(moduleId, lessonId, scorePoints, totalPoints);
+            if (scoreSubmitted) {
+              await saveQuizScore(moduleId, lessonId, percentage);
+              await markLessonCompleted(moduleId, lessonId);
+              await fetchScores();
+              await fetchCourseSummary();
+            }
+          } catch (error) {
+            console.error('❌ Error during quiz submission:', error);
+          }
         }
-      } catch (error) {
-        console.error('❌ Error during quiz submission:', error);
-        // Don't fail the quiz - show results anyway
+        onComplete();
+      } else {
+        setPassedQuiz(false);
+        // Don't mark as completed or allow progression if failed
+        console.log(`❌ Quiz failed. Required: ${PASS_MARK}%, Got: ${percentage}%`);
       }
-    }
-    
-    if (percentage >= 70) {
-      onComplete();
-      
-      // BULLETPROOF CERTIFICATE REDIRECTION LOGIC
-      if (course) {
-        console.log('=== CERTIFICATE REDIRECTION DEBUG ===');
-        console.log('Course data:', {
-          courseId: course.id,
-          courseTitle: course.title,
-          totalModules: course.modules.length,
-          moduleIds: course.modules.map(m => m.id)
-        });
-        
-        // Method 1: Check if this is the last lesson overall
-        const allLessons = course.modules.flatMap(m => m.lessons);
-        const currentLessonIndex = allLessons.findIndex(l => l.id === lessonId);
-        const isLastLessonOverall = currentLessonIndex === allLessons.length - 1;
-        
-        // Method 2: Check if this is the last lesson of the last module
-        const totalModules = course.modules.length;
-        const lastModuleIndex = totalModules - 1;
-        const lastModule = course.modules[lastModuleIndex];
-        const isLastModule = moduleId === lastModule.id;
-        const isLastLessonOfLastModule = lessonId === lastModule.lessons[lastModule.lessons.length - 1].id;
-        
-        // Method 3: Check if this is the last quiz in the course
-        const allQuizzes = allLessons.filter(l => l.type === 'quiz');
-        const currentQuizIndex = allQuizzes.findIndex(q => q.id === lessonId);
-        const isLastQuiz = currentQuizIndex === allQuizzes.length - 1;
-        
-        console.log('Completion checks:', {
+    } else {
+      // Original logic for other courses
+      if (courseId && moduleId !== undefined && lessonId !== undefined) {
+        console.log('🎯 Submitting quiz score:', {
           moduleId,
           lessonId,
-          totalModules,
-          lastModuleId: lastModule.id,
-          isLastModule,
-          isLastLessonOfLastModule,
-          isLastLessonOverall,
-          isLastQuiz,
-          totalLessons: allLessons.length,
-          currentLessonIndex,
-          totalQuizzes: allQuizzes.length,
-          currentQuizIndex
+          correctCount,
+          totalQuestions: questions.length,
+          scorePoints,
+          totalPoints,
+          percentage
         });
         
-        // REDIRECT IF ANY OF THESE CONDITIONS ARE MET
-        const shouldRedirect = isLastLessonOverall || (isLastModule && isLastLessonOfLastModule) || isLastQuiz;
-        
-        console.log('🎯 REDIRECTION DECISION:', {
-          shouldRedirect,
-          isLastLessonOverall,
-          isLastModule,
-          isLastLessonOfLastModule,
-          isLastQuiz,
-          isCompleted
-        });
-        
-        if (shouldRedirect) {
-          console.log('🎉 FINAL QUIZ DETECTED! Force marking course as completed...');
-          forceMarkAsCompleted();
+        try {
+          // Submit score first (this updates local state immediately)
+          console.log('🔄 Submitting score...');
+          const scoreSubmitted = await submitScore(moduleId, lessonId, scorePoints, totalPoints);
           
-          // Store certificate data for persistence
-          const { user, profile } = useAuth();
-          let studentName = 'Student';
-          if (profile?.first_name && profile?.last_name) {
-            studentName = `${profile.first_name} ${profile.last_name}`;
-          } else if (user?.user_metadata?.full_name) {
-            studentName = user.user_metadata.full_name;
-          } else if (user?.user_metadata?.first_name && user?.user_metadata?.last_name) {
-            studentName = `${user.user_metadata.first_name} ${user.user_metadata.last_name}`;
-          } else if (user?.email) {
-            studentName = user.email.split('@')[0];
+          if (scoreSubmitted) {
+            console.log('✅ Score submitted successfully');
+            
+            // Save to permanent user progress
+            console.log('💾 Saving to permanent user progress...');
+            await saveQuizScore(moduleId, lessonId, percentage);
+            await markLessonCompleted(moduleId, lessonId);
+            
+            console.log('✅ Progress saved successfully');
+            
+            // Force refresh scores to ensure UI is updated
+            console.log('🔄 Refreshing scores...');
+            await fetchScores();
+            await fetchCourseSummary();
+            console.log('✅ Scores refreshed successfully');
+          } else {
+            console.error('❌ Failed to submit score');
           }
-          
-          const certificateData = {
-            courseTitle: course.title,
-            studentName,
-            completionDate: new Date().toISOString().split('T')[0],
-            instructorName: course.instructor.name,
+        } catch (error) {
+          console.error('❌ Error during quiz submission:', error);
+          // Don't fail the quiz - show results anyway
+        }
+      }
+      
+      if (percentage >= PASS_MARK) {
+        onComplete();
+        
+        // BULLETPROOF CERTIFICATE REDIRECTION LOGIC
+        if (course) {
+          console.log('=== CERTIFICATE REDIRECTION DEBUG ===');
+          console.log('Course data:', {
             courseId: course.id,
-            grade: 'A'
-          };
+            courseTitle: course.title,
+            totalModules: course.modules.length,
+            moduleIds: course.modules.map(m => m.id)
+          });
           
-          localStorage.setItem(`certificate-data-${courseId}`, JSON.stringify(certificateData));
+          // Method 1: Check if this is the last lesson overall
+          const allLessons = course.modules.flatMap(m => m.lessons);
+          const currentLessonIndex = allLessons.findIndex(l => l.id === lessonId);
+          const isLastLessonOverall = currentLessonIndex === allLessons.length - 1;
           
-          console.log('🎉 FINAL QUIZ DETECTED! Redirecting to certificate...');
-          console.log('Navigation URL:', `/course/${courseId}/certificate`);
+          // Method 2: Check if this is the last lesson of the last module
+          const totalModules = course.modules.length;
+          const lastModuleIndex = totalModules - 1;
+          const lastModule = course.modules[lastModuleIndex];
+          const isLastModule = moduleId === lastModule.id;
+          const isLastLessonOfLastModule = lessonId === lastModule.lessons[lastModule.lessons.length - 1].id;
           
-          // Force redirect after a short delay
-          setTimeout(() => {
-            console.log('Executing navigation now...');
-            navigate(`/course/${courseId}/certificate`);
-          }, 1500);
-        } else {
-          console.log('Not the final quiz - continuing with course...');
+          // Method 3: Check if this is the last quiz in the course
+          const allQuizzes = allLessons.filter(l => l.type === 'quiz');
+          const currentQuizIndex = allQuizzes.findIndex(q => q.id === lessonId);
+          const isLastQuiz = currentQuizIndex === allQuizzes.length - 1;
           
-          // FALLBACK: Check if course is actually completed
-          if (isCompleted) {
-            console.log('🎉 COURSE COMPLETION DETECTED! Redirecting to certificate...');
+          console.log('Completion checks:', {
+            moduleId,
+            lessonId,
+            totalModules,
+            lastModuleId: lastModule.id,
+            isLastModule,
+            isLastLessonOfLastModule,
+            isLastLessonOverall,
+            isLastQuiz,
+            totalLessons: allLessons.length,
+            currentLessonIndex,
+            totalQuizzes: allQuizzes.length,
+            currentQuizIndex
+          });
+          
+          // REDIRECT IF ANY OF THESE CONDITIONS ARE MET
+          const shouldRedirect = isLastLessonOverall || (isLastModule && isLastLessonOfLastModule) || isLastQuiz;
+          
+          console.log('🎯 REDIRECTION DECISION:', {
+            shouldRedirect,
+            isLastLessonOverall,
+            isLastModule,
+            isLastLessonOfLastModule,
+            isLastQuiz,
+            isCompleted
+          });
+          
+          if (shouldRedirect) {
+            console.log('🎉 FINAL QUIZ DETECTED! Force marking course as completed...');
+            forceMarkAsCompleted();
+            
+            // Store certificate data for persistence
+            const { user, profile } = useAuth();
+            let studentName = 'Student';
+            if (profile?.first_name && profile?.last_name) {
+              studentName = `${profile.first_name} ${profile.last_name}`;
+            } else if (user?.user_metadata?.full_name) {
+              studentName = user.user_metadata.full_name;
+            } else if (user?.user_metadata?.first_name && user?.user_metadata?.last_name) {
+              studentName = `${user.user_metadata.first_name} ${user.user_metadata.last_name}`;
+            } else if (user?.email) {
+              studentName = user.email.split('@')[0];
+            }
+            
+            const certificateData = {
+              courseTitle: course.title,
+              studentName,
+              completionDate: new Date().toISOString().split('T')[0],
+              instructorName: course.instructor.name,
+              courseId: course.id,
+              grade: 'A'
+            };
+            
+            localStorage.setItem(`certificate-data-${courseId}`, JSON.stringify(certificateData));
+            
+            console.log('🎉 FINAL QUIZ DETECTED! Redirecting to certificate...');
+            console.log('Navigation URL:', `/course/${courseId}/certificate`);
+            
+            // Force redirect after a short delay
             setTimeout(() => {
+              console.log('Executing navigation now...');
               navigate(`/course/${courseId}/certificate`);
-            }, 2000);
+            }, 1500);
+          } else {
+            console.log('Not the final quiz - continuing with course...');
+            
+            // FALLBACK: Check if course is actually completed
+            if (isCompleted) {
+              console.log('🎉 COURSE COMPLETION DETECTED! Redirecting to certificate...');
+              setTimeout(() => {
+                navigate(`/course/${courseId}/certificate`);
+              }, 2000);
+            }
           }
         }
       }
@@ -240,6 +281,12 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
     setShowResults(false);
     setQuizCompleted(false);
     setScore(0);
+    setPassedQuiz(false);
+    
+    // Randomize questions for Entrepreneurship Final
+    if (isEntrepreneurshipFinal) {
+      randomizeQuestions();
+    }
   };
 
   const allAnswered = answers.every(answer => answer !== null);
@@ -321,6 +368,27 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
                   <span className="text-base font-semibold text-gray-700 dark:text-gray-200 mt-2 animate-fade-in">Score</span>
                   <span className={`mt-3 px-3 py-1 rounded-full text-sm font-bold border ${getGradeColor(latestAttempt.grade)} animate-bounce`}>{latestAttempt.grade}</span>
                   <span className="text-xs text-gray-500 mt-2 animate-fade-in">Attempt #{pastAttempts.length}</span>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* Failed Quiz Message for Entrepreneurship Final */}
+          {isEntrepreneurshipFinal && !passedQuiz && score > 0 && (
+            <div className="flex justify-center mb-6 animate-fade-in">
+              <div className="bg-gradient-to-r from-red-500 to-orange-600 text-white px-8 py-6 rounded-2xl shadow-2xl max-w-md text-center">
+                <div className="flex items-center justify-center mb-3">
+                  <AlertTriangle className="w-8 h-8 text-yellow-300 mr-3" />
+                  <h3 className="text-2xl font-bold">❌ Quiz Failed</h3>
+                </div>
+                <p className="text-lg mb-4">
+                  You scored <strong>{Math.round(score)}%</strong> but need <strong>70%</strong> to pass.
+                </p>
+                <p className="text-sm opacity-90 mb-4">
+                  Please review the incorrect answers below and try again.
+                </p>
+                <div className="text-xs opacity-75">
+                  Questions will be randomized on your next attempt.
                 </div>
               </div>
             </div>
@@ -468,7 +536,9 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
         {/* Answer Review */}
         <Card className="animate-fade-in transition-all duration-200 hover:shadow-xl hover:scale-[1.015]" style={{ animationDelay: '0.3s' }}>
           <CardHeader>
-            <CardTitle>Answer Review</CardTitle>
+            <CardTitle>
+              {isEntrepreneurshipFinal ? 'Quiz Results' : 'Answer Review'}
+            </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             {questions.map((question, qIndex) => (
@@ -480,30 +550,49 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
                   {question.question}
                 </h4>
                 <div className="space-y-2 mb-3">
-                  {question.options.map((option, oIndex) => (
-                    <div
-                      key={oIndex}
-                      className={`p-2 rounded border transition-all duration-200 hover:shadow-sm hover:scale-[1.01] ${
-                        oIndex === question.correct
-                          ? 'bg-green-100 border-green-300'
-                          : answers[qIndex] === oIndex
-                          ? 'bg-red-100 border-red-300'
-                          : 'bg-gray-50'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2">
-                        {oIndex === question.correct && <CheckCircle className="h-4 w-4 text-green-600" />}
-                        {answers[qIndex] === oIndex && oIndex !== question.correct && <XCircle className="h-4 w-4 text-red-600" />}
-                        <span>{option}</span>
+                  {question.options.map((option, oIndex) => {
+                    // For Entrepreneurship Final, only show wrong answers
+                    const isCorrect = oIndex === question.correct;
+                    const isSelected = answers[qIndex] === oIndex;
+                    const isWrong = isSelected && !isCorrect;
+                    
+                    // Hide correct answers for Entrepreneurship Final
+                    if (isEntrepreneurshipFinal && isCorrect && !isSelected) {
+                      return null;
+                    }
+                    
+                    return (
+                      <div
+                        key={oIndex}
+                        className={`p-2 rounded border transition-all duration-200 hover:shadow-sm hover:scale-[1.01] ${
+                          isEntrepreneurshipFinal
+                            ? isWrong
+                              ? 'bg-red-100 border-red-300'
+                              : 'bg-gray-50'
+                            : isCorrect
+                            ? 'bg-green-100 border-green-300'
+                            : isSelected
+                            ? 'bg-red-100 border-red-300'
+                            : 'bg-gray-50'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2">
+                          {!isEntrepreneurshipFinal && isCorrect && <CheckCircle className="h-4 w-4 text-green-600" />}
+                          {isWrong && <XCircle className="h-4 w-4 text-red-600" />}
+                          <span>{option}</span>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
-                <div className="bg-blue-50 p-3 rounded-lg">
-                  <p className="text-sm text-blue-800">
-                    <strong>Explanation:</strong> {question.explanation}
-                  </p>
-                </div>
+                {/* Only show explanation for Entrepreneurship Final if user got it wrong */}
+                {(!isEntrepreneurshipFinal || (isEntrepreneurshipFinal && answers[qIndex] !== question.correct)) && (
+                  <div className="bg-blue-50 p-3 rounded-lg">
+                    <p className="text-sm text-blue-800">
+                      <strong>Explanation:</strong> {question.explanation}
+                    </p>
+                  </div>
+                )}
               </div>
             ))}
           </CardContent>
