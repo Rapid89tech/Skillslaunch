@@ -10,11 +10,38 @@ export const lesson1BusinessStructures: Lesson = {
     textContent: `
 # Types of Business Structures
 
-https://youtu.be/gAZog3kdCyw?si=P-bGLer4ZHrbfZMZ
 
-The choice of business structure defines your legal, financial, and operational framework. Options like Sole Proprietorship, Partnership, Limited Liability Company (LLC), Corporation, Cooperative, and Non-Profit Organisation (NPO) cater to different business goals, from solo ventures to community-driven initiatives. Each structure impacts liability, taxation, and scalability, making it essential to align your choice with your business vision. For example, BrightBox, a subscription-based gardening kit startup, might choose a (Pty) Ltd for growth potential. This decision ensures compliance, protects personal assets, and attracts investors, setting the stage for sustainable expansion.
 
-Selecting the right structure is foundational for operational clarity and legal protection. For instance, a Sole Proprietorship suits a freelance designer due to its simplicity, while a (Pty) Ltd fits BrightBox's scalable model. Each structure balances benefits like limited liability against challenges like regulatory compliance. Understanding these options helps entrepreneurs like BrightBox's founders make informed decisions, ensuring tax efficiency, asset protection, and investor appeal. This clarity strengthens your business plan, demonstrating professionalism and readiness to stakeholders, from banks to customers.
+The choice of business structure defines your legal, financial, and operational framework. 
+
+**Structure Options:**
+• Sole Proprietorship
+• Partnership  
+• Limited Liability Company (LLC)
+• Corporation
+• Cooperative
+• Non-Profit Organisation (NPO)
+
+Each structure impacts liability, taxation, and scalability, making it essential to align your choice with your business vision. 
+
+**Example:** BrightBox, a subscription-based gardening kit startup, might choose a (Pty) Ltd for growth potential.
+
+**Benefits:** This decision ensures compliance, protects personal assets, and attracts investors, setting the stage for sustainable expansion.
+
+Selecting the right structure is foundational for operational clarity and legal protection. 
+
+**Examples:**
+• Sole Proprietorship suits a freelance designer (simplicity)
+• (Pty) Ltd fits BrightBox's scalable model (growth potential)
+
+**Key Considerations:**
+• Benefits like limited liability
+• Challenges like regulatory compliance
+• Tax efficiency requirements
+• Asset protection needs
+• Investor appeal
+
+Understanding these options helps entrepreneurs make informed decisions that strengthen their business plan and demonstrate professionalism to stakeholders.
 
 ## Business Structure Options
 
