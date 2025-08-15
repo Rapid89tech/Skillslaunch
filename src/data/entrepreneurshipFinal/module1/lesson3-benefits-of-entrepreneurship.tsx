@@ -6,7 +6,7 @@ export const lesson3BenefitsOfEntrepreneurship: Lesson = {
   duration: '15 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa',
+    videoUrl: 'https://www.youtube.com/watch?v=6LcPqZvyCxI',
     textContent: `# Benefits of Becoming an Entrepreneur
 
 Entrepreneurship brings more than just income—it offers **freedom, impact, and personal growth**.

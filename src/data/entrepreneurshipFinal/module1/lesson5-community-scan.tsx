@@ -6,7 +6,7 @@ export const lesson5CommunityScan: Lesson = {
   duration: '25 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa',
+    videoUrl: 'https://www.youtube.com/watch?v=6ZVpufakwfk',
     textContent: `# Start with a Community Scan
 
 Before choosing a business idea—or even your training program—do a **Community Scan** to understand what your community needs.

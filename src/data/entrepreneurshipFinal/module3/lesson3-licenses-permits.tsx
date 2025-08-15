@@ -10,7 +10,7 @@ export const lesson3LicensesPermits: Lesson = {
     textContent: `
 # Obtaining Licenses and Permits
 
-https://youtu.be/m8D5HZDhcG4?si=g4iHkA1ejervfHKe
+
 
 How to Get a Business License - Step-by-Step Guide  
 Licenses and permits authorize specific business activities, ensuring compliance with local, regional, or national regulations. For BrightBox, a trading license from the municipality allows legal kit sales, while environmental permits may apply for organic products. The process involves identifying required licenses, submitting applications, and passing inspections. Fees vary by license type, from R200 for trading to higher costs for specialized permits. Compliance avoids fines, ensures safety, and builds trust, enabling operations in regulated sectors like retail or agriculture.

@@ -6,7 +6,7 @@ export const lesson6FinancialPlan: Lesson = {
   duration: '15 minutes',
   type: 'video',
   content: {
-    videoUrl: '',
+    videoUrl: 'https://www.youtube.com/watch?v=MabD5R8kRak',
     textContent: `
 # Financial Plan
 

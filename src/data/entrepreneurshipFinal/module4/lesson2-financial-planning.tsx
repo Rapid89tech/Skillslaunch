@@ -50,7 +50,7 @@ A startup uses Zoho Books to track R15,000 revenue from product sales and R10,00
 
 ### **Financial Forecasting**
 
-https://www.youtube.com/watch?v=8x2-_L-BO2Q
+https://www.youtube.com/watch?v=AN-9OSduhnc
 
 📅 **Financial Forecasting**
 
@@ -61,7 +61,7 @@ A startup's 12-month forecast in Excel projects R15,000 monthly revenue from 60 
 ### **Budgeting for Growth**
 
 How to Budget for Your Small Business  
-https://www.youtube.com/watch?v=n6ecdYd8mVM
+https://www.youtube.com/watch?v=9rPOA0rjqVU
 
 📋 **Budgeting for Growth**
 

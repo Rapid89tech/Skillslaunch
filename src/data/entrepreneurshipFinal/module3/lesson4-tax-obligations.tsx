@@ -10,7 +10,7 @@ export const lesson4TaxObligations: Lesson = {
     textContent: `
 # Understanding Tax Obligations and Legal Requirements
 
-https://youtu.be/HJZyoy8cf-M?si=E1yY21UX6xMWCsBN
+
 
 When Do I Register My Business for VAT?  
 Tax obligations and legal requirements ensure financial and operational compliance. BrightBox must register with SARS for income tax and VAT if turnover exceeds R1 million annually. PAYE applies for employees, and provisional tax suits irregular income. Legal requirements include labor laws, consumer protection, and POPIA for data privacy. Compliance avoids penalties, supports cash flow planning, and enhances credibility. Accurate record-keeping, often via software like QuickBooks, ensures timely filings, building trust with investors and regulators.

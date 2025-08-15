@@ -6,7 +6,7 @@ export const lesson7TargetCustomers: Lesson = {
   duration: '35 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa',
+    videoUrl: 'https://www.youtube.com/watch?v=LeIePgFDAQI',
     textContent: `# Why Identifying Target Customers Is Important
 
 ## 1. Tailor Your Product for the Specific Market

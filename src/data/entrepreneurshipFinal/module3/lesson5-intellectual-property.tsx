@@ -10,7 +10,7 @@ export const lesson5IntellectualProperty: Lesson = {
     textContent: `
 # Protecting Intellectual Property (IP)
 
-https://youtu.be/bbtuV2TvlEk?si=VG8IK48XSOdE6-yS
+
 
 How to Protect Your Intellectual Property in South Africa | Business News SA  
 Protecting intellectual property (IP) safeguards unique assets like BrightBox's logo, kit designs, or digital guides. Trademarks protect brand identity, patents cover innovations, and copyrights secure creative works, while NDAs protect trade secrets like proprietary processes. Registering with the CIPC ensures exclusive rights, preventing competitor copying. IP protection enhances business value, supports licensing, and builds customer trust. Monitoring infringement and consulting IP experts ensure long-term brand security and competitive advantage.

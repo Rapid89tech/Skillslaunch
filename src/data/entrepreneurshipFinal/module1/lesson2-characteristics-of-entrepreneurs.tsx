@@ -6,7 +6,7 @@ export const lesson2CharacteristicsOfEntrepreneurs: Lesson = {
   duration: '20 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa',
+    videoUrl: 'https://www.youtube.com/watch?v=-sQeREfZY-8',
     textContent: `# Characteristics of Successful Entrepreneurs
 
 Entrepreneurs share common traits that help them succeed, even through challenges.

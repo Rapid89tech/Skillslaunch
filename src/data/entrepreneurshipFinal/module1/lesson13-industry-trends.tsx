@@ -6,7 +6,7 @@ export const lesson13IndustryTrends: Lesson = {
   duration: '30 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa',
+    videoUrl: 'https://www.youtube.com/watch?v=Hrds11HixC4',
     textContent: `# Who Are Your Target Customers?
 
 To understand your target customers, you need to grasp the following key factors:

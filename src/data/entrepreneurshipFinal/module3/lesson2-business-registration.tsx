@@ -10,7 +10,7 @@ export const lesson2BusinessRegistration: Lesson = {
     textContent: `
 # Business Registration and Compliance
 
-How to register your business: https://youtu.be/fZTZSA56f08?si=e8R3CoL3rE_uQHPP
+How to register your business:
 
 Business registration and compliance involve securing a unique business name, obtaining necessary licenses, meeting tax obligations, and protecting intellectual property. These steps ensure legal operation, enhance brand credibility, and safeguard assets. For BrightBox, registering with the CIPC establishes legitimacy, while licenses ensure compliance with retail regulations. Tax registration and IP protection prevent penalties and secure competitive advantages, building trust with customers, investors, and partners for long-term success.
 

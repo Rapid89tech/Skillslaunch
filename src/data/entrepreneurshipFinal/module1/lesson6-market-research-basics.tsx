@@ -6,7 +6,7 @@ export const lesson6MarketResearchBasics: Lesson = {
   duration: '30 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/uBV-UAkxDNQ?si=c5NVwNdXnuPiUQMW',
+    videoUrl: 'https://www.youtube.com/watch?v=dtPKZCW73jk',
     textContent: `# Market Research: Know Your Customer
 
 Once you've identified a promising idea, conduct **basic market research** to understand your target audience.

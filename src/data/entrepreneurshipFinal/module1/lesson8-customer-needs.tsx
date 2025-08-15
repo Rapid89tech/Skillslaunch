@@ -6,7 +6,7 @@ export const lesson8CustomerNeeds: Lesson = {
   duration: '30 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa',
+    videoUrl: 'https://www.youtube.com/watch?v=2C-2v99paQM',
     textContent: `# Understanding Customer Needs
 
 What do your customers need?

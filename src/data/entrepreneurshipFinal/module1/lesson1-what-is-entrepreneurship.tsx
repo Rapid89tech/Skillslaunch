@@ -9,7 +9,7 @@ export const lesson1WhatIsEntrepreneurship: Lesson = {
     videoUrl: 'https://youtu.be/uBV-UAkxDNQ?si=c5NVwNdXnuPiUQMW',
     textContent: `# What is Entrepreneurship?
 
-Entrepreneurship is the process of **identifying unmet needs or problems in the market**, developing **creative solutions**, and organizing **resources** to launch and grow a **sustainable business**. Entrepreneurs take initiative to create value, solve problems, and build something meaningful—often from nothing.
+Entrepreneurship is the process of identifying unmet needs or problems in the market, developing creative solutions, and organizing resources to launch and grow a sustainable business. Entrepreneurs take initiative to create value, solve problems, and build something meaningful—often from nothing.
 
 They are drivers of economic growth, job creation, and innovation in communities.
 

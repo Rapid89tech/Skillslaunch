@@ -10,7 +10,6 @@ export const lesson7SmartGoals: Lesson = {
     textContent: `
 # Setting SMART Goals
 
-https://youtu.be/9DE5gBCNizA?si=x1Ns5bgKuM8y4hMx
 
 How to Set SMART Goals for Your Business  
 SMART goals—Specific, Measurable, Achievable, Relevant, and Time-bound—provide a structured approach to setting objectives. For BrightBox, a SMART goal might be "sell 200 kits in Gauteng by December via TikTok ads." This framework ensures goals are clear, trackable, realistic, aligned with your vision, and time-sensitive. SMART goals guide your team, prioritize resources, and demonstrate to stakeholders your strategic focus. By setting clear objectives, you enhance accountability, track progress, and ensure your business plan drives measurable success in a competitive market.

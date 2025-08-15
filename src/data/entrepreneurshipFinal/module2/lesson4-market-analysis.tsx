@@ -6,7 +6,7 @@ export const lesson4MarketAnalysis: Lesson = {
   duration: '15 minutes',
   type: 'video',
   content: {
-    videoUrl: '',
+    videoUrl: 'https://www.youtube.com/watch?v=n27NLTeqxUQ',
     textContent: `
 # Market Analysis
 

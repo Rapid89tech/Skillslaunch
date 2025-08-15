@@ -6,7 +6,7 @@ export const lesson2ExecutiveSummary: Lesson = {
   duration: '12 minutes',
   type: 'video',
   content: {
-    videoUrl: '',
+    videoUrl: 'https://www.youtube.com/watch?v=vbzpQfDIMG4',
     textContent: `
 # Executive Summary
 

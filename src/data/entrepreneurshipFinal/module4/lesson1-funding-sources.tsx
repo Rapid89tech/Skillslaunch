@@ -10,7 +10,7 @@ export const lesson1FundingSources: Lesson = {
     textContent: `
 # Sources of Funding
 
-https://www.youtube.com/watch?v=Pxt9p80zMpQ
+
 
 💰 **Overview of Funding Sources**
 
@@ -23,7 +23,7 @@ Funding decisions shape a startup's trajectory, enabling product development and
 ### **Bootstrapping: Using Personal Savings and Resources**
 
 How to Bootstrap Your Startup | Tips for Success  
-https://www.youtube.com/watch?v=2p0hL6VgoJI
+https://www.youtube.com/watch?v=78Zxx3o55PM&t=12s
 
 💸 **Bootstrapping: Using Personal Savings and Resources**
 
@@ -43,7 +43,7 @@ Angels might fund R100,000 for a startup's prototype, offering retail connection
 
 ### **Loans and Grants**
 
-https://www.youtube.com/watch?v=4C6zR0ZkwPE
+https://www.youtube.com/watch?v=CLhUt558-Z8
 
 📜 **Loans and Grants**
 
@@ -54,7 +54,7 @@ A R50,000 microloan funds a startup's equipment, repaid over three years at 10% 
 ### **Crowdfunding**
 
 Crowdfunding for Startups: A Beginner's Guide  
-https://www.youtube.com/watch?v=5Dq3kV0fU9c
+https://www.youtube.com/watch?v=voF1plqqZJA
 
 🌐 **Crowdfunding**
 
@@ -65,7 +65,7 @@ A Kickstarter campaign for a sustainable product can raise R50,000 from 250 back
 ### **Government-Backed Financing**
 
 Government Funding Options for Small Businesses in South Africa  
-https://www.youtube.com/watch?v=8x2-_L-BO2Q
+https://www.youtube.com/watch?v=4WJjRbyd-kw
 
 🏦 **Government-Backed Financing**
 
@@ -76,7 +76,7 @@ A R100,000 SEFA loan funds a startup's operations, repayable over five years, av
 ### **Equity Crowdfunding**
 
 What is Equity Crowdfunding? A Complete Guide  
-https://www.youtube.com/watch?v=n6ecdYd8mVM
+https://www.youtube.com/watch?v=uxXIGvotN4M
 
 📈 **Equity Crowdfunding**
 

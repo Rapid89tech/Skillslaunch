@@ -6,12 +6,12 @@ export const lesson9ResearchMethods: Lesson = {
   duration: '40 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/4FtU5Se2kx0?si=8_nz_PJUGVi96Dfa',
+    videoUrl: 'https://www.youtube.com/watch?v=veH030vlehA&t=60s',
     textContent: `# Methods to Identify Customers and Their Needs
 
 ## 1. Surveys & Questionnaires
 
-Surveys and questionnaires are structured tools to gather preferences, satisfaction levels, and demographic data from potential customers. They provide quantitative insights (e.g., 70% prefer online shopping) and qualitative feedback (e.g., reasons for dissatisfaction). Using tools like Google Forms or Typeform, you can reach a wide audience quickly and cost-effectively. Surveys help validate assumptions about customer needs, such as whether price or convenience matters more. Their scalability and anonymity encourage honest responses, making them ideal for identifying trends. By analyzing survey data, you can refine your product, target the right audience, and craft marketing messages that resonate, ensuring your business aligns with customer expectations.
+Surveys and questionnaires are structured tools to gather preferences, satisfaction levels, and demographic data from potential customers. They provide quantitative insights (e.g 70% prefer online shopping) and qualitative feedback (e.g reasons for dissatisfaction). Using tools like Google Forms or Typeform, you can reach a wide audience quickly and cost-effectively. Surveys help validate assumptions about customer needs, such as whether price or convenience matters more. Their scalability and anonymity encourage honest responses, making them ideal for identifying trends. By analyzing survey data, you can refine your product, target the right audience, and craft marketing messages that resonate, ensuring your business aligns with customer expectations.
 
 ## 2. Interviews
 
@@ -23,7 +23,7 @@ Focus groups involve moderated discussions with 5–10 target customers to explo
 
 ## 4. Observation
 
-Observation involves watching customers in real settings to understand their behaviors, preferences, and challenges. Unlike stated preferences, observed actions reveal how customers actually interact with products or services. For example, watching shoppers in a store might show they avoid complex products, indicating a need for simplicity. This method uncovers discrepancies between what customers say and do, providing authentic insights. Observation is cost-effective and can be done in public spaces or online (e.g., tracking website clicks). By identifying real-world pain points, you can design solutions that align with actual behaviors, improving product usability and customer satisfaction.
+Observation involves watching customers in real settings to understand their behaviors, preferences, and challenges. Unlike stated preferences, observed actions reveal how customers actually interact with products or services. For example, watching shoppers in a store might show they avoid complex products, indicating a need for simplicity. This method uncovers discrepancies between what customers say and do, providing authentic insights. Observation is cost-effective and can be done in public spaces or online (e.g tracking website clicks). By identifying real-world pain points, you can design solutions that align with actual behaviors, improving product usability and customer satisfaction.
 
 ## 5. Customer Feedback Analysis
 
@@ -31,7 +31,7 @@ Customer feedback analysis involves studying reviews, support tickets, and socia
 
 ## 6. Competitor Analysis
 
-Competitor analysis involves studying direct, indirect, and replacement competitors to understand their offerings, strengths, and weaknesses. By examining their products, pricing, marketing, and customer reviews, you can identify market gaps and opportunities for differentiation. For instance, if competitors' products lack personalization, you could offer a tailored solution. Tools like Google searches, review platforms (e.g., Yelp, Trustpilot), and SWOT analysis help uncover actionable insights. This process informs your pricing, marketing, and product strategies, ensuring you stand out while addressing unmet needs, positioning your business for success in a competitive landscape.
+Competitor analysis involves studying direct, indirect, and replacement competitors to understand their offerings, strengths, and weaknesses. By examining their products, pricing, marketing, and customer reviews, you can identify market gaps and opportunities for differentiation. For instance, if competitors' products lack personalization, you could offer a tailored solution. Tools like Google searches, review platforms (e.g Yelp, Trustpilot), and SWOT analysis help uncover actionable insights. This process informs your pricing, marketing, and product strategies, ensuring you stand out while addressing unmet needs, positioning your business for success in a competitive landscape.
 
 ## Choosing the Right Method
 

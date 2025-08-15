@@ -6,7 +6,7 @@ export const lesson4IdentifyingBusinessOpportunities: Lesson = {
   duration: '20 minutes',
   type: 'video',
   content: {
-    videoUrl: 'https://youtu.be/uBV-UAkxDNQ?si=c5NVwNdXnuPiUQMW',
+    videoUrl: 'https://www.youtube.com/watch?v=zQGYbW5ZjS0',
     textContent: `# Identifying a Business Opportunity
 
 A successful business begins with a **real problem** or **market need**—not just a product idea.

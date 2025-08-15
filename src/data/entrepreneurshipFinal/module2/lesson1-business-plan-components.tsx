@@ -10,7 +10,6 @@ export const lesson1BusinessPlanComponents: Lesson = {
     textContent: `
 # Module 2: Developing a Business Plan
 
-https://youtu.be/gsdpvKIAah0?si=tSpopw_WoRlvv5EM
 
 A business plan is a strategic roadmap that outlines your startup's goals, operations, and financial projections. It serves as a blueprint for launching and growing your business, providing clarity for you and credibility for investors or partners. This module covers the key components of a business plan—Executive Summary, Business Description, Market Analysis, Operational Plan, and Financial Plan—along with the importance of setting SMART goals to ensure your objectives are clear, trackable, and aligned with your vision.
 

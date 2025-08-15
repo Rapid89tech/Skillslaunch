@@ -6,7 +6,7 @@ export const lesson5OperationalPlan: Lesson = {
   duration: '12 minutes',
   type: 'video',
   content: {
-    videoUrl: '',
+    videoUrl: 'https://www.youtube.com/watch?v=G6r694uT9pg',
     textContent: `
 # Operational Plan
 
