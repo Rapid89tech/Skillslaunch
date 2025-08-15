@@ -84,27 +84,13 @@ const Course = () => {
   if (!isEnrolled) {
     console.log("Course Page: User not enrolled, showing enrollment view");
     return (
-      <>
-        <Suspense fallback={<CourseSkeleton />}>
-          <CourseEnrollmentView
-            course={course}
-            handleEnroll={handleEnroll}
-            enrolling={enrolling}
-          />
-        </Suspense>
-        
-        {/* Payment Popup */}
-        {showPaymentPopup && user && (
-          <EnrollNowPopup
-            open={showPaymentPopup}
-            onClose={handlePaymentPopupClose}
-            course={course}
-            userId={user.id}
-            userEmail={user.email || ''}
-            onEnrollmentSuccess={handleEnrollmentSuccess}
-          />
-        )}
-      </>
+      <Suspense fallback={<CourseSkeleton />}>
+        <CourseEnrollmentView
+          course={course}
+          handleEnroll={handleEnroll}
+          enrolling={enrolling}
+        />
+      </Suspense>
     );
   }
 

@@ -45,7 +45,7 @@ const courseImages: Record<string, string> = {
 };
 
 const courseAvailability: Record<string, 'Available' | 'Coming Soon'> = {
-  'entrepreneurship-final': 'Coming Soon',
+  'entrepreneurship-final': 'Available',
   'ai-human-relations': 'Coming Soon',
   'roofing101': 'Coming Soon',
   'plumbing101': 'Coming Soon',

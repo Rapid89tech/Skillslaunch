@@ -86,18 +86,18 @@ const courseImages: Record<string, string> = {
 
 const courseAvailability: Record<string, 'Available' | 'Coming Soon'> = {
   'entrepreneurship-final': 'Available',
-  'ai-human-relations': 'Available',
-  'roofing101': 'Available',
-  'plumbing101': 'Available',
-  'tiling-101': 'Available',
-  'hair-dressing': 'Available',
-  'nail-technician': 'Available',
-  'podcast-management-101': 'Available',
+  'ai-human-relations': 'Coming Soon',
+  'roofing101': 'Coming Soon',
+  'plumbing101': 'Coming Soon',
+  'tiling-101': 'Coming Soon',
+  'hair-dressing': 'Coming Soon',
+  'nail-technician': 'Coming Soon',
+  'podcast-management-101': 'Coming Soon',
   'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5': 'Coming Soon', // Sound Engineering
   'computer-repairs': 'Coming Soon',
   'cellphone-repairs': 'Coming Soon',
   'motor-mechanic-petrol': 'Coming Soon',
-  'motor-mechanic-diesel': 'Available',
+  'motor-mechanic-diesel': 'Coming Soon',
 };
 
 const CoursesGrid = ({ courses }: CoursesGridProps) => {

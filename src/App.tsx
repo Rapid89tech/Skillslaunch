@@ -23,6 +23,7 @@ const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 const Course = lazy(() => import("./pages/Course"));
 const Courses = lazy(() => import("./pages/Courses"));
 const ComingSoonCourse = lazy(() => import("./pages/ComingSoonCourse"));
+const Enrollment = lazy(() => import("./pages/Enrollment"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const InstructorDashboardPage = lazy(() => import("./pages/InstructorDashboard"));
 
@@ -118,6 +119,16 @@ const App = () => (
             element={
               <ProtectedRoute>
                 <CertificatePage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/enrollment/:courseId" 
+            element={
+              <ProtectedRoute allowedRoles={['student']}>
+                <Layout>
+                  <Enrollment />
+                </Layout>
               </ProtectedRoute>
             } 
           />
