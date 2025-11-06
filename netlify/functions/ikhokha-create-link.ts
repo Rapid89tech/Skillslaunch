@@ -3,8 +3,6 @@
  * Creates payment links for course enrollments
  */
 
-
-
 interface NetlifyEvent {
     httpMethod: string;
     headers: Record<string, string | undefined>;
@@ -28,7 +26,6 @@ interface PaymentLinkRequest {
 }
 
 // Environment configuration
-const IKHOKHA_API_URL = process.env.VITE_IKHOKHA_API_URL || 'https://pay.ikhokha.com';
 const IKHOKHA_API_KEY = process.env.VITE_IKHOKHA_API_KEY || '';
 const IKHOKHA_API_SECRET = process.env.VITE_IKHOKHA_API_SECRET || '';
 
@@ -40,29 +37,19 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         'Content-Type': 'application/json'
     };
 
-    // Handle CORS preflight
     if (event.httpMethod === 'OPTIONS') {
-        return {
-            statusCode: 200,
-            headers: corsHeaders,
-            body: ''
-        };
+        return { statusCode: 200, headers: corsHeaders, body: '' };
     }
 
-    // Only accept POST requests
     if (event.httpMethod !== 'POST') {
         return {
             statusCode: 405,
             headers: corsHeaders,
-            body: JSON.stringify({
-                success: false,
-                error: 'Method not allowed'
-            })
+            body: JSON.stringify({ success: false, error: 'Method not allowed' })
         };
     }
 
     try {
-        // Validate credentials
         if (!IKHOKHA_API_KEY || !IKHOKHA_API_SECRET) {
             console.error('❌ Missing iKhokha credentials');
             return {
@@ -76,27 +63,18 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             };
         }
 
-        // Parse request body
         const paymentRequest: PaymentLinkRequest = JSON.parse(event.body || '{}');
-
-        console.log('📝 Creating payment link:', {
-            amount: paymentRequest.amount,
-            currency: paymentRequest.currency,
-            customer: paymentRequest.customer_email
-        });
-
-        // Generate transaction reference
         const transactionReference = `TXN-${Date.now()}-${Math.random().toString(36).substring(7)}`;
-
-        // Get base URL for callbacks
         const baseUrl = process.env.URL || 'https://betaskills.co.za';
 
-        // Build iKhokha payment URL with query parameters
-        const amountInCents = Math.round(paymentRequest.amount * 100);
+        console.log('📝 Creating payment link for:', paymentRequest.customer_email);
+
+        // Call iKhokha API
+        const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
         
-        const paymentUrl = `${IKHOKHA_API_URL}?` + new URLSearchParams({
+        const requestBody = {
             applicationId: IKHOKHA_API_KEY,
-            amount: amountInCents.toString(),
+            amount: Math.round(paymentRequest.amount * 100),
             currency: 'ZAR',
             externalTransactionID: transactionReference,
             description: paymentRequest.description,
@@ -105,9 +83,54 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             successUrl: `${baseUrl}/payment/success?ref=${transactionReference}`,
             cancelUrl: `${baseUrl}/payment/cancel?ref=${transactionReference}`,
             notifyUrl: `${baseUrl}/.netlify/functions/ikhokha-webhook`
-        }).toString();
+        };
 
-        console.log('✅ Payment link created:', paymentUrl.substring(0, 100) + '...');
+        console.log('🔗 Calling iKhokha API:', apiUrl);
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${IKHOKHA_API_SECRET}`
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        const responseText = await response.text();
+        console.log('📥 iKhokha response:', responseText);
+
+        let responseData: any;
+        try {
+            responseData = JSON.parse(responseText);
+        } catch (e) {
+            console.error('❌ Invalid JSON response:', responseText);
+            return {
+                statusCode: 500,
+                headers: corsHeaders,
+                body: JSON.stringify({
+                    success: false,
+                    error: 'PAYMENT_GATEWAY_ERROR',
+                    message: 'Invalid response from payment gateway'
+                })
+            };
+        }
+
+        if (!response.ok) {
+            console.error('❌ iKhokha API error:', responseData);
+            return {
+                statusCode: response.status,
+                headers: corsHeaders,
+                body: JSON.stringify({
+                    success: false,
+                    error: 'PAYMENT_GATEWAY_ERROR',
+                    message: responseData.message || 'Failed to create payment link'
+                })
+            };
+        }
+
+        const paymentUrl = responseData.paymentUrl || responseData.redirectUrl || responseData.url;
+
+        console.log('✅ Payment link created successfully');
 
         return {
             statusCode: 200,
@@ -122,7 +145,6 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
 
     } catch (error: any) {
         console.error('❌ Payment link creation error:', error);
-
         return {
             statusCode: 500,
             headers: corsHeaders,
@@ -134,5 +156,3 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         };
     }
 };
-
-
