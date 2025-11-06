@@ -29,8 +29,8 @@ const PaymentSuccess: React.FC = () => {
         
         if (result.status === 'completed') {
           setPaymentVerified(true);
-        }
-      } catch (error) {
+      }
+    } catch (error) {
         console.error('Payment verification error:', error);
       } finally {
         setVerifying(false);
@@ -78,7 +78,7 @@ const PaymentSuccess: React.FC = () => {
                     : 'Your payment was successful! Your enrollment will be confirmed shortly.'}
                 </p>
               </div>
-
+              
               {transactionRef && (
                 <div className="text-sm text-gray-600 text-center">
                   <p className="font-semibold">Transaction Reference:</p>
@@ -89,17 +89,17 @@ const PaymentSuccess: React.FC = () => {
               )}
 
               <div className="space-y-3">
-                <Button
+                <Button 
                   onClick={handleContinue}
                   className="w-full bg-gradient-to-r from-green-600 to-blue-600 hover:from-green-700 hover:to-blue-700 text-white"
                 >
                   Continue to Course
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-
-                <Button
+                
+                <Button 
                   onClick={() => navigate('/dashboard')}
-                  variant="outline"
+                  variant="outline" 
                   className="w-full"
                 >
                   Go to Dashboard
@@ -113,7 +113,7 @@ const PaymentSuccess: React.FC = () => {
                 <p className="mt-1">
                   If you have any questions, please contact support.
                 </p>
-              </div>
+            </div>
             </>
           )}
         </CardContent>

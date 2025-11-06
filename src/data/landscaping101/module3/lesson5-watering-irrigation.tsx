@@ -10,7 +10,6 @@ export const lesson5WateringIrrigation: Lesson = {
     textContent: `
 # Watering Systems and Irrigation Principles in Landscaping
 
-
 Watering systems and irrigation principles are critical for maintaining healthy, sustainable landscapes by delivering water efficiently to plants, lawns, and gardens. Proper irrigation supports plant growth, conserves water, and enhances the aesthetic and functional quality of residential, commercial, recreational, or public spaces. This guide details the types of watering systems, their installation, and key irrigation principles, using a 50x30-foot residential backyard as an example.
 
 ## Watering Systems

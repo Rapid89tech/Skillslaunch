@@ -472,16 +472,16 @@ const Auth = () => {
                   <Label htmlFor="resetEmail">Email</Label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-                    <Input
-                      id="resetEmail"
-                      type="email"
+                  <Input
+                    id="resetEmail"
+                    type="email"
                       placeholder="Enter your email address"
-                      value={formData.resetEmail}
-                      onChange={(e) => setFormData({ ...formData, resetEmail: e.target.value })}
+                    value={formData.resetEmail}
+                    onChange={(e) => setFormData({ ...formData, resetEmail: e.target.value })}
                       className="h-11 sm:h-12 pl-10"
-                      required
+                    required
                       disabled={resetLoading}
-                    />
+                  />
                   </div>
                   <p className="text-xs text-gray-500 mt-1">
                     We'll send you a link to reset your password

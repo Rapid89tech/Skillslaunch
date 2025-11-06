@@ -10,8 +10,6 @@ export const lesson5EditorialCalendar: Lesson = {
     textContent: `
 # Editorial Calendar Creation for Social Media Marketing 📅
 
-**YOUTUBE LINK** https://youtu.be/6Qj6MN4ig44
-
 An editorial calendar is a strategic tool that organizes and schedules social media content to ensure consistency, align with marketing goals, and optimize engagement across platforms like Facebook, Instagram, LinkedIn, TikTok, Twitter/X, and YouTube. By planning content in advance, businesses can streamline workflows, stay relevant with trends, and maintain a cohesive brand presence. This guide outlines the process of creating an effective editorial calendar for social media marketing in 2025.
 
 ## Why Editorial Calendars Matter

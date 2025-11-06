@@ -10,8 +10,6 @@ export const lesson3WaterFeatures: Lesson = {
     textContent: `
 # Water Features in Landscaping
 
-**YOUTUBE LINK** https://youtu.be/ZxeUtIx7P1I
-
 Water features, such as ponds and fountains, are dynamic elements in landscaping that enhance aesthetic appeal, create soothing ambiance, and support ecological functions. They serve as focal points, promote relaxation, and can attract wildlife in residential, commercial, recreational, or public landscapes. This guide details the types, installation, and maintenance of ponds and fountains, using a 50x30-foot residential backyard as an example.
 
 ## Ponds

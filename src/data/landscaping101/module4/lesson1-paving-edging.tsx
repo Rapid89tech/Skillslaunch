@@ -10,8 +10,6 @@ export const lesson1PavingEdging: Lesson = {
     textContent: `
 # Paving, Edging, and Pathways in Landscaping
 
-**YOUTUBE LINK** https://youtu.be/EL1hkWZvp8Q
-
 Paving, edging, and pathways are essential hardscape elements in landscaping, providing structure, accessibility, and aesthetic appeal to outdoor spaces. These features define boundaries, guide movement, and enhance the functionality and visual harmony of residential, commercial, recreational, or public landscapes. This guide details the types, installation, and maintenance of paving, edging, and pathways, using a 50x30-foot residential backyard as an example.
 
 ## Paving

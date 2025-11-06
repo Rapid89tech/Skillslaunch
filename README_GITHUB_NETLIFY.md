@@ -27,7 +27,8 @@ powershell -ExecutionPolicy Bypass -File .\scripts\deploy-netlify.ps1 `
   -SupabaseUrl "https://jpafcmixtchvtrkhltst.supabase.co" `
   -SupabaseServiceRoleKey "YOUR_SERVICE_ROLE_KEY" `
   -IkhokhaAppId "IKW31E1I5WP1HT2KIIB2XZMBXJOFDX5D" `
-  -IkhokhaAppSecret "455rtQjghdOHzLN3YZ3AQ81H3KEf7OeS"
+  -IkhokhaAppSecret "455rtQjghdOHzLN3YZ3AQ81H3KEf7OeS" `
+  -IkhokhaMerchantId "MID467135"
 ```
 
 This sets the required env vars and deploys with `netlify deploy --build --prod`.

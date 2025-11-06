@@ -10,7 +10,6 @@ export const lesson2AudienceResearch: Lesson = {
     textContent: `
 # Audience Research and Persona Creation for Social Media Marketing 👥
 
-**YOUTUBE LINK** https://youtu.be/LyNmNxiiBIk
 
 Audience research and persona creation are foundational steps in crafting effective social media marketing strategies. By understanding your target audience's demographics, behaviors, preferences, and pain points, businesses can tailor content and campaigns to resonate deeply. This guide outlines the process of conducting audience research and creating detailed buyer personas, with a focus on leveraging platforms like Facebook, Instagram, LinkedIn, TikTok, Twitter/X, and YouTube to achieve marketing goals in 2025.
 

@@ -10,8 +10,6 @@ export const lesson1KeyMetrics: Lesson = {
     textContent: `
 # Key Metrics Guide: Reach, Impressions, Engagement, CTR, Conversions 📈
 
-**YOUTUBE LINK** https://youtu.be/Z1KJ-16Rfs0
-
 This guide outlines key metrics—reach, impressions, engagement, click-through rate (CTR), and conversions—for evaluating the performance of marketing campaigns across platforms like Instagram, X, LinkedIn, and Google Ads. Understanding and tracking these metrics ensures campaigns align with brand goals and drive measurable results.
 
 ## Core Principles of Key Metrics

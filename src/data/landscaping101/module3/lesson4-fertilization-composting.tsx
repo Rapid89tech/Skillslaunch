@@ -10,8 +10,6 @@ export const lesson4FertilizationComposting: Lesson = {
     textContent: `
 # Fertilization and Composting in Landscaping
 
-**YOUTUBE LINK** https://youtu.be/zy70DAaeFBI
-
 Fertilization and composting are essential practices in landscaping to enhance soil fertility, promote healthy plant growth, and support sustainable landscapes. Fertilization provides targeted nutrients to address soil deficiencies, while composting enriches soil with organic matter, improving its structure, water retention, and microbial activity. These practices are critical for maintaining vibrant lawns, gardens, and plantings in residential, commercial, recreational, or public spaces. Below is a detailed guide on fertilization and composting, using a 50x30-foot residential backyard as an example.
 
 ## Fertilization

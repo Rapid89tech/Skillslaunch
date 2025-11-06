@@ -10,8 +10,6 @@ export const lesson2DecksPatiosWalls: Lesson = {
     textContent: `
 # Decks, Patios, and Retaining Walls in Landscaping
 
-**YOUTUBE LINK** https://youtu.be/o5E8kB-KpMg
-
 Decks, patios, and retaining walls are key hardscape features in landscaping, providing functional spaces, structural support, and aesthetic enhancement for residential, commercial, recreational, or public landscapes. These elements create usable areas for relaxation, manage terrain challenges, and define the visual character of outdoor spaces. This guide details the types, installation, and maintenance of decks, patios, and retaining walls, using a 50x30-foot residential backyard as an example.
 
 ## Decks

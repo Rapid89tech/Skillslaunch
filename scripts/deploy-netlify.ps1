@@ -6,6 +6,7 @@ param(
   [string]$SupabaseServiceRoleKey,
   [string]$IkhokhaAppId,
   [string]$IkhokhaAppSecret,
+  [string]$IkhokhaMerchantId,
   [string]$IkhokhaApiEndpoint = 'https://api.ikhokha.com'
 )
 
@@ -35,6 +36,7 @@ if ($SupabaseUrl) { netlify env:set SUPABASE_URL $SupabaseUrl }
 if ($SupabaseServiceRoleKey) { netlify env:set SUPABASE_SERVICE_ROLE_KEY $SupabaseServiceRoleKey }
 if ($IkhokhaAppId) { netlify env:set IKHOKHA_APPLICATION_ID $IkhokhaAppId }
 if ($IkhokhaAppSecret) { netlify env:set IKHOKHA_APPLICATION_SECRET $IkhokhaAppSecret }
+if ($IkhokhaMerchantId) { netlify env:set IKHOKHA_MERCHANT_ID $IkhokhaMerchantId }
 if ($IkhokhaApiEndpoint) { netlify env:set IKHOKHA_API_ENDPOINT $IkhokhaApiEndpoint }
 if ($BaseUrl) { netlify env:set VITE_NETLIFY_SITE_URL $BaseUrl }
 
