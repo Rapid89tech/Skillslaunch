@@ -113,18 +113,37 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
     // Generate signature for iKhokha API
     const signature = generateSignature(ikhokhaRequest, IKHOKHA_API_SECRET);
 
-    // Call iKhokha API
-    const response = await fetch(`${IKHOKHA_API_URL}/v1/payment-links`, {
+    // Call iKhokha API - using correct endpoint
+    const apiEndpoint = `${IKHOKHA_API_URL}/api/v1/pay`;
+    
+    console.log('🔗 Calling iKhokha API:', apiEndpoint);
+    
+    const response = await fetch(apiEndpoint, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${IKHOKHA_API_KEY}`,
-        'X-Signature': signature
+        'Authorization': IKHOKHA_API_KEY,
+        'X-API-Key': IKHOKHA_API_KEY
       },
       body: JSON.stringify(ikhokhaRequest)
     });
 
-    const responseData = await response.json();
+    let responseData: any;
+    try {
+      responseData = await response.json();
+    } catch (e) {
+      const text = await response.text();
+      console.error('❌ iKhokha API returned non-JSON:', text);
+      return {
+        statusCode: 500,
+        headers: corsHeaders,
+        body: JSON.stringify({
+          success: false,
+          error: 'PAYMENT_GATEWAY_ERROR',
+          message: 'Invalid response from payment gateway'
+        })
+      };
+    }
 
     if (!response.ok) {
       console.error('❌ iKhokha API error:', responseData);
@@ -139,15 +158,18 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
       };
     }
 
-    console.log('✅ Payment link created successfully');
+    console.log('✅ Payment link created successfully:', responseData);
+
+    // iKhokha returns the payment URL directly
+    const paymentUrl = responseData.paymentUrl || responseData.payment_url || responseData.url;
 
     return {
       statusCode: 200,
       headers: corsHeaders,
       body: JSON.stringify({
         success: true,
-        payment_link_url: responseData.payment_url || responseData.url,
-        payment_link_id: responseData.id,
+        payment_link_url: paymentUrl,
+        payment_link_id: responseData.transactionId || responseData.id,
         transaction_reference: transactionReference
       })
     };
