@@ -1,90 +1,3 @@
-import type { Handler } from '@netlify/functions'
-import { createClient } from '@supabase/supabase-js'
-
-function generateHmacSha256(path: string, body: string, secret: string): string {
-  const crypto = require('crypto') as typeof import('crypto')
-  return crypto.createHmac('sha256', secret).update(path + body).digest('hex')
-}
-
-const corsHeaders = {
-  'Access-Control-Allow-Origin': '*',
-  'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, ik-appid, ik-sign',
-}
-
-const handler: Handler = async (event) => {
-  try {
-    if (event.httpMethod === 'OPTIONS') {
-      return { statusCode: 200, headers: corsHeaders, body: 'ok' }
-    }
-
-    if (event.httpMethod !== 'POST') {
-      return { statusCode: 405, headers: corsHeaders, body: 'Method Not Allowed' }
-    }
-
-    const appId = process.env.IKHOKHA_APPLICATION_ID || ''
-    const appSecret = process.env.IKHOKHA_APPLICATION_SECRET || ''
-    if (!appId || !appSecret) {
-      return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ success: false, message: 'Missing iKhokha credentials' }) }
-    }
-
-    const headerAppId = (event.headers['ik-appid'] || event.headers['IK-APPID'] || '') as string
-    const headerSign = (event.headers['ik-sign'] || event.headers['IK-SIGN'] || '') as string
-    const bodyString = event.body || ''
-
-    // Verify app id
-    if (headerAppId !== appId) {
-      return { statusCode: 401, headers: corsHeaders, body: JSON.stringify({ success: false, message: 'Invalid App ID' }) }
-    }
-
-    // Verify signature
-    const path = '/.netlify/functions/ikhokha-webhook'
-    const expected = generateHmacSha256(path, bodyString, appSecret)
-    if (!headerSign || headerSign !== expected) {
-      return { statusCode: 401, headers: corsHeaders, body: JSON.stringify({ success: false, message: 'Invalid signature' }) }
-    }
-
-    const payload = JSON.parse(bodyString || '{}') as any
-    const status = payload?.status
-    const externalRef = payload?.externalTransactionID
-
-    // Update Supabase records
-    try {
-      const supabaseUrl = process.env.SUPABASE_URL
-      const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-      if (supabaseUrl && supabaseServiceRoleKey) {
-        const supabase = createClient(supabaseUrl, supabaseServiceRoleKey)
-
-        // Update payment
-        const paymentStatus = status === 'SUCCESS' ? 'completed' : 'failed'
-        const { data: payment } = await supabase
-          .from('payments')
-          .update({ status: paymentStatus, gateway_response: payload, updated_at: new Date().toISOString() })
-          .eq('transaction_reference', externalRef)
-          .select()
-          .single()
-
-        // Auto-approve enrollment if successful
-        if (payment && paymentStatus === 'completed') {
-          await supabase
-            .from('enrollments')
-            .update({ status: 'approved', payment_status: 'completed', updated_at: new Date().toISOString() })
-            .eq('user_id', payment.user_id)
-            .eq('course_id', payment.course_id)
-            .eq('status', 'pending')
-        }
-      }
-    } catch (dbErr) {
-      console.warn('Webhook DB update error:', dbErr)
-    }
-
-    return { statusCode: 200, headers: corsHeaders, body: JSON.stringify({ success: true }) }
-  } catch (e: any) {
-    return { statusCode: 500, headers: corsHeaders, body: JSON.stringify({ success: false, message: e?.message || 'Unexpected error' }) }
-  }
-}
-
-export { handler }
-
 /**
  * Ikhokha Webhook Handler - Netlify Function
  * 
@@ -147,13 +60,13 @@ interface WebhookProcessingResult {
 // Environment configuration
 const SUPABASE_URL = process.env.VITE_SUPABASE_URL!;
 const SUPABASE_SERVICE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-const IKHOKHA_WEBHOOK_SECRET = process.env.VITE_IKHOKHA_WEBHOOK_SECRET || 
-                               process.env.IKHOKHA_PRODUCTION_WEBHOOK_SECRET ||
-                               'dev_webhook_secret_key';
+const IKHOKHA_WEBHOOK_SECRET = process.env.VITE_IKHOKHA_WEBHOOK_SECRET ||
+  process.env.IKHOKHA_PRODUCTION_WEBHOOK_SECRET ||
+  'dev_webhook_secret_key';
 
 // Production environment detection
-const IS_PRODUCTION = process.env.NODE_ENV === 'production' || 
-                     process.env.VITE_NODE_ENV === 'production';
+const IS_PRODUCTION = process.env.NODE_ENV === 'production' ||
+  process.env.VITE_NODE_ENV === 'production';
 
 // Initialize Supabase client with service role key for admin operations
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY);
@@ -186,7 +99,7 @@ export const handler = async (event: NetlifyEvent, context: NetlifyContext): Pro
   try {
     // Parse webhook payload
     const webhookData: IkhokhaWebhookPayload = JSON.parse(event.body || '{}');
-    
+
     console.log('📨 Processing webhook data:', {
       transaction_id: webhookData.transaction_id,
       reference: webhookData.reference,
@@ -196,7 +109,7 @@ export const handler = async (event: NetlifyEvent, context: NetlifyContext): Pro
 
     // Get client IP for security checks
     const clientIp = getClientIp(event);
-    
+
     // Perform comprehensive security validation
     const securityResult = await validateWebhookSecurity(
       webhookData,
@@ -233,7 +146,7 @@ export const handler = async (event: NetlifyEvent, context: NetlifyContext): Pro
 
   } catch (error) {
     console.error('❌ Webhook processing failed:', error);
-    
+
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
@@ -278,7 +191,7 @@ async function validateWebhookSecurity(
       webhookData.signature,
       headers
     );
-    
+
     if (!signatureValid) {
       violations.push('Invalid webhook signature');
     }
@@ -292,15 +205,15 @@ async function validateWebhookSecurity(
     const webhookTime = new Date(webhookData.timestamp);
     const now = new Date();
     const timeDiff = now.getTime() - webhookTime.getTime();
-    
+
     // In production, enforce stricter timestamp validation
     const maxAge = IS_PRODUCTION ? 300000 : 600000; // 5 min prod, 10 min dev
     const maxFuture = IS_PRODUCTION ? 60000 : 120000; // 1 min prod, 2 min dev
-    
+
     if (timeDiff > maxAge) {
       violations.push(`Webhook timestamp too old (${Math.round(timeDiff / 1000)}s ago)`);
     }
-    
+
     if (timeDiff < -maxFuture) {
       violations.push(`Webhook timestamp too far in future (${Math.round(-timeDiff / 1000)}s ahead)`);
     }
@@ -309,7 +222,7 @@ async function validateWebhookSecurity(
     if (webhookData.amount <= 0) {
       violations.push('Invalid amount value');
     }
-    
+
     if (webhookData.amount > 1000000) { // 1M ZAR limit
       violations.push('Amount exceeds maximum limit');
     }
@@ -347,7 +260,7 @@ function checkRateLimit(ip: string): boolean {
   const maxRequests = 10;
 
   const entry = rateLimitMap.get(ip);
-  
+
   if (!entry || now > entry.resetTime) {
     // New window or expired entry
     rateLimitMap.set(ip, { count: 1, resetTime: now + windowMs });
@@ -402,12 +315,12 @@ async function validateWebhookSignature(
 
     // Compare signatures (constant-time comparison for security)
     const providedSignature = signature.replace('sha256=', '');
-    
+
     if (expectedSignature.length !== providedSignature.length) {
       console.error('❌ Signature length mismatch');
       return false;
     }
-    
+
     const isValid = crypto.timingSafeEqual(
       Buffer.from(expectedSignature, 'hex'),
       Buffer.from(providedSignature, 'hex')
@@ -419,7 +332,7 @@ async function validateWebhookSignature(
         provided: providedSignature.substring(0, 8) + '...',
         production: IS_PRODUCTION
       });
-      
+
       // In production, log additional security information
       if (IS_PRODUCTION) {
         console.error('🚨 SECURITY ALERT: Invalid webhook signature in production environment');
@@ -432,13 +345,13 @@ async function validateWebhookSignature(
 
   } catch (error) {
     console.error('❌ Webhook signature validation error:', error);
-    
+
     // In production, always fail on validation errors
     if (IS_PRODUCTION) {
       console.error('🚨 SECURITY: Webhook signature validation error in production');
       return false;
     }
-    
+
     // In development, allow validation errors to pass for debugging
     return !IS_PRODUCTION;
   }
@@ -574,7 +487,7 @@ function determineEnrollmentStatus(paymentStatus: string, currentStatus: string)
     // Keep as pending for failed payments (admin can still manually approve)
     return currentStatus === 'approved' ? currentStatus : 'pending';
   }
-  
+
   return currentStatus;
 }
 
@@ -687,10 +600,10 @@ async function activateEnrollmentAfterPayment(
       throw new Error(`Enrollment activation failed: ${activationError.message}`);
     } else {
       console.log('✅ Enrollment activated successfully:', enrollment.id);
-      
+
       // Create course access record
       await grantCourseAccess(enrollment);
-      
+
       // Log activation for audit trail
       await logEnrollmentActivation(enrollment, webhookData);
     }
@@ -777,7 +690,7 @@ async function triggerRealTimeUpdate(
   try {
     // Use Supabase real-time to broadcast the update
     const channel = supabase.channel('enrollment_updates');
-    
+
     await channel.send({
       type: 'broadcast',
       event: 'payment_status_updated',
