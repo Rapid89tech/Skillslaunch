@@ -102,8 +102,8 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${IKHOKHA_APP_SECRET}`,
-                'X-Application-Id': IKHOKHA_APP_ID
+                'x-application-id': IKHOKHA_APP_ID,
+                'x-application-secret': IKHOKHA_APP_SECRET
             },
             body: JSON.stringify(requestBody)
         });
