@@ -79,12 +79,20 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         // Call iKhokha API to create payment session
         const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
 
-        // Minimal request body based on iKhokha API schema
+        // Correct iKhokha API request structure
         const requestBody = {
+            entityID: IKHOKHA_APP_ID,
+            mode: 'live',
             amount: amountInCents,
             currency: 'ZAR',
             externalTransactionID: transactionRef,
-            description: paymentRequest.description
+            description: paymentRequest.description,
+            requesterUrl: baseUrl,
+            urls: {
+                success: `${baseUrl}/payment/success?ref=${transactionRef}`,
+                cancel: `${baseUrl}/payment/cancel?ref=${transactionRef}`,
+                notify: `${baseUrl}/.netlify/functions/ikhokha-webhook`
+            }
         };
 
         console.log('🔗 Calling iKhokha API:', apiUrl);
