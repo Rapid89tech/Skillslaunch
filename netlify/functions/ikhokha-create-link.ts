@@ -55,7 +55,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             appIdLength: IKHOKHA_APP_ID?.length,
             env: process.env.VITE_IKHOKHA_API_KEY ? 'found' : 'missing'
         });
-        
+
         if (!IKHOKHA_APP_ID || !IKHOKHA_APP_SECRET) {
             console.error('❌ Missing credentials');
             return {
@@ -78,17 +78,17 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
 
         // Call iKhokha API to create payment session
         const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
-        
+
         const requestBody = {
-            applicationId: IKHOKHA_APP_ID,
             amount: amountInCents,
             currency: 'ZAR',
             externalTransactionID: transactionRef,
             description: paymentRequest.description,
-            customerEmail: paymentRequest.customer_email,
-            customerName: paymentRequest.customer_name,
+            customer: {
+                email: paymentRequest.customer_email,
+                name: paymentRequest.customer_name
+            },
             successUrl: `${baseUrl}/payment/success?ref=${transactionRef}`,
-            cancelUrl: `${baseUrl}/payment/cancel?ref=${transactionRef}`,
             notifyUrl: `${baseUrl}/.netlify/functions/ikhokha-webhook`
         };
 
@@ -130,7 +130,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
                 data: responseData,
                 requestBody: requestBody
             });
-            
+
             // Return detailed error for debugging
             return {
                 statusCode: 200, // Return 200 so frontend gets the error details
