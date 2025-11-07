@@ -49,7 +49,15 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
     }
 
     try {
+        console.log('🔑 Checking credentials:', {
+            hasAppId: !!IKHOKHA_APP_ID,
+            hasSecret: !!IKHOKHA_APP_SECRET,
+            appIdLength: IKHOKHA_APP_ID?.length,
+            env: process.env.VITE_IKHOKHA_API_KEY ? 'found' : 'missing'
+        });
+        
         if (!IKHOKHA_APP_ID || !IKHOKHA_APP_SECRET) {
+            console.error('❌ Missing credentials');
             return {
                 statusCode: 500,
                 headers: corsHeaders,
