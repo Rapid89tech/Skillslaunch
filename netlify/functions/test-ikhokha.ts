@@ -66,10 +66,10 @@ export const handler = async (event: any) => {
         const response = await fetch('https://api.ikhokha.com/public-api/v1/api/payment', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json',
-                'IK-APPID': IKHOKHA_APP_ID,
-                'IK-SIGN': signature,
-                'Accept': 'application/json'
+                'content-type': 'application/json',
+                'ik-appid': IKHOKHA_APP_ID,
+                'ik-sign': signature,
+                'accept': 'application/json'
             },
             body: requestBodyString,
             signal: controller.signal

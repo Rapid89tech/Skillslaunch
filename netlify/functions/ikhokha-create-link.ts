@@ -130,10 +130,10 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'IK-APPID': IKHOKHA_APP_ID,
-                    'IK-SIGN': signature,
-                    'Accept': 'application/json'
+                    'content-type': 'application/json',
+                    'ik-appid': IKHOKHA_APP_ID,
+                    'ik-sign': signature,
+                    'accept': 'application/json'
                 },
                 body: requestBodyString,
                 signal: controller.signal
