@@ -125,14 +125,21 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         }
 
         if (!response.ok) {
-            console.error('❌ iKhokha API error:', responseData);
+            console.error('❌ iKhokha API error:', {
+                status: response.status,
+                data: responseData,
+                requestBody: requestBody
+            });
+            
+            // Return detailed error for debugging
             return {
-                statusCode: response.status,
+                statusCode: 200, // Return 200 so frontend gets the error details
                 headers: corsHeaders,
                 body: JSON.stringify({
                     success: false,
                     error: 'PAYMENT_GATEWAY_ERROR',
-                    message: responseData.message || responseData.error || 'Failed to create payment link'
+                    message: responseData.message || responseData.error || JSON.stringify(responseData),
+                    details: responseData
                 })
             };
         }
