@@ -55,7 +55,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             appIdLength: IKHOKHA_APP_ID?.length,
             env: process.env.VITE_IKHOKHA_API_KEY ? 'found' : 'missing'
         });
-        
+
         if (!IKHOKHA_APP_ID || !IKHOKHA_APP_SECRET) {
             console.error('❌ Missing credentials');
             return {
@@ -74,9 +74,8 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         const baseUrl = process.env.URL || 'https://betaskills.co.za';
         const amountInCents = Math.round(paymentRequest.amount * 100);
 
-        // Build iKhokha payment URL according to their documentation
-        const paymentUrl = `https://pay.ikhokha.com?` + new URLSearchParams({
-            applicationId: IKHOKHA_APP_ID,
+        // Build iKhokha payment URL - using correct format
+        const paymentUrl = `https://pay.ikhokha.com/${IKHOKHA_APP_ID}?` + new URLSearchParams({
             amount: amountInCents.toString(),
             currency: 'ZAR',
             externalTransactionID: transactionRef,
