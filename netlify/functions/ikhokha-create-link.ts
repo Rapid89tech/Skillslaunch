@@ -1,6 +1,6 @@
 /**
  * iKhokha Payment Link - Netlify Function
- * Based on iKhokha API documentation
+ * Creates payment session via iKhokha API
  */
 
 interface NetlifyEvent {
@@ -55,7 +55,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             appIdLength: IKHOKHA_APP_ID?.length,
             env: process.env.VITE_IKHOKHA_API_KEY ? 'found' : 'missing'
         });
-
+        
         if (!IKHOKHA_APP_ID || !IKHOKHA_APP_SECRET) {
             console.error('❌ Missing credentials');
             return {
@@ -74,9 +74,14 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         const baseUrl = process.env.URL || 'https://betaskills.co.za';
         const amountInCents = Math.round(paymentRequest.amount * 100);
 
-        // Build iKhokha payment URL - using correct format
-        const paymentUrl = `https://pay.ikhokha.com/${IKHOKHA_APP_ID}?` + new URLSearchParams({
-            amount: amountInCents.toString(),
+        console.log('📝 Creating payment session for:', paymentRequest.customer_email);
+
+        // Call iKhokha API to create payment session
+        const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
+        
+        const requestBody = {
+            applicationId: IKHOKHA_APP_ID,
+            amount: amountInCents,
             currency: 'ZAR',
             externalTransactionID: transactionRef,
             description: paymentRequest.description,
@@ -85,9 +90,70 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             successUrl: `${baseUrl}/payment/success?ref=${transactionRef}`,
             cancelUrl: `${baseUrl}/payment/cancel?ref=${transactionRef}`,
             notifyUrl: `${baseUrl}/.netlify/functions/ikhokha-webhook`
-        }).toString();
+        };
 
-        console.log('✅ Payment link created for:', paymentRequest.customer_email);
+        console.log('🔗 Calling iKhokha API:', apiUrl);
+
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${IKHOKHA_APP_SECRET}`,
+                'X-Application-Id': IKHOKHA_APP_ID
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        const responseText = await response.text();
+        console.log('📥 iKhokha response status:', response.status);
+        console.log('📥 iKhokha response:', responseText.substring(0, 200));
+
+        let responseData: any;
+        try {
+            responseData = JSON.parse(responseText);
+        } catch (e) {
+            console.error('❌ Invalid JSON response:', responseText);
+            return {
+                statusCode: 500,
+                headers: corsHeaders,
+                body: JSON.stringify({
+                    success: false,
+                    error: 'PAYMENT_GATEWAY_ERROR',
+                    message: 'Invalid response from payment gateway'
+                })
+            };
+        }
+
+        if (!response.ok) {
+            console.error('❌ iKhokha API error:', responseData);
+            return {
+                statusCode: response.status,
+                headers: corsHeaders,
+                body: JSON.stringify({
+                    success: false,
+                    error: 'PAYMENT_GATEWAY_ERROR',
+                    message: responseData.message || responseData.error || 'Failed to create payment link'
+                })
+            };
+        }
+
+        // Extract payment URL from response
+        const paymentUrl = responseData.paymentUrl || responseData.redirectUrl || responseData.url || responseData.payment_url;
+
+        if (!paymentUrl) {
+            console.error('❌ No payment URL in response:', responseData);
+            return {
+                statusCode: 500,
+                headers: corsHeaders,
+                body: JSON.stringify({
+                    success: false,
+                    error: 'PAYMENT_GATEWAY_ERROR',
+                    message: 'No payment URL returned from gateway'
+                })
+            };
+        }
+
+        console.log('✅ Payment link created successfully');
 
         return {
             statusCode: 200,
@@ -95,7 +161,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             body: JSON.stringify({
                 success: true,
                 payment_link_url: paymentUrl,
-                payment_link_id: transactionRef,
+                payment_link_id: responseData.transactionId || responseData.id || transactionRef,
                 transaction_reference: transactionRef
             })
         };
