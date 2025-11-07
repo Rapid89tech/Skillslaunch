@@ -39,6 +39,27 @@ export const handler = async (event: any) => {
 
         console.log('Request:', JSON.stringify(testBody, null, 2));
 
+        // Generate HMAC SHA256 signature
+        const requestBodyString = JSON.stringify(testBody);
+        const path = '/public-api/v1/api/payment';
+        const dataToSign = path + requestBodyString;
+        
+        const encoder = new TextEncoder();
+        const keyData = encoder.encode(IKHOKHA_APP_SECRET);
+        const dataToSignEncoded = encoder.encode(dataToSign);
+        
+        const cryptoKey = await crypto.subtle.importKey(
+            'raw',
+            keyData,
+            { name: 'HMAC', hash: 'SHA-256' },
+            false,
+            ['sign']
+        );
+        
+        const signatureBuffer = await crypto.subtle.sign('HMAC', cryptoKey, dataToSignEncoded);
+        const hashArray = Array.from(new Uint8Array(signatureBuffer));
+        const signature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 20000);
 
@@ -46,10 +67,11 @@ export const handler = async (event: any) => {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'x-application-id': IKHOKHA_APP_ID,
-                'x-application-secret': IKHOKHA_APP_SECRET
+                'IK-APPID': IKHOKHA_APP_ID,
+                'IK-SIGN': signature,
+                'Accept': 'application/json'
             },
-            body: JSON.stringify(testBody),
+            body: requestBodyString,
             signal: controller.signal
         });
 

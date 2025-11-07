@@ -99,6 +99,29 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         console.log('🔗 Calling iKhokha API:', apiUrl);
         console.log('📤 Request body:', JSON.stringify(requestBody, null, 2));
 
+        // Generate HMAC SHA256 signature
+        const requestBodyString = JSON.stringify(requestBody);
+        const path = '/public-api/v1/api/payment';
+        const dataToSign = path + requestBodyString;
+        
+        const encoder = new TextEncoder();
+        const keyData = encoder.encode(IKHOKHA_APP_SECRET);
+        const dataToSignEncoded = encoder.encode(dataToSign);
+        
+        const cryptoKey = await crypto.subtle.importKey(
+            'raw',
+            keyData,
+            { name: 'HMAC', hash: 'SHA-256' },
+            false,
+            ['sign']
+        );
+        
+        const signatureBuffer = await crypto.subtle.sign('HMAC', cryptoKey, dataToSignEncoded);
+        const hashArray = Array.from(new Uint8Array(signatureBuffer));
+        const signature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        
+        console.log('🔐 Signature generated:', signature.substring(0, 20) + '...');
+
         // Add timeout to prevent hanging
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
@@ -108,10 +131,11 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'x-application-id': IKHOKHA_APP_ID,
-                    'x-application-secret': IKHOKHA_APP_SECRET
+                    'IK-APPID': IKHOKHA_APP_ID,
+                    'IK-SIGN': signature,
+                    'Accept': 'application/json'
                 },
-                body: JSON.stringify(requestBody),
+                body: requestBodyString,
                 signal: controller.signal
             });
             clearTimeout(timeoutId);
@@ -156,34 +180,51 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
                 };
             }
 
-            // Extract payment URL from response
-            const paymentUrl = responseData.paymentUrl || responseData.redirectUrl || responseData.url || responseData.payment_url;
+            // Check if payment link was created successfully (iKhokha returns responseCode '00' for success)
+            if (responseData.responseCode === '00') {
+                const paymentUrl = responseData.paylinkUrl;
+                
+                if (!paymentUrl) {
+                    console.error('❌ No payment URL in response:', responseData);
+                    return {
+                        statusCode: 500,
+                        headers: corsHeaders,
+                        body: JSON.stringify({
+                            success: false,
+                            error: 'PAYMENT_GATEWAY_ERROR',
+                            message: 'No payment URL returned from gateway'
+                        })
+                    };
+                }
 
-            if (!paymentUrl) {
-                console.error('❌ No payment URL in response:', responseData);
+                console.log('✅ Payment link created successfully');
+
                 return {
-                    statusCode: 500,
+                    statusCode: 200,
+                    headers: corsHeaders,
+                    body: JSON.stringify({
+                        success: true,
+                        payment_link_url: paymentUrl,
+                        payment_link_id: responseData.paylinkID || transactionRef,
+                        transaction_reference: transactionRef,
+                        message: 'Payment link created successfully'
+                    })
+                };
+            } else {
+                // Payment link creation failed
+                console.error('❌ iKhokha returned error code:', responseData.responseCode);
+                return {
+                    statusCode: 200,
                     headers: corsHeaders,
                     body: JSON.stringify({
                         success: false,
-                        error: 'PAYMENT_GATEWAY_ERROR',
-                        message: 'No payment URL returned from gateway'
+                        error: 'PAYMENT_LINK_FAILED',
+                        message: responseData.message || 'Failed to create payment link',
+                        response_code: responseData.responseCode,
+                        details: responseData
                     })
                 };
             }
-
-            console.log('✅ Payment link created successfully');
-
-            return {
-                statusCode: 200,
-                headers: corsHeaders,
-                body: JSON.stringify({
-                    success: true,
-                    payment_link_url: paymentUrl,
-                    payment_link_id: responseData.transactionId || responseData.id || transactionRef,
-                    transaction_reference: transactionRef
-                })
-            };
         } catch (fetchError: any) {
             clearTimeout(timeoutId);
             if (fetchError.name === 'AbortError') {
