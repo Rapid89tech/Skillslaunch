@@ -82,7 +82,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         // Correct iKhokha API request - urls must be in nested object
         const requestBody = {
             entityID: IKHOKHA_APP_ID,
-            mode: 'live',
+            mode: 'test', // Use test mode for now
             amount: amountInCents,
             currency: 'ZAR',
             externalTransactionID: transactionRef,
@@ -97,85 +97,109 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         };
 
         console.log('🔗 Calling iKhokha API:', apiUrl);
+        console.log('📤 Request body:', JSON.stringify(requestBody, null, 2));
 
-        const response = await fetch(apiUrl, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'x-application-id': IKHOKHA_APP_ID,
-                'x-application-secret': IKHOKHA_APP_SECRET
-            },
-            body: JSON.stringify(requestBody)
-        });
+        // Add timeout to prevent hanging
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
 
-        const responseText = await response.text();
-        console.log('📥 iKhokha response status:', response.status);
-        console.log('📥 iKhokha response:', responseText.substring(0, 200));
-
-        let responseData: any;
         try {
-            responseData = JSON.parse(responseText);
-        } catch (e) {
-            console.error('❌ Invalid JSON response:', responseText);
-            return {
-                statusCode: 500,
-                headers: corsHeaders,
-                body: JSON.stringify({
-                    success: false,
-                    error: 'PAYMENT_GATEWAY_ERROR',
-                    message: 'Invalid response from payment gateway'
-                })
-            };
-        }
-
-        if (!response.ok) {
-            console.error('❌ iKhokha API error:', {
-                status: response.status,
-                data: responseData,
-                requestBody: requestBody
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'x-application-id': IKHOKHA_APP_ID,
+                    'x-application-secret': IKHOKHA_APP_SECRET
+                },
+                body: JSON.stringify(requestBody),
+                signal: controller.signal
             });
+            clearTimeout(timeoutId);
 
-            // Return detailed error for debugging
+            const responseText = await response.text();
+            console.log('📥 iKhokha response status:', response.status);
+            console.log('📥 iKhokha response:', responseText.substring(0, 500));
+
+            let responseData: any;
+            try {
+                responseData = JSON.parse(responseText);
+            } catch (e) {
+                console.error('❌ Invalid JSON response:', responseText);
+                return {
+                    statusCode: 500,
+                    headers: corsHeaders,
+                    body: JSON.stringify({
+                        success: false,
+                        error: 'PAYMENT_GATEWAY_ERROR',
+                        message: 'Invalid response from payment gateway'
+                    })
+                };
+            }
+
+            if (!response.ok) {
+                console.error('❌ iKhokha API error:', {
+                    status: response.status,
+                    data: responseData,
+                    requestBody: requestBody
+                });
+
+                // Return detailed error for debugging
+                return {
+                    statusCode: 200, // Return 200 so frontend gets the error details
+                    headers: corsHeaders,
+                    body: JSON.stringify({
+                        success: false,
+                        error: 'PAYMENT_GATEWAY_ERROR',
+                        message: responseData.message || responseData.error || JSON.stringify(responseData),
+                        details: responseData
+                    })
+                };
+            }
+
+            // Extract payment URL from response
+            const paymentUrl = responseData.paymentUrl || responseData.redirectUrl || responseData.url || responseData.payment_url;
+
+            if (!paymentUrl) {
+                console.error('❌ No payment URL in response:', responseData);
+                return {
+                    statusCode: 500,
+                    headers: corsHeaders,
+                    body: JSON.stringify({
+                        success: false,
+                        error: 'PAYMENT_GATEWAY_ERROR',
+                        message: 'No payment URL returned from gateway'
+                    })
+                };
+            }
+
+            console.log('✅ Payment link created successfully');
+
             return {
-                statusCode: 200, // Return 200 so frontend gets the error details
+                statusCode: 200,
                 headers: corsHeaders,
                 body: JSON.stringify({
-                    success: false,
-                    error: 'PAYMENT_GATEWAY_ERROR',
-                    message: responseData.message || responseData.error || JSON.stringify(responseData),
-                    details: responseData
+                    success: true,
+                    payment_link_url: paymentUrl,
+                    payment_link_id: responseData.transactionId || responseData.id || transactionRef,
+                    transaction_reference: transactionRef
                 })
             };
+        } catch (fetchError: any) {
+            clearTimeout(timeoutId);
+            if (fetchError.name === 'AbortError') {
+                console.error('❌ Request timeout');
+                return {
+                    statusCode: 504,
+                    headers: corsHeaders,
+                    body: JSON.stringify({
+                        success: false,
+                        error: 'TIMEOUT',
+                        message: 'Payment gateway request timed out'
+                    })
+                };
+            }
+            throw fetchError;
         }
-
-        // Extract payment URL from response
-        const paymentUrl = responseData.paymentUrl || responseData.redirectUrl || responseData.url || responseData.payment_url;
-
-        if (!paymentUrl) {
-            console.error('❌ No payment URL in response:', responseData);
-            return {
-                statusCode: 500,
-                headers: corsHeaders,
-                body: JSON.stringify({
-                    success: false,
-                    error: 'PAYMENT_GATEWAY_ERROR',
-                    message: 'No payment URL returned from gateway'
-                })
-            };
-        }
-
-        console.log('✅ Payment link created successfully');
-
-        return {
-            statusCode: 200,
-            headers: corsHeaders,
-            body: JSON.stringify({
-                success: true,
-                payment_link_url: paymentUrl,
-                payment_link_id: responseData.transactionId || responseData.id || transactionRef,
-                transaction_reference: transactionRef
-            })
-        };
 
     } catch (error: any) {
         console.error('❌ Error:', error);
