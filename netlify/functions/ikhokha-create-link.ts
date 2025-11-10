@@ -28,6 +28,11 @@ interface PaymentLinkRequest {
 const IKHOKHA_APP_ID = process.env.VITE_IKHOKHA_API_KEY || '';
 const IKHOKHA_APP_SECRET = process.env.VITE_IKHOKHA_API_SECRET || '';
 
+// Escape function matching the working test
+function escapePayload(str: string): string {
+    return str.split('\\').join('\\\\').split('"').join('\\"').split("'").join("\\'").split('\u0000').join('\\0');
+}
+
 export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => {
     const corsHeaders = {
         'Access-Control-Allow-Origin': '*',
@@ -49,15 +54,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
     }
 
     try {
-        console.log('🔑 Checking credentials:', {
-            hasAppId: !!IKHOKHA_APP_ID,
-            hasSecret: !!IKHOKHA_APP_SECRET,
-            appIdLength: IKHOKHA_APP_ID?.length,
-            env: process.env.VITE_IKHOKHA_API_KEY ? 'found' : 'missing'
-        });
-
         if (!IKHOKHA_APP_ID || !IKHOKHA_APP_SECRET) {
-            console.error('❌ Missing credentials');
             return {
                 statusCode: 500,
                 headers: corsHeaders,
@@ -74,13 +71,8 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         const baseUrl = process.env.URL || 'https://betaskills.co.za';
         const amountInCents = Math.round(paymentRequest.amount * 100);
 
-        console.log('📝 Creating payment session for:', paymentRequest.customer_email);
-        console.log('🔑 Using credentials - AppID length:', IKHOKHA_APP_ID.length);
-
-        // Call iKhokha API to create payment session
         const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
 
-        // Exact format from iKhokha documentation
         const requestBody = {
             entityID: IKHOKHA_APP_ID,
             externalEntityID: paymentRequest.user_id,
@@ -98,16 +90,9 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             }
         };
 
-        console.log('🔗 Calling iKhokha API:', apiUrl);
-        console.log('📤 Request body:', JSON.stringify(requestBody, null, 2));
-
-        // Generate HMAC SHA256 signature with proper escaping (per iKhokha docs)
         const requestBodyString = JSON.stringify(requestBody);
         const path = '/public-api/v1/api/payment';
-        
-        // Escape the payload as per iKhokha's JavaScript example
-        const jsStringEscape = (str: string) => str.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
-        const payloadToSign = jsStringEscape(path + requestBodyString);
+        const payloadToSign = escapePayload(path + requestBodyString);
         
         const encoder = new TextEncoder();
         const keyData = encoder.encode(IKHOKHA_APP_SECRET);
@@ -124,12 +109,9 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         const signatureBuffer = await crypto.subtle.sign('HMAC', cryptoKey, dataToSignEncoded);
         const hashArray = Array.from(new Uint8Array(signatureBuffer));
         const signature = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        
-        console.log('🔐 Signature generated:', signature.substring(0, 20) + '...');
 
-        // Add timeout to prevent hanging
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 25000); // 25 second timeout
+        const timeoutId = setTimeout(() => controller.abort(), 25000);
 
         try {
             const response = await fetch(apiUrl, {
@@ -146,14 +128,10 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             clearTimeout(timeoutId);
 
             const responseText = await response.text();
-            console.log('📥 iKhokha response status:', response.status);
-            console.log('📥 iKhokha response:', responseText.substring(0, 500));
-
             let responseData: any;
             try {
                 responseData = JSON.parse(responseText);
             } catch (e) {
-                console.error('❌ Invalid JSON response:', responseText);
                 return {
                     statusCode: 500,
                     headers: corsHeaders,
@@ -166,15 +144,8 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             }
 
             if (!response.ok) {
-                console.error('❌ iKhokha API error:', {
-                    status: response.status,
-                    data: responseData,
-                    requestBody: requestBody
-                });
-
-                // Return detailed error for debugging
                 return {
-                    statusCode: 200, // Return 200 so frontend gets the error details
+                    statusCode: 200,
                     headers: corsHeaders,
                     body: JSON.stringify({
                         success: false,
@@ -185,12 +156,10 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
                 };
             }
 
-            // Check if payment link was created successfully (iKhokha returns responseCode '00' for success)
             if (responseData.responseCode === '00') {
                 const paymentUrl = responseData.paylinkUrl;
                 
                 if (!paymentUrl) {
-                    console.error('❌ No payment URL in response:', responseData);
                     return {
                         statusCode: 500,
                         headers: corsHeaders,
@@ -201,8 +170,6 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
                         })
                     };
                 }
-
-                console.log('✅ Payment link created successfully');
 
                 return {
                     statusCode: 200,
@@ -216,8 +183,6 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
                     })
                 };
             } else {
-                // Payment link creation failed
-                console.error('❌ iKhokha returned error code:', responseData.responseCode);
                 return {
                     statusCode: 200,
                     headers: corsHeaders,
@@ -233,7 +198,6 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         } catch (fetchError: any) {
             clearTimeout(timeoutId);
             if (fetchError.name === 'AbortError') {
-                console.error('❌ Request timeout');
                 return {
                     statusCode: 504,
                     headers: corsHeaders,
@@ -248,7 +212,6 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         }
 
     } catch (error: any) {
-        console.error('❌ Error:', error);
         return {
             statusCode: 500,
             headers: corsHeaders,
