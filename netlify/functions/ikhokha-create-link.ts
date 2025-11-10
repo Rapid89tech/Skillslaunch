@@ -75,6 +75,7 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         const amountInCents = Math.round(paymentRequest.amount * 100);
 
         console.log('📝 Creating payment session for:', paymentRequest.customer_email);
+        console.log('🔑 Using credentials - AppID length:', IKHOKHA_APP_ID.length);
 
         // Call iKhokha API to create payment session
         const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
