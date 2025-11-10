@@ -80,20 +80,21 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         // Use test endpoint for test credentials (IKW prefix)
         const apiUrl = 'https://pay.ikhokha.com/public-api/v1/api/payment';
 
-        // Correct iKhokha API request - urls must be in nested object
+        // Correct iKhokha API request - match Supabase function format exactly
         const requestBody = {
             entityID: IKHOKHA_APP_ID,
-            mode: 'test', // Use test mode for now
+            externalEntityID: paymentRequest.user_id,
             amount: amountInCents,
             currency: 'ZAR',
-            externalTransactionID: transactionRef,
-            description: paymentRequest.description,
             requesterUrl: baseUrl,
+            mode: 'live',
+            description: paymentRequest.description,
+            externalTransactionID: transactionRef,
             urls: {
+                callbackUrl: `${baseUrl}/.netlify/functions/ikhokha-webhook`,
                 successPageUrl: `${baseUrl}/payment/success?ref=${transactionRef}`,
                 failurePageUrl: `${baseUrl}/payment/cancel?ref=${transactionRef}`,
-                cancelUrl: `${baseUrl}/payment/cancel?ref=${transactionRef}`,
-                callbackUrl: `${baseUrl}/.netlify/functions/ikhokha-webhook`
+                cancelUrl: `${baseUrl}/payment/cancel?ref=${transactionRef}`
             }
         };
 
@@ -131,10 +132,10 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
             const response = await fetch(apiUrl, {
                 method: 'POST',
                 headers: {
-                    'content-type': 'application/json',
-                    'ik-appid': IKHOKHA_APP_ID,
-                    'ik-sign': signature,
-                    'accept': 'application/json'
+                    'Content-Type': 'application/json',
+                    'IK-APPID': IKHOKHA_APP_ID,
+                    'IK-SIGN': signature,
+                    'Accept': 'application/json'
                 },
                 body: requestBodyString,
                 signal: controller.signal
