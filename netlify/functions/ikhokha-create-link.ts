@@ -92,7 +92,10 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
 
         const requestBodyString = JSON.stringify(requestBody);
         const path = '/public-api/v1/api/payment';
-        const payloadToSign = escapePayload(path + requestBodyString);
+        const rawPayload = path + requestBodyString;
+        const payloadToSign = escapePayload(rawPayload);
+        console.log('Raw payload length:', rawPayload.length);
+        console.log('Escaped payload length:', payloadToSign.length);
         
         const encoder = new TextEncoder();
         const keyData = encoder.encode(IKHOKHA_APP_SECRET);
