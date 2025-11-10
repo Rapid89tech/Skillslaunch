@@ -77,10 +77,9 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         console.log('📝 Creating payment session for:', paymentRequest.customer_email);
 
         // Call iKhokha API to create payment session
-        // Use test endpoint for test credentials (IKW prefix)
-        const apiUrl = 'https://pay.ikhokha.com/public-api/v1/api/payment';
+        const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
 
-        // Correct iKhokha API request - match Supabase function format exactly
+        // Exact format from iKhokha documentation
         const requestBody = {
             entityID: IKHOKHA_APP_ID,
             externalEntityID: paymentRequest.user_id,
@@ -101,14 +100,17 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         console.log('🔗 Calling iKhokha API:', apiUrl);
         console.log('📤 Request body:', JSON.stringify(requestBody, null, 2));
 
-        // Generate HMAC SHA256 signature
+        // Generate HMAC SHA256 signature with proper escaping (per iKhokha docs)
         const requestBodyString = JSON.stringify(requestBody);
         const path = '/public-api/v1/api/payment';
-        const dataToSign = path + requestBodyString;
+        
+        // Escape the payload as per iKhokha's JavaScript example
+        const jsStringEscape = (str: string) => str.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+        const payloadToSign = jsStringEscape(path + requestBodyString);
         
         const encoder = new TextEncoder();
         const keyData = encoder.encode(IKHOKHA_APP_SECRET);
-        const dataToSignEncoded = encoder.encode(dataToSign);
+        const dataToSignEncoded = encoder.encode(payloadToSign);
         
         const cryptoKey = await crypto.subtle.importKey(
             'raw',

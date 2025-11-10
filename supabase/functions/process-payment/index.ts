@@ -16,11 +16,19 @@ interface PaymentLinkRequest {
   user_id: string
 }
 
+// Escape string for signature generation (matches iKhokha's format)
+function jsStringEscape(str: string): string {
+  return str.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0')
+}
+
 // Generate HMAC SHA256 signature for iKhokha API
 async function generateSignature(path: string, requestBody: string, appSecret: string): Promise<string> {
+  // Create payload to sign: path + escaped JSON body
+  const payloadToSign = jsStringEscape(path + requestBody)
+  
   const encoder = new TextEncoder()
   const keyData = encoder.encode(appSecret)
-  const dataToSign = encoder.encode(path + requestBody)
+  const dataToSign = encoder.encode(payloadToSign)
   
   const key = await crypto.subtle.importKey(
     'raw',
@@ -61,7 +69,7 @@ serve(async (req) => {
     // Generate unique transaction ID
     const externalTransactionID = `SKILL-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`
 
-    // Create payment link request payload
+    // Create payment link request payload - exact format from iKhokha docs
     const ikhokhaPayload = {
       entityID: IKHOKHA_APP_ID,
       externalEntityID: paymentRequest.user_id,
@@ -72,7 +80,6 @@ serve(async (req) => {
       description: paymentRequest.description,
       externalTransactionID: externalTransactionID,
       urls: {
-        // Use the Supabase Edge Function URL for callbacks to ensure reachability
         callbackUrl: `${Deno.env.get('SUPABASE_URL')}/functions/v1/ikhokha-webhook`,
         successPageUrl: `${BASE_URL}/payment-success?course=${paymentRequest.course_id}&ref=${externalTransactionID}`,
         failurePageUrl: `${BASE_URL}/payment-failed?course=${paymentRequest.course_id}`,
