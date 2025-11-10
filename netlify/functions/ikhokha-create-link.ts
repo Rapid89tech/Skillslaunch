@@ -77,7 +77,8 @@ export const handler = async (event: NetlifyEvent): Promise<NetlifyResponse> => 
         console.log('📝 Creating payment session for:', paymentRequest.customer_email);
 
         // Call iKhokha API to create payment session
-        const apiUrl = 'https://api.ikhokha.com/public-api/v1/api/payment';
+        // Use test endpoint for test credentials (IKW prefix)
+        const apiUrl = 'https://pay.ikhokha.com/public-api/v1/api/payment';
 
         // Correct iKhokha API request - urls must be in nested object
         const requestBody = {

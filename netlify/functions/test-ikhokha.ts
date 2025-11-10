@@ -63,7 +63,7 @@ export const handler = async (event: any) => {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 20000);
 
-        const response = await fetch('https://api.ikhokha.com/public-api/v1/api/payment', {
+        const response = await fetch('https://pay.ikhokha.com/public-api/v1/api/payment', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
