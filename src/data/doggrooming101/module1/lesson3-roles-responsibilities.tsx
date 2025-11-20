@@ -3,11 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 3,
   title: 'Roles and Responsibilities of a Professional Dog Groomer and Trainer',
-  duration: '30 minutes',
+  duration: '45 min',
   type: 'video',
-  videoUrl: 'https://youtu.be/K2XE-ninExE',
-  // @ts-ignore - content as string is supported pattern used across course lessons
-  content: `
+  content: {
+    videoUrl: 'https://youtu.be/K2XE-ninExE',
+    textContent: `
 # Roles and Responsibilities of a Professional Dog Groomer and Trainer 👔
 
 ## Introduction
@@ -169,7 +169,8 @@ Professional dog groomers and trainers are vital to canine health and behavior, 
 ✅ **Required Skills**: Technical expertise, animal handling, communication, patience  
 ✅ **Ethics**: Humane practices, animal welfare priority, continuous education  
 ✅ **Getting Started**: Education, certification, experience, portfolio, networking  
-  `
+    `
+  }
 };
 
 export default lesson;

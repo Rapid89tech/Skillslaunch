@@ -3,11 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 3,
   title: 'Breed-Specific Grooming and Training Needs',
-  duration: '40 minutes',
+  duration: '45 min',
   type: 'video',
-  videoUrl: 'https://youtu.be/7x5xwSYoTZE',
-  // @ts-ignore - content as string is supported pattern used across course lessons
-  content: `
+  content: {
+    videoUrl: 'https://youtu.be/7x5xwSYoTZE',
+    textContent: `
 # Breed-Specific Grooming and Training Needs 🐕‍🦺
 
 ## Introduction
@@ -291,7 +291,8 @@ Breed-specific grooming and training needs reflect the diverse physical and beha
 ✅ **Toy**: Delicate, affectionate; gentle grooming, short training sessions  
 ✅ **Non-Sporting**: Varied; Poodles high-maintenance, Bulldogs skin-fold care  
 ✅ **Herding**: Intelligent, active; frequent brushing, advanced training tasks  
-  `
+    `
+  }
 };
 
 export default lesson;

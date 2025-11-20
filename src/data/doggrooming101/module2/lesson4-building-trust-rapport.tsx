@@ -3,11 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 4,
   title: 'Building Trust and Rapport with Dogs',
-  duration: '25 minutes',
+  duration: '45 min',
   type: 'video',
-  videoUrl: 'https://youtu.be/ff6tyDjYSKg',
-  // @ts-ignore - content as string is supported pattern used across course lessons
-  content: `
+  content: {
+    videoUrl: 'https://youtu.be/ff6tyDjYSKg',
+    textContent: `
 # Building Trust and Rapport with Dogs 🤝
 
 ## Introduction
@@ -179,7 +179,8 @@ Building trust and rapport with dogs is the cornerstone of successful grooming, 
 ✅ **Socialization**: Gradual exposure, positive associations, start early (8-16 weeks)  
 ✅ **Patience**: Short sessions, regular practice, progress at dog's pace  
 ✅ **Breed-Specific**: Tailor approach - gentle for sensitive, engaging for high-energy  
-  `
+    `
+  }
 };
 
 export default lesson;

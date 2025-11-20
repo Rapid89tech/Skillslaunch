@@ -3,11 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 5,
   title: 'Safety, Ethics, and Animal Welfare in Dog Grooming and Training',
-  duration: '30 minutes',
+  duration: '45 min',
   type: 'video',
-  videoUrl: 'https://youtu.be/NG_7ISBL8Oo',
-  // @ts-ignore - content as string is supported pattern used across course lessons
-  content: `
+  content: {
+    videoUrl: 'https://youtu.be/NG_7ISBL8Oo',
+    textContent: `
 # Safety, Ethics, and Animal Welfare in Dog Grooming and Training 🛡️
 
 ## Introduction
@@ -196,7 +196,8 @@ Safety, ethics, and animal welfare are the foundation of responsible dog groomin
 ✅ **Animal Welfare**: Minimize stress, prioritize health, provide mental stimulation, avoid overtraining  
 ✅ **Best Practices**: Use calming aids, vet-approved products, positive reinforcement  
 ✅ **Advocacy**: Report neglect/abuse, promote humane practices, collaborate with veterinarians  
-  `
+    `
+  }
 };
 
 export default lesson;

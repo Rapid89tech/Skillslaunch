@@ -56,6 +56,8 @@ const courseImages: Record<string, string> = {
   'roofing101': roofingNew,
   'Motor Mechanic (Diesel)': dieselMechanicNew,
   'motor-mechanic-diesel': dieselMechanicNew,
+  'Emotional Intelligence': aiHumanNew,
+  'emotional-intelligence': aiHumanNew,
 };
 
 const PaymentPage: React.FC = () => {
@@ -255,7 +257,7 @@ const PaymentPage: React.FC = () => {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span className="text-gray-600">Course Price:</span>
-                  <span className="font-semibold">R{course.price || 0}</span>
+                  <span className="font-semibold">R290.00</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-gray-600">Type:</span>
@@ -278,50 +280,38 @@ const PaymentPage: React.FC = () => {
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-                <h4 className="font-semibold text-red-800 mb-2">⚠️ Production Payment Mode</h4>
-                <p className="text-red-700 text-sm">
-                  <strong>REAL PAYMENTS ONLY:</strong> Card details are now validated using industry standards. Invalid cards will be rejected. Payments are processed through Ikhokha payment gateway.
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 className="font-semibold text-blue-800 mb-2">💳 Payment Information</h4>
+                <p className="text-blue-700 text-sm">
+                  Please note that we are currently accepting EFT payments only. Kindly follow the payment instructions provided and attach your proof of payment. Once received, your access to the course will be activated.
                 </p>
               </div>
 
               <div className="space-y-3">
                 <div className="flex justify-between items-center py-2 border-b">
                   <span className="text-gray-600">Course Fee</span>
-                  <span className="font-semibold">R{course.price || 0}</span>
+                  <span className="font-semibold">R290.00</span>
                 </div>
                 <div className="flex justify-between items-center py-2 border-b">
                   <span className="text-gray-600">VAT (0%)</span>
-                  <span className="font-semibold">R{((course.price || 0) * 0).toFixed(2)}</span>
+                  <span className="font-semibold">R0.00</span>
                 </div>
                 <div className="flex justify-between items-center py-3 text-lg font-bold">
                   <span>Total</span>
-                  <span>R{(course.price || 0).toFixed(2)}</span>
+                  <span>R290.00</span>
                 </div>
               </div>
 
               <div className="space-y-4">
                 <Button 
-                  onClick={() => setShowPaymentForm(true)}
+                  onClick={handleEftDetailsOpen}
                   className="w-full"
                   size="lg"
                   variant="default"
                 >
-                  <CreditCard className="w-4 h-4 mr-2" />
-                  Enter Card Details - R{(course.price || 0).toFixed(2)}
-                </Button>
-                
-                <Button 
-                  onClick={handleEftDetailsOpen}
-                  className="w-full"
-                  size="lg"
-                  variant="secondary"
-                >
                   <Building2 className="w-4 h-4 mr-2" />
-                  Pay via EFT / Bank Transfer - R{(course.price || 0).toFixed(2)}
+                  Pay via EFT / Bank Transfer - R290.00
                 </Button>
-                
-
               </div>
 
               <p className="text-xs text-gray-500 text-center">

@@ -3,9 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 1,
   title: 'What is Dog Grooming and Training?',
-  duration: '30 minutes',
-  type: 'reading',
-  content: `
+  duration: '45 min',
+  type: 'video',
+  content: {
+    videoUrl: 'https://youtu.be/7ou0p08Dn0o',
+    textContent: `
 # What is Dog Grooming and Training? 🐕
 
 ## Introduction
@@ -180,7 +182,9 @@ Dog grooming and training are vital for a dog's health, happiness, and behavior.
 ✅ Professional services range from R450–R1,500 for grooming, R750–R2,250 for training  
 ✅ Home care is cost-effective but requires time, patience, and proper tools  
 ✅ Combining grooming and training provides holistic care for well-rounded pets  
-  `
+
+    `
+  }
 };
 
 export default lesson;

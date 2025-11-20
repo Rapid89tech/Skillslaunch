@@ -3,11 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 2,
   title: 'Importance of Grooming and Training for Canine Health and Behavior',
-  duration: '25 minutes',
+  duration: '45 min',
   type: 'video',
-  videoUrl: 'https://youtu.be/7ou0p08Dn0o',
-  // @ts-ignore - content as string is supported pattern used across course lessons
-  content: `
+  content: {
+    videoUrl: 'https://youtu.be/7ou0p08Dn0o',
+    textContent: `
 # Importance of Grooming and Training for Canine Health and Behavior 🐾
 
 ## Introduction
@@ -128,7 +128,9 @@ Grooming and training are vital for a dog's physical health, mental stimulation,
 ✅ Trained dogs are calmer during grooming sessions  
 ✅ Both practices together provide holistic well-being  
 ✅ Start early (8–16 weeks) for best results  
-  `
+
+    `
+  }
 };
 
 export default lesson;

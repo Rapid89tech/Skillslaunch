@@ -3,11 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 1,
   title: 'Understanding Dog Anatomy for Grooming and Training',
-  duration: '30 minutes',
+  duration: '45 min',
   type: 'video',
-  videoUrl: 'https://youtu.be/XkmuSnn-ddo',
-  // @ts-ignore - content as string is supported pattern used across course lessons
-  content: `
+  content: {
+    videoUrl: 'https://youtu.be/XkmuSnn-ddo',
+    textContent: `
 # Understanding Dog Anatomy for Grooming and Training 🦴
 
 ## Introduction
@@ -190,7 +190,8 @@ Understanding a dog's anatomy—skin, coat, nails, ears, teeth, and muscles—is
 ✅ **Teeth**: 42 adult teeth; 80% have dental disease by age 3  
 ✅ **Muscles**: Movement, strength; working breeds have high endurance  
 ✅ **Interplay**: Anatomy affects grooming frequency, training comfort, health monitoring  
-  `
+    `
+  }
 };
 
 export default lesson;

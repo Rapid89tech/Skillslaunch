@@ -3,9 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 4,
   title: 'Overview of Canine Breeds, Coat Types, and Temperaments',
-  duration: '35 minutes',
-  type: 'reading',
-  content: `
+  duration: '45 min',
+  type: 'video',
+  content: {
+    videoUrl: 'https://youtu.be/K2XE-ninExE',
+    textContent: `
 # Overview of Canine Breeds, Coat Types, and Temperaments 🐶
 
 ## Introduction
@@ -200,7 +202,8 @@ Understanding canine breeds, coat types, and temperaments is crucial for providi
 ✅ **Grooming Frequency**: Daily (long/curly), 2-3x weekly (medium/double), weekly (short)  
 ✅ **Training Approach**: Match to temperament - positive reinforcement for friendly, patient for independent  
 ✅ **Breed-Specific**: Tailor care to individual breed characteristics  
-  `
+    `
+  }
 };
 
 export default lesson;

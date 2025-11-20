@@ -12,8 +12,6 @@ export const lesson1PlumbingIndustryAndCareers: Lesson = {
 
 ## What is Plumbing?
 
-**YOUTUBE LINK** https://youtu.be/zE5iHL-vRVk
-
 ### Definition and Purpose
 
 * Plumbing involves the installation, repair, and maintenance of water supply, drainage, and waste systems.

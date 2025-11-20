@@ -15,11 +15,45 @@ import { computerRepairsCourse } from './computerRepairsCourse';
 import { entrepreneurshipFinalCourse } from './entrepreneurshipFinalCourse';
 import { soundEngineeringCourse } from './soundEngineeringCourse';
 import { christianTeacherCourse } from './christianTeacherCourse';
-import { roofingCourse } from './roofingCourse';
+import roofingCourse from './roofingCourse';
 import { smartHomeAutomationCourse } from './smartHomeAutomationCourse';
 import { podcastManagement101Course } from './podcastManagement101Course';
 import { socialMediaMarketing101Course } from './socialMediaMarketing101Course';
 import { landscaping101Course } from './landscaping101Course';
+import masterchef101 from './masterchef101';
+import beautytherapy101 from './beautyTherapy101';
+import doggrooming101 from './doggrooming101';
+import { cybersecurity101Course } from './cybersecurity101Course';
+
+// Helper function to convert Course to UnifiedCourse
+const convertCourseToUnified = (course: any): UnifiedCourse => {
+  // Map categories to standard categories
+  const categoryMap: Record<string, string> = {
+    'Culinary Arts': 'Hospitality and Culinary',
+    'Beauty and Wellness': 'Health and Beauty',
+    'Animal Care': 'Professional Services'
+  };
+  
+  return {
+    id: course.id,
+    courseId: course.id,
+    title: course.title,
+    description: course.description,
+    category: categoryMap[course.category] || course.category || 'Professional Services',
+    level: course.level || 'beginner',
+    duration: course.duration,
+    price: course.price || 0,
+    currency: course.currency || 'ZAR',
+    instructor: typeof course.instructor === 'string' 
+      ? course.instructor 
+      : course.instructor?.name || 'Professional Instructor',
+    rating: course.rating || 4.5,
+    students: course.students || 0,
+    image: course.thumbnail || course.image || '',
+    isComingSoon: false,
+    available: true
+  };
+};
 
 // Combine all course data
 const allCourseData = [
@@ -36,18 +70,54 @@ const allCourseData = [
   smartHomeAutomationCourse,
   podcastManagement101Course,
   socialMediaMarketing101Course,
-  landscaping101Course
+  landscaping101Course,
+  convertCourseToUnified(masterchef101),
+  convertCourseToUnified(beautytherapy101),
+  convertCourseToUnified(doggrooming101),
+  cybersecurity101Course
 ];
+
+// Normalize all courses to UnifiedCourse format
+const normalizeToUnified = (course: any): UnifiedCourse | null => {
+  if (!course || !course.id) return null;
+  
+  // If already UnifiedCourse, return as is
+  if (course.courseId && course.image !== undefined) {
+    return course as UnifiedCourse;
+  }
+  
+  // Convert Course type or Partial<SimplifiedCourse> to UnifiedCourse
+  return {
+    id: course.id,
+    courseId: course.id,
+    title: course.title || '',
+    description: course.description || '',
+    category: course.category || 'Professional Services',
+    level: course.level || 'beginner',
+    duration: course.duration || '6-8 weeks',
+    price: course.price || 0,
+    currency: course.currency || 'ZAR',
+    instructor: typeof course.instructor === 'string' 
+      ? course.instructor 
+      : course.instructor?.name || 'Professional Instructor',
+    rating: course.rating || 4.5,
+    students: course.students || 0,
+    image: course.thumbnail || course.image || '',
+    isComingSoon: course.isComingSoon ?? false,
+    available: course.available ?? (course.isComingSoon ? false : true)
+  };
+};
 
 // Remove duplicates based on ID
 const uniqueCourses = new Map<string, UnifiedCourse>();
 
 allCourseData.forEach(course => {
-  if (course && course.id) {
+  const normalized = normalizeToUnified(course);
+  if (normalized) {
     // Use the most complete version if duplicate exists
-    const existing = uniqueCourses.get(course.id);
-    if (!existing || Object.keys(course).length > Object.keys(existing).length) {
-      uniqueCourses.set(course.id, course);
+    const existing = uniqueCourses.get(normalized.id);
+    if (!existing || Object.keys(normalized).length > Object.keys(existing).length) {
+      uniqueCourses.set(normalized.id, normalized);
     }
   }
 });

@@ -3,14 +3,18 @@ import crypto from 'crypto';
 const IKHOKHA_APP_ID = 'IKW31E1I5WP1HT2KIIB2XZMBXJOFDX5D';
 const IKHOKHA_APP_SECRET = '455rtQjghdOHzLN3YZ3AQ81H3KEf7OeS';
 
-// Test with both endpoints
 const endpoints = [
     'https://api.ikhokha.com/public-api/v1/api/payment',
     'https://pay.ikhokha.com/public-api/v1/api/payment'
 ];
 
 function jsStringEscape(str) {
-    return str.replace(/[\\"']/g, '\\$&').replace(/\u0000/g, '\\0');
+    let result = str;
+    result = result.split('\\').join('\\\\');
+    result = result.split('"').join('\\"');
+    result = result.split("'").join("\\'");
+    result = result.split('\u0000').join('\\0');
+    return result;
 }
 
 function generateSignature(path, requestBody, appSecret) {
@@ -23,6 +27,7 @@ async function testEndpoint(endpoint) {
     console.log('Testing endpoint:', endpoint);
     console.log('===========================================');
     
+    const txnId = 'TEST-' + Date.now();
     const requestBody = {
         entityID: IKHOKHA_APP_ID,
         externalEntityID: 'test-user-123',
@@ -31,7 +36,8 @@ async function testEndpoint(endpoint) {
         requesterUrl: 'https://betaskills.co.za',
         mode: 'live',
         description: 'Test Payment',
-        externalTransactionID: 'TEST-' + Date.now(),
+        paymentReference: txnId,
+        externalTransactionID: txnId,
         urls: {
             callbackUrl: 'https://betaskills.co.za/callback',
             successPageUrl: 'https://betaskills.co.za/success',

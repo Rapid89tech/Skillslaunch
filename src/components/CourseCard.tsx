@@ -32,6 +32,8 @@ const courseAvailability: Record<string, 'Available' | 'Coming Soon'> = {
   'hair-dressing': 'Available',
   'nail-technician': 'Available',
   'podcast-management-101': 'Available',
+  'emotional-intelligence': 'Available',
+  'prophet': 'Available',
   'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5': 'Coming Soon', // Sound Engineering
   'computer-repairs': 'Coming Soon',
   'cellphone-repairs': 'Coming Soon',
@@ -293,14 +295,17 @@ const CourseCard = ({
 
   // Enhanced button rendering with proper enrollment logic - Requirements 1.1, 1.2, 1.3, 6.1, 6.3, 6.4
   const renderEnrollmentButton = () => {
-    // Special access for john.doe@gmail.com (legacy support)
-    if (user?.email === 'john.doe@gmail.com' && !enrollmentState.status) {
+    // Hardcoded admin access for specific users
+    const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com';
+    
+    // Admin users get full access to all courses
+    if (profile?.role === 'admin' || isHardcodedAdmin) {
       return (
         <Button 
           onClick={() => navigate(`/course/${course.id}`)}
-          className="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold text-xs shadow-lg hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 h-7 sm:h-8"
+          className="flex-1 bg-gradient-to-r from-purple-500 to-purple-600 text-white font-bold text-xs shadow-lg hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-400/60 h-7 sm:h-8"
         >
-          🎯 Access Course
+          👑 Admin Access
         </Button>
       );
     }
@@ -500,7 +505,7 @@ const CourseCard = ({
         <div className={`absolute top-1 right-1 sm:top-2 sm:right-2 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-full text-xs font-semibold shadow-lg z-10 ${
           availability === 'Available' 
             ? 'bg-green-500 text-white' 
-            : 'bg-orange-500 text-white'
+            : 'bg-yellow-500 text-white'
         }`}>
           {availability}
         </div>

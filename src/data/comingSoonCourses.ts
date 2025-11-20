@@ -69,19 +69,6 @@ export const comingSoonCourses: Partial<SimplifiedCourse>[] = [
 
   // ICT
   {
-    id: 'cybersecurity',
-    title: 'Cybersecurity',
-    description: 'Comprehensive cybersecurity training covering threat detection, network security, ethical hacking, and digital forensics for modern security challenges.',
-    category: 'ICT',
-    level: 'Advanced',
-    duration: '12-14 weeks',
-    price: 290,
-
-    thumbnail: '/images/courses/cybersecurity.jpg',
-    isComingSoon: true,
-    overview: 'Master cybersecurity fundamentals including network security, penetration testing, incident response, digital forensics, security frameworks, and protection against cyber threats.',
-  },
-  {
     id: 'ai-graphic-design',
     title: 'AI Assisted Graphic Design',
     description: 'Create professional graphics using AI tools, design automation, and modern creative workflows for stunning visual content creation.',

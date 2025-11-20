@@ -3,11 +3,11 @@ import type { Lesson } from '@/types/course';
 const lesson: Lesson = {
   id: 2,
   title: 'Common Dog Behaviors and Communication',
-  duration: '30 minutes',
+  duration: '45 min',
   type: 'video',
-  videoUrl: 'https://youtu.be/vqP453qscMg',
-  // @ts-ignore - content as string is supported pattern used across course lessons
-  content: `
+  content: {
+    videoUrl: 'https://youtu.be/vqP453qscMg',
+    textContent: `
 # Common Dog Behaviors and Communication 🗣️
 
 ## Introduction
@@ -187,7 +187,8 @@ Understanding common dog behaviors, body language, and stress cues is essential 
 ✅ **Training Relevance**: Interpret body language to gauge engagement and adjust  
 ✅ **Breed-Specific**: Hounds vocalize, herders stare, toys tremble, working breeds independent  
 ✅ **Response**: Pause when stress appears, use calming aids, reward calm behavior  
-  `
+    `
+  }
 };
 
 export default lesson;
