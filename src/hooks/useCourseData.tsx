@@ -7,6 +7,20 @@ import type { SimplifiedCourse } from '@/types/course';
 import { performanceMonitor } from '@/utils/performanceMonitor';
 import { courseLoadingMonitor } from '@/services/CourseLoadingPerformanceMonitor';
 
+// Static imports for all courses - more reliable in production
+import doggrooming101 from '@/data/doggrooming101';
+import beautyTherapy101 from '@/data/beautyTherapy101';
+import masterchef101 from '@/data/masterchef101';
+import landscaping101 from '@/data/landscaping101';
+import socialMediaMarketing101 from '@/data/socialMediaMarketing101';
+import electrician101 from '@/data/electrician101';
+import solar101 from '@/data/solar101';
+import plumbing101 from '@/data/plumbing101';
+import roofing101 from '@/data/roofing101';
+import tiling101 from '@/data/tiling101';
+import emotionalIntelligence from '@/data/emotionalIntelligence';
+import prophet from '@/data/prophet';
+
 interface CourseLoadResult {
   course: Course | null;
   status: 'success' | 'partial' | 'fallback' | 'failed';
@@ -193,46 +207,27 @@ export const useCourseData = (courseId?: string) => {
           result.errors.push('Featured courses unavailable for fallback');
         }
         
-        // Dynamic course loading to reduce bundle size
-        const courseLoaders: Record<string, () => Promise<{ default?: Course } | Course>> = {
-          'f9e8d7c6-b5a4-9382-c1d0-e9f8a7b6c5d5': () => import(/* webpackChunkName: "course-sound-engineering" */ '@/data/soundEngineering102Course').then(m => ({ default: m.soundEngineering102Course })),
-          'roofing101': () => import(/* webpackChunkName: "course-roofing" */ '@/data/roofing101'),
-          'plumbing101': () => import(/* webpackChunkName: "course-plumbing" */ '@/data/plumbing101'),
-          'podcast-management-101': () => import(/* webpackChunkName: "course-podcast" */ '@/data/podcastManagement101Course').then(m => ({ default: m.podcastManagement101Course })),
-          'podcast-management': () => import(/* webpackChunkName: "course-podcast" */ '@/data/podcastManagement101Course').then(m => ({ default: m.podcastManagement101Course })),
-          'motor-mechanic-petrol': () => import(/* webpackChunkName: "course-motor-petrol" */ '@/data/motorMechanicPetrol/index').then(m => ({ default: m.motorMechanicPetrolCourse })),
-          'diesel-mechanic': () => import(/* webpackChunkName: "course-diesel" */ '@/data/dieselMechanic/index').then(m => ({ default: m.dieselMechanicCourse })),
-          'motor-mechanic-diesel': () => import(/* webpackChunkName: "course-motor-diesel" */ '@/data/motorMechanicDiesel/index').then(m => ({ default: m.motorMechanicDieselCourse })),
-          'cellphone-repairs': () => import(/* webpackChunkName: "course-cellphone" */ '@/data/cellphoneRepairs/index').then(m => ({ default: m.cellphoneRepairsCourse })),
-          'computer-repairs': () => import(/* webpackChunkName: "course-computer" */ '@/data/computerRepairsCourse').then(m => ({ default: m.computerRepairsCourse })),
-          'ai-human-relations': () => import(/* webpackChunkName: "course-ai-human" */ '@/data/aiHumanRelations/index').then(m => ({ default: m.aiHumanRelationsCourse })),
-          'hair-dressing': () => import(/* webpackChunkName: "course-hair" */ '@/data/hairDressing/index').then(m => ({ default: m.hairDressingCourse })),
-          'nail-technician': () => import(/* webpackChunkName: "course-nail" */ '@/data/nailTechnician/index').then(m => ({ default: m.nailTechnicianCourse })),
-          'entrepreneurship-final': () => import(/* webpackChunkName: "course-entrepreneurship" */ '@/data/entrepreneurshipFinalCourse').then(m => ({ default: m.entrepreneurshipFinalCourse })),
-          'tiling-101': () => import(/* webpackChunkName: "course-tiling" */ '@/data/tiling101').then(m => ({ default: m.tiling101Course })),
-          'motor-mechanic-petrol-02': () => import(/* webpackChunkName: "course-motor-petrol-02" */ '@/data/motorMechanicPetrol02').then(m => ({ default: m.motorMechanicPetrol02Course })),
-          'cellphone-repairs-101': () => import(/* webpackChunkName: "course-cellphone-101" */ '@/data/cellphoneRepairs101'),
-          'ai-assisted-programming': () => import(/* webpackChunkName: "course-ai-programming" */ '@/data/aiAssistedProgrammingCourse').then(m => ({ default: m.aiAssistedProgrammingCourse })),
-          'ai-assisted-web-development': () => import(/* webpackChunkName: "course-ai-web" */ '@/data/aiAssistedWebDevelopmentCourse').then(m => ({ default: m.aiAssistedWebDevelopmentCourse })),
-          'christian-teacher': () => import(/* webpackChunkName: "course-christian-teacher" */ '@/data/christianTeacherCourse').then(m => ({ default: m.christianTeacherCourse })),
-          'beautyTherapy101': () => import(/* webpackChunkName: "course-beauty-therapy" */ '@/data/beautyTherapy101'),
-          'doggrooming101': () => import(/* webpackChunkName: "course-dog-grooming" */ '@/data/doggrooming101'),
-          'masterchef101': () => import(/* webpackChunkName: "course-master-chef" */ '@/data/masterchef101'),
-          'cybersecurity101': () => import(/* webpackChunkName: "course-cybersecurity" */ '@/data/cybersecurity101'),
-          'landscaping101': () => import(/* webpackChunkName: "course-landscaping" */ '@/data/landscaping101'),
-          'social-media-marketing-101': () => import(/* webpackChunkName: "course-social-media" */ '@/data/socialMediaMarketing101'),
-          'electrician101': () => import(/* webpackChunkName: "course-electrician" */ '@/data/electrician101'),
-          'solar101': () => import(/* webpackChunkName: "course-solar" */ '@/data/solar101'),
-          'emotional-intelligence': () => import(/* webpackChunkName: "course-emotional-intelligence" */ '@/data/emotionalIntelligence'),
-          'prophet': () => import(/* webpackChunkName: "course-prophet" */ '@/data/prophet')
+        // Static course map - more reliable in production than dynamic imports
+        const courseMap: Record<string, Course> = {
+          'doggrooming101': doggrooming101,
+          'beautyTherapy101': beautyTherapy101,
+          'masterchef101': masterchef101,
+          'landscaping101': landscaping101,
+          'social-media-marketing-101': socialMediaMarketing101,
+          'electrician101': electrician101,
+          'solar101': solar101,
+          'plumbing101': plumbing101,
+          'roofing101': roofing101,
+          'tiling-101': tiling101,
+          'emotional-intelligence': emotionalIntelligence,
+          'prophet': prophet
         };
 
-        if (idFromParams && courseLoaders[idFromParams]) {
+        if (idFromParams && courseMap[idFromParams]) {
           performanceMonitor.startMeasure(`course-load-${idFromParams}`, 'chunk');
           try {
-            const courseModule = await courseLoaders[idFromParams]();
-            foundCourse = (courseModule as any).default || courseModule as Course;
-            console.log("useCourseData: Dynamically loaded course:", foundCourse?.title);
+            foundCourse = courseMap[idFromParams];
+            console.log("useCourseData: Loaded course:", foundCourse?.title);
             performanceMonitor.endMeasure(`course-load-${idFromParams}`);
             
             // Validate the loaded course
@@ -268,6 +263,51 @@ export const useCourseData = (courseId?: string) => {
               foundCourse = createFallbackCourse(idFromParams, { 
                 id: idFromParams, 
                 title: 'Course', 
+                description: 'Course content is being prepared.' 
+              });
+              result.status = 'fallback';
+            }
+          }
+        } else if (idFromParams === 'cybersecurity101') {
+          // Special handling for cybersecurity101 - use dynamic import
+          performanceMonitor.startMeasure(`course-load-${idFromParams}`, 'chunk');
+          try {
+            const courseModule = await import('@/data/cybersecurity101');
+            foundCourse = courseModule.default;
+            console.log("useCourseData: Dynamically loaded cybersecurity course:", foundCourse?.title);
+            performanceMonitor.endMeasure(`course-load-${idFromParams}`);
+            
+            if (foundCourse) {
+              const validation = validateCourseData(foundCourse);
+              if (validation.isValid) {
+                result.status = 'success';
+              } else if (validation.canProceed) {
+                result.status = 'partial';
+                result.errors.push(`Course loaded but missing: ${validation.missingData.join(', ')}`);
+              } else {
+                result.status = 'fallback';
+                result.errors.push(`Course validation failed: ${validation.missingData.join(', ')}`);
+                console.warn('Course validation failed, creating fallback:', validation);
+                foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
+              }
+            } else {
+              result.status = 'failed';
+              result.errors.push('Course loading returned null');
+            }
+          } catch (error: any) {
+            console.error(`Failed to load cybersecurity course:`, error);
+            result.errors.push(`Course loading failed: ${error?.message || 'Unknown error'}`);
+            performanceMonitor.endMeasure(`course-load-${idFromParams}`);
+            
+            if (featuredCourseData) {
+              console.log('Creating fallback course for cybersecurity');
+              foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
+              result.status = 'fallback';
+            } else {
+              console.log('Creating minimal fallback course for cybersecurity');
+              foundCourse = createFallbackCourse(idFromParams, { 
+                id: idFromParams, 
+                title: 'Cybersecurity', 
                 description: 'Course content is being prepared.' 
               });
               result.status = 'fallback';
