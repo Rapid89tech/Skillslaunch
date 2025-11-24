@@ -2,9 +2,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Course, Lesson, Module } from '@/types/course';
-import { comingSoonCourses } from '@/data/comingSoonCourses';
-import type { SimplifiedCourse } from '@/types/course';
-import { performanceMonitor } from '@/utils/performanceMonitor';
 import { courseLoadingMonitor } from '@/services/CourseLoadingPerformanceMonitor';
 
 // Static imports for all courses - more reliable in production
@@ -181,11 +178,17 @@ export const useCourseData = (courseId?: string) => {
 
   useEffect(() => {
     const loadCourse = async () => {
+      if (!idFromParams) {
+        setIsLoading(false);
+        setCourse(null);
+        return;
+      }
+
       setIsLoading(true);
       console.log("useCourseData: Loading course with ID:", idFromParams);
       
       // Start performance monitoring
-      const loadingId = idFromParams ? courseLoadingMonitor.startLoading(idFromParams) : null;
+      const loadingId = courseLoadingMonitor.startLoading(idFromParams);
       
       const result: CourseLoadResult = {
         course: null,
@@ -193,221 +196,80 @@ export const useCourseData = (courseId?: string) => {
         errors: []
       };
       
-      try {
-        let foundCourse: Course | null = null;
-        let featuredCourseData: any = null;
-        
-        // First, try to get featured course data for fallback purposes
-        try {
-          const { featuredCourses } = await import('@/data/featuredCourses');
-          featuredCourseData = featuredCourses.find(c => c.id === idFromParams || c.courseId === idFromParams);
-          console.log('Found featured course data:', featuredCourseData?.title);
-        } catch (error) {
-          console.warn('Could not load featured courses for fallback:', error);
-          result.errors.push('Featured courses unavailable for fallback');
-        }
-        
-        // Static course map - more reliable in production than dynamic imports
-        const courseMap: Record<string, Course> = {
-          'doggrooming101': doggrooming101,
-          'beautyTherapy101': beautyTherapy101,
-          'masterchef101': masterchef101,
-          'landscaping101': landscaping101,
-          'social-media-marketing-101': socialMediaMarketing101,
-          'electrician101': electrician101,
-          'solar101': solar101,
-          'plumbing101': plumbing101,
-          'roofing101': roofing101,
-          'tiling-101': tiling101,
-          'emotional-intelligence': emotionalIntelligence,
-          'prophet': prophet
-        };
+      // Static course map - more reliable in production than dynamic imports
+      const courseMap: Record<string, Course> = {
+        'doggrooming101': doggrooming101,
+        'beautyTherapy101': beautyTherapy101,
+        'masterchef101': masterchef101,
+        'landscaping101': landscaping101,
+        'social-media-marketing-101': socialMediaMarketing101,
+        'electrician101': electrician101,
+        'solar101': solar101,
+        'plumbing101': plumbing101,
+        'roofing101': roofing101,
+        'tiling-101': tiling101,
+        'emotional-intelligence': emotionalIntelligence,
+        'prophet': prophet
+      };
 
-        if (idFromParams && courseMap[idFromParams]) {
-          performanceMonitor.startMeasure(`course-load-${idFromParams}`, 'chunk');
-          try {
-            foundCourse = courseMap[idFromParams];
-            console.log("useCourseData: Loaded course:", foundCourse?.title);
-            performanceMonitor.endMeasure(`course-load-${idFromParams}`);
-            
-            // Validate the loaded course
-            if (foundCourse) {
-              const validation = validateCourseData(foundCourse);
-              if (validation.isValid) {
-                result.status = 'success';
-              } else if (validation.canProceed) {
-                result.status = 'partial';
-                result.errors.push(`Course loaded but missing: ${validation.missingData.join(', ')}`);
-              } else {
-                result.status = 'fallback';
-                result.errors.push(`Course validation failed: ${validation.missingData.join(', ')}`);
-                console.warn('Course validation failed, creating fallback:', validation);
-                foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
-              }
-            } else {
-              result.status = 'failed';
-              result.errors.push('Course loading returned null');
-            }
-          } catch (error: any) {
-            console.error(`Failed to load course ${idFromParams}:`, error);
-            result.errors.push(`Course loading failed: ${error?.message || 'Unknown error'}`);
-            performanceMonitor.endMeasure(`course-load-${idFromParams}`);
-            
-            // Create fallback course on loading failure - ALWAYS create a fallback
-            if (featuredCourseData) {
-              console.log('Creating fallback course due to loading failure with featured data');
-              foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
-              result.status = 'fallback';
-            } else {
-              console.log('Creating minimal fallback course due to loading failure');
-              foundCourse = createFallbackCourse(idFromParams, { 
-                id: idFromParams, 
-                title: 'Course', 
-                description: 'Course content is being prepared.' 
-              });
-              result.status = 'fallback';
-            }
-          }
+      let foundCourse: Course | null = null;
+      let featuredCourseData: any = null;
+
+      try {
+        // Try to get featured course data for fallback
+        const { featuredCourses } = await import('@/data/featuredCourses');
+        featuredCourseData = featuredCourses.find(c => c.id === idFromParams || c.courseId === idFromParams);
+        console.log('Featured course data:', featuredCourseData?.title || 'not found');
+      } catch (error) {
+        console.warn('Could not load featured courses:', error);
+      }
+
+      try {
+        // Try to load from static course map first
+        if (courseMap[idFromParams]) {
+          foundCourse = courseMap[idFromParams];
+          console.log("✅ Loaded course from map:", foundCourse?.title);
+          result.status = 'success';
         } else if (idFromParams === 'cybersecurity101') {
-          // Special handling for cybersecurity101 - use dynamic import
-          performanceMonitor.startMeasure(`course-load-${idFromParams}`, 'chunk');
+          // Try dynamic import for cybersecurity
           try {
             const courseModule = await import('@/data/cybersecurity101');
             foundCourse = courseModule.default;
-            console.log("useCourseData: Dynamically loaded cybersecurity course:", foundCourse?.title);
-            performanceMonitor.endMeasure(`course-load-${idFromParams}`);
-            
-            if (foundCourse) {
-              const validation = validateCourseData(foundCourse);
-              if (validation.isValid) {
-                result.status = 'success';
-              } else if (validation.canProceed) {
-                result.status = 'partial';
-                result.errors.push(`Course loaded but missing: ${validation.missingData.join(', ')}`);
-              } else {
-                result.status = 'fallback';
-                result.errors.push(`Course validation failed: ${validation.missingData.join(', ')}`);
-                console.warn('Course validation failed, creating fallback:', validation);
-                foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
-              }
-            } else {
-              result.status = 'failed';
-              result.errors.push('Course loading returned null');
-            }
-          } catch (error: any) {
-            console.error(`Failed to load cybersecurity course:`, error);
-            result.errors.push(`Course loading failed: ${error?.message || 'Unknown error'}`);
-            performanceMonitor.endMeasure(`course-load-${idFromParams}`);
-            
-            if (featuredCourseData) {
-              console.log('Creating fallback course for cybersecurity');
-              foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
-              result.status = 'fallback';
-            } else {
-              console.log('Creating minimal fallback course for cybersecurity');
-              foundCourse = createFallbackCourse(idFromParams, { 
-                id: idFromParams, 
-                title: 'Cybersecurity', 
-                description: 'Course content is being prepared.' 
-              });
-              result.status = 'fallback';
-            }
-          }
-        } else if (idFromParams) {
-          // Course loader not found, try featured courses
-          console.log("useCourseData: Course loader not found, checking featured courses for:", idFromParams);
-          
-          if (featuredCourseData) {
-            console.log("useCourseData: Found course in featured courses, creating fallback structure:", featuredCourseData.title);
-            foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
+            console.log("✅ Loaded cybersecurity course");
+            result.status = 'success';
+          } catch (error) {
+            console.error('Failed to load cybersecurity, using fallback:', error);
+            foundCourse = createFallbackCourse(idFromParams, featuredCourseData || { id: idFromParams, title: 'Cybersecurity', description: 'Course content is being prepared.' });
             result.status = 'fallback';
-            result.errors.push('Course loader not available, using featured course data');
-          } else {
-            // Try Coming Soon courses as last resort
-            try {
-              const simplified = comingSoonCourses.find(c => c.id === idFromParams) as Partial<SimplifiedCourse> | undefined;
-              if (simplified) {
-                console.log("useCourseData: Building fallback course for Coming Soon id:", idFromParams);
-                foundCourse = createFallbackCourse(idFromParams, simplified);
-                result.status = 'fallback';
-                result.errors.push('Using coming soon course data');
-              } else {
-                console.log("useCourseData: Course not found anywhere for ID:", idFromParams);
-                // Create a minimal fallback even if we don't have data
-                foundCourse = createFallbackCourse(idFromParams, { 
-                  id: idFromParams, 
-                  title: 'Course', 
-                  description: 'Course content is being prepared.' 
-                });
-                result.status = 'fallback';
-                result.errors.push('Course not found in any data source, using minimal fallback');
-              }
-            } catch (fallbackError) {
-              console.error('Error creating fallback:', fallbackError);
-              // Last resort - create absolute minimal fallback
-              foundCourse = createFallbackCourse(idFromParams, { 
-                id: idFromParams, 
-                title: 'Course', 
-                description: 'Course content is being prepared.' 
-              });
-              result.status = 'fallback';
-              result.errors.push('Fallback creation error, using minimal fallback');
-            }
-          }
-        }
-
-        // Normalize course: ensure module quizzes are rendered as lessons
-        if (foundCourse) {
-          try {
-            const modulesArray: any[] = Array.isArray((foundCourse as any).modules) ? (foundCourse as any).modules : [];
-            const normalizedModules = modulesArray.map((mod: any) => {
-              const hasQuizLesson = Array.isArray(mod.lessons) && mod.lessons.some((l: any) => l.type === 'quiz');
-              if (!mod.quiz || hasQuizLesson) {
-                return mod;
-              }
-              // Convert module.quiz into a quiz lesson appended to lessons
-              const quiz = (mod as any).quiz;
-              const quizLesson = {
-                id: quiz.id,
-                title: quiz.title,
-                duration: quiz.duration || '30 min',
-                type: 'quiz' as const,
-                content: { questions: quiz.questions }
-              };
-              return {
-                ...mod,
-                lessons: [...(mod.lessons || []), quizLesson]
-              };
-            });
-            const normalizedCourse = { ...(foundCourse as any), modules: normalizedModules } as Course;
-            
-            // Final validation of normalized course
-            const finalValidation = validateCourseData(normalizedCourse);
-            if (!finalValidation.canProceed && result.status === 'success') {
-              result.status = 'partial';
-              result.errors.push('Course normalization resulted in incomplete data');
-            }
-            
-            result.course = normalizedCourse;
-            setCourse(normalizedCourse);
-          } catch (normalizationError: any) {
-            console.error('Error normalizing course:', normalizationError);
-            result.errors.push(`Course normalization failed: ${normalizationError?.message || 'Unknown error'}`);
-            result.course = foundCourse;
-            setCourse(foundCourse);
           }
         } else {
-          result.course = null;
-          setCourse(null);
+          // Course not in map - create fallback
+          console.log("⚠️ Course not in map, creating fallback for:", idFromParams);
+          foundCourse = createFallbackCourse(
+            idFromParams,
+            featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' }
+          );
+          result.status = 'fallback';
         }
-        
+
+        // Set the course - ALWAYS set something
+        result.course = foundCourse;
+        setCourse(foundCourse);
         setLoadResult(result);
+        console.log("✅ Course set:", foundCourse?.title, "Status:", result.status);
       } catch (error: any) {
-        console.error('Error loading course:', error);
-        result.errors.push(`Unexpected error: ${error?.message || 'Unknown error'}`);
-        result.status = 'failed';
+        console.error('❌ Error loading course:', error);
+        // ALWAYS create a fallback on error
+        const fallback = createFallbackCourse(
+          idFromParams,
+          featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' }
+        );
+        result.course = fallback;
+        result.status = 'fallback';
+        result.errors.push(`Error: ${error?.message || 'Unknown error'}`);
+        setCourse(fallback);
         setLoadResult(result);
-        setCourse(null);
+        console.log("✅ Fallback course set after error");
       } finally {
         setIsLoading(false);
         
