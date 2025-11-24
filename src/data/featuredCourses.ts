@@ -133,6 +133,34 @@ const rawFeaturedCourses = [
     description: 'Comprehensive online course covering roofing design, installation, maintenance, and modern sustainable practices.',
     category: 'Construction and Civil',
     courseId: 'roofing101'
+  },
+  {
+    id: 'emotional-intelligence',
+    title: 'Emotional Intelligence',
+    instructor: 'EI Specialists',
+    rating: 4.9,
+    students: 0,
+    duration: '8-10 weeks',
+    price: 290,
+    image: '/courses-hero-bg.png',
+    level: 'Beginner',
+    description: 'Master the art of understanding and managing emotions to enhance your personal and professional life. This comprehensive course covers the five key components of emotional intelligence: self-awareness, self-regulation, motivation, empathy, and social skills.',
+    category: 'Personal Development',
+    courseId: 'emotional-intelligence'
+  },
+  {
+    id: 'prophet',
+    title: 'Prophet',
+    instructor: 'Beta Skill Tutor',
+    rating: 4.9,
+    students: 0,
+    duration: '8-10 weeks',
+    price: 290,
+    image: '/courses-hero-bg.png',
+    level: 'Intermediate',
+    description: 'Prophetic Ministry Training Course: Hearing, Speaking, and Living God\'s Voice. This course is designed for believers who are called to operate in the office of a prophet or function in prophetic ministry.',
+    category: 'Religion',
+    courseId: 'prophet'
   }
 ];
 

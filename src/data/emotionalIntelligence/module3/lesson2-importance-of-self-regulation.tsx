@@ -114,7 +114,6 @@ Self-regulation is the second component of Daniel Goleman's EI framework, buildi
 
 Self-regulation is a transformative skill that helps reduce conflict, encourages better decision-making, builds trust and respect, and supports emotional health and leadership. By managing emotions constructively, individuals can navigate challenges with composure, make thoughtful choices, and foster strong relationships.
   `
-  }
 };
 
 export default lesson;

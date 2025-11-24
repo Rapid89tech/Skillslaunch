@@ -134,7 +134,6 @@ High self-awareness is the foundation of Daniel Goleman's EI framework, enabling
 
 High self-awareness delivers transformative benefits, including greater confidence, better emotional regulation, more effective goal setting, and stronger relationships. By understanding their strengths, weaknesses, emotions, and impact, individuals can make informed decisions, manage stress, build trust, and achieve personal and professional growth. Through practices like mindfulness, journaling, reflection, and feedback-seeking, high self-awareness becomes a powerful tool for success, resilience, and meaningful connections.
   `
-  }
 };
 
 export default lesson;

@@ -223,8 +223,8 @@ export const useCourseData = (courseId?: string) => {
           'social-media-marketing-101': () => import(/* webpackChunkName: "course-social-media" */ '@/data/socialMediaMarketing101'),
           'electrician101': () => import(/* webpackChunkName: "course-electrician" */ '@/data/electrician101'),
           'solar101': () => import(/* webpackChunkName: "course-solar" */ '@/data/solar101'),
-          'emotional-intelligence': () => import(/* webpackChunkName: "course-emotional-intelligence" */ '@/data/emotionalIntelligenceCourse').then(m => ({ default: m.emotionalIntelligenceCourse as any })),
-          'prophet': () => import(/* webpackChunkName: "course-prophet" */ '@/data/prophetCourse').then(m => ({ default: m.prophetCourse as any }))
+          'emotional-intelligence': () => import(/* webpackChunkName: "course-emotional-intelligence" */ '@/data/emotionalIntelligence'),
+          'prophet': () => import(/* webpackChunkName: "course-prophet" */ '@/data/prophet')
         };
 
         if (idFromParams && courseLoaders[idFromParams]) {
