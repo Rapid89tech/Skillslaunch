@@ -214,7 +214,17 @@ export const useCourseData = (courseId?: string) => {
           'cellphone-repairs-101': () => import(/* webpackChunkName: "course-cellphone-101" */ '@/data/cellphoneRepairs101'),
           'ai-assisted-programming': () => import(/* webpackChunkName: "course-ai-programming" */ '@/data/aiAssistedProgrammingCourse').then(m => ({ default: m.aiAssistedProgrammingCourse })),
           'ai-assisted-web-development': () => import(/* webpackChunkName: "course-ai-web" */ '@/data/aiAssistedWebDevelopmentCourse').then(m => ({ default: m.aiAssistedWebDevelopmentCourse })),
-          'christian-teacher': () => import(/* webpackChunkName: "course-christian-teacher" */ '@/data/christianTeacherCourse').then(m => ({ default: m.christianTeacherCourse }))
+          'christian-teacher': () => import(/* webpackChunkName: "course-christian-teacher" */ '@/data/christianTeacherCourse').then(m => ({ default: m.christianTeacherCourse })),
+          'beautyTherapy101': () => import(/* webpackChunkName: "course-beauty-therapy" */ '@/data/beautyTherapy101'),
+          'doggrooming101': () => import(/* webpackChunkName: "course-dog-grooming" */ '@/data/doggrooming101'),
+          'masterchef101': () => import(/* webpackChunkName: "course-master-chef" */ '@/data/masterchef101'),
+          'cybersecurity101': () => import(/* webpackChunkName: "course-cybersecurity" */ '@/data/cybersecurity101'),
+          'landscaping101': () => import(/* webpackChunkName: "course-landscaping" */ '@/data/landscaping101'),
+          'social-media-marketing-101': () => import(/* webpackChunkName: "course-social-media" */ '@/data/socialMediaMarketing101'),
+          'electrician101': () => import(/* webpackChunkName: "course-electrician" */ '@/data/electrician101'),
+          'solar101': () => import(/* webpackChunkName: "course-solar" */ '@/data/solar101'),
+          'emotional-intelligence': () => import(/* webpackChunkName: "course-emotional-intelligence" */ '@/data/emotionalIntelligenceCourse').then(m => ({ default: m.emotionalIntelligenceCourse as any })),
+          'prophet': () => import(/* webpackChunkName: "course-prophet" */ '@/data/prophetCourse').then(m => ({ default: m.prophetCourse as any }))
         };
 
         if (idFromParams && courseLoaders[idFromParams]) {

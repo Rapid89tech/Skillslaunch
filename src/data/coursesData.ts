@@ -21,7 +21,7 @@ import { podcastManagement101Course } from './podcastManagement101Course';
 import { socialMediaMarketing101Course } from './socialMediaMarketing101Course';
 import { landscaping101Course } from './landscaping101Course';
 import masterchef101 from './masterchef101';
-import beautytherapy101 from './beautyTherapy101';
+import beautyTherapy101 from './beautyTherapy101';
 import doggrooming101 from './doggrooming101';
 import { cybersecurity101Course } from './cybersecurity101Course';
 
@@ -72,7 +72,7 @@ const allCourseData = [
   socialMediaMarketing101Course,
   landscaping101Course,
   convertCourseToUnified(masterchef101),
-  convertCourseToUnified(beautytherapy101),
+  convertCourseToUnified(beautyTherapy101),
   convertCourseToUnified(doggrooming101),
   cybersecurity101Course
 ];

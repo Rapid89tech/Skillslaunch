@@ -10,8 +10,8 @@ import module8 from './module8';
 import module9 from './module9';
 import module10 from './module10';
 
-const beautytherapy101: Course = {
-  id: 'beautytherapy101',
+const beautyTherapy101: Course = {
+  id: 'beautyTherapy101',
   title: 'Beauty Therapy',
   description: 'Comprehensive online course covering beauty therapy fundamentals, skincare treatments, hair removal techniques, nail technology, makeup application, body treatments, and professional practices. Master professional beauty therapy skills for a successful career in the beauty industry.',
   thumbnail: '/src/assets/beautytherapy101-course.jpg',
@@ -60,4 +60,4 @@ const beautytherapy101: Course = {
   ]
 };
 
-export default beautytherapy101;
+export default beautyTherapy101;
