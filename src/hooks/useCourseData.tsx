@@ -258,10 +258,18 @@ export const useCourseData = (courseId?: string) => {
             result.errors.push(`Course loading failed: ${error?.message || 'Unknown error'}`);
             performanceMonitor.endMeasure(`course-load-${idFromParams}`);
             
-            // Create fallback course on loading failure
+            // Create fallback course on loading failure - ALWAYS create a fallback
             if (featuredCourseData) {
-              console.log('Creating fallback course due to loading failure');
+              console.log('Creating fallback course due to loading failure with featured data');
               foundCourse = createFallbackCourse(idFromParams, featuredCourseData);
+              result.status = 'fallback';
+            } else {
+              console.log('Creating minimal fallback course due to loading failure');
+              foundCourse = createFallbackCourse(idFromParams, { 
+                id: idFromParams, 
+                title: 'Course', 
+                description: 'Course content is being prepared.' 
+              });
               result.status = 'fallback';
             }
           }
@@ -276,15 +284,34 @@ export const useCourseData = (courseId?: string) => {
             result.errors.push('Course loader not available, using featured course data');
           } else {
             // Try Coming Soon courses as last resort
-            const simplified = comingSoonCourses.find(c => c.id === idFromParams) as Partial<SimplifiedCourse> | undefined;
-            if (simplified) {
-              console.log("useCourseData: Building fallback course for Coming Soon id:", idFromParams);
-              foundCourse = createFallbackCourse(idFromParams, simplified);
+            try {
+              const simplified = comingSoonCourses.find(c => c.id === idFromParams) as Partial<SimplifiedCourse> | undefined;
+              if (simplified) {
+                console.log("useCourseData: Building fallback course for Coming Soon id:", idFromParams);
+                foundCourse = createFallbackCourse(idFromParams, simplified);
+                result.status = 'fallback';
+                result.errors.push('Using coming soon course data');
+              } else {
+                console.log("useCourseData: Course not found anywhere for ID:", idFromParams);
+                // Create a minimal fallback even if we don't have data
+                foundCourse = createFallbackCourse(idFromParams, { 
+                  id: idFromParams, 
+                  title: 'Course', 
+                  description: 'Course content is being prepared.' 
+                });
+                result.status = 'fallback';
+                result.errors.push('Course not found in any data source, using minimal fallback');
+              }
+            } catch (fallbackError) {
+              console.error('Error creating fallback:', fallbackError);
+              // Last resort - create absolute minimal fallback
+              foundCourse = createFallbackCourse(idFromParams, { 
+                id: idFromParams, 
+                title: 'Course', 
+                description: 'Course content is being prepared.' 
+              });
               result.status = 'fallback';
-              result.errors.push('Using coming soon course data');
-            } else {
-              console.log("useCourseData: Course not found anywhere for ID:", idFromParams);
-              result.errors.push('Course not found in any data source');
+              result.errors.push('Fallback creation error, using minimal fallback');
             }
           }
         }
