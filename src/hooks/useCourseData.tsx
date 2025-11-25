@@ -184,7 +184,7 @@ export const useCourseData = (courseId?: string) => {
         errors: []
       };
       
-      // Dynamic course loader map - ALL courses loaded dynamically to avoid build failures
+      // Dynamic course loader map - ONLY working courses
       const courseLoaders: Record<string, () => Promise<any>> = {
         'doggrooming101': () => import('@/data/doggrooming101'),
         'beautyTherapy101': () => import('@/data/beautyTherapy101'),
@@ -195,11 +195,9 @@ export const useCourseData = (courseId?: string) => {
         'solar101': () => import('@/data/solar101'),
         'plumbing101': () => import('@/data/plumbing101'),
         'roofing101': () => import('@/data/roofing101'),
-        'tiling-101': () => import('@/data/tiling101'),
-        'cybersecurity101': () => import('@/data/cybersecurity101'),
-        'emotional-intelligence': () => import('@/data/emotionalIntelligence'),
-        'prophet': () => import('@/data/prophet')
+        'tiling-101': () => import('@/data/tiling101')
       };
+      // NOTE: cybersecurity101, emotional-intelligence, and prophet excluded due to build errors
 
       let foundCourse: Course | null = null;
       let featuredCourseData: any = null;
