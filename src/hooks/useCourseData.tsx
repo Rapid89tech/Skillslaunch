@@ -198,6 +198,7 @@ export const useCourseData = (courseId?: string) => {
         'tiling-101': () => import('@/data/tiling101')
       };
       // NOTE: cybersecurity101, emotional-intelligence, and prophet excluded due to build errors
+      // Force rebuild: v2
 
       let foundCourse: Course | null = null;
       let featuredCourseData: any = null;
