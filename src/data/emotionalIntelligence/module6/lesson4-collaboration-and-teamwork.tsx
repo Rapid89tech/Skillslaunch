@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 4,
   title: 'Collaboration and Teamwork',
   duration: '35 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Collaboration and Teamwork 🤝
 
 Collaboration and teamwork involve working effectively with others toward shared goals, combining diverse skills, perspectives, and efforts to achieve outcomes that benefit the group.
@@ -43,3 +42,4 @@ Effective collaboration drives successful outcomes and fosters positive, product
 };
 
 export default lesson;
+

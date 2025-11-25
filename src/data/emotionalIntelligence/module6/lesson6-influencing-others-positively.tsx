@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 6,
   title: 'Influencing Others Positively',
   duration: '40 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Influencing Others Positively ✨
 
 Influencing others positively is the ability to guide, motivate, and inspire people in a way that encourages constructive actions while maintaining their autonomy and well-being.
@@ -43,3 +42,4 @@ Positive influence fosters trust, inspires action, and creates meaningful change
 };
 
 export default lesson;
+

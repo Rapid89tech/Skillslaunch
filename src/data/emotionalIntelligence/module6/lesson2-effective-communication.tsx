@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 2,
   title: 'Effective Communication',
   duration: '35 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Effective Communication 💬
 
 Effective communication is the ability to convey information, ideas, and emotions clearly and respectfully while ensuring mutual understanding. It is a cornerstone of social skills and emotional intelligence.
@@ -58,3 +57,4 @@ Effective communication is essential for building strong relationships and achie
 };
 
 export default lesson;
+

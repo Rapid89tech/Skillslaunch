@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 4,
   title: 'Role of Optimism in Motivation: Driving Persistence and Success',
   duration: '40 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Role of Optimism in Motivation: Driving Persistence and Success 🌟
 
 ## Overview
@@ -93,3 +92,4 @@ Optimism plays a vital role in motivation by keeping individuals moving forward 
 };
 
 export default lesson;
+

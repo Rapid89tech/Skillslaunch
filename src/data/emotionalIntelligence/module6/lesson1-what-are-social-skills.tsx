@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 1,
   title: 'What Are Social Skills?',
   duration: '40 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # What Are Social Skills? 🤝
 
 Social skills are the abilities that enable individuals to communicate and interact effectively with others in various settings. These skills are essential for building and maintaining relationships, navigating social environments, and collaborating successfully.
@@ -82,3 +81,4 @@ By developing strong social skills, individuals can navigate social situations w
 };
 
 export default lesson;
+

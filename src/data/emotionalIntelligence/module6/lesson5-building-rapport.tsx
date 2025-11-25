@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 5,
   title: 'Building Rapport',
   duration: '35 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Building Rapport 🌟
 
 Building rapport is the process of creating trust, understanding, and connection with others to foster positive and meaningful relationships.
@@ -43,3 +42,4 @@ Building rapport effectively creates stronger connections and fosters positive, 
 };
 
 export default lesson;
+

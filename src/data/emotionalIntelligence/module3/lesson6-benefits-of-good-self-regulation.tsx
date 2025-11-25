@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 6,
   title: 'Benefits of Good Self-Regulation: Enhancing Personal and Professional Success',
   duration: '45 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Benefits of Good Self-Regulation: Enhancing Personal and Professional Success 🌟
 
 This document provides a comprehensive exploration of the benefits of good self-regulation, a critical component of Emotional Intelligence (EI).
@@ -152,3 +151,4 @@ Good self-regulation delivers transformative benefits, including increased focus
 };
 
 export default lesson;
+

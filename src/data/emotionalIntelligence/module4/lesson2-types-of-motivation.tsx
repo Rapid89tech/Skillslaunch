@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 2,
   title: 'Types of Motivation: Intrinsic and Extrinsic',
   duration: '40 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Types of Motivation: Intrinsic and Extrinsic 🎯
 
 This document provides a comprehensive exploration of the types of motivation, a critical component of Emotional Intelligence (EI).
@@ -109,3 +108,4 @@ Intrinsic and extrinsic motivation are powerful forces that energize and sustain
 };
 
 export default lesson;
+

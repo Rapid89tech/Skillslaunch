@@ -4,8 +4,7 @@ const lesson: Lesson = {
   id: 3,
   title: 'Setting Meaningful Goals: Driving Purpose and Success',
   duration: '45 min',
-  type: 'reading',
-  content: `
+  type: 'reading',`n  content: {`n    textContent: ``
 # Setting Meaningful Goals: Driving Purpose and Success 🎯
 
 ## Overview
@@ -96,3 +95,4 @@ Setting meaningful goals provides purpose and direction, using SMART criteria an
 };
 
 export default lesson;
+
