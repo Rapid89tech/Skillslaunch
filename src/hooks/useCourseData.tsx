@@ -4,18 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Course, Lesson, Module } from '@/types/course';
 import { courseLoadingMonitor } from '@/services/CourseLoadingPerformanceMonitor';
 
-// Static imports for all courses - more reliable in production
-import doggrooming101 from '@/data/doggrooming101';
-import beautyTherapy101 from '@/data/beautyTherapy101';
-import masterchef101 from '@/data/masterchef101';
-import landscaping101 from '@/data/landscaping101';
-import socialMediaMarketing101 from '@/data/socialMediaMarketing101';
-import electrician101 from '@/data/electrician101';
-import solar101 from '@/data/solar101';
-import plumbing101 from '@/data/plumbing101';
-import roofing101 from '@/data/roofing101';
-import tiling101 from '@/data/tiling101';
-// NOTE: emotionalIntelligence and prophet use dynamic imports due to empty lesson files
+// ALL courses use dynamic imports to avoid build failures from empty files
 
 interface CourseLoadResult {
   course: Course | null;
@@ -195,60 +184,50 @@ export const useCourseData = (courseId?: string) => {
         errors: []
       };
       
-      // Static course map - more reliable in production than dynamic imports
-      const courseMap: Record<string, Course> = {
-        'doggrooming101': doggrooming101,
-        'beautyTherapy101': beautyTherapy101,
-        'masterchef101': masterchef101,
-        'landscaping101': landscaping101,
-        'social-media-marketing-101': socialMediaMarketing101,
-        'electrician101': electrician101,
-        'solar101': solar101,
-        'plumbing101': plumbing101,
-        'roofing101': roofing101,
-        'tiling-101': tiling101
+      // Dynamic course loader map - ALL courses loaded dynamically to avoid build failures
+      const courseLoaders: Record<string, () => Promise<any>> = {
+        'doggrooming101': () => import('@/data/doggrooming101'),
+        'beautyTherapy101': () => import('@/data/beautyTherapy101'),
+        'masterchef101': () => import('@/data/masterchef101'),
+        'landscaping101': () => import('@/data/landscaping101'),
+        'social-media-marketing-101': () => import('@/data/socialMediaMarketing101'),
+        'electrician101': () => import('@/data/electrician101'),
+        'solar101': () => import('@/data/solar101'),
+        'plumbing101': () => import('@/data/plumbing101'),
+        'roofing101': () => import('@/data/roofing101'),
+        'tiling-101': () => import('@/data/tiling101'),
+        'cybersecurity101': () => import('@/data/cybersecurity101'),
+        'emotional-intelligence': () => import('@/data/emotionalIntelligence'),
+        'prophet': () => import('@/data/prophet')
       };
 
       let foundCourse: Course | null = null;
       let featuredCourseData: any = null;
 
       try {
-        // Try to get featured course data for fallback
+        // Get featured course data for fallback
         const { featuredCourses } = await import('@/data/featuredCourses');
         featuredCourseData = featuredCourses.find(c => c.id === idFromParams || c.courseId === idFromParams);
-        console.log('Featured course data:', featuredCourseData?.title || 'not found');
       } catch (error) {
         console.warn('Could not load featured courses:', error);
       }
 
       try {
-        // Try to load from static course map first
-        if (courseMap[idFromParams]) {
-          foundCourse = courseMap[idFromParams];
-          console.log("✅ Loaded course from map:", foundCourse?.title);
-          result.status = 'success';
-        } else if (idFromParams === 'cybersecurity101' || idFromParams === 'emotional-intelligence' || idFromParams === 'prophet') {
-          // Try dynamic import for courses with build issues
+        // Try dynamic import
+        if (courseLoaders[idFromParams]) {
           try {
-            let courseModule;
-            if (idFromParams === 'cybersecurity101') {
-              courseModule = await import('@/data/cybersecurity101');
-            } else if (idFromParams === 'emotional-intelligence') {
-              courseModule = await import('@/data/emotionalIntelligence');
-            } else {
-              courseModule = await import('@/data/prophet');
-            }
+            const courseModule = await courseLoaders[idFromParams]();
             foundCourse = courseModule.default;
-            console.log("✅ Loaded course dynamically:", idFromParams);
+            console.log("✅ Loaded:", idFromParams);
             result.status = 'success';
           } catch (error) {
-            console.error(`Failed to load ${idFromParams}, using fallback:`, error);
+            console.error(`Failed to load ${idFromParams}:`, error);
             foundCourse = createFallbackCourse(idFromParams, featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' });
             result.status = 'fallback';
           }
         } else {
-          // Course not in map - create fallback
-          console.log("⚠️ Course not in map, creating fallback for:", idFromParams);
+          // Course not found - create fallback
+          console.log("⚠️ No loader for:", idFromParams);
           foundCourse = createFallbackCourse(
             idFromParams,
             featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' }
