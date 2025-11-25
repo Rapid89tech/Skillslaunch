@@ -20,7 +20,7 @@ const quiz = {
         question: 'What is a key difference between cybersecurity and information security?',
         options: [
           'Cybersecurity includes physical security',
-          'Information security doesn't apply to digital systems',
+          'Information security does not apply to digital systems',
           'Cybersecurity focuses on digital threats',
           'They are exactly the same'
         ],
@@ -91,7 +91,7 @@ const quiz = {
           'ISO 9001'
         ],
         correct: 2,
-        explanation: 'GDPR (General Data Protection Regulation) is the European Union's data privacy law.'
+        explanation: 'GDPR (General Data Protection Regulation) is the European Union data privacy law.'
       },
       {
         question: 'Which of these is considered a modern cybersecurity threat?',

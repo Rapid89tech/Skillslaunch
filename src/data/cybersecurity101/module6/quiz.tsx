@@ -25,7 +25,7 @@ const quiz = {
           'Network traffic'
         ],
         correct: 1,
-        explanation: 'SQL Injection occurs when an attacker injects malicious SQL queries into input fields to manipulate a web application\'s database.'
+        explanation: 'SQL Injection occurs when an attacker injects malicious SQL queries into input fields to manipulate a web application database.'
       },
       {
         question: 'Which of the following is used to prevent CSRF attacks?',
@@ -47,7 +47,7 @@ const quiz = {
           'SSRF'
         ],
         correct: 0,
-        explanation: 'Cross-Site Scripting (XSS) involves injecting malicious scripts into trusted websites, which execute in a user\'s browser.'
+        explanation: 'Cross-Site Scripting (XSS) involves injecting malicious scripts into trusted websites, which execute in a user browser.'
       },
       {
         question: 'What does OWASP stand for?',

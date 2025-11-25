@@ -90,7 +90,7 @@ const quiz: Lesson = {
         options: [
           'Speed testing',
           'Data recovery',
-          'Auditing cloud service providers\' security',
+          'Auditing cloud service provider security',
           'Internet bandwidth'
         ],
         correctAnswer: 2

@@ -15,8 +15,7 @@ import solar101 from '@/data/solar101';
 import plumbing101 from '@/data/plumbing101';
 import roofing101 from '@/data/roofing101';
 import tiling101 from '@/data/tiling101';
-import emotionalIntelligence from '@/data/emotionalIntelligence';
-import prophet from '@/data/prophet';
+// NOTE: emotionalIntelligence and prophet use dynamic imports due to empty lesson files
 
 interface CourseLoadResult {
   course: Course | null;
@@ -207,9 +206,7 @@ export const useCourseData = (courseId?: string) => {
         'solar101': solar101,
         'plumbing101': plumbing101,
         'roofing101': roofing101,
-        'tiling-101': tiling101,
-        'emotional-intelligence': emotionalIntelligence,
-        'prophet': prophet
+        'tiling-101': tiling101
       };
 
       let foundCourse: Course | null = null;
@@ -230,16 +227,23 @@ export const useCourseData = (courseId?: string) => {
           foundCourse = courseMap[idFromParams];
           console.log("✅ Loaded course from map:", foundCourse?.title);
           result.status = 'success';
-        } else if (idFromParams === 'cybersecurity101') {
-          // Try dynamic import for cybersecurity
+        } else if (idFromParams === 'cybersecurity101' || idFromParams === 'emotional-intelligence' || idFromParams === 'prophet') {
+          // Try dynamic import for courses with build issues
           try {
-            const courseModule = await import('@/data/cybersecurity101');
+            let courseModule;
+            if (idFromParams === 'cybersecurity101') {
+              courseModule = await import('@/data/cybersecurity101');
+            } else if (idFromParams === 'emotional-intelligence') {
+              courseModule = await import('@/data/emotionalIntelligence');
+            } else {
+              courseModule = await import('@/data/prophet');
+            }
             foundCourse = courseModule.default;
-            console.log("✅ Loaded cybersecurity course");
+            console.log("✅ Loaded course dynamically:", idFromParams);
             result.status = 'success';
           } catch (error) {
-            console.error('Failed to load cybersecurity, using fallback:', error);
-            foundCourse = createFallbackCourse(idFromParams, featuredCourseData || { id: idFromParams, title: 'Cybersecurity', description: 'Course content is being prepared.' });
+            console.error(`Failed to load ${idFromParams}, using fallback:`, error);
+            foundCourse = createFallbackCourse(idFromParams, featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' });
             result.status = 'fallback';
           }
         } else {

@@ -58,7 +58,7 @@ const quiz = {
           'Web scanner'
         ],
         correct: 1,
-        explanation: 'BitLocker is Windows' full-disk encryption feature that protects data at rest from unauthorized access.'
+        explanation: 'BitLocker is Windows full-disk encryption feature that protects data at rest from unauthorized access.'
       },
       {
         question: 'Which threat captures keyboard activity to steal data?',

@@ -97,7 +97,7 @@ const quiz: Lesson = {
       },
       {
         id: 9,
-        question: 'What\'s the typical salary for a mid-level Security Engineer in South Africa?',
+        question: 'What is the typical salary for a mid-level Security Engineer in South Africa?',
         options: [
           'R780,000',
           'R1,950,000',

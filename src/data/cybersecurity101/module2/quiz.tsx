@@ -31,7 +31,7 @@ const quiz = {
         question: 'What is a phishing attack?',
         options: [
           'Virus spreading via USB',
-          'Attacking a website's DNS',
+          'Attacking a website DNS',
           'Tricking users into revealing personal data',
           'Overloading a server'
         ],
