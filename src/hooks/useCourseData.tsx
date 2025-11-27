@@ -4,7 +4,17 @@ import { useParams } from 'react-router-dom';
 import { Course, Lesson, Module } from '@/types/course';
 import { courseLoadingMonitor } from '@/services/CourseLoadingPerformanceMonitor';
 
-// ALL courses use dynamic imports to avoid build failures from empty files
+// Static imports - more reliable for production
+import doggrooming101 from '@/data/doggrooming101';
+import beautyTherapy101 from '@/data/beautyTherapy101';
+import masterchef101 from '@/data/masterchef101';
+import landscaping101 from '@/data/landscaping101';
+import socialMediaMarketing101 from '@/data/socialMediaMarketing101';
+import electrician101 from '@/data/electrician101';
+import solar101 from '@/data/solar101';
+import plumbing101 from '@/data/plumbing101';
+import roofing101 from '@/data/roofing101';
+import tiling101 from '@/data/tiling101';
 
 interface CourseLoadResult {
   course: Course | null;
@@ -184,21 +194,19 @@ export const useCourseData = (courseId?: string) => {
         errors: []
       };
       
-      // Dynamic course loader map - ONLY working courses
-      const courseLoaders: Record<string, () => Promise<any>> = {
-        'doggrooming101': () => import('@/data/doggrooming101'),
-        'beautyTherapy101': () => import('@/data/beautyTherapy101'),
-        'masterchef101': () => import('@/data/masterchef101'),
-        'landscaping101': () => import('@/data/landscaping101'),
-        'social-media-marketing-101': () => import('@/data/socialMediaMarketing101'),
-        'electrician101': () => import('@/data/electrician101'),
-        'solar101': () => import('@/data/solar101'),
-        'plumbing101': () => import('@/data/plumbing101'),
-        'roofing101': () => import('@/data/roofing101'),
-        'tiling-101': () => import('@/data/tiling101')
+      // Static course map - guaranteed to work in production
+      const courseMap: Record<string, Course> = {
+        'doggrooming101': doggrooming101,
+        'beautyTherapy101': beautyTherapy101,
+        'masterchef101': masterchef101,
+        'landscaping101': landscaping101,
+        'social-media-marketing-101': socialMediaMarketing101,
+        'electrician101': electrician101,
+        'solar101': solar101,
+        'plumbing101': plumbing101,
+        'roofing101': roofing101,
+        'tiling-101': tiling101
       };
-      // NOTE: cybersecurity101, emotional-intelligence, and prophet excluded due to build errors
-      // Force rebuild: v2
 
       let foundCourse: Course | null = null;
       let featuredCourseData: any = null;
@@ -212,21 +220,14 @@ export const useCourseData = (courseId?: string) => {
       }
 
       try {
-        // Try dynamic import
-        if (courseLoaders[idFromParams]) {
-          try {
-            const courseModule = await courseLoaders[idFromParams]();
-            foundCourse = courseModule.default;
-            console.log("✅ Loaded:", idFromParams);
-            result.status = 'success';
-          } catch (error) {
-            console.error(`Failed to load ${idFromParams}:`, error);
-            foundCourse = createFallbackCourse(idFromParams, featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' });
-            result.status = 'fallback';
-          }
+        // Direct lookup from static map
+        if (courseMap[idFromParams]) {
+          foundCourse = courseMap[idFromParams];
+          console.log("✅ Loaded from static map:", idFromParams);
+          result.status = 'success';
         } else {
-          // Course not found - create fallback
-          console.log("⚠️ No loader for:", idFromParams);
+          // Course not in map - create fallback
+          console.log("⚠️ Course not in static map:", idFromParams);
           foundCourse = createFallbackCourse(
             idFromParams,
             featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' }
