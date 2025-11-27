@@ -16,10 +16,10 @@ const doggrooming101: Course = {
   description: 'Comprehensive online course covering dog grooming and training fundamentals, tools, techniques, and professional practices. Master breed-specific grooming, obedience training, behavior management, and business skills for a successful career in canine care.',
   thumbnail: '/src/assets/doggrooming101-course.jpg',
   instructor: {
-    name: 'Professional Dog Grooming & Training Experts',
-    title: 'Certified Dog Groomer & Trainer',
-    avatar: '/src/assets/doggrooming-instructor.jpg',
-    bio: 'Experienced dog grooming and training professionals with decades of industry expertise'
+    id: 'doggrooming-instructor',
+    first_name: 'Dog Grooming',
+    last_name: 'Experts',
+    email: 'doggrooming@betaskilltraining.com'
   },
   duration: '10-12 weeks',
   level: 'Beginner to Intermediate',

@@ -19,11 +19,11 @@ const electrician101: Course = {
   title: 'Master Electrician Online',
   description: 'Comprehensive Training for Electrical Expertise. Master electrical installations, safety protocols, troubleshooting, and NEC standards for residential, commercial, and industrial settings.',
   thumbnail: '/images/electrician101-course.jpg',
-  instructor: {
-    name: 'Professional Electrical Experts',
-    title: 'Master Electrician',
-    avatar: '/images/electrician-instructor.jpg',
-    bio: 'Experienced electrical professionals with decades of industry expertise in residential, commercial, and industrial electrical systems'
+    instructor: {
+    id: 'electrician101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '14-16 weeks',
   level: 'Beginner to Advanced',
@@ -69,4 +69,6 @@ const electrician101: Course = {
 };
 
 export default electrician101;
+
+
 

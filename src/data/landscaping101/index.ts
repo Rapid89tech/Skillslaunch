@@ -13,11 +13,11 @@ const landscaping101: Course = {
   title: 'Landscaping',
   description: 'Comprehensive online course covering landscaping fundamentals, design principles, plant and soil management, hardscaping, installation techniques, sustainable practices, and business operations. Master residential and commercial landscaping systems, ecological design, and professional landscape management.',
   thumbnail: '/src/assets/landscaping101-course.jpg',
-  instructor: {
-    name: 'Professional Landscaping Experts',
-    title: 'Master Landscaper',
-    avatar: '/src/assets/landscaping-instructor.jpg',
-    bio: 'Experienced landscaping professionals with decades of industry expertise'
+    instructor: {
+    id: 'landscaping101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '8-10 weeks',
   level: 'Beginner to Intermediate',
@@ -57,4 +57,6 @@ const landscaping101: Course = {
 };
 
 export default landscaping101;
+
+
 

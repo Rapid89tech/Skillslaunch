@@ -13,11 +13,11 @@ const masterchef101: Course = {
   title: 'Master Chef',
   description: 'Comprehensive professional culinary arts course covering foundations, essential cooking techniques, international cuisines, advanced techniques, creativity, nutrition, business, and leadership. Master professional culinary skills for a successful career in the culinary industry.',
   thumbnail: '/src/assets/masterchef101-course.jpg',
-  instructor: {
-    name: 'Master Chef Professionals',
-    title: 'Certified Master Chef',
-    avatar: '/src/assets/masterchef-instructor.jpg',
-    bio: 'Experienced master chefs with decades of industry expertise'
+    instructor: {
+    id: 'masterchef101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '12-16 weeks',
   level: 'Beginner to Advanced',
@@ -57,4 +57,6 @@ const masterchef101: Course = {
 };
 
 export default masterchef101;
+
+
 

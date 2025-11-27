@@ -14,11 +14,11 @@ const plumbing101: Course = {
   title: 'Plumbing',
   description: 'Comprehensive online course covering plumbing fundamentals, tools, systems, installation, and professional practices. Master residential and commercial plumbing systems, pipe fitting, and maintenance procedures.',
   thumbnail: '/src/assets/plumbing101-course.jpg',
-  instructor: {
-    name: 'Professional Plumbing Experts',
-    title: 'Master Plumber',
-    avatar: '/src/assets/plumbing-instructor.jpg',
-    bio: 'Experienced plumbing professionals with decades of industry expertise'
+    instructor: {
+    id: 'plumbing101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '8-10 weeks',
   level: 'Beginner to Intermediate',
@@ -59,3 +59,4 @@ const plumbing101: Course = {
 };
 
 export default plumbing101; 
+

@@ -9,11 +9,11 @@ export const tiling101Course: Course = {
   id: 'tiling-101',
   title: 'Tiling 101',
   description: 'Mastering the Art & Science of Tiling is a comprehensive online course designed to equip learners with the knowledge, skills, and techniques needed to excel in professional and DIY tiling projects. From foundational principles to advanced installation methods, this course covers tile selection, surface preparation, layout planning, cutting techniques, grouting, and maintenance, with a focus on both aesthetic and technical excellence.',
-  instructor: {
-    id: 'betaskilltutor',
-    first_name: 'Expert',
-    last_name: 'Instructor',
-    email: 'instructor@betaskill.com',
+    instructor: {
+    id: 'tiling101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   thumbnail: '/images/tiling-course.jpg',
   duration: '6 weeks',
@@ -29,3 +29,4 @@ export const tiling101Course: Course = {
 };
 
 export default tiling101Course;
+

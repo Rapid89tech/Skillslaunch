@@ -13,11 +13,11 @@ const solar101: Course = {
   title: 'Solar Energy Systems: Installation & Maintenance',
   description: 'Comprehensive training in solar PV technology, covering photovoltaic system components, design principles, installation procedures, maintenance practices, safety protocols, and compliance standards. Perfect for electricians, technicians, contractors, and anyone starting a career in solar energy.',
   thumbnail: '/images/solar101-course.jpg',
-  instructor: {
-    name: 'Professional Solar Energy Experts',
-    title: 'Certified Solar Installers & Engineers',
-    avatar: '/images/solar-instructor.jpg',
-    bio: 'Experienced solar professionals with decades of expertise in PV system design, installation, and maintenance across residential, commercial, and utility-scale projects'
+    instructor: {
+    id: 'solar101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '14-16 weeks',
   level: 'Beginner to Advanced',
@@ -57,4 +57,6 @@ const solar101: Course = {
 };
 
 export default solar101;
+
+
 

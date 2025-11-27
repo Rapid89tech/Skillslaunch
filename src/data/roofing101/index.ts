@@ -17,11 +17,11 @@ const roofing101: Course = {
   title: 'Roofing',
   description: 'Comprehensive online course covering roofing design, installation, maintenance, and modern sustainable practices',
   thumbnail: '/images/generation-8dea647f-b6de-42c7-8708-d6e68a0fe5d1.png',
-  instructor: {
-    name: 'Professional Roofing Experts',
-    title: 'Master Roofer',
-    avatar: '/src/assets/roofing-instructor.jpg',
-    bio: 'Experienced roofing professionals with decades of industry expertise'
+    instructor: {
+    id: 'roofing101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '8-10 weeks',
   level: 'Beginner to Intermediate',
@@ -65,3 +65,4 @@ const roofing101: Course = {
 };
 
 export default roofing101; 
+

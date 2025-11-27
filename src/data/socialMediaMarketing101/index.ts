@@ -17,11 +17,11 @@ const socialMediaMarketing101: Course = {
   title: 'Social Media Marketing 101',
   description: 'Comprehensive online course covering social media marketing fundamentals, platform strategies, content creation, paid advertising, analytics, and advanced tactics. Master Instagram, TikTok, LinkedIn, and emerging platforms to drive engagement and conversions.',
   thumbnail: '/src/assets/social-media-marketing-course.jpg',
-  instructor: {
-    name: 'Digital Marketing Experts',
-    title: 'Social Media Marketing Specialist',
-    avatar: '/src/assets/social-media-instructor.jpg',
-    bio: 'Experienced digital marketing professionals with expertise in social media strategy, content creation, and data-driven campaign optimization'
+    instructor: {
+    id: 'socialMediaMarketing101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '10-12 weeks',
   level: 'Beginner to Advanced',
@@ -70,4 +70,6 @@ const socialMediaMarketing101: Course = {
 };
 
 export default socialMediaMarketing101;
+
+
 

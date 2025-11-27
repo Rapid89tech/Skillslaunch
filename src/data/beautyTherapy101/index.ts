@@ -15,11 +15,11 @@ const beautyTherapy101: Course = {
   title: 'Beauty Therapy',
   description: 'Comprehensive online course covering beauty therapy fundamentals, skincare treatments, hair removal techniques, nail technology, makeup application, body treatments, and professional practices. Master professional beauty therapy skills for a successful career in the beauty industry.',
   thumbnail: '/src/assets/beautytherapy101-course.jpg',
-  instructor: {
-    name: 'Professional Beauty Therapy Experts',
-    title: 'Certified Beauty Therapist',
-    avatar: '/src/assets/beautytherapy-instructor.jpg',
-    bio: 'Experienced beauty therapy professionals with decades of industry expertise'
+    instructor: {
+    id: 'beautyTherapy101-instructor',
+    first_name: 'Beta Skill',
+    last_name: 'Tutor',
+    email: 'betaskilltraining@gmail.com'
   },
   duration: '10-12 weeks',
   level: 'Beginner to Intermediate',
@@ -61,3 +61,5 @@ const beautyTherapy101: Course = {
 };
 
 export default beautyTherapy101;
+
+
