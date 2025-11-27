@@ -234,7 +234,16 @@ export const useCourseData = (courseId?: string) => {
           result.status = 'fallback';
         }
 
-        // Set the course - ALWAYS set something
+        // GUARANTEE: Always set a course, never null
+        if (!foundCourse) {
+          console.warn("⚠️ foundCourse is null, creating emergency fallback");
+          foundCourse = createFallbackCourse(
+            idFromParams,
+            featuredCourseData || { id: idFromParams, title: 'Course', description: 'Course content is being prepared.' }
+          );
+          result.status = 'fallback';
+        }
+        
         result.course = foundCourse;
         setCourse(foundCourse);
         setLoadResult(result);
