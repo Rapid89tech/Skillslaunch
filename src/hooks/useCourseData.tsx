@@ -198,6 +198,7 @@ export const useCourseData = (courseId?: string) => {
       };
       
       // Static course map - guaranteed to work in production
+      // All courses with full content data
       const courseMap: Record<string, Course> = {
         'doggrooming101': doggrooming101,
         'beautyTherapy101': beautyTherapy101,
@@ -213,6 +214,9 @@ export const useCourseData = (courseId?: string) => {
         'prophet': prophet,
         'cybersecurity101': cybersecurity101
       };
+      
+      console.log('📚 Available courses in map:', Object.keys(courseMap));
+      console.log('🔍 Looking for course ID:', idFromParams);
 
       let foundCourse: Course | null = null;
       let featuredCourseData: any = null;
