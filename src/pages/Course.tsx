@@ -27,8 +27,8 @@ const Course = () => {
   const { courseId } = useParams<{ courseId: string }>();
   const { toast } = useToast();
   
-  // Core course data loading
-  const { course, allLessons, isLoading: courseLoading } = useCourseData();
+  // Core course data loading - pass courseId explicitly
+  const { course, allLessons, isLoading: courseLoading } = useCourseData(courseId);
   
   // Stable progress management
   const { 
