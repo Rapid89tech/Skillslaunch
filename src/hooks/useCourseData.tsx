@@ -35,7 +35,16 @@ interface CourseValidation {
 
 export const useCourseData = (courseId?: string) => {
   const params = useParams<{ id: string; courseId: string }>();
-  const idFromParams = courseId || params.id || params.courseId;
+  const idFromParams = courseId || params.courseId || params.id;
+  
+  // Debug logging
+  console.log('🔧 useCourseData init:', { 
+    passedCourseId: courseId, 
+    paramsCourseId: params.courseId, 
+    paramsId: params.id,
+    resolved: idFromParams 
+  });
+  
   const [course, setCourse] = useState<Course | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadResult, setLoadResult] = useState<CourseLoadResult>({
