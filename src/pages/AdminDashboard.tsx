@@ -6,16 +6,31 @@ import SimpleAdminDashboard from '@/components/admin/SimpleAdminDashboard';
 const AdminDashboard: React.FC = () => {
   const { user, profile, loading } = useAuth();
 
-  // Show loading state while checking authentication
-  if (loading) {
+  // Show loading state while checking authentication (with timeout)
+  const [loadingTimeout, setLoadingTimeout] = React.useState(false);
+  
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoadingTimeout(true);
+    }, 5000); // 5 second timeout
+    
+    return () => clearTimeout(timer);
+  }, []);
+  
+  if (loading && !loadingTimeout) {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading...</p>
+          <p className="text-gray-600">Loading admin dashboard...</p>
         </div>
       </div>
     );
+  }
+  
+  // If loading timed out, force continue
+  if (loadingTimeout && loading) {
+    console.warn('Admin dashboard loading timeout - forcing continue');
   }
 
   // Redirect to login if not authenticated
