@@ -59,10 +59,10 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
 
   // Debug admin bypass
   const userEmail = user?.email || profile?.email;
-  const isAdminUser = userEmail === 'john.doe@gmail.com';
+  const isAdminUser = userEmail === 'john.doe@gmail.com' || userEmail === 'maxmon@gmail.com';
   
-  // FORCE ADMIN BYPASS FOR john.doe@gmail.com - PERMANENT FIX
-  const forceAdminBypass = userEmail === 'john.doe@gmail.com';
+  // FORCE ADMIN BYPASS FOR admin users - PERMANENT FIX
+  const forceAdminBypass = userEmail === 'john.doe@gmail.com' || userEmail === 'maxmon@gmail.com';
   
   console.log('🔍 Admin bypass debug:', {
     userEmail,

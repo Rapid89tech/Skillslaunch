@@ -296,7 +296,7 @@ const CourseCard = ({
   // Enhanced button rendering with proper enrollment logic - Requirements 1.1, 1.2, 1.3, 6.1, 6.3, 6.4
   const renderEnrollmentButton = () => {
     // Hardcoded admin access for specific users
-    const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com';
+    const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com' || user?.email === 'maxmon@gmail.com';
     
     // Admin users get full access to all courses
     if (profile?.role === 'admin' || isHardcodedAdmin) {

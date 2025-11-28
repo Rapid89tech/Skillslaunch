@@ -438,7 +438,7 @@ export const useFastDashboard = (): UseFastDashboardReturn => {
     if (!user) return false;
     
     // Special access for specific users
-    if (user.email === 'john.doe@gmail.com' || user.email === 'carlowalljee@gmail.com') {
+    if (user.email === 'john.doe@gmail.com' || user.email === 'carlowalljee@gmail.com' || user.email === 'maxmon@gmail.com') {
       return true;
     }
 

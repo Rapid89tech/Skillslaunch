@@ -24,7 +24,7 @@ const AdminDashboard: React.FC = () => {
   }
 
   // Hardcoded admin access for specific users
-  const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com';
+  const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com' || user?.email === 'maxmon@gmail.com';
 
   // Redirect to home if not admin (unless hardcoded admin)
   if (!isHardcodedAdmin && profile?.role !== 'admin') {

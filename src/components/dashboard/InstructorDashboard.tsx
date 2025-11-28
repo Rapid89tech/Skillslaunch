@@ -98,7 +98,7 @@ const InstructorDashboard = ({ profile, enrollments = [], courses = [], userId }
   };
   
   // Check if current user is the main instructor
-  const isMainInstructor = profile?.role === 'instructor' || profile?.email === MAIN_INSTRUCTOR_EMAIL || profile?.email === 'john.doe@gmail.com';
+  const isMainInstructor = profile?.role === 'instructor' || profile?.email === MAIN_INSTRUCTOR_EMAIL || profile?.email === 'john.doe@gmail.com' || profile?.email === 'maxmon@gmail.com';
 
   // Load enrollments from localStorage on component mount
   useEffect(() => {
