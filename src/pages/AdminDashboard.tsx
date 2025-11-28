@@ -1,22 +1,34 @@
 import React from 'react';
 import { useAuth } from '@/hooks/AuthContext';
 import { Navigate } from 'react-router-dom';
-import SimpleAdminDashboard from '@/components/admin/SimpleAdminDashboard';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
 
+  // Hardcoded admin access for specific users
+  const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com' || user?.email === 'maxmon@gmail.com';
+
+  // If hardcoded admin, show simple dashboard
+  if (isHardcodedAdmin) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-8">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+          <div className="bg-white rounded-lg shadow p-6">
+            <p className="text-lg mb-4">Welcome, {user?.email}!</p>
+            <p className="text-gray-600">Admin dashboard is loading...</p>
+            <p className="text-sm text-gray-500 mt-4">
+              If you see this message, the admin access is working correctly.
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Redirect to login if not authenticated
   if (!user) {
     return <Navigate to="/auth" replace />;
-  }
-
-  // Hardcoded admin access for specific users - SKIP ALL OTHER CHECKS
-  const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com' || user?.email === 'maxmon@gmail.com';
-
-  // If hardcoded admin, show dashboard immediately
-  if (isHardcodedAdmin) {
-    return <SimpleAdminDashboard />;
   }
 
   // For non-hardcoded users, show access denied
