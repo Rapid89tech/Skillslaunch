@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 2,
   title: 'Importance of Self-Regulation: Enhancing Personal and Professional Success',
   duration: '45 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Importance of Self-Regulation: Enhancing Personal and Professional Success 💼
 
 This document provides a comprehensive exploration of the importance of self-regulation, a critical component of Emotional Intelligence (EI).
@@ -112,7 +113,8 @@ Self-regulation is the second component of Daniel Goleman's EI framework, buildi
 ## Conclusion
 
 Self-regulation is a transformative skill that helps reduce conflict, encourages better decision-making, builds trust and respect, and supports emotional health and leadership. By managing emotions constructively, individuals can navigate challenges with composure, make thoughtful choices, and foster strong relationships.
-  ```n  }`n};
+  `
+};
 
 export default lesson;
 

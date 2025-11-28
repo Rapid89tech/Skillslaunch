@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 1,
   title: 'Emotional Intelligence in Leadership',
   duration: '45 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Emotional Intelligence in Leadership 👔
 
 Emotional Intelligence (EI) in leadership refers to a leader's ability to recognize, understand, and manage their own emotions while effectively responding to the emotions of others.

@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 4,
   title: 'Role of Optimism in Motivation: Driving Persistence and Success',
   duration: '40 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Role of Optimism in Motivation: Driving Persistence and Success 🌟
 
 ## Overview

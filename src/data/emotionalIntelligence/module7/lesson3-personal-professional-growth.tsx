@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 3,
   title: 'Personal and Professional Growth',
   duration: '40 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Personal and Professional Growth 🌱
 
 Personal and professional growth refers to the continuous development of skills, mindset, and emotional intelligence that enable individuals to achieve their full potential.

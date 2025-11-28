@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 6,
   title: 'Benefits of High Self-Awareness: Enhancing Personal and Professional Success',
   duration: '45 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Benefits of High Self-Awareness: Enhancing Personal and Professional Success 🌟
 
 This document provides a comprehensive exploration of the benefits of high self-awareness, a cornerstone of Emotional Intelligence (EI).
@@ -132,7 +133,8 @@ High self-awareness is the foundation of Daniel Goleman's EI framework, enabling
 ## Conclusion
 
 High self-awareness delivers transformative benefits, including greater confidence, better emotional regulation, more effective goal setting, and stronger relationships. By understanding their strengths, weaknesses, emotions, and impact, individuals can make informed decisions, manage stress, build trust, and achieve personal and professional growth. Through practices like mindfulness, journaling, reflection, and feedback-seeking, high self-awareness becomes a powerful tool for success, resilience, and meaningful connections.
-  ```n  }`n};
+  `
+};
 
 export default lesson;
 

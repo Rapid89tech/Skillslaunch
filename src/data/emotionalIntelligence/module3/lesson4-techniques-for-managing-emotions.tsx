@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 4,
   title: 'Techniques for Managing Emotions: Practical Strategies for Self-Regulation',
   duration: '45 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Techniques for Managing Emotions: Practical Strategies for Self-Regulation 🧘
 
 This document provides a comprehensive exploration of techniques for managing emotions, a key aspect of self-regulation within Emotional Intelligence (EI).

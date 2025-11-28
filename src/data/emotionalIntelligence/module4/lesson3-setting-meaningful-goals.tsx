@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 3,
   title: 'Setting Meaningful Goals: Driving Purpose and Success',
   duration: '45 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Setting Meaningful Goals: Driving Purpose and Success 🎯
 
 ## Overview

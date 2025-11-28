@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 4,
   title: 'Nonverbal Cues',
   duration: '35 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Nonverbal Cues 🤝
 
 Nonverbal communication encompasses the unspoken elements of interaction, such as body language, facial expressions, tone of voice, and gestures. Often more powerful than words, nonverbal cues significantly influence how messages are perceived.

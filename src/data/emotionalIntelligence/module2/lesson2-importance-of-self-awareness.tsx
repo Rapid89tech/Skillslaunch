@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 2,
   title: 'Importance of Self-Awareness: Benefits and Applications',
   duration: '45 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Importance of Self-Awareness: Benefits and Applications 💡
 
 This document provides a comprehensive exploration of the importance of self-awareness, a foundational component of Emotional Intelligence (EI). It expands on how self-awareness improves decision-making, enhances emotional control, builds better relationships, and supports personal growth and leadership.
@@ -105,7 +106,8 @@ Self-awareness is the foundation of Daniel Goleman's EI framework, enabling:
 ## Conclusion
 
 Self-awareness is a transformative skill that enhances decision-making, emotional control, relationships, personal growth, and leadership. By understanding their thoughts, emotions, and behaviors, individuals can make informed choices, manage stress, build stronger connections, and lead with authenticity. Through practices like mindfulness, journaling, and feedback-seeking, self-awareness can be cultivated, unlocking its full potential to drive success and well-being in personal and professional contexts.
-  ```n  }`n};
+  `
+};
 
 export default lesson;
 

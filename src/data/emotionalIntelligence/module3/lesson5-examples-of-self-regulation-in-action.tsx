@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 5,
   title: 'Examples of Self-Regulation in Action: Practical Applications',
   duration: '40 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Examples of Self-Regulation in Action: Practical Applications 🎬
 
 This document provides a comprehensive exploration of self-regulation in action, a key component of Emotional Intelligence (EI).

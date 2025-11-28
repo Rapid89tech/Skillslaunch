@@ -15,6 +15,9 @@ import solar101 from '@/data/solar101';
 import plumbing101 from '@/data/plumbing101';
 import roofing101 from '@/data/roofing101';
 import tiling101 from '@/data/tiling101';
+import cellphoneRepairs101 from '@/data/cellphoneRepairs101';
+import prophet from '@/data/prophet';
+import cybersecurity101 from '@/data/cybersecurity101';
 
 interface CourseLoadResult {
   course: Course | null;
@@ -205,7 +208,10 @@ export const useCourseData = (courseId?: string) => {
         'solar101': solar101,
         'plumbing101': plumbing101,
         'roofing101': roofing101,
-        'tiling-101': tiling101
+        'tiling-101': tiling101,
+        'cellphone-repairs-101': cellphoneRepairs101,
+        'prophet': prophet,
+        'cybersecurity101': cybersecurity101
       };
 
       let foundCourse: Course | null = null;

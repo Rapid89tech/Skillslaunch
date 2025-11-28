@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 4,
   title: 'Understanding Strengths and Weaknesses',
   duration: '40 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Understanding Strengths and Weaknesses 💪
 
 This document explores understanding strengths and weaknesses, a vital aspect of self-awareness within Emotional Intelligence (EI).
@@ -119,7 +120,8 @@ Understanding strengths and weaknesses is a core aspect of self-awareness, suppo
 ## Conclusion
 
 Understanding strengths and weaknesses—through reflection, honest self-assessment, and seeking feedback—is vital for building self-awareness and Emotional Intelligence. By identifying areas of proficiency, acknowledging limitations, and using external perspectives, individuals can maximize their potential, address challenges, and foster personal and professional growth.
-  ```n  }`n};
+  `
+};
 
 export default lesson;
 

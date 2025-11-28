@@ -4,7 +4,8 @@ const lesson: Lesson = {
   id: 3,
   title: 'Conflict Resolution',
   duration: '40 min',
-  type: 'reading',`n  content: {`n    textContent: ``
+  type: 'reading',
+  content: `
 # Conflict Resolution ⚖️
 
 Conflict resolution is the process of addressing disagreements or disputes constructively to find mutually acceptable solutions. It is a critical social skill that promotes harmony, collaboration, and positive relationships.
