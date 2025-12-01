@@ -163,6 +163,7 @@ const rawFeaturedCourses = [
     courseId: 'prophet'
   },
 
+
 ];
 
 /**
