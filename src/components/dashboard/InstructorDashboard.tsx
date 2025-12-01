@@ -559,8 +559,8 @@ const InstructorDashboard = ({ profile, enrollments = [], courses = [], userId }
               <div className="flex items-center space-x-3">
                 <Users className="w-8 h-8 text-red-600" />
                 <div>
-                  <h1 className="text-2xl font-bold text-gray-900">Instructor Dashboard</h1>
-                  <p className="text-sm text-gray-500">Welcome back, {profile?.first_name || 'Instructor'}</p>
+                  <h1 className="text-2xl font-bold text-gray-900">{profile?.role === 'admin' ? 'Admin Dashboard' : 'Instructor Dashboard'}</h1>
+                  <p className="text-sm text-gray-500">Welcome back, {profile?.first_name || (profile?.role === 'admin' ? 'Admin' : 'Instructor')}</p>
                 </div>
               </div>
               

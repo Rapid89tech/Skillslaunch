@@ -18,6 +18,8 @@ import tiling101 from '@/data/tiling101';
 import cellphoneRepairs101 from '@/data/cellphoneRepairs101';
 import prophet from '@/data/prophet';
 import cybersecurity101 from '@/data/cybersecurity101';
+import { filmProduction101CourseData } from '@/data/filmProduction101';
+import entrepreneurshipFinalCourse from '@/data/entrepreneurshipFinalCourse';
 
 interface CourseLoadResult {
   course: Course | null;
@@ -221,7 +223,9 @@ export const useCourseData = (courseId?: string) => {
         'tiling-101': tiling101,
         'cellphone-repairs-101': cellphoneRepairs101,
         'prophet': prophet,
-        'cybersecurity101': cybersecurity101
+        'cybersecurity101': cybersecurity101,
+        'film-production-101': filmProduction101CourseData as Course,
+        'entrepreneurship-final': entrepreneurshipFinalCourse
       };
       
       console.log('📚 Available courses in map:', Object.keys(courseMap));

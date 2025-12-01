@@ -20,10 +20,17 @@ interface SimpleEnrollment {
 const SimpleAdminDashboard: React.FC = () => {
   const { toast } = useToast();
   const [enrollments, setEnrollments] = useState<SimpleEnrollment[]>([]);
+  const [users, setUsers] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState<'enrollments' | 'users'>('enrollments');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchData = async () => {
+    const timeout = setTimeout(() => {
+      console.warn('⏱️ Fetch timeout - stopping loading');
+      setLoading(false);
+    }, 3000);
+
     try {
       setLoading(true);
       setError(null);
@@ -33,6 +40,8 @@ const SimpleAdminDashboard: React.FC = () => {
       // Test auth first
       const { data: { user }, error: authError } = await supabase.auth.getUser();
       console.log('👤 Current user:', user?.email || 'Not authenticated');
+      
+      clearTimeout(timeout);
 
       // Simple enrollment fetch
       const { data, error: fetchError } = await supabase
@@ -58,7 +67,21 @@ const SimpleAdminDashboard: React.FC = () => {
 
       setEnrollments(processedData);
 
+      // Fetch all users from profiles table
+      const { data: usersData, error: usersError } = await supabase
+        .from('profiles')
+        .select('*')
+        .order('created_at', { ascending: false });
+
+      if (usersError) {
+        console.error('❌ Users fetch error:', usersError);
+      } else {
+        console.log('✅ Users fetched successfully:', usersData?.length || 0, 'users');
+        setUsers(usersData || []);
+      }
+
     } catch (err) {
+      clearTimeout(timeout);
       console.error('❌ Dashboard error:', err);
       const errorMessage = err instanceof Error ? err.message : 'Failed to load data';
       setError(errorMessage);
@@ -69,6 +92,7 @@ const SimpleAdminDashboard: React.FC = () => {
         variant: 'destructive',
       });
     } finally {
+      clearTimeout(timeout);
       setLoading(false);
     }
   };
@@ -244,7 +268,36 @@ const SimpleAdminDashboard: React.FC = () => {
           </Card>
         </div>
 
+        {/* Tabs */}
+        <div className="mb-6">
+          <div className="border-b border-gray-200">
+            <nav className="-mb-px flex space-x-8">
+              <button
+                onClick={() => setActiveTab('enrollments')}
+                className={`${
+                  activeTab === 'enrollments'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+              >
+                Enrollments ({enrollments.length})
+              </button>
+              <button
+                onClick={() => setActiveTab('users')}
+                className={`${
+                  activeTab === 'users'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                } whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm`}
+              >
+                All Users ({users.length})
+              </button>
+            </nav>
+          </div>
+        </div>
+
         {/* Enrollments Table */}
+        {activeTab === 'enrollments' && (
         <Card>
           <CardHeader>
             <CardTitle>Enrollment Management</CardTitle>
@@ -329,6 +382,60 @@ const SimpleAdminDashboard: React.FC = () => {
             )}
           </CardContent>
         </Card>
+        )}
+
+        {/* Users Table */}
+        {activeTab === 'users' && (
+        <Card>
+          <CardHeader>
+            <CardTitle>All Registered Users</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {users.length === 0 ? (
+              <div className="text-center py-8">
+                <Users className="h-12 w-12 mx-auto text-gray-400 mb-4" />
+                <h3 className="text-lg font-semibold mb-2">No Users</h3>
+                <p className="text-gray-600">No registered users found.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="min-w-full divide-y divide-gray-200">
+                  <thead className="bg-gray-50">
+                    <tr>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Phone</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Registered</th>
+                    </tr>
+                  </thead>
+                  <tbody className="bg-white divide-y divide-gray-200">
+                    {users.map((user) => (
+                      <tr key={user.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {user.email}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                          {user.first_name} {user.last_name}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {user.phone || user.contact_number || '-'}
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap">
+                          <Badge>{user.role || 'student'}</Badge>
+                        </td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                          {user.created_at ? new Date(user.created_at).toLocaleDateString() : '-'}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+        )}
       </div>
     </div>
   );

@@ -161,6 +161,20 @@ const rawFeaturedCourses = [
     description: 'Prophetic Ministry Training Course: Hearing, Speaking, and Living God\'s Voice. This course is designed for believers who are called to operate in the office of a prophet or function in prophetic ministry.',
     category: 'Religion',
     courseId: 'prophet'
+  },
+  {
+    id: 'film-production-101',
+    title: 'Film Production 101',
+    instructor: 'Film Production Experts',
+    rating: 4.9,
+    students: 0,
+    duration: '10-12 weeks',
+    price: 290,
+    image: '/courses-hero-bg.png',
+    level: 'Beginner',
+    description: 'Master the art of filmmaking from concept to distribution. This comprehensive course covers all aspects of film production including storytelling, cinematography, lighting, sound design, directing, and distribution.',
+    category: 'Film & Broadcasting',
+    courseId: 'film-production-101'
   }
 ];
 
