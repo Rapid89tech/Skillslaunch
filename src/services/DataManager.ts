@@ -468,14 +468,31 @@ export class DataManager {
   }
 
   private async getRemoteEnrollments(userId: string): Promise<EnrollmentData[]> {
+    // Query by user_id OR user_email to handle both cases
     const { data, error } = await supabase
       .from('enrollments')
       .select('*')
-      .eq('user_id', userId)
+      .or(`user_id.eq.${userId},user_email.eq.${userId}`)
       .order('updated_at', { ascending: false });
 
     if (error) {
-      throw error;
+      // Fallback: try separate queries if OR fails
+      logger.warn('OR query failed, trying separate queries:', error);
+      
+      const { data: byId } = await supabase
+        .from('enrollments')
+        .select('*')
+        .eq('user_id', userId);
+      
+      const { data: byEmail } = await supabase
+        .from('enrollments')
+        .select('*')
+        .eq('user_email', userId);
+      
+      // Merge and deduplicate
+      const merged = [...(byId || []), ...(byEmail || [])];
+      const unique = merged.filter((e, i, arr) => arr.findIndex(x => x.id === e.id) === i);
+      return this.normalizeEnrollments(unique);
     }
 
     return this.normalizeEnrollments(data || []);
