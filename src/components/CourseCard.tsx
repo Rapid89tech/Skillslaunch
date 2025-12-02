@@ -295,11 +295,24 @@ const CourseCard = ({
 
   // Enhanced button rendering with proper enrollment logic - Requirements 1.1, 1.2, 1.3, 6.1, 6.3, 6.4
   const renderEnrollmentButton = () => {
-    // Hardcoded admin access for specific users
-    const isHardcodedAdmin = user?.email === 'ericmnisi007@gmail.com' || user?.email === 'john.doe@gmail.com' || user?.email === 'maxmon@gmail.com';
+    // CRITICAL: Hardcoded full access for specific users - check FIRST before anything else
+    const specialAccessEmails = ['ericmnisi007@gmail.com', 'john.doe@gmail.com', 'maxmon@gmail.com', 'carlowalljee@gmail.com'];
+    const hasSpecialAccess = user?.email && specialAccessEmails.includes(user.email.toLowerCase());
+    
+    // Special access users ALWAYS get Continue Course button - no profile check needed
+    if (hasSpecialAccess) {
+      return (
+        <Button 
+          onClick={() => navigate(`/course/${course.id}`)}
+          className="flex-1 bg-gradient-to-r from-green-500 to-green-600 text-white font-bold text-xs shadow-lg hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-400/60 h-7 sm:h-8"
+        >
+          Continue Course
+        </Button>
+      );
+    }
     
     // Admin users get full access to all courses
-    if (profile?.role === 'admin' || isHardcodedAdmin) {
+    if (profile?.role === 'admin') {
       return (
         <Button 
           onClick={() => navigate(`/course/${course.id}`)}
