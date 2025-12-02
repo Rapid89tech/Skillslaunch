@@ -106,7 +106,16 @@ export const useDataManager = (): UseDataManagerResult => {
 
     try {
       // Use UnifiedEnrollmentManager instead of direct DataManager access
-      const userEnrollments = await unifiedEnrollmentManager.getUserEnrollments(userId);
+      // Query by both user ID and email to ensure cross-device access
+      let userEnrollments = await unifiedEnrollmentManager.getUserEnrollments(userId);
+      
+      // If no enrollments found and user has email, also try querying by email
+      if (userEnrollments.length === 0 && user.email && user.email !== userId) {
+        logger.info(`No enrollments found by ID, trying by email: ${user.email}`);
+        const emailEnrollments = await unifiedEnrollmentManager.getUserEnrollments(user.email);
+        userEnrollments = emailEnrollments;
+      }
+      
       setEnrollments(userEnrollments);
       logger.info(`Loaded ${userEnrollments.length} enrollments for user ${userId} via UnifiedEnrollmentManager`);
       return userEnrollments;
