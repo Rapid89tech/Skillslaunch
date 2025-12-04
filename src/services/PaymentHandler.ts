@@ -33,16 +33,7 @@ export interface IPaymentHandler {
 }
 
 /**
- * Card Payment Gateway Interface (for future integration)
- */
-interface CardPaymentGateway {
-  processPayment(details: PaymentDetails): Promise<PaymentResult>;
-  validateCard(cardDetails: any): Promise<boolean>;
-  refundPayment(paymentId: string): Promise<boolean>;
-}
-
-/**
- * EFT Payment Processor Interface (for future integration)
+ * EFT Payment Processor Interface
  */
 interface EFTPaymentProcessor {
   generateReference(details: PaymentDetails): string;
@@ -51,17 +42,16 @@ interface EFTPaymentProcessor {
 }
 
 /**
- * Payment Handler Implementation
+ * Payment Handler Implementation (EFT Only)
  */
 export class PaymentHandler implements IPaymentHandler {
   private static instance: PaymentHandler;
   private paymentCallbacks: Map<string, (callback: PaymentCallback) => void> = new Map();
   private paymentStatuses: Map<string, PaymentStatus> = new Map();
-  private cardGateway: CardPaymentGateway | null = null;
   private eftProcessor: EFTPaymentProcessor | null = null;
 
   private constructor() {
-    this.initializePaymentGateways();
+    this.initializeEFTProcessor();
   }
 
   static getInstance(): PaymentHandler {
@@ -72,12 +62,12 @@ export class PaymentHandler implements IPaymentHandler {
   }
 
   /**
-   * Initialize payment gateways (mock implementations for now)
+   * Initialize EFT payment processor
    */
-  private initializePaymentGateways(): void {
-    // Mock card payment gateway
-    this.cardGateway = {
-      processPayment: async (details: PaymentDetails): Promise<PaymentResult> => {
+  private initializeEFTProcessor(): void {
+    // EFT payment processor
+    this.eftProcessor = {
+      generateReference: (details: PaymentDetails): string => {
         return this.mockCardPayment(details);
       },
       validateCard: async (cardDetails: any): Promise<boolean> => {
@@ -121,18 +111,16 @@ export class PaymentHandler implements IPaymentHandler {
         };
       }
 
-      switch (type) {
-        case PaymentType.CARD:
-          return await this.processCardPayment(details);
-        case PaymentType.EFT:
-          return await this.processEFTPayment(details);
-        default:
-          return {
-            success: false,
-            error: ENROLLMENT_ERROR_MESSAGES[ENROLLMENT_ERROR_CODES.INVALID_PAYMENT_TYPE],
-            errorCode: ENROLLMENT_ERROR_CODES.INVALID_PAYMENT_TYPE
-          };
+      // Only EFT payments are supported
+      if (type !== PaymentType.EFT) {
+        return {
+          success: false,
+          error: 'Only EFT payments are supported',
+          errorCode: ENROLLMENT_ERROR_CODES.INVALID_PAYMENT_TYPE
+        };
       }
+      
+      return await this.processEFTPayment(details);
     } catch (error: any) {
       console.error('❌ Error processing payment:', error);
       return {
@@ -143,69 +131,7 @@ export class PaymentHandler implements IPaymentHandler {
     }
   }
 
-  /**
-   * Process card payment with immediate access logic
-   */
-  private async processCardPayment(details: PaymentDetails): Promise<PaymentResult> {
-    try {
-      if (!this.cardGateway) {
-        throw new Error('Card payment gateway not initialized');
-      }
 
-      console.log('💳 Processing card payment...');
-
-      // Add timeout for card payment processing
-      const paymentPromise = this.cardGateway.processPayment(details);
-      const timeoutPromise = new Promise<PaymentResult>((_, reject) => {
-        setTimeout(() => {
-          reject(new Error('Card payment timeout'));
-        }, ENROLLMENT_CONFIG.CARD_PAYMENT_TIMEOUT);
-      });
-
-      const result = await Promise.race([paymentPromise, timeoutPromise]);
-
-      if (result.success && result.paymentId) {
-        // Store payment status for tracking
-        this.paymentStatuses.set(result.paymentId, PaymentStatus.COMPLETED);
-        
-        console.log('✅ Card payment successful:', result.paymentId);
-        
-        // Trigger immediate access callback
-        setTimeout(() => {
-          this.triggerPaymentCallback({
-            paymentId: result.paymentId!,
-            status: PaymentStatus.COMPLETED,
-            metadata: {
-              paymentType: PaymentType.CARD,
-              immediateAccess: true,
-              processedAt: new Date().toISOString()
-            }
-          });
-        }, 0);
-      } else {
-        console.log('❌ Card payment failed:', result.error);
-      }
-
-      return result;
-
-    } catch (error: any) {
-      console.error('❌ Card payment error:', error);
-      
-      if (error.message === 'Card payment timeout') {
-        return {
-          success: false,
-          error: ENROLLMENT_ERROR_MESSAGES[ENROLLMENT_ERROR_CODES.TIMEOUT_ERROR],
-          errorCode: ENROLLMENT_ERROR_CODES.TIMEOUT_ERROR
-        };
-      }
-
-      return {
-        success: false,
-        error: error.message || ENROLLMENT_ERROR_MESSAGES[ENROLLMENT_ERROR_CODES.PAYMENT_PROCESSING_FAILED],
-        errorCode: ENROLLMENT_ERROR_CODES.PAYMENT_PROCESSING_FAILED
-      };
-    }
-  }
 
   /**
    * Process EFT payment with pending approval workflow
@@ -411,39 +337,7 @@ export class PaymentHandler implements IPaymentHandler {
    * (These would be replaced with real payment gateway integrations)
    */
 
-  private async mockCardPayment(details: PaymentDetails): Promise<PaymentResult> {
-    return new Promise((resolve) => {
-      // Simulate processing time
-      setTimeout(() => {
-        // Simulate 95% success rate (higher for better test reliability)
-        const success = Math.random() > 0.05;
-        
-        if (success) {
-          resolve({
-            success: true,
-            paymentId: `card_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`
-          });
-        } else {
-          resolve({
-            success: false,
-            error: 'Card payment declined',
-            errorCode: 'CARD_DECLINED'
-          });
-        }
-      }, 1000); // Reduced to 1-second processing simulation
-    });
-  }
 
-  private async mockCardValidation(_cardDetails: any): Promise<boolean> {
-    // Mock card validation logic
-    return Promise.resolve(true);
-  }
-
-  private async mockRefund(paymentId: string): Promise<boolean> {
-    // Mock refund logic
-    console.log('💰 Processing refund for payment:', paymentId);
-    return Promise.resolve(true);
-  }
 
   private generateEFTReference(_details: PaymentDetails): string {
     const timestamp = Date.now();

@@ -19,7 +19,8 @@ const CourseEnrollmentView = ({ course, handleEnroll, enrolling }: CourseEnrollm
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
-      <div className="container mx-auto px-6 py-8">
+      {/* Mobile-first container with 16px padding on mobile (Requirements 2.3) */}
+      <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Standard Header for All Courses */}
         <CourseHeader 
           course={course} 
@@ -28,12 +29,13 @@ const CourseEnrollmentView = ({ course, handleEnroll, enrolling }: CourseEnrollm
         />
 
         <div className="w-full max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-8 xl:col-span-9 space-y-8">
+          {/* Single-column on mobile, multi-column on larger screens */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 lg:gap-8">
+            {/* Main Content - Single column on mobile */}
+            <div className="lg:col-span-8 xl:col-span-9 space-y-4 sm:space-y-6 lg:space-y-8">
               <CourseOverview course={course} />
               <div id="learning-objectives">
-                <LearningObjectives objectives={course.learningObjectives} />
+                <LearningObjectives objectives={course.learningObjectives || []} />
               </div>
               <div id="course-curriculum">
                 <CourseCurriculum 
@@ -44,7 +46,7 @@ const CourseEnrollmentView = ({ course, handleEnroll, enrolling }: CourseEnrollm
               </div>
             </div>
             
-            {/* Enrollment Sidebar */}
+            {/* Enrollment Sidebar - Stacks below content on mobile */}
             <div className="lg:col-span-4 xl:col-span-3">
               <EnrollmentSidebar 
                 course={course}

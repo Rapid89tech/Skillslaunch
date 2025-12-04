@@ -521,7 +521,8 @@ export const useDataManager = (): UseDataManagerResult => {
     }
 
     // Special access for specific users (only when properly logged in)
-    if (user.email === 'john.doe@gmail.com' || user.email === 'carlowalljee@gmail.com' || user.email === 'maxmon@gmail.com') {
+    const specialAccessEmails = ['john.doe@gmail.com', 'carlowalljee@gmail.com', 'maxmon@gmail.com', 'ericmnisi007@gmail.com', 'mopalamitshepo@gmail.com'];
+    if (user.email && specialAccessEmails.includes(user.email.toLowerCase())) {
       logger.debug('isEnrolled: Special access granted for user', user.email);
       return true;
     }

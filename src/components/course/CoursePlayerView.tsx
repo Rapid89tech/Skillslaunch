@@ -1,13 +1,15 @@
-import React, { memo } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import CourseSidebar from './CourseSidebar';
 import CourseHeader from './CourseHeader';
 import LessonContent from './LessonContent';
 import CourseControls from './CourseControls';
 import ScoreDisplay from './ScoreDisplay';
+import MobileLessonNavigation from './MobileLessonNavigation';
 import { Menu, BookOpen, AlertCircle, Play, RefreshCw } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import type { Course, Lesson } from '@/types/course';
 import { getLessonPosition } from '@/utils/lessonMapping';
 import { useModuleScores } from '@/hooks/useModuleScores';
@@ -17,6 +19,8 @@ import { Trophy, Download } from 'lucide-react';
 // Import markdown exports for legacy courses that still use markdown content
 import { computerRepairsMarkdown } from '@/data/computerRepairs';
 import { cellphoneRepairsMarkdown } from '@/data/cellphoneRepairs';
+// Import mobile styles
+import '@/styles/mobile.css';
 
 interface CoursePlayerViewProps {
   course: Course;
@@ -78,6 +82,36 @@ const CoursePlayerView = ({
   const { scores, courseSummary, getGradeColor, dbAvailable, lastError } = useModuleScores(course.id);
   const { isCompleted, certificateGenerated } = useCourseCompletion(course);
   const lessonPosition = getLessonPosition(course, currentLesson);
+  
+  // Mobile detection for responsive layout
+  const [isMobile, setIsMobile] = useState(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Get previous and next lesson data for mobile navigation
+  const previousLessonData = currentLesson > 0 ? allLessons[currentLesson - 1] : null;
+  const nextLessonData = currentLesson < allLessons.length - 1 ? allLessons[currentLesson + 1] : null;
+  
+  // Navigation handlers for mobile
+  const handleNavigatePrev = () => {
+    if (currentLesson > 0) {
+      prevLesson();
+    }
+  };
+  
+  const handleNavigateNext = () => {
+    if (currentLesson < allLessons.length - 1 && isCurrentLessonCompleted) {
+      nextLesson();
+    }
+  };
 
   // Ensure enrolled users always see course content
   console.log('🎯 CoursePlayerView: Rendering for enrolled user', {
@@ -91,19 +125,34 @@ const CoursePlayerView = ({
   });
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col md:flex-row">
+      {/* Mobile Fixed Progress Indicator - Requirements 2.4 */}
+      {isMobile && (
+        <div className="mobile-progress-fixed bg-white dark:bg-gray-800 shadow-sm">
+          <div className="flex items-center justify-between mb-1">
+            <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+              Course Progress
+            </span>
+            <span className="text-xs font-semibold text-blue-600 dark:text-blue-400">
+              {Math.round(progress)}%
+            </span>
+          </div>
+          <Progress value={progress} className="h-1.5" />
+        </div>
+      )}
+      
       {/* Course Completion Notification */}
       {isCompleted && (
-        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-6 py-4 rounded-lg shadow-lg flex items-center gap-4">
-            <Trophy className="w-6 h-6 text-yellow-300" />
-            <div>
-              <div className="font-bold text-lg">🎉 Course Completed!</div>
-              <div className="text-sm opacity-90">Congratulations! You've successfully completed {course.title}</div>
+        <div className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 px-4 w-full max-w-lg">
+          <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-4 md:px-6 py-3 md:py-4 rounded-lg shadow-lg flex flex-col md:flex-row items-center gap-3 md:gap-4">
+            <Trophy className="w-6 h-6 text-yellow-300 flex-shrink-0" />
+            <div className="text-center md:text-left flex-1">
+              <div className="font-bold text-base md:text-lg">🎉 Course Completed!</div>
+              <div className="text-xs md:text-sm opacity-90">Congratulations! You've successfully completed {course.title}</div>
             </div>
             <button
               onClick={() => navigate(`/course/${course.id}/certificate`)}
-              className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2"
+              className="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2 text-sm w-full md:w-auto justify-center touch-target-btn"
             >
               <Download className="w-4 h-4" />
               Get Certificate
@@ -140,7 +189,7 @@ const CoursePlayerView = ({
       {/* Main Content - Animated slide/fade */}
       <motion.div
         key="main-content"
-        className={`flex-1 overflow-y-auto bg-white dark:bg-gray-900 transition-all duration-300 ease-out relative`}
+        className={`flex-1 overflow-y-auto bg-white dark:bg-gray-900 transition-all duration-300 ease-out relative ${isMobile ? 'pt-16' : ''}`}
         animate={sidebarOpen ? 'open' : 'closed'}
         variants={contentVariants}
       >
@@ -154,7 +203,7 @@ const CoursePlayerView = ({
               exit="exit"
               variants={buttonVariants}
               onClick={() => setSidebarOpen(true)}
-              className="fixed top-16 sm:top-20 left-3 sm:left-6 z-50 flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-red-500 via-pink-500 to-purple-600 border-0 rounded-full px-3 sm:px-4 py-2 sm:py-3 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 group backdrop-blur-sm"
+              className={`fixed ${isMobile ? 'top-28' : 'top-16 sm:top-20'} left-3 sm:left-6 z-40 flex items-center gap-2 sm:gap-3 bg-gradient-to-r from-red-500 via-pink-500 to-purple-600 border-0 rounded-full px-3 sm:px-4 py-2 sm:py-3 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 group backdrop-blur-sm touch-target`}
               aria-label="Open Course Navigation"
               style={{
                 boxShadow: '0 10px 25px -5px rgba(239, 68, 68, 0.4), 0 10px 10px -5px rgba(236, 72, 153, 0.3)',
@@ -178,15 +227,16 @@ const CoursePlayerView = ({
           )}
         </AnimatePresence>
 
-        <div className="py-4 sm:py-6 md:py-8 pb-20 sm:pb-24">
-          {/* Lesson Content with Error Handling */}
+        {/* Main content container with mobile-first padding - Requirements 2.3 */}
+        <div className={`py-4 sm:py-6 md:py-8 ${isMobile ? 'pb-24' : 'pb-20 sm:pb-24'}`}>
+          {/* Lesson Content with Error Handling - Mobile single-column layout with 16px padding (Requirements 2.3) */}
           {currentLessonData ? (
             <motion.div
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 32 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="animate-fade-in"
+              className="animate-fade-in mobile-px md:px-0"
               data-lesson-content
             >
               <LessonContent
@@ -212,7 +262,7 @@ const CoursePlayerView = ({
               initial={{ opacity: 0, y: 32 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="flex items-center justify-center min-h-[400px] px-4"
+              className="flex items-center justify-center min-h-[400px] mobile-px md:px-4"
             >
               <Card className="w-full max-w-md">
                 <CardHeader>
@@ -272,7 +322,7 @@ const CoursePlayerView = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 24 }}
             transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
-            className="mt-12 animate-fade-in"
+            className="mt-12 animate-fade-in mobile-px md:px-0"
           >
             <ScoreDisplay
               courseSummary={courseSummary}
@@ -284,13 +334,13 @@ const CoursePlayerView = ({
             />
           </motion.div>
         </div>
-        {/* Bottom Controls - Fixed position */}
+        {/* Bottom Controls - Hidden on mobile, shown on tablet/desktop */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 16 }}
           transition={{ duration: 0.4, ease: 'easeOut', delay: 0.1 }}
-          className="px-6"
+          className="px-4 md:px-6 hidden md:block"
         >
           <CourseControls
             markComplete={markComplete}
@@ -303,6 +353,23 @@ const CoursePlayerView = ({
           />
         </motion.div>
       </motion.div>
+      
+      {/* Mobile Lesson Navigation - Fixed bottom bar (Requirements 2.2, 2.4) */}
+      {isMobile && (
+        <MobileLessonNavigation
+          currentLesson={currentLessonData}
+          currentLessonIndex={currentLesson}
+          totalLessons={allLessons.length}
+          previousLesson={previousLessonData}
+          nextLesson={nextLessonData}
+          onNavigatePrev={handleNavigatePrev}
+          onNavigateNext={handleNavigateNext}
+          onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
+          progress={progress}
+          canNavigateNext={isCurrentLessonCompleted && currentLesson < allLessons.length - 1}
+          canNavigatePrev={currentLesson > 0}
+        />
+      )}
     </div>
   );
 };

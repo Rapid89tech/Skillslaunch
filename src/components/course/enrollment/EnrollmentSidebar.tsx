@@ -17,8 +17,9 @@ const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSideba
   const navigate = useNavigate();
   const [showEnrollmentForm, setShowEnrollmentForm] = useState(false);
   
-  // Show special access message for john.doe@gmail.com
-  if (user?.email === 'john.doe@gmail.com') {
+  // Show special access message for users with full access
+  const specialAccessEmails = ['john.doe@gmail.com', 'ericmnisi007@gmail.com', 'maxmon@gmail.com', 'carlowalljee@gmail.com', 'mopalamitshepo@gmail.com'];
+  if (user?.email && specialAccessEmails.includes(user.email.toLowerCase())) {
     return (
       <div className="space-y-6">
         <Card className="sticky top-6 glassmorphism-card border-0 shadow-lg rounded-3xl overflow-hidden animate-fade-in-card">
@@ -33,7 +34,7 @@ const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSideba
                 // Navigate directly to course content
                 window.location.href = `/course/${course.id}`;
               }}
-              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-white font-semibold py-2.5 text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
+              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:opacity-90 text-white font-semibold py-3 min-h-[44px] text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
             >
               Access Course Content
             </Button>
@@ -99,7 +100,7 @@ const EnrollmentSidebar = ({ course, handleEnroll, enrolling }: EnrollmentSideba
               }
             }}
             disabled={enrolling}
-            className="w-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:opacity-90 text-white font-semibold py-2.5 text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
+            className="w-full bg-gradient-to-r from-red-500 via-pink-500 to-purple-500 hover:opacity-90 text-white font-semibold py-3 min-h-[44px] text-base mb-5 rounded-full shadow-md animate-fade-in-card transition-all duration-300"
           >
             {enrolling ? (
               <div className="flex items-center gap-2">

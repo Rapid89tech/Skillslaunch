@@ -7,8 +7,7 @@ import { Course } from '@/hooks/useCourses';
 import { useAuth } from '@/hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useEnrollments } from '@/hooks/useEnrollments';
-import { productionPaymentOrchestrator } from '@/services/ProductionPaymentOrchestrator';
-import { EnrollmentStatus, ProductionEnrollmentRequest } from '@/types/ikhokha';
+import { EnrollmentStatus } from '@/types/enrollment';
 // import CourseCardProgress from './courses/CourseCardProgress';
 
 // Simplified course images - using placeholder for now
@@ -199,31 +198,12 @@ const CourseCard = ({
       }
     };
 
-    // Subscribe to real-time updates from ProductionPaymentOrchestrator
-    const unsubscribeOrchestrator = productionPaymentOrchestrator.subscribeToEnrollmentUpdates(
-      (update) => {
-        if (update.userId === user.id && update.courseId === course.id) {
-          console.log('🔄 CourseCard: Production orchestrator update:', update);
-          
-          setRealTimeStatus(update.status);
-          setEnrollmentState(prev => ({
-            ...prev,
-            status: update.status,
-            hasAccess: update.status === EnrollmentStatus.APPROVED,
-            requiresApproval: update.status === EnrollmentStatus.PENDING_APPROVAL,
-            isLoading: false
-          }));
-        }
-      }
-    );
-
     // Listen to global events
     window.addEventListener('enrollment-status-updated', handleEnrollmentStatusUpdate as EventListener);
     window.addEventListener('course-access-granted', handleCourseAccessGranted as EventListener);
     window.addEventListener('admin-approval', handleAdminApproval as EventListener);
 
     return () => {
-      unsubscribeOrchestrator();
       window.removeEventListener('enrollment-status-updated', handleEnrollmentStatusUpdate as EventListener);
       window.removeEventListener('course-access-granted', handleCourseAccessGranted as EventListener);
       window.removeEventListener('admin-approval', handleAdminApproval as EventListener);
@@ -240,43 +220,13 @@ const CourseCard = ({
     setEnrollmentState(prev => ({ ...prev, isLoading: true }));
     
     try {
-      // Use ProductionPaymentOrchestrator for enrollment - Requirements 1.2, 1.3
-      const enrollmentRequest: ProductionEnrollmentRequest = {
-        courseId: course.id,
-        userId: user.id,
-        userEmail: user.email || '',
-        userName: `${profile?.first_name || ''} ${profile?.last_name || ''}`.trim() || user.email || '',
-        courseName: course.title,
-        coursePrice: course.price || 299 // Default price if not specified
-      };
-
-      console.log('🚀 CourseCard: Initiating enrollment via ProductionPaymentOrchestrator:', enrollmentRequest);
-
-      const result = await productionPaymentOrchestrator.initiateEnrollment(enrollmentRequest);
-
-      if (result.success && result.paymentUrl) {
-        // Redirect to payment page for card payments
-        console.log('💳 CourseCard: Redirecting to payment URL:', result.paymentUrl);
-        window.location.href = result.paymentUrl;
-      } else if (result.success && result.status === EnrollmentStatus.PENDING_APPROVAL) {
-        // EFT payment - show pending approval state
-        console.log('🏦 CourseCard: EFT payment initiated, pending approval');
-        setEnrollmentState(prev => ({
-          ...prev,
-          status: EnrollmentStatus.PENDING_APPROVAL,
-          requiresApproval: true,
-          isLoading: false
-        }));
-      } else {
-        // Handle enrollment failure
-        console.error('❌ CourseCard: Enrollment failed:', result);
-        setEnrollmentState(prev => ({ ...prev, isLoading: false }));
-        
-        // Show error message to user
-        alert(result.message || 'Enrollment failed. Please try again.');
-      }
-
-      // Fallback to legacy enrollment if ProductionPaymentOrchestrator is not available
+      // EFT-only enrollment flow - navigate to enrollment page
+      console.log('🏦 CourseCard: Initiating EFT enrollment for course:', course.id);
+      
+      // Navigate to enrollment page where user can upload proof of payment
+      navigate(`/enroll/${course.id}`);
+      
+      // Fallback to legacy enrollment if onEnroll callback is provided
       if (onEnroll) {
         onEnroll(course.id);
       }
@@ -296,8 +246,34 @@ const CourseCard = ({
   // Enhanced button rendering with proper enrollment logic - Requirements 1.1, 1.2, 1.3, 6.1, 6.3, 6.4
   const renderEnrollmentButton = () => {
     // CRITICAL: Hardcoded full access for specific users - check FIRST before anything else
-    const specialAccessEmails = ['ericmnisi007@gmail.com', 'john.doe@gmail.com', 'maxmon@gmail.com', 'carlowalljee@gmail.com'];
-    const hasSpecialAccess = user?.email && specialAccessEmails.includes(user.email.toLowerCase());
+    // Also check localStorage cache for mobile browsers where session might not be loaded yet
+    const specialAccessEmails = ['ericmnisi007@gmail.com', 'john.doe@gmail.com', 'maxmon@gmail.com', 'carlowalljee@gmail.com', 'mopalamitshepo@gmail.com'];
+    
+    // Get email from multiple sources to handle mobile session issues
+    let userEmail = user?.email?.toLowerCase();
+    
+    // Fallback: check localStorage for cached session if user email not available
+    if (!userEmail) {
+      try {
+        const cachedSession = localStorage.getItem('supabase-auth-session');
+        if (cachedSession) {
+          const sessionData = JSON.parse(cachedSession);
+          userEmail = sessionData?.user?.email?.toLowerCase();
+        }
+        // Also check Supabase's own storage
+        if (!userEmail) {
+          const supabaseAuth = localStorage.getItem('SupabaseAuth');
+          if (supabaseAuth) {
+            const authData = JSON.parse(supabaseAuth);
+            userEmail = authData?.user?.email?.toLowerCase();
+          }
+        }
+      } catch (e) {
+        console.warn('Error reading cached session:', e);
+      }
+    }
+    
+    const hasSpecialAccess = userEmail && specialAccessEmails.includes(userEmail);
     
     // Special access users ALWAYS get Continue Course button - no profile check needed
     if (hasSpecialAccess) {

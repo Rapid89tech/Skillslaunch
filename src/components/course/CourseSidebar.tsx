@@ -1,9 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { Button } from '@/components/ui/button';
+import React, { useEffect, useRef, useCallback } from 'react';
 import { Badge } from '@/components/ui/badge';
-import { Progress } from '@/components/ui/progress';
-import { ChevronDown, ChevronRight, BookOpen, Play, CheckCircle, Clock, Target, X, Menu } from 'lucide-react';
+import { ChevronDown, ChevronRight, BookOpen, Play, CheckCircle, Clock, X } from 'lucide-react';
 import type { Course } from '@/types/course';
+// Import mobile styles for responsive utilities
+import '@/styles/mobile.css';
 
 interface CourseSidebarProps {
   sidebarOpen: boolean;
@@ -25,6 +25,78 @@ const CourseSidebar = ({
   completedLessons 
 }: CourseSidebarProps) => {
   const sidebarRef = useRef<HTMLDivElement>(null);
+  
+  // Swipe gesture state for mobile - Requirements 2.1
+  const touchStartX = useRef<number | null>(null);
+  const touchStartY = useRef<number | null>(null);
+  const isSwiping = useRef<boolean>(false);
+
+  // Handle swipe gesture to close sidebar on mobile - Requirements 2.1
+  const handleTouchStart = useCallback((e: TouchEvent) => {
+    if (window.innerWidth >= 768) return; // Only on mobile
+    
+    const touch = e.touches[0];
+    if (touch) {
+      touchStartX.current = touch.clientX;
+      touchStartY.current = touch.clientY;
+      isSwiping.current = false;
+    }
+  }, []);
+
+  const handleTouchMove = useCallback((e: TouchEvent) => {
+    if (window.innerWidth >= 768) return; // Only on mobile
+    if (touchStartX.current === null || touchStartY.current === null) return;
+    
+    const touch = e.touches[0];
+    if (!touch) return;
+    
+    const deltaX = touch.clientX - touchStartX.current;
+    const deltaY = touch.clientY - touchStartY.current;
+    
+    // Detect horizontal swipe (left swipe to close)
+    // Only trigger if horizontal movement is greater than vertical (to avoid interfering with scroll)
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+      isSwiping.current = true;
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback((e: TouchEvent) => {
+    if (window.innerWidth >= 768) return; // Only on mobile
+    if (touchStartX.current === null) return;
+    
+    const touch = e.changedTouches[0];
+    if (!touch) return;
+    
+    const deltaX = touch.clientX - touchStartX.current;
+    const deltaY = touchStartY.current !== null ? touch.clientY - touchStartY.current : 0;
+    
+    // Swipe left to close (negative deltaX) with threshold of 50px
+    // Only close if horizontal movement is dominant
+    if (isSwiping.current && deltaX < -50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+      setSidebarOpen(false);
+    }
+    
+    // Reset touch state
+    touchStartX.current = null;
+    touchStartY.current = null;
+    isSwiping.current = false;
+  }, [setSidebarOpen]);
+
+  // Attach swipe gesture listeners to sidebar
+  useEffect(() => {
+    const sidebar = sidebarRef.current;
+    if (!sidebar || !sidebarOpen) return;
+    
+    sidebar.addEventListener('touchstart', handleTouchStart, { passive: true });
+    sidebar.addEventListener('touchmove', handleTouchMove, { passive: true });
+    sidebar.addEventListener('touchend', handleTouchEnd, { passive: true });
+    
+    return () => {
+      sidebar.removeEventListener('touchstart', handleTouchStart);
+      sidebar.removeEventListener('touchmove', handleTouchMove);
+      sidebar.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [sidebarOpen, handleTouchStart, handleTouchMove, handleTouchEnd]);
 
   // Close sidebar when clicking outside on mobile
   useEffect(() => {
@@ -216,7 +288,7 @@ const ModuleCard = ({
                 {completedInModule}/{totalModuleLessons}
               </Badge>
             </div>
-            <p className="text-xs text-white/80 line-clamp-1 group-hover:text-red-500">
+            <p className="text-xs text-white/80 line-clamp-1 md:line-clamp-1 mobile-no-truncate group-hover:text-red-500">
               {module.title}
             </p>
           </div>
@@ -264,7 +336,7 @@ const ModuleCard = ({
                   )}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className={`text-sm font-medium line-clamp-1 ${
+                  <p className={`text-sm font-medium line-clamp-1 md:line-clamp-1 mobile-no-truncate ${
                     isCurrent 
                       ? 'text-blue-600 dark:text-blue-400' 
                       : isCompleted 

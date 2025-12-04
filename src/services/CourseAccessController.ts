@@ -1,6 +1,12 @@
 import { supabase } from '@/integrations/supabase/client';
 import { logger } from '@/utils/logger';
-import { EnrollmentStatus, PaymentStatus, ProductionEnrollment, PaymentType } from '@/types/ikhokha';
+import { EnrollmentStatus, PaymentStatus, PaymentType, Enrollment } from '@/types/enrollment';
+
+// Production enrollment interface
+export interface ProductionEnrollment extends Enrollment {
+  proofOfPaymentUrl?: string;
+  rejectionReason?: string;
+}
 import { getStoredEnrollments, isUserEnrolled, getEnrollmentStatus } from '@/utils/enrollmentPersistence';
 
 export interface CourseAccessResult {

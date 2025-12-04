@@ -9,7 +9,20 @@ import {
   PerformanceMetrics
 } from '@/services/AdminDataManager';
 import { Enrollment } from '@/types/enrollment';
-import { IkhokhaPayment } from '@/types/ikhokha';
+
+// Payment interface for admin (EFT only)
+export interface Payment {
+  id: string;
+  enrollmentId: string;
+  userId: string;
+  amount: number;
+  currency: string;
+  paymentType: 'EFT';
+  status: 'pending' | 'completed' | 'failed';
+  proofOfPaymentUrl?: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
 
 interface UseAdminDataManagerOptions {
   autoRefresh?: boolean;
@@ -22,7 +35,7 @@ interface UseAdminDataManagerReturn {
   // Data
   enrollments: Enrollment[];
   users: AdminUser[];
-  payments: IkhokhaPayment[];
+  payments: Payment[];
   
   // Loading states
   enrollmentsLoading: boolean;

@@ -3,7 +3,7 @@
 // Enhanced with immediate updates, multiple backup strategies, conflict resolution, and recovery
 
 import { logger } from './logger';
-import { EnrollmentStatus, PaymentType } from '../types/ikhokha';
+import { EnrollmentStatus, PaymentType } from '../types/enrollment';
 
 export interface EnrollmentData {
   id: string;

@@ -15,6 +15,8 @@ import { unifiedEnrollmentValidator } from '@/services/UnifiedEnrollmentValidato
 import { CourseContentValidator, type CourseValidationResult } from '@/services/CourseContentValidator';
 import { Loader2, AlertCircle, RefreshCw, Clock, AlertTriangle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+// Import mobile styles for responsive layout
+import '@/styles/mobile.css';
 
 // Lazy load heavy components
 const CourseEnrollmentView = lazy(() => import('@/components/course/CourseEnrollmentView'));
@@ -392,17 +394,17 @@ const Course = () => {
   // Show loading state for course data or access validation
   if (courseLoading || accessValidation.isValidating) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Card className="max-w-md w-full mx-4">
-          <CardContent className="pt-6">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 mobile-px">
+        <Card className="max-w-md w-full">
+          <CardContent className="pt-6 mobile-p">
             <div className="flex flex-col items-center space-y-4">
               <Loader2 className="h-8 w-8 animate-spin text-blue-600" />
               <div className="text-center">
-                <p className="text-lg font-medium">{loadingState.message}</p>
-                <p className="text-sm text-gray-600 mt-1">Please wait...</p>
+                <p className="text-lg font-medium mobile-text-body">{loadingState.message}</p>
+                <p className="text-sm text-gray-600 mt-1 mobile-text-body">Please wait...</p>
               </div>
               {loadingState.showRetry && (
-                <Button onClick={retryValidation} variant="outline" size="sm">
+                <Button onClick={retryValidation} variant="outline" size="sm" className="touch-target-btn">
                   <RefreshCw className="mr-2 h-4 w-4" />
                   Retry
                 </Button>
@@ -417,18 +419,18 @@ const Course = () => {
   // Handle course not found
   if (!course) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <Card className="max-w-md w-full mx-4">
-          <CardHeader>
-            <CardTitle className="text-center text-red-600">Course Not Found</CardTitle>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 mobile-px">
+        <Card className="max-w-md w-full">
+          <CardHeader className="mobile-p">
+            <CardTitle className="text-center text-red-600 mobile-text-h3">Course Not Found</CardTitle>
           </CardHeader>
-          <CardContent className="text-center space-y-4">
-            <p className="text-gray-600">
+          <CardContent className="text-center space-y-4 mobile-p">
+            <p className="text-gray-600 mobile-text-body">
               The course you're looking for doesn't exist or has been removed.
             </p>
             <Button 
               onClick={() => navigate('/courses')}
-              className="w-full"
+              className="w-full touch-target-btn"
             >
               Back to Courses
             </Button>
@@ -459,20 +461,20 @@ const Course = () => {
       const hasStructuralIssues = criticalErrors.length > 0;
       
       return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-          <Card className="max-w-lg w-full mx-4">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 mobile-px">
+          <Card className="max-w-lg w-full">
+            <CardHeader className="mobile-p">
+              <CardTitle className="flex items-center gap-2 mobile-text-h3">
                 {hasStructuralIssues ? (
-                  <AlertTriangle className="h-5 w-5 text-red-600" />
+                  <AlertTriangle className="h-5 w-5 text-red-600 flex-shrink-0" />
                 ) : (
-                  <Clock className="h-5 w-5 text-blue-600" />
+                  <Clock className="h-5 w-5 text-blue-600 flex-shrink-0" />
                 )}
                 {hasStructuralIssues ? 'Course Unavailable' : 'Course Being Prepared'}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-gray-600">
+            <CardContent className="space-y-4 mobile-p">
+              <p className="text-gray-600 mobile-text-body">
                 {userFriendlyMessage}
               </p>
               
@@ -523,17 +525,18 @@ const Course = () => {
                 </div>
               )}
 
-              <div className="flex space-x-2">
-                <Button onClick={() => navigate('/courses')} variant="outline">
+              {/* Mobile-friendly button layout - stacks on mobile */}
+              <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2">
+                <Button onClick={() => navigate('/courses')} variant="outline" className="touch-target-btn w-full sm:w-auto">
                   Back to Courses
                 </Button>
-                <Button onClick={retryContentValidation} size="sm" variant="outline">
+                <Button onClick={retryContentValidation} size="sm" variant="outline" className="touch-target-btn w-full sm:w-auto">
                   <RefreshCw className="mr-2 h-4 w-4" />
-                  Refresh Validation
+                  Refresh
                 </Button>
-                <Button onClick={() => window.location.reload()} size="sm">
+                <Button onClick={() => window.location.reload()} size="sm" className="touch-target-btn w-full sm:w-auto">
                   <RefreshCw className="mr-2 h-4 w-4" />
-                  Reload Page
+                  Reload
                 </Button>
               </div>
             </CardContent>
@@ -573,21 +576,21 @@ const Course = () => {
   // Handle different enrollment statuses from enhanced validation
   if (accessValidation.enrollmentStatus === 'pending') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 mobile-px">
         <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle>Enrollment Pending Approval</CardTitle>
+          <CardHeader className="mobile-p">
+            <CardTitle className="mobile-text-h3">Enrollment Pending Approval</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <p>Your enrollment request for {course.title} has been submitted and is awaiting admin approval.</p>
-            <p className="text-sm text-gray-600">
+          <CardContent className="space-y-4 mobile-p">
+            <p className="mobile-text-body">Your enrollment request for {course.title} has been submitted and is awaiting admin approval.</p>
+            <p className="text-sm text-gray-600 mobile-text-body">
               Confidence: {Math.round(accessValidation.confidence * 100)}%
             </p>
-            <div className="flex space-x-2">
-              <Button onClick={() => navigate('/courses')} variant="outline">
+            <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2">
+              <Button onClick={() => navigate('/courses')} variant="outline" className="touch-target-btn w-full sm:w-auto">
                 Back to Courses
               </Button>
-              <Button onClick={retryValidation} size="sm">
+              <Button onClick={retryValidation} size="sm" className="touch-target-btn w-full sm:w-auto">
                 <RefreshCw className="mr-2 h-4 w-4" />
                 Check Status
               </Button>
@@ -600,24 +603,24 @@ const Course = () => {
 
   if (accessValidation.enrollmentStatus === 'rejected') {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 mobile-px">
         <Card className="w-full max-w-md">
-          <CardHeader>
-            <CardTitle className="text-red-600">Enrollment Not Approved</CardTitle>
+          <CardHeader className="mobile-p">
+            <CardTitle className="text-red-600 mobile-text-h3">Enrollment Not Approved</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-4">
+          <CardContent className="space-y-4 mobile-p">
             <div className="flex items-center space-x-2 text-red-600">
-              <AlertCircle className="h-5 w-5" />
-              <p>Your enrollment request was not approved.</p>
+              <AlertCircle className="h-5 w-5 flex-shrink-0" />
+              <p className="mobile-text-body">Your enrollment request was not approved.</p>
             </div>
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-gray-600 mobile-text-body">
               Please contact support for assistance or try enrolling again.
             </p>
-            <div className="flex space-x-2">
-              <Button onClick={() => navigate('/courses')} variant="outline">
+            <div className="flex flex-col sm:flex-row gap-2 sm:space-x-2">
+              <Button onClick={() => navigate('/courses')} variant="outline" className="touch-target-btn w-full sm:w-auto">
                 Back to Courses
               </Button>
-              <Button onClick={() => window.location.href = 'mailto:support@example.com'} size="sm">
+              <Button onClick={() => window.location.href = 'mailto:support@example.com'} size="sm" className="touch-target-btn w-full sm:w-auto">
                 Contact Support
               </Button>
             </div>
@@ -639,10 +642,10 @@ const Course = () => {
         />
       </Suspense>
       
-      {/* Enrollment Form Modal */}
+      {/* Enrollment Form Modal - Mobile responsive */}
       {showEnrollmentForm && user && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md mx-4">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 mobile-px">
+          <div className="bg-white rounded-lg shadow-lg p-4 sm:p-6 w-full max-w-md mobile-p">
             <SimpleEnrollmentForm
               courseId={course.id}
               courseTitle={course.title}

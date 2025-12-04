@@ -9,7 +9,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { enrollmentStateManager, EnrollmentState, ButtonAction } from '@/services/EnrollmentStateManager';
-import { EnrollmentStatus, PaymentType, PaymentStatus, EnrollmentStatusUpdate } from '@/types/ikhokha';
+import { EnrollmentStatus, PaymentType, PaymentStatus } from '@/types/enrollment';
+
+// EnrollmentStatusUpdate interface for real-time updates
+export interface EnrollmentStatusUpdate {
+  enrollmentId: string;
+  userId: string;
+  courseId: string;
+  status: EnrollmentStatus;
+  paymentStatus?: PaymentStatus;
+  timestamp: Date;
+}
 import { logger } from '@/utils/logger';
 
 export interface UseEnrollmentStateOptions {

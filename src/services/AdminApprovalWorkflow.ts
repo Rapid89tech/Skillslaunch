@@ -8,8 +8,13 @@
  */
 
 import { supabase } from '@/integrations/supabase/client';
-import { realTimePaymentSync } from './RealTimePaymentSync';
-import { EnrollmentStatus, ProductionEnrollment } from '@/types/ikhokha';
+import { EnrollmentStatus, Enrollment } from '@/types/enrollment';
+
+// Production enrollment interface
+export interface ProductionEnrollment extends Enrollment {
+  proofOfPaymentUrl?: string;
+  rejectionReason?: string;
+}
 
 interface PendingEnrollment {
   id: string;
@@ -110,16 +115,7 @@ export class AdminApprovalWorkflow {
     if (this.isInitialized) return;
 
     try {
-      // Ensure RealTimePaymentSync is initialized
-      await realTimePaymentSync.initialize();
-      
-      // Subscribe to admin updates for new EFT enrollments
-      realTimePaymentSync.subscribeToAdminUpdates((update) => {
-        if (update.type === 'new_eft_enrollment') {
-          this.handleNewEftEnrollment(update);
-        }
-      });
-
+      // Initialize admin approval workflow
       this.isInitialized = true;
       console.log('AdminApprovalWorkflow initialized successfully');
     } catch (error) {
@@ -282,22 +278,16 @@ export class AdminApprovalWorkflow {
         }
       });
 
-      // Broadcast real-time update to student interface
-      await realTimePaymentSync.syncEnrollmentStatus(enrollmentId, 'approved');
-
-      // Notify user of approval
-      realTimePaymentSync.broadcastToUser(enrollment.user_id, {
-        userId: enrollment.user_id,
-        type: 'course_access_granted',
-        data: {
+      // Dispatch custom event for real-time UI updates
+      window.dispatchEvent(new CustomEvent('enrollment-status-updated', {
+        detail: {
           enrollmentId,
+          userId: enrollment.user_id,
           courseId: enrollment.course_id,
-          courseName: enrollment.course_title,
-          approvedBy: adminId,
-          approvedAt: now
-        },
-        timestamp: now
-      });
+          status: EnrollmentStatus.APPROVED,
+          timestamp: now
+        }
+      }));
 
       // Notify processed listeners
       this.processedListeners.forEach(callback => {
@@ -386,13 +376,13 @@ export class AdminApprovalWorkflow {
         }
       });
 
-      // Broadcast real-time update
-      await realTimePaymentSync.syncEnrollmentStatus(enrollmentId, 'rejected');
-
-      // Notify user of rejection
-      realTimePaymentSync.broadcastToUser(enrollment.user_id, {
-        userId: enrollment.user_id,
-        type: 'enrollment_status_changed',
+      // Dispatch custom event for real-time UI updates
+      window.dispatchEvent(new CustomEvent('enrollment-status-updated', {
+        detail: {
+          enrollmentId,
+          userId: enrollment.user_id,
+          courseId: enrollment.course_id,
+          status: EnrollmentStatus.REJECTED,
         data: {
           enrollmentId,
           courseId: enrollment.course_id,

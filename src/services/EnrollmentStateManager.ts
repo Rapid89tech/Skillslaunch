@@ -9,12 +9,27 @@
 
 import { supabase } from '@/integrations/supabase/client';
 import { 
-  ProductionEnrollment, 
   EnrollmentStatus, 
   PaymentType, 
   PaymentStatus,
-  EnrollmentStatusUpdate 
-} from '@/types/ikhokha';
+  Enrollment
+} from '@/types/enrollment';
+
+// Production enrollment interface
+export interface ProductionEnrollment extends Enrollment {
+  proofOfPaymentUrl?: string;
+  rejectionReason?: string;
+}
+
+// Enrollment status update interface
+export interface EnrollmentStatusUpdate {
+  enrollmentId: string;
+  userId: string;
+  courseId: string;
+  status: EnrollmentStatus;
+  paymentStatus?: PaymentStatus;
+  timestamp: Date;
+}
 import { logger } from '@/utils/logger';
 
 export interface EnrollmentState {
