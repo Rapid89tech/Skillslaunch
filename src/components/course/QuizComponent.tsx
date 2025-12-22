@@ -30,11 +30,14 @@ interface QuizComponentProps {
   onNext: () => void;
   moduleId: number;
   lessonId: number;
+  courseId?: string | undefined; // Add courseId as optional prop for reliability
 }
 
-const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizComponentProps) => {
+const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId, courseId: propCourseId }: QuizComponentProps) => {
   const navigate = useNavigate();
-  const { courseId } = useParams<{ courseId: string }>();
+  const { courseId: paramCourseId } = useParams<{ courseId: string }>();
+  // Use prop courseId first, then param, for maximum reliability
+  const courseId = propCourseId || paramCourseId;
   const { user, profile } = useAuth(); // Get current user and profile for admin bypass
   const { submitScore, scores, getGradeColor, fetchScores, fetchCourseSummary, testScoringSystem } = useModuleScores(courseId);
   const { saveQuizScore, markLessonCompleted, updateCurrentPosition } = useUserProgress(courseId);
@@ -479,11 +482,14 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
                  </div>
                  <Button
                    onClick={() => {
-                     const id = courseId || course?.id;
+                     // Get courseId from multiple sources for reliability
+                     const id = courseId || course?.id || paramCourseId;
+                     console.log('🎓 Certificate button clicked:', { courseId, courseFromHook: course?.id, paramCourseId, finalId: id });
                      if (id) {
                        navigate(`/course/${id}/certificate`);
                      } else {
-                       console.error('No course ID available for certificate');
+                       console.error('❌ No course ID available for certificate');
+                       alert('Unable to generate certificate. Please refresh the page and try again.');
                      }
                    }}
                    className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2"

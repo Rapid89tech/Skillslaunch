@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Lock } from 'lucide-react';
@@ -14,9 +15,12 @@ interface QuizLessonRendererProps {
   onNext: () => void;
   moduleId: number;
   lessonId: number;
+  courseId?: string;
 }
 
-const QuizLessonRenderer = ({ lesson, isCompleted, hasAttempted, onMarkComplete, onNext, moduleId, lessonId }: QuizLessonRendererProps) => {
+const QuizLessonRenderer = ({ lesson, isCompleted, hasAttempted, onMarkComplete, onNext, moduleId, lessonId, courseId: propCourseId }: QuizLessonRendererProps) => {
+  const { courseId: paramCourseId } = useParams<{ courseId: string }>();
+  const courseId = propCourseId || paramCourseId;
   const handleContinueToNext = () => {
     // If quiz was attempted but not passed, we still need to mark it complete to proceed
     if (hasAttempted && !isCompleted) {
@@ -64,6 +68,7 @@ const QuizLessonRenderer = ({ lesson, isCompleted, hasAttempted, onMarkComplete,
         onNext={onNext}
         moduleId={moduleId}
         lessonId={lessonId}
+        courseId={courseId}
       />
     </div>
   );

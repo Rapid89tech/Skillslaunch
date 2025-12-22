@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import QuizComponent from './QuizComponent';
 import VideoLessonContent from './content/VideoLessonContent';
 import type { Lesson, QuizLesson, VideoLesson } from '@/types/course';
@@ -11,9 +12,12 @@ interface InteractiveContentProps {
   onNext: () => void;
   moduleId: number;
   lessonId: number;
+  courseId?: string;
 }
 
-const InteractiveContent = ({ lesson, isCompleted, onMarkComplete, onNext, moduleId, lessonId }: InteractiveContentProps) => {
+const InteractiveContent = ({ lesson, isCompleted, onMarkComplete, onNext, moduleId, lessonId, courseId: propCourseId }: InteractiveContentProps) => {
+  const { courseId: paramCourseId } = useParams<{ courseId: string }>();
+  const courseId = propCourseId || paramCourseId;
   
   if (lesson.type === 'quiz') {
     return (
@@ -23,6 +27,7 @@ const InteractiveContent = ({ lesson, isCompleted, onMarkComplete, onNext, modul
         onNext={onNext}
         moduleId={moduleId}
         lessonId={lessonId}
+        courseId={courseId}
       />
     );
   }
