@@ -457,13 +457,36 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId, courseI
           const lastModuleIndex = totalModules - 1;
           const lastModule = course.modules[lastModuleIndex];
           const isLastModule = lastModule ? moduleId === lastModule.id : false;
-          const isLastLessonOfLastModule = lastModule ? lessonId === lastModule.lessons[lastModule.lessons.length - 1]?.id : false;
+          const isLastLessonOfLastModule = lastModule && lastModule.lessons && lastModule.lessons.length > 0 
+            ? lessonId === lastModule.lessons[lastModule.lessons.length - 1]?.id 
+            : false;
           
           const allQuizzes = allLessons.filter(l => l.type === 'quiz');
           const currentQuizIndex = allQuizzes.findIndex(q => q.id === lessonId);
           const isLastQuiz = currentQuizIndex === allQuizzes.length - 1;
           
           const isFinalQuiz = isLastLessonOverall || (isLastModule && isLastLessonOfLastModule) || isLastQuiz;
+          
+          console.log('🎓 CERTIFICATE DEBUG:', {
+            courseId: course.id,
+            courseTitle: course.title,
+            moduleId,
+            lessonId,
+            totalModules,
+            lastModuleIndex,
+            lastModuleId: lastModule?.id,
+            isLastModule,
+            isLastLessonOfLastModule,
+            currentLessonIndex,
+            totalLessons: allLessons.length,
+            isLastLessonOverall,
+            totalQuizzes: allQuizzes.length,
+            currentQuizIndex,
+            isLastQuiz,
+            isFinalQuiz,
+            showResults,
+            passedQuiz
+          });
           
           return isFinalQuiz;
         })() && (
