@@ -1,41 +1,26 @@
--- EMERGENCY FIX: Completely disable RLS on enrollments and profiles
--- Run this in Supabase SQL Editor NOW
+-- EMERGENCY FIX: Disable RLS for Admin Dashboard Access
+-- Run this in Supabase SQL Editor (https://supabase.com/dashboard)
+-- Go to: SQL Editor > New Query > Paste this > Run
 
--- Step 1: Disable RLS completely
-ALTER TABLE public.enrollments DISABLE ROW LEVEL SECURITY;
-ALTER TABLE public.profiles DISABLE ROW LEVEL SECURITY;
+-- Step 1: Disable RLS on enrollments table
+ALTER TABLE enrollments DISABLE ROW LEVEL SECURITY;
 
--- Step 2: Drop ALL existing policies that might be causing issues
-DO $$ 
-DECLARE
-    pol RECORD;
-BEGIN
-    -- Drop all policies on enrollments
-    FOR pol IN SELECT policyname FROM pg_policies WHERE tablename = 'enrollments' LOOP
-        EXECUTE format('DROP POLICY IF EXISTS %I ON public.enrollments', pol.policyname);
-    END LOOP;
-    
-    -- Drop all policies on profiles
-    FOR pol IN SELECT policyname FROM pg_policies WHERE tablename = 'profiles' LOOP
-        EXECUTE format('DROP POLICY IF EXISTS %I ON public.profiles', pol.policyname);
-    END LOOP;
-END $$;
+-- Step 2: Disable RLS on profiles table  
+ALTER TABLE profiles DISABLE ROW LEVEL SECURITY;
 
--- Step 3: Grant full access to authenticated users
-GRANT ALL ON public.enrollments TO authenticated;
-GRANT ALL ON public.enrollments TO anon;
-GRANT ALL ON public.profiles TO authenticated;
-GRANT ALL ON public.profiles TO anon;
+-- Step 3: Verify RLS is disabled
+SELECT tablename, rowsecurity 
+FROM pg_tables 
+WHERE schemaname = 'public' 
+AND tablename IN ('enrollments', 'profiles');
 
--- Step 4: Verify the fix
-SELECT 'RLS Status:' as info, 
-       relname as table_name, 
-       relrowsecurity as rls_enabled
-FROM pg_class 
-WHERE relname IN ('enrollments', 'profiles');
+-- Expected output: rowsecurity should be 'false' for both tables
 
--- Step 5: Test query
-SELECT 'Test Query - Enrollments count:' as info, COUNT(*) as count FROM public.enrollments;
-SELECT 'Test Query - Profiles count:' as info, COUNT(*) as count FROM public.profiles;
+-- ALTERNATIVE: If you want to keep RLS but allow admin access, use these policies instead:
+-- (Only run these if you DON'T want to disable RLS completely)
 
-SELECT '✅ EMERGENCY FIX APPLIED - Refresh your admin dashboard now!' as status;
+-- DROP POLICY IF EXISTS "Admin full access enrollments" ON enrollments;
+-- CREATE POLICY "Admin full access enrollments" ON enrollments FOR ALL USING (true) WITH CHECK (true);
+
+-- DROP POLICY IF EXISTS "Admin full access profiles" ON profiles;
+-- CREATE POLICY "Admin full access profiles" ON profiles FOR ALL USING (true) WITH CHECK (true);

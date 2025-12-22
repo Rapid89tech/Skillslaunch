@@ -3,7 +3,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, BookOpen, RefreshCw, CheckCircle, XCircle } from 'lucide-react';
+import { Users, BookOpen, RefreshCw, CheckCircle, XCircle, AlertTriangle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 
 interface Enrollment {
@@ -30,46 +30,63 @@ const DirectAdminDashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<'enrollments' | 'users'>('enrollments');
+  const [rlsWarning, setRlsWarning] = useState(false);
   const { toast } = useToast();
 
   const fetchData = async () => {
     setLoading(true);
     setError(null);
+    setRlsWarning(false);
 
     try {
-      // Fetch enrollments with a 15 second timeout
-      const enrollPromise = supabase
+      console.log('🔄 Fetching admin dashboard data...');
+      
+      // Try fetching enrollments first
+      const { data: enrollData, error: enrollError } = await supabase
         .from('enrollments')
         .select('*')
         .order('enrolled_at', { ascending: false })
         .limit(100);
 
-      const profilePromise = supabase
+      if (enrollError) {
+        console.error('❌ Enrollment fetch error:', enrollError);
+        if (enrollError.message.includes('timeout') || enrollError.code === 'PGRST301') {
+          setRlsWarning(true);
+          setError('Database query timed out. RLS policies may be blocking access.');
+        } else {
+          setError(`Enrollments: ${enrollError.message}`);
+        }
+      } else {
+        console.log('✅ Enrollments fetched:', enrollData?.length || 0);
+        setEnrollments(enrollData || []);
+      }
+
+      // Try fetching profiles
+      const { data: profileData, error: profileError } = await supabase
         .from('profiles')
         .select('*')
         .order('created_at', { ascending: false })
         .limit(100);
 
-      const [enrollResult, profileResult] = await Promise.all([
-        enrollPromise,
-        profilePromise
-      ]);
-
-      if (enrollResult.error) {
-        console.error('Enrollment error:', enrollResult.error);
-        setError(`Enrollments: ${enrollResult.error.message}`);
+      if (profileError) {
+        console.error('❌ Profile fetch error:', profileError);
+        if (profileError.message.includes('timeout') || profileError.code === 'PGRST301') {
+          setRlsWarning(true);
+        }
+        setError(prev => prev ? `${prev}, Profiles: ${profileError.message}` : `Profiles: ${profileError.message}`);
       } else {
-        setEnrollments(enrollResult.data || []);
+        console.log('✅ Profiles fetched:', profileData?.length || 0);
+        setUsers(profileData || []);
       }
 
-      if (profileResult.error) {
-        console.error('Profile error:', profileResult.error);
-        setError(prev => prev ? `${prev}, Profiles: ${profileResult.error.message}` : `Profiles: ${profileResult.error.message}`);
-      } else {
-        setUsers(profileResult.data || []);
+      // If both returned empty but no errors, might be RLS issue
+      if (!enrollError && !profileError && (!enrollData || enrollData.length === 0) && (!profileData || profileData.length === 0)) {
+        console.warn('⚠️ Both queries returned empty - possible RLS issue');
+        setRlsWarning(true);
       }
+
     } catch (err: any) {
-      console.error('Fetch error:', err);
+      console.error('❌ Fetch error:', err);
       setError(err.message || 'Failed to load data');
     } finally {
       setLoading(false);
@@ -136,11 +153,46 @@ const DirectAdminDashboard: React.FC = () => {
           </Button>
         </div>
 
+        {/* RLS Warning */}
+        {rlsWarning && (
+          <div className="bg-yellow-50 border border-yellow-400 text-yellow-800 px-4 py-4 rounded-lg mb-6">
+            <div className="flex items-start gap-3">
+              <AlertTriangle className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-0.5" />
+              <div>
+                <h3 className="font-bold text-lg">Database Access Issue Detected</h3>
+                <p className="mt-1">The admin dashboard cannot load data due to Row Level Security (RLS) policies.</p>
+                <div className="mt-3 bg-white p-3 rounded border border-yellow-300">
+                  <p className="font-semibold text-sm">To fix this, run this SQL in Supabase SQL Editor:</p>
+                  <pre className="mt-2 text-xs bg-gray-100 p-2 rounded overflow-x-auto">
+{`-- Disable RLS temporarily for admin access
+ALTER TABLE enrollments DISABLE ROW LEVEL SECURITY;
+ALTER TABLE profiles DISABLE ROW LEVEL SECURITY;
+
+-- Or create admin policies:
+CREATE POLICY "Admin full access enrollments" ON enrollments
+  FOR ALL USING (true) WITH CHECK (true);
+
+CREATE POLICY "Admin full access profiles" ON profiles
+  FOR ALL USING (true) WITH CHECK (true);`}
+                  </pre>
+                </div>
+                <Button 
+                  onClick={fetchData} 
+                  className="mt-3 bg-yellow-600 hover:bg-yellow-700"
+                  size="sm"
+                >
+                  <RefreshCw className="h-4 w-4 mr-2" />
+                  Retry After Running SQL
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Error Display */}
-        {error && (
+        {error && !rlsWarning && (
           <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-6">
             <strong>Error:</strong> {error}
-            <p className="text-sm mt-2">Please run the EMERGENCY-FIX-RLS.sql script in Supabase SQL Editor.</p>
           </div>
         )}
 

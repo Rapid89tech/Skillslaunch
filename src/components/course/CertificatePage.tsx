@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft, Trophy } from 'lucide-react';
 
 export const CertificatePage: React.FC = () => {
-  const { id: courseId } = useParams<{ id: string }>();
+  const { courseId } = useParams<{ courseId: string }>();
   const navigate = useNavigate();
   const { user, profile } = useAuth();
   const { course } = useCourseData(courseId);

@@ -34,7 +34,7 @@ interface QuizComponentProps {
 
 const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizComponentProps) => {
   const navigate = useNavigate();
-  const { id: courseId } = useParams<{ id: string }>();
+  const { courseId } = useParams<{ courseId: string }>();
   const { user, profile } = useAuth(); // Get current user and profile for admin bypass
   const { submitScore, scores, getGradeColor, fetchScores, fetchCourseSummary, testScoringSystem } = useModuleScores(courseId);
   const { saveQuizScore, markLessonCompleted, updateCurrentPosition } = useUserProgress(courseId);

@@ -232,7 +232,7 @@ const App: React.FC = () => {
                         <CourseOverviewPage />
                       </Layout>
                     } />
-                    <Route path="/course/:id/certificate" element={
+                    <Route path="/course/:courseId/certificate" element={
                       <Layout showHeader={true}>
                         <CertificatePage />
                       </Layout>
