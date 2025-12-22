@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ChevronDown, ChevronRight, BookOpen, Play, CheckCircle, Clock, X, Download, Trophy } from 'lucide-react';
+import { ChevronDown, ChevronRight, BookOpen, Play, CheckCircle, Clock, X, Award, Download } from 'lucide-react';
 import type { Course } from '@/types/course';
-import { useAuth } from '@/hooks/AuthContext';
 // Import mobile styles for responsive utilities
 import '@/styles/mobile.css';
 
@@ -26,83 +26,8 @@ const CourseSidebar = ({
   setCurrentLesson, 
   completedLessons 
 }: CourseSidebarProps) => {
+  const navigate = useNavigate();
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const { user, profile } = useAuth();
-  
-  // Certificate download function
-  const handleDownloadCertificate = () => {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    if (!ctx) {
-      alert('Unable to generate certificate. Please try again.');
-      return;
-    }
-
-    const certificateImg = new Image();
-    certificateImg.crossOrigin = 'anonymous';
-    
-    certificateImg.onload = () => {
-      canvas.width = certificateImg.width;
-      canvas.height = certificateImg.height;
-      ctx.drawImage(certificateImg, 0, 0);
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-
-      // Get student name
-      const studentName = (() => {
-        if (profile?.first_name && profile?.last_name) {
-          return `${profile.first_name} ${profile.last_name}`;
-        } else if (user?.user_metadata?.full_name) {
-          return user.user_metadata.full_name;
-        } else if (user?.email) {
-          return user.email.split('@')[0];
-        }
-        return 'Student';
-      })();
-      
-      // Student Name
-      ctx.font = 'bold 72px "Times New Roman", serif';
-      ctx.fillStyle = '#1a365d';
-      ctx.fillText(studentName, canvas.width / 2, canvas.height * 0.42);
-
-      // Course Title
-      ctx.font = 'bold 48px "Times New Roman", serif';
-      ctx.fillStyle = '#2d3748';
-      ctx.fillText(course.title, canvas.width / 2, canvas.height * 0.55);
-
-      // Date
-      ctx.font = '36px "Times New Roman", serif';
-      ctx.fillStyle = '#4a5568';
-      const dateStr = new Date().toLocaleDateString('en-US', { 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric' 
-      });
-      ctx.fillText(dateStr, canvas.width / 2, canvas.height * 0.75);
-
-      // Download
-      canvas.toBlob((blob) => {
-        if (blob) {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          const cleanName = studentName.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
-          const cleanCourse = course.title.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
-          a.download = `Certificate_${cleanCourse}_${cleanName}.png`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }
-      }, 'image/png', 1.0);
-    };
-    
-    certificateImg.onerror = () => {
-      alert('Failed to load certificate template. Please try again.');
-    };
-    
-    certificateImg.src = '/beta-skill-certificate-template.png';
-  };
   
   // Swipe gesture state for mobile - Requirements 2.1
   const touchStartX = useRef<number | null>(null);
@@ -295,23 +220,6 @@ const CourseSidebar = ({
               </div>
             </div>
           </div>
-          
-          {/* Certificate Download Button - Shows when 100% complete */}
-          {progress >= 100 && (
-            <div className="mt-4 p-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl shadow-lg animate-fade-in">
-              <div className="flex items-center gap-2 mb-2">
-                <Trophy className="w-5 h-5 text-yellow-300" />
-                <span className="text-white font-bold">Course Completed!</span>
-              </div>
-              <Button 
-                onClick={handleDownloadCertificate}
-                className="w-full bg-white text-green-600 hover:bg-gray-100 font-bold py-3 rounded-lg flex items-center justify-center gap-2"
-              >
-                <Download className="w-5 h-5" />
-                Download Certificate
-              </Button>
-            </div>
-          )}
         </div>
 
         {/* Course Modules */}
@@ -343,6 +251,24 @@ const CourseSidebar = ({
               />
             );
           })}
+          
+          {/* Certificate Button - Shows when course is 100% complete */}
+          {progress >= 100 && (
+            <div className="mt-4 p-4 bg-gradient-to-r from-green-500 to-emerald-600 rounded-xl shadow-lg animate-fade-in">
+              <div className="text-center text-white mb-3">
+                <Award className="w-10 h-10 mx-auto mb-2" />
+                <h3 className="font-bold text-lg">🎉 Course Complete!</h3>
+                <p className="text-sm opacity-90">Congratulations! Download your certificate.</p>
+              </div>
+              <Button
+                onClick={() => navigate(`/course/${course.id}/certificate`)}
+                className="w-full bg-white text-green-600 hover:bg-gray-100 font-bold py-3 rounded-lg flex items-center justify-center gap-2"
+              >
+                <Download className="w-5 h-5" />
+                Get Certificate Now
+              </Button>
+            </div>
+          )}
         </div>
       </div>
     </>
