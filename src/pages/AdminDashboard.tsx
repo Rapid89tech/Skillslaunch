@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuth } from '@/hooks/AuthContext';
 import { Navigate } from 'react-router-dom';
-import SimpleAdminDashboard from '@/components/admin/SimpleAdminDashboard';
+import FastAdminDashboard from '@/components/admin/FastAdminDashboard';
 
 const AdminDashboard: React.FC = () => {
   const { user } = useAuth();
@@ -28,7 +28,7 @@ const AdminDashboard: React.FC = () => {
     );
   }
 
-  return <SimpleAdminDashboard />;
+  return <FastAdminDashboard />;
 };
 
 export default AdminDashboard;

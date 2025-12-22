@@ -24,6 +24,7 @@ import masterchef101 from './masterchef101';
 import beautyTherapy101 from './beautyTherapy101';
 import doggrooming101 from './doggrooming101';
 import { cybersecurity101Course } from './cybersecurity101Course';
+import filmProduction101 from './filmProduction101';
 
 // Helper function to convert Course to UnifiedCourse
 const convertCourseToUnified = (course: any): UnifiedCourse => {
@@ -74,7 +75,8 @@ const allCourseData = [
   convertCourseToUnified(masterchef101),
   convertCourseToUnified(beautyTherapy101),
   convertCourseToUnified(doggrooming101),
-  cybersecurity101Course
+  cybersecurity101Course,
+  convertCourseToUnified(filmProduction101)
 ];
 
 // Normalize all courses to UnifiedCourse format

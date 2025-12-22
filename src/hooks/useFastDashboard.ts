@@ -93,47 +93,52 @@ export const useFastDashboard = (): UseFastDashboardReturn => {
 
   // Load admin data with error handling, fallback support, and performance optimizations
   const loadAdminData = useCallback(async () => {
-    if (!profile || (profile.role !== 'admin' && profile.role !== 'instructor') || !mountedRef.current) return;
-
-    // Start loading optimization tracking
-    loadingOptimizer.startLoading('admin-data', 'Loading admin dashboard data...');
+    // Check for admin access - either by role OR by hardcoded admin emails
+    const adminEmails = ['ericmnisi007@gmail.com', 'john.doe@gmail.com', 'maxmon@gmail.com', 'maxmon2@gmail.com'];
+    const isHardcodedAdmin = user?.email && adminEmails.some(email => user.email?.toLowerCase() === email.toLowerCase());
+    const isRoleAdmin = profile && (profile.role === 'admin' || profile.role === 'instructor');
+    
+    if ((!isRoleAdmin && !isHardcodedAdmin) || !mountedRef.current) {
+      console.log('🚫 Not loading admin data - not admin/instructor', { role: profile?.role, email: user?.email, isHardcodedAdmin });
+      return;
+    }
+    
+    console.log('✅ Loading admin data for:', user?.email);
 
     try {
-      // Prefetch admin data for better performance
-      fastDataService.prefetchAdminData().catch(console.warn);
-
-      // Use batch operations for better performance
-      const operations = [
-        () => fallbackManager.withFallback(
-          'admin-enrollments',
-          () => fastDataService.getAllEnrollments(),
-          {
-            maxAge: 1 * 60 * 1000, // 1 minute for admin data (more frequent updates)
-            enableOfflineMode: true,
-            showFallbackIndicator: true,
-            gracefulDegradation: true
-          }
-        ),
-        () => fallbackManager.withFallback(
-          'admin-users',
-          () => fastDataService.getAllUsers(),
-          {
-            maxAge: 5 * 60 * 1000, // 5 minutes for user data
-            enableOfflineMode: true,
-            showFallbackIndicator: true,
-            gracefulDegradation: true
-          }
-        )
-      ];
-
-      // Use loading optimizer for batched operations
-      const results = await loadingOptimizer.batchOperations(operations, 2);
-      const [enrollmentsFallback, usersFallback] = results;
+      // Import supabase directly
+      const { supabase } = await import('@/integrations/supabase/client');
+      
+      // Helper function with timeout
+      const fetchWithTimeout = async <T>(promise: Promise<T>, timeoutMs: number = 10000): Promise<T> => {
+        const timeout = new Promise<never>((_, reject) => 
+          setTimeout(() => reject(new Error('Request timeout')), timeoutMs)
+        );
+        return Promise.race([promise, timeout]);
+      };
+      
+      console.log('📊 Fetching enrollments...');
+      const enrollResult = await fetchWithTimeout(
+        supabase.from('enrollments').select('*').order('enrolled_at', { ascending: false }).limit(100)
+      );
+      
+      console.log('📊 Enrollments:', enrollResult.data?.length, enrollResult.error);
+      
+      if (enrollResult.error) throw new Error(enrollResult.error.message);
+      
+      console.log('👥 Fetching profiles...');
+      const profileResult = await fetchWithTimeout(
+        supabase.from('profiles').select('*').order('created_at', { ascending: false }).limit(100)
+      );
+      
+      console.log('👥 Profiles:', profileResult.data?.length, profileResult.error);
+      
+      if (profileResult.error) throw new Error(profileResult.error.message);
       
       if (mountedRef.current) {
-        setAllEnrollments(enrollmentsFallback?.data || []);
-        setAllUsers(usersFallback?.data || []);
-        loadingOptimizer.updateProgress('admin-data', 100, 'Admin data loaded');
+        console.log('✅ Setting state:', enrollResult.data?.length, profileResult.data?.length);
+        setAllEnrollments(enrollResult.data || []);
+        setAllUsers(profileResult.data || []);
       }
     } catch (err: any) {
       console.error('Error loading admin data:', err);

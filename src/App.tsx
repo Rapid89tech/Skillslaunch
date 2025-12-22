@@ -8,6 +8,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Layout from '@/components/Layout';
 import EnrollmentStatusSync from '@/components/EnrollmentStatusSync';
 import { initializeSafeEnrollmentSystem } from '@/utils/enrollmentErrorFix';
+import { dataSyncService } from '@/services/DataSyncService';
 
 // Simple loading component
 const LoadingSpinner = () => (
@@ -160,6 +161,18 @@ const App: React.FC = () => {
       console.error('Failed to initialize safe enrollment system:', error);
     }
 
+    // Initialize DataSyncService
+    const initDataSync = async () => {
+      try {
+        await dataSyncService.initialize();
+        console.log('✅ DataSyncService initialized');
+      } catch (error) {
+        console.error('❌ Failed to initialize DataSyncService:', error);
+      }
+    };
+    
+    initDataSync();
+
     // Add global error handler for payment integration errors
     const handlePaymentError = (event: ErrorEvent) => {
       if (event.message?.includes('production credentials') || 
@@ -173,6 +186,7 @@ const App: React.FC = () => {
     
     return () => {
       window.removeEventListener('error', handlePaymentError);
+      dataSyncService.cleanup();
     };
   }, []);
 

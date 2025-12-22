@@ -3,16 +3,26 @@ import { supabase } from '@/integrations/supabase/client';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Users, BookOpen, RefreshCw } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Users, BookOpen, RefreshCw, CalendarIcon, X } from 'lucide-react';
+import { format } from 'date-fns';
 
 const SimpleAdminDashboard: React.FC = () => {
   const [enrollments, setEnrollments] = useState<any[]>([]);
   const [users, setUsers] = useState<any[]>([]);
+  const [filteredUsers, setFilteredUsers] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<'enrollments' | 'users'>('enrollments');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [dataLoaded, setDataLoaded] = useState(false);
   const fetchedRef = useRef(false);
+  
+  // Filter states
+  const [searchQuery, setSearchQuery] = useState('');
+  const [dateFrom, setDateFrom] = useState<Date | undefined>(undefined);
+  const [dateTo, setDateTo] = useState<Date | undefined>(undefined);
 
   const fetchData = async () => {
     // Prevent duplicate fetches
@@ -24,18 +34,19 @@ const SimpleAdminDashboard: React.FC = () => {
     console.log('🔄 Admin Dashboard: Fetching data...');
 
     try {
-      // Fetch enrollments
+      // Fetch enrollments directly - don't call getUser() as it hangs
       const { data: enrollData, error: enrollError } = await supabase
         .from('enrollments')
         .select('*')
         .limit(100);
 
-      console.log('📊 Enrollments result:', { data: enrollData?.length, error: enrollError });
+      console.log('📊 Enrollments result:', enrollData?.length, enrollError);
       
       if (enrollError) {
-        console.error('Enrollment error:', enrollError);
-        setError('Failed to load enrollments: ' + enrollError.message);
+        console.error('❌ Enrollment error:', enrollError);
+        setError(`Failed to load enrollments: ${enrollError.message}`);
       } else {
+        console.log('✅ Enrollments loaded:', enrollData?.length);
         setEnrollments(enrollData || []);
       }
 
@@ -45,18 +56,22 @@ const SimpleAdminDashboard: React.FC = () => {
         .select('*')
         .limit(100);
 
-      console.log('👥 Profiles result:', { data: profileData?.length, error: profileError });
+      console.log('👥 Profiles result:', profileData?.length, profileError);
 
-      if (!profileError) {
-        setUsers(profileData || []);
+      if (profileError) {
+        console.error('❌ Profile error:', profileError);
+        setError(`Failed to load profiles: ${profileError.message}`);
       } else {
-        console.error('Profile error:', profileError);
+        console.log('✅ Profiles loaded:', profileData?.length);
+        const userData = profileData || [];
+        setUsers(userData);
+        setFilteredUsers(userData);
       }
 
       setDataLoaded(true);
       fetchedRef.current = true;
     } catch (err: any) {
-      console.error('Fetch error:', err);
+      console.error('❌ Fetch error:', err);
       setError(err.message || 'Failed to load data');
       setDataLoaded(true);
     } finally {
@@ -64,13 +79,65 @@ const SimpleAdminDashboard: React.FC = () => {
     }
   };
 
+  // Filter users based on search query and date range
   useEffect(() => {
+    let filtered = [...users];
+
+    // Apply search filter
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(user => {
+        const email = (user.email || '').toLowerCase();
+        const firstName = (user.first_name || '').toLowerCase();
+        const lastName = (user.last_name || '').toLowerCase();
+        const fullName = `${firstName} ${lastName}`.trim();
+        
+        return email.includes(query) || fullName.includes(query);
+      });
+    }
+
+    // Apply date range filter
+    if (dateFrom) {
+      filtered = filtered.filter(user => {
+        if (!user.created_at) return false;
+        const userDate = new Date(user.created_at);
+        return userDate >= dateFrom;
+      });
+    }
+
+    if (dateTo) {
+      filtered = filtered.filter(user => {
+        if (!user.created_at) return false;
+        const userDate = new Date(user.created_at);
+        // Set time to end of day for dateTo
+        const endOfDay = new Date(dateTo);
+        endOfDay.setHours(23, 59, 59, 999);
+        return userDate <= endOfDay;
+      });
+    }
+
+    setFilteredUsers(filtered);
+  }, [users, searchQuery, dateFrom, dateTo]);
+
+  const clearFilters = () => {
+    setSearchQuery('');
+    setDateFrom(undefined);
+    setDateTo(undefined);
+  };
+
+  useEffect(() => {
+    console.log('🚀 SimpleAdminDashboard mounted');
+    
     // Small delay to ensure auth is ready
     const timer = setTimeout(() => {
+      console.log('⏰ Timer fired, calling fetchData');
       fetchData();
     }, 500);
     
-    return () => clearTimeout(timer);
+    return () => {
+      console.log('🔚 SimpleAdminDashboard unmounting');
+      clearTimeout(timer);
+    };
   }, []);
 
   return (
@@ -194,9 +261,90 @@ const SimpleAdminDashboard: React.FC = () => {
               <CardTitle>Users</CardTitle>
             </CardHeader>
             <CardContent>
+              {/* Filter Section */}
+              <div className="mb-6 space-y-4">
+                <div className="flex flex-col md:flex-row gap-4">
+                  {/* Search Input */}
+                  <div className="flex-1">
+                    <Input
+                      placeholder="Search by email or name..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full"
+                    />
+                  </div>
+
+                  {/* Date From */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full md:w-[200px] justify-start text-left font-normal"
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {dateFrom ? format(dateFrom, 'PPP') : 'From date'}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={dateFrom}
+                        onSelect={setDateFrom}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+
+                  {/* Date To */}
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="outline"
+                        className="w-full md:w-[200px] justify-start text-left font-normal"
+                      >
+                        <CalendarIcon className="mr-2 h-4 w-4" />
+                        {dateTo ? format(dateTo, 'PPP') : 'To date'}
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto p-0" align="start">
+                      <Calendar
+                        mode="single"
+                        selected={dateTo}
+                        onSelect={setDateTo}
+                        initialFocus
+                      />
+                    </PopoverContent>
+                  </Popover>
+
+                  {/* Clear Filters Button */}
+                  {(searchQuery || dateFrom || dateTo) && (
+                    <Button
+                      variant="ghost"
+                      onClick={clearFilters}
+                      className="w-full md:w-auto"
+                    >
+                      <X className="mr-2 h-4 w-4" />
+                      Clear
+                    </Button>
+                  )}
+                </div>
+
+                {/* Filter Summary */}
+                {(searchQuery || dateFrom || dateTo) && (
+                  <div className="text-sm text-gray-600">
+                    Showing {filteredUsers.length} of {users.length} users
+                  </div>
+                )}
+              </div>
+
+              {/* Users Table */}
               {users.length === 0 ? (
                 <p className="text-gray-500 text-center py-8">
                   {dataLoaded ? 'No users found' : 'Loading...'}
+                </p>
+              ) : filteredUsers.length === 0 ? (
+                <p className="text-gray-500 text-center py-8">
+                  No users match the current filters
                 </p>
               ) : (
                 <div className="overflow-x-auto">
@@ -205,15 +353,23 @@ const SimpleAdminDashboard: React.FC = () => {
                       <tr>
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Name</th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Phone</th>
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
                         <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase">Registered</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {users.map((u) => (
+                      {filteredUsers.map((u) => (
                         <tr key={u.id}>
                           <td className="px-4 py-3 text-sm">{u.email || 'N/A'}</td>
-                          <td className="px-4 py-3 text-sm">{u.first_name} {u.last_name}</td>
+                          <td className="px-4 py-3 text-sm">
+                            {u.first_name || u.last_name 
+                              ? `${u.first_name || ''} ${u.last_name || ''}`.trim()
+                              : 'N/A'}
+                          </td>
+                          <td className="px-4 py-3 text-sm text-gray-600">
+                            {u.contact_number || 'Not provided'}
+                          </td>
                           <td className="px-4 py-3">
                             <Badge>{u.role || 'student'}</Badge>
                           </td>

@@ -6,6 +6,7 @@ import { Menu, X, User } from 'lucide-react';
 import { useAuth } from '@/hooks/AuthContext';
 import LogoutButton from './LogoutButton';
 import NotificationBell from './notifications/NotificationBell';
+import ConnectionStatusIndicator from './ConnectionStatusIndicator';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -65,6 +66,7 @@ const Header = () => {
             
             {user ? (
               <div className="flex items-center space-x-4">
+                <ConnectionStatusIndicator />
                 <NotificationBell />
                 <Button
                   onClick={handleDashboardClick}
@@ -106,6 +108,11 @@ const Header = () => {
         {isOpen && (
           <nav className="md:hidden mt-4 pb-6 border-t border-gray-200 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg">
             <div className="flex flex-col space-y-4 pt-6 px-6">
+              {user && (
+                <div className="pb-4 border-b border-gray-100">
+                  <ConnectionStatusIndicator className="w-full justify-center" />
+                </div>
+              )}
               <Link 
                 to="/" 
                 className="text-gray-700 hover:text-primary font-medium transition-colors py-3 px-4 rounded-lg hover:bg-gray-50 text-base"

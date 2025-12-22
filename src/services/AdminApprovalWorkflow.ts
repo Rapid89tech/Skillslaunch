@@ -383,17 +383,18 @@ export class AdminApprovalWorkflow {
           userId: enrollment.user_id,
           courseId: enrollment.course_id,
           status: EnrollmentStatus.REJECTED,
-        data: {
-          enrollmentId,
-          courseId: enrollment.course_id,
-          courseName: enrollment.course_title,
-          status: 'rejected',
-          reason: reason,
-          rejectedBy: adminId,
-          rejectedAt: now
-        },
-        timestamp: now
-      });
+          data: {
+            enrollmentId,
+            courseId: enrollment.course_id,
+            courseName: enrollment.course_title,
+            status: 'rejected',
+            reason: reason,
+            rejectedBy: adminId,
+            rejectedAt: now
+          },
+          timestamp: now
+        }
+      }));
 
       // Notify processed listeners
       this.processedListeners.forEach(callback => {
