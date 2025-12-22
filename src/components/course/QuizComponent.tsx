@@ -396,54 +396,6 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId, courseI
               </div>
             </div>
           )}
-          
-          {/* Module Score Card - ENHANCED WITH BETTER DISPLAY */}
-          <div className="flex justify-center items-center">
-            <div className="w-full max-w-[320px] bg-gradient-to-br from-white to-blue-50/30 dark:from-gray-800 dark:to-blue-900/20 rounded-3xl shadow-xl border border-blue-100/50 dark:border-blue-800/50 p-4 sm:p-6 flex flex-col gap-3 animate-fade-in mx-4">
-              <div className="flex items-center justify-between mb-2">
-                <h4 className="font-semibold text-base sm:text-lg text-gray-800 dark:text-gray-200">Module {moduleId}</h4>
-                <Badge 
-                  variant="outline" 
-                  className={`font-bold text-base sm:text-lg px-2 sm:px-3 py-1 ${getGradeColor(grade)}`}
-                >
-                  {grade}
-                </Badge>
-              </div>
-              
-              {/* Enhanced Score Display */}
-              <div className="grid grid-cols-1 gap-3 text-sm">
-                <div className="flex justify-between items-center p-3 bg-blue-50/50 dark:bg-blue-900/20 rounded-lg">
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">Score:</span>
-                  <span className="font-bold text-lg text-blue-600 dark:text-blue-400">
-                    {totalScore}/{totalPoints}
-                  </span>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-green-50/50 dark:bg-green-900/20 rounded-lg">
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">Percentage:</span>
-                  <span className="font-bold text-lg text-green-600 dark:text-green-400">
-                    {Math.round(percentage)}%
-                  </span>
-                </div>
-                <div className="flex justify-between items-center p-3 bg-purple-50/50 dark:bg-purple-900/20 rounded-lg">
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">Lessons:</span>
-                  <span className="font-bold text-lg text-purple-600 dark:text-purple-400">
-                    {moduleScores.length}
-                  </span>
-                </div>
-              </div>
-              
-              {/* Progress Bar */}
-              <div className="mt-2">
-                <div className="flex justify-between text-xs text-gray-500 mb-1">
-                  <span>Progress</span>
-                  <span>{Math.round(percentage)}%</span>
-                </div>
-                <Progress value={percentage} className="h-3 bg-gray-200 dark:bg-gray-700" />
-              </div>
-              
-
-            </div>
-          </div>
         </div>
         
         {/* Course Completion with Certificate - ALWAYS shows after FINAL quiz */}
