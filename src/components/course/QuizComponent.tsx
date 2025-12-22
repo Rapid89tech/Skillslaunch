@@ -478,7 +478,14 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId }: QuizC
                    <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
                  </div>
                  <Button
-                   onClick={() => navigate(`/course/${courseId}/certificate`)}
+                   onClick={() => {
+                     const id = courseId || course?.id;
+                     if (id) {
+                       navigate(`/course/${id}/certificate`);
+                     } else {
+                       console.error('No course ID available for certificate');
+                     }
+                   }}
                    className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2"
                  >
                    <Trophy className="w-4 h-4" />

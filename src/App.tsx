@@ -139,6 +139,7 @@ const PaymentFailed = safeLazyImport(() => import("./pages/PaymentFailed"));
 const PaymentCancel = safeLazyImport(() => import("./pages/PaymentCancel"));
 const Course = safeLazyImport(() => import("./pages/Course"));
 const CourseOverviewPage = safeLazyImport(() => import("./pages/CourseOverviewPage"));
+const CertificatePage = safeLazyImport(() => import("./components/course/CertificatePage").then(m => ({ default: m.CertificatePage })));
 const Enrollment = safeLazyImport(() => import("./pages/Enrollment"));
 const NotFound = safeLazyImport(() => import("./pages/NotFound"));
 
@@ -229,6 +230,11 @@ const App: React.FC = () => {
                     <Route path="/course/:courseId/overview" element={
                       <Layout showHeader={true}>
                         <CourseOverviewPage />
+                      </Layout>
+                    } />
+                    <Route path="/course/:id/certificate" element={
+                      <Layout showHeader={true}>
+                        <CertificatePage />
                       </Layout>
                     } />
                     <Route path="/dashboard" element={
