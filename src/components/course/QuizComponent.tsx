@@ -13,7 +13,8 @@ import {
   RotateCcw,
   Award,
   Trophy,
-  AlertTriangle
+  AlertTriangle,
+  Download
 } from 'lucide-react';
 import type { QuizLesson } from '@/types/course';
 import { useModuleScores } from '@/hooks/useModuleScores';
@@ -445,62 +446,217 @@ const QuizComponent = ({ lesson, onComplete, onNext, moduleId, lessonId, courseI
           </div>
         </div>
         
-                 {/* Course Completion Notification */}
-         {course && (() => {
-           // BULLETPROOF COMPLETION DETECTION
-           const allLessons = course.modules.flatMap(m => m.lessons);
-           const currentLessonIndex = allLessons.findIndex(l => l.id === lessonId);
-           const isLastLessonOverall = currentLessonIndex === allLessons.length - 1;
-           
-           const totalModules = course.modules.length;
-           const lastModuleIndex = totalModules - 1;
-           const lastModule = course.modules[lastModuleIndex];
-           const isLastModule = moduleId === lastModule.id;
-           const isLastLessonOfLastModule = lessonId === lastModule.lessons[lastModule.lessons.length - 1].id;
-           
-           const allQuizzes = allLessons.filter(l => l.type === 'quiz');
-           const currentQuizIndex = allQuizzes.findIndex(q => q.id === lessonId);
-           const isLastQuiz = currentQuizIndex === allQuizzes.length - 1;
-           
-           return isLastLessonOverall || (isLastModule && isLastLessonOfLastModule) || isLastQuiz;
-         })() && (
-           <div className="flex justify-center mb-6 animate-fade-in">
-             <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-8 py-6 rounded-2xl shadow-2xl max-w-md text-center">
-               <div className="flex items-center justify-center mb-3">
-                 <Trophy className="w-8 h-8 text-yellow-300 mr-3" />
-                 <h3 className="text-2xl font-bold">🎉 Course Completed!</h3>
-               </div>
-               <p className="text-lg mb-4">
-                 Congratulations! You've successfully completed <strong>{course.title}</strong>
-               </p>
-               <p className="text-sm opacity-90 mb-4">
-                 You'll be redirected to your certificate in a few seconds...
-               </p>
-               <div className="flex flex-col gap-3">
-                 <div className="flex justify-center">
-                   <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-white"></div>
-                 </div>
-                 <Button
-                   onClick={() => {
-                     // Get courseId from multiple sources for reliability
-                     const id = courseId || course?.id || paramCourseId;
-                     console.log('🎓 Certificate button clicked:', { courseId, courseFromHook: course?.id, paramCourseId, finalId: id });
-                     if (id) {
-                       navigate(`/course/${id}/certificate`);
-                     } else {
-                       console.error('❌ No course ID available for certificate');
-                       alert('Unable to generate certificate. Please refresh the page and try again.');
-                     }
-                   }}
-                   className="bg-white text-blue-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-100 transition-colors flex items-center gap-2"
-                 >
-                   <Trophy className="w-4 h-4" />
-                   Get Certificate Now
-                 </Button>
-               </div>
-             </div>
-           </div>
-         )}
+        {/* Course Completion with Certificate - Only shows after FINAL quiz with 100% completion */}
+        {course && (() => {
+          // BULLETPROOF COMPLETION DETECTION
+          const allLessons = course.modules.flatMap(m => m.lessons);
+          const currentLessonIndex = allLessons.findIndex(l => l.id === lessonId);
+          const isLastLessonOverall = currentLessonIndex === allLessons.length - 1;
+          
+          const totalModules = course.modules.length;
+          const lastModuleIndex = totalModules - 1;
+          const lastModule = course.modules[lastModuleIndex];
+          const isLastModule = lastModule ? moduleId === lastModule.id : false;
+          const isLastLessonOfLastModule = lastModule ? lessonId === lastModule.lessons[lastModule.lessons.length - 1]?.id : false;
+          
+          const allQuizzes = allLessons.filter(l => l.type === 'quiz');
+          const currentQuizIndex = allQuizzes.findIndex(q => q.id === lessonId);
+          const isLastQuiz = currentQuizIndex === allQuizzes.length - 1;
+          
+          const isFinalQuiz = isLastLessonOverall || (isLastModule && isLastLessonOfLastModule) || isLastQuiz;
+          
+          // Calculate completion percentage
+          const completedLessonsCount = allLessons.filter((_, idx) => idx <= currentLessonIndex).length;
+          const totalLessonsCount = allLessons.length;
+          const completionPercentage = Math.round((completedLessonsCount / totalLessonsCount) * 100);
+          const is100Percent = completionPercentage >= 100 || (passedQuiz && isFinalQuiz);
+          
+          return { isFinalQuiz, is100Percent, completionPercentage };
+        })()?.isFinalQuiz && (
+          <div className="mt-8 animate-fade-in">
+            {/* Course Completed Header */}
+            <div className="flex justify-center mb-6">
+              <div className="bg-gradient-to-r from-green-500 to-blue-600 text-white px-8 py-6 rounded-2xl shadow-2xl max-w-lg text-center">
+                <div className="flex items-center justify-center mb-3">
+                  <Trophy className="w-8 h-8 text-yellow-300 mr-3" />
+                  <h3 className="text-2xl font-bold">🎉 Course Completed!</h3>
+                </div>
+                <p className="text-lg mb-2">
+                  Congratulations! You've successfully completed <strong>{course.title}</strong>
+                </p>
+                <p className="text-sm opacity-90">
+                  {passedQuiz || isAdminUser ? 'Your certificate is ready below!' : 'Pass this quiz to unlock your certificate.'}
+                </p>
+              </div>
+            </div>
+            
+            {/* Certificate Section - Only visible when passed or admin */}
+            {(passedQuiz || isAdminUser) && (
+              <div className="bg-white rounded-2xl shadow-2xl overflow-hidden mb-8">
+                <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 text-center">
+                  <h4 className="text-xl font-bold flex items-center justify-center gap-2">
+                    <Award className="w-6 h-6" />
+                    Your Certificate of Completion
+                  </h4>
+                </div>
+                
+                {/* Certificate Preview */}
+                <div className="relative p-4">
+                  <img 
+                    src="/beta-skill-certificate-template.png" 
+                    alt="Certificate of Completion" 
+                    className="w-full h-auto rounded-lg shadow-lg"
+                  />
+                  
+                  {/* Text Overlay */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none p-4">
+                    {/* Student Name */}
+                    <div 
+                      className="absolute text-center"
+                      style={{ top: '42%', left: '50%', transform: 'translateX(-50%)' }}
+                    >
+                      <h2 
+                        className="text-xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-blue-900"
+                        style={{ 
+                          fontFamily: '"Times New Roman", serif',
+                          textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+                        }}
+                      >
+                        {(() => {
+                          if (profile?.first_name && profile?.last_name) {
+                            return `${profile.first_name} ${profile.last_name}`;
+                          } else if (user?.user_metadata?.full_name) {
+                            return user.user_metadata.full_name;
+                          } else if (user?.email) {
+                            return user.email.split('@')[0];
+                          }
+                          return 'Student';
+                        })()}
+                      </h2>
+                    </div>
+                    
+                    {/* Course Title */}
+                    <div 
+                      className="absolute text-center px-4"
+                      style={{ top: '55%', left: '50%', transform: 'translateX(-50%)', maxWidth: '80%' }}
+                    >
+                      <h3 
+                        className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-gray-800"
+                        style={{ 
+                          fontFamily: '"Times New Roman", serif',
+                          textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+                        }}
+                      >
+                        {course.title}
+                      </h3>
+                    </div>
+                    
+                    {/* Completion Date */}
+                    <div 
+                      className="absolute text-center"
+                      style={{ top: '75%', left: '50%', transform: 'translateX(-50%)' }}
+                    >
+                      <p 
+                        className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-700"
+                        style={{ fontFamily: '"Times New Roman", serif' }}
+                      >
+                        {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Download Button */}
+                <div className="p-6 bg-gray-50 flex flex-col sm:flex-row gap-4 justify-center">
+                  <Button 
+                    onClick={() => {
+                      // Download certificate
+                      const canvas = document.createElement('canvas');
+                      const ctx = canvas.getContext('2d');
+                      if (!ctx) return;
+
+                      const certificateImg = new Image();
+                      certificateImg.crossOrigin = 'anonymous';
+                      
+                      certificateImg.onload = () => {
+                        canvas.width = certificateImg.width;
+                        canvas.height = certificateImg.height;
+                        ctx.drawImage(certificateImg, 0, 0);
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+
+                        // Student Name
+                        const studentName = (() => {
+                          if (profile?.first_name && profile?.last_name) {
+                            return `${profile.first_name} ${profile.last_name}`;
+                          } else if (user?.user_metadata?.full_name) {
+                            return user.user_metadata.full_name;
+                          } else if (user?.email) {
+                            return user.email.split('@')[0];
+                          }
+                          return 'Student';
+                        })();
+                        
+                        ctx.font = 'bold 72px "Times New Roman", serif';
+                        ctx.fillStyle = '#1a365d';
+                        ctx.fillText(studentName, canvas.width / 2, canvas.height * 0.42);
+
+                        // Course Title
+                        ctx.font = 'bold 48px "Times New Roman", serif';
+                        ctx.fillStyle = '#2d3748';
+                        ctx.fillText(course.title, canvas.width / 2, canvas.height * 0.55);
+
+                        // Date
+                        ctx.font = '36px "Times New Roman", serif';
+                        ctx.fillStyle = '#4a5568';
+                        ctx.fillText(new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }), canvas.width / 2, canvas.height * 0.75);
+
+                        canvas.toBlob((blob) => {
+                          if (blob) {
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            const cleanName = studentName.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
+                            const cleanCourse = course.title.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
+                            a.download = `Certificate_${cleanCourse}_${cleanName}.png`;
+                            document.body.appendChild(a);
+                            a.click();
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                          }
+                        }, 'image/png', 1.0);
+                      };
+                      
+                      certificateImg.onerror = () => {
+                        alert('Failed to generate certificate. Please try again.');
+                      };
+                      
+                      certificateImg.src = '/beta-skill-certificate-template.png';
+                    }}
+                    className="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-lg flex items-center gap-2 text-lg font-bold shadow-lg"
+                  >
+                    <Download className="w-6 h-6" />
+                    Download Certificate
+                  </Button>
+                </div>
+              </div>
+            )}
+            
+            {/* Not passed message */}
+            {!passedQuiz && !isAdminUser && (
+              <div className="bg-yellow-50 border border-yellow-300 rounded-lg p-6 text-center">
+                <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-3" />
+                <h4 className="text-lg font-bold text-yellow-800 mb-2">Certificate Locked</h4>
+                <p className="text-yellow-700">
+                  You need to score at least 70% on this final quiz to unlock your certificate.
+                </p>
+                <p className="text-sm text-yellow-600 mt-2">
+                  Click "Try Again" to retake the quiz.
+                </p>
+              </div>
+            )}
+          </div>
+        )}
         
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 animate-fade-in">
