@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Download, Share2, Printer } from 'lucide-react';
 
@@ -19,49 +19,60 @@ export const Certificate: React.FC<CertificateProps> = ({
   courseId,
   grade
 }) => {
+  const certificateRef = useRef<HTMLDivElement>(null);
+
+  const formatDate = (dateStr: string) => {
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+    });
+  };
+
   const handleDownload = () => {
-    // Create a canvas element to generate high-quality certificate
     const canvas = document.createElement('canvas');
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    // Load the certificate background image
     const certificateImg = new Image();
+    certificateImg.crossOrigin = 'anonymous';
+    
     certificateImg.onload = () => {
-      // Set canvas size to match the certificate image
       canvas.width = certificateImg.width;
       canvas.height = certificateImg.height;
 
       // Draw the certificate background
       ctx.drawImage(certificateImg, 0, 0);
 
-      // Add text overlay
+      // Configure text styling
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
 
-      // Student Name - positioned in the center
-      ctx.font = 'bold 48px Arial';
-      ctx.fillStyle = '#1f2937';
-      ctx.fillText(studentName, canvas.width / 2, canvas.height / 2 - 20);
+      // Student Name - large, bold, centered (adjust Y position based on your certificate design)
+      ctx.font = 'bold 72px "Times New Roman", serif';
+      ctx.fillStyle = '#1a365d';
+      ctx.fillText(studentName, canvas.width / 2, canvas.height * 0.42);
 
-      // Course Title - positioned below student name
-      ctx.font = 'bold 32px Arial';
-      ctx.fillStyle = '#374151';
-      ctx.fillText(courseTitle, canvas.width / 2, canvas.height / 2 + 40);
+      // Course Title - medium size below name
+      ctx.font = 'bold 48px "Times New Roman", serif';
+      ctx.fillStyle = '#2d3748';
+      ctx.fillText(courseTitle, canvas.width / 2, canvas.height * 0.55);
 
-      // Completion Date - positioned at bottom
-      ctx.font = '24px Arial';
-      ctx.fillStyle = '#6b7280';
-      ctx.fillText(completionDate, canvas.width / 2, canvas.height - 100);
+      // Completion Date - smaller, at bottom area
+      ctx.font = '36px "Times New Roman", serif';
+      ctx.fillStyle = '#4a5568';
+      ctx.fillText(formatDate(completionDate), canvas.width / 2, canvas.height * 0.75);
 
-      // Trigger download
+      // Download
       canvas.toBlob((blob) => {
         if (blob) {
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
           const cleanName = studentName.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
-          a.download = `Certificate_${courseTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_')}_${cleanName}.png`;
+          const cleanCourse = courseTitle.replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '_');
+          a.download = `Certificate_${cleanCourse}_${cleanName}.png`;
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
@@ -70,7 +81,12 @@ export const Certificate: React.FC<CertificateProps> = ({
       }, 'image/png', 1.0);
     };
     
-    certificateImg.src = '/official-course-certificate.png';
+    certificateImg.onerror = () => {
+      console.error('Failed to load certificate image');
+      alert('Failed to generate certificate. Please try again.');
+    };
+    
+    certificateImg.src = '/beta-skill-certificate-template.png';
   };
 
   const handlePrint = () => {
@@ -81,51 +97,76 @@ export const Certificate: React.FC<CertificateProps> = ({
     if (navigator.share) {
       navigator.share({
         title: `Certificate of Completion - ${courseTitle}`,
-        text: `I just completed ${courseTitle}!`,
+        text: `I just completed ${courseTitle} at Beta Skills!`,
         url: window.location.href
       });
     } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(`I just completed ${courseTitle}! Check out my certificate.`);
+      navigator.clipboard.writeText(`I just completed ${courseTitle} at Beta Skills! Check out my certificate.`);
       alert('Certificate link copied to clipboard!');
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-red-100 py-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8">
+      <div className="max-w-5xl mx-auto px-4">
         {/* Certificate Display */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden mb-8 print:shadow-none">
-          {/* Certificate with new design */}
+        <div 
+          ref={certificateRef}
+          className="bg-white rounded-2xl shadow-2xl overflow-hidden mb-8 print:shadow-none"
+        >
           <div className="relative">
-            {/* Background certificate image */}
+            {/* Certificate Background Image */}
             <img 
-              src="/official-course-certificate.png" 
+              src="/beta-skill-certificate-template.png" 
               alt="Certificate of Completion" 
-              className="w-full h-auto object-contain"
+              className="w-full h-auto"
             />
             
-            {/* Overlay content positioned on top of the certificate */}
-            <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-8">
-              {/* Student Name - positioned where it should be on the certificate */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                <div className="text-4xl md:text-5xl font-bold text-gray-800 mb-4" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
+            {/* Text Overlay - Positioned on the certificate */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+              {/* Student Name */}
+              <div 
+                className="absolute text-center"
+                style={{ top: '42%', left: '50%', transform: 'translateX(-50%)' }}
+              >
+                <h2 
+                  className="text-3xl md:text-5xl lg:text-6xl font-bold text-blue-900"
+                  style={{ 
+                    fontFamily: '"Times New Roman", serif',
+                    textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+                  }}
+                >
                   {studentName}
-                </div>
+                </h2>
               </div>
               
-              {/* Course Title - positioned below student name */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 translate-y-8">
-                <div className="text-2xl md:text-3xl font-bold text-gray-800" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.1)' }}>
+              {/* Course Title */}
+              <div 
+                className="absolute text-center px-8"
+                style={{ top: '55%', left: '50%', transform: 'translateX(-50%)', maxWidth: '80%' }}
+              >
+                <h3 
+                  className="text-xl md:text-3xl lg:text-4xl font-bold text-gray-800"
+                  style={{ 
+                    fontFamily: '"Times New Roman", serif',
+                    textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+                  }}
+                >
                   {courseTitle}
-                </div>
+                </h3>
               </div>
               
-              {/* Completion Date - positioned at bottom */}
-              <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-                <div className="text-lg md:text-xl font-semibold text-gray-700" style={{ textShadow: '1px 1px 2px rgba(0,0,0,0.1)' }}>
-                  {completionDate}
-                </div>
+              {/* Completion Date */}
+              <div 
+                className="absolute text-center"
+                style={{ top: '75%', left: '50%', transform: 'translateX(-50%)' }}
+              >
+                <p 
+                  className="text-lg md:text-2xl text-gray-700"
+                  style={{ fontFamily: '"Times New Roman", serif' }}
+                >
+                  {formatDate(completionDate)}
+                </p>
               </div>
             </div>
           </div>
@@ -135,27 +176,27 @@ export const Certificate: React.FC<CertificateProps> = ({
         <div className="flex flex-col sm:flex-row gap-4 justify-center print:hidden">
           <Button 
             onClick={handleDownload}
-            className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg flex items-center gap-2"
+            className="bg-red-600 hover:bg-red-700 text-white px-8 py-4 rounded-lg flex items-center gap-2 text-lg"
           >
-            <Download className="w-5 h-5" />
+            <Download className="w-6 h-6" />
             Download Certificate
           </Button>
           
           <Button 
             onClick={handlePrint}
             variant="outline"
-            className="border-red-600 text-red-600 hover:bg-red-50 px-6 py-3 rounded-lg flex items-center gap-2"
+            className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-4 rounded-lg flex items-center gap-2 text-lg"
           >
-            <Printer className="w-5 h-5" />
+            <Printer className="w-6 h-6" />
             Print Certificate
           </Button>
           
           <Button 
             onClick={handleShare}
             variant="outline"
-            className="border-red-600 text-red-600 hover:bg-red-50 px-6 py-3 rounded-lg flex items-center gap-2"
+            className="border-red-600 text-red-600 hover:bg-red-50 px-8 py-4 rounded-lg flex items-center gap-2 text-lg"
           >
-            <Share2 className="w-5 h-5" />
+            <Share2 className="w-6 h-6" />
             Share Achievement
           </Button>
         </div>
@@ -173,4 +214,4 @@ export const Certificate: React.FC<CertificateProps> = ({
       </div>
     </div>
   );
-}; 
+};
